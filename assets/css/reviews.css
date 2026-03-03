@@ -1,0 +1,901 @@
+/**
+ * YTrip Reviews Styles
+ *
+ * @package YTrip
+ * @since 1.2.0
+ */
+
+/* ==========================================================================
+   Reviews Container
+   ========================================================================== */
+
+.ytrip-reviews {
+    padding: 2rem 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+.ytrip-reviews * {
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Reviews Summary
+   ========================================================================== */
+
+.ytrip-reviews-summary {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .ytrip-reviews-summary {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+}
+
+.ytrip-reviews-summary-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ytrip-reviews-average {
+    text-align: center;
+    padding: 1rem 2rem;
+}
+
+.ytrip-reviews-score {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1;
+}
+
+.ytrip-reviews-stars {
+    margin: 0.5rem 0;
+}
+
+.ytrip-reviews-count {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Stars */
+.ytrip-stars {
+    display: inline-flex;
+    gap: 2px;
+}
+
+.ytrip-star {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.ytrip-star-full {
+    color: #f59e0b;
+}
+
+.ytrip-star-half {
+    color: #f59e0b;
+    position: relative;
+    display: inline-block;
+}
+
+.ytrip-star-half::before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #f59e0b;
+}
+
+.ytrip-star-empty {
+    color: #e2e8f0;
+}
+
+/* Distribution Bars */
+.ytrip-reviews-distribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 400px;
+}
+
+.ytrip-reviews-bar-row {
+    display: grid;
+    grid-template-columns: 50px 1fr 40px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ytrip-reviews-bar-label {
+    font-size: 0.875rem;
+    color: #64748b;
+    text-align: right;
+}
+
+.ytrip-reviews-bar {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.ytrip-reviews-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f59e0b 0%, #f97316 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.ytrip-reviews-bar-count {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Category Ratings */
+.ytrip-reviews-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fff;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ytrip-reviews-category {
+    display: grid;
+    grid-template-columns: 80px 1fr 40px;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ytrip-reviews-category-label {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.ytrip-reviews-category-bar {
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ytrip-reviews-category-fill {
+    height: 100%;
+    background: var(--ytrip-primary, #2563eb);
+    border-radius: 3px;
+}
+
+.ytrip-reviews-category-value {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+/* ==========================================================================
+   Actions & Buttons
+   ========================================================================== */
+
+.ytrip-reviews-actions {
+    margin-bottom: 1.5rem;
+}
+
+.ytrip-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.ytrip-btn-primary {
+    background: linear-gradient(135deg, var(--ytrip-primary, #2563eb) 0%, #1d4ed8 100%);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+}
+
+.ytrip-btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.ytrip-btn-outline {
+    background: transparent;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+}
+
+.ytrip-btn-outline:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.ytrip-reviews-notice {
+    color: #64748b;
+    font-size: 0.9375rem;
+}
+
+.ytrip-reviews-notice a {
+    color: var(--ytrip-primary, #2563eb);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ytrip-reviews-notice a:hover {
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Review Form
+   ========================================================================== */
+
+.ytrip-review-form-wrapper {
+    margin-bottom: 2rem;
+    animation: ytrip-slide-down 0.3s ease;
+}
+
+@keyframes ytrip-slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.ytrip-review-form {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+}
+
+.ytrip-review-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.ytrip-review-form-header h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.ytrip-review-form-close {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #94a3b8;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.ytrip-review-form-close:hover {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.ytrip-form-group {
+    margin-bottom: 1.25rem;
+}
+
+.ytrip-form-group>label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #334155;
+    font-size: 0.9375rem;
+}
+
+.ytrip-form-group>label small {
+    font-weight: 400;
+    color: #94a3b8;
+}
+
+.ytrip-form-group .required {
+    color: #ef4444;
+}
+
+/* Star Rating Input */
+.ytrip-star-rating-input {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ytrip-star-input {
+    font-size: 2rem;
+    color: #e2e8f0;
+    cursor: pointer;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.ytrip-star-input:hover,
+.ytrip-star-input.hovered,
+.ytrip-star-input.selected {
+    color: #f59e0b;
+    transform: scale(1.1);
+}
+
+.ytrip-star-rating-small .ytrip-star-input {
+    font-size: 1.25rem;
+}
+
+.ytrip-rating-label {
+    margin-left: 0.75rem;
+    color: #64748b;
+    font-size: 0.9375rem;
+}
+
+/* Category Ratings Grid */
+.ytrip-category-ratings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.ytrip-category-rating {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ytrip-category-label {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Inputs */
+.ytrip-input,
+.ytrip-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.9375rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+}
+
+.ytrip-input:focus,
+.ytrip-textarea:focus {
+    outline: none;
+    border-color: var(--ytrip-primary, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.ytrip-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.ytrip-char-count {
+    text-align: right;
+    font-size: 0.8125rem;
+    color: #94a3b8;
+    margin-top: 0.25rem;
+}
+
+/* Photo Upload */
+.ytrip-photo-upload {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.ytrip-photo-preview {
+    display: contents;
+}
+
+.ytrip-photo-preview-item {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ytrip-photo-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-photo-preview-item .ytrip-photo-remove {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ytrip-photo-add {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: all 0.2s ease;
+}
+
+.ytrip-photo-add:hover {
+    border-color: var(--ytrip-primary, #2563eb);
+    color: var(--ytrip-primary, #2563eb);
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.ytrip-photo-add span {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+/* Form Actions */
+.ytrip-form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 1.5rem;
+}
+
+/* Messages */
+.ytrip-review-messages {
+    margin-top: 1rem;
+}
+
+.ytrip-review-messages .ytrip-message {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9375rem;
+}
+
+.ytrip-message-success {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.ytrip-message-error {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Spinner */
+.ytrip-spinner {
+    animation: ytrip-spin 1s linear infinite;
+}
+
+@keyframes ytrip-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ==========================================================================
+   Reviews List
+   ========================================================================== */
+
+.ytrip-reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.ytrip-reviews-empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #94a3b8;
+}
+
+.ytrip-reviews-empty svg {
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.ytrip-reviews-empty p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Review Item */
+.ytrip-review-item {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: box-shadow 0.2s ease;
+}
+
+.ytrip-review-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ytrip-review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+}
+
+.ytrip-review-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ytrip-review-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.ytrip-review-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ytrip-review-author-name {
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ytrip-review-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #059669;
+    background: #d1fae5;
+    padding: 0.125rem 0.5rem;
+    border-radius: 999px;
+}
+
+.ytrip-review-verified svg {
+    width: 12px;
+    height: 12px;
+}
+
+.ytrip-review-date {
+    font-size: 0.8125rem;
+    color: #94a3b8;
+}
+
+.ytrip-review-rating {
+    flex-shrink: 0;
+}
+
+.ytrip-review-title {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.ytrip-review-content {
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.9375rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Review Photos */
+.ytrip-review-photos {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.ytrip-review-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ytrip-review-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.ytrip-review-photo:hover img {
+    transform: scale(1.05);
+}
+
+/* Review Footer */
+.ytrip-review-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 0.75rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.ytrip-review-helpful {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.ytrip-helpful-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.375rem 0.75rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    color: #64748b;
+    transition: all 0.2s ease;
+}
+
+.ytrip-helpful-btn:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.ytrip-helpful-btn.voted {
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    border-color: transparent;
+}
+
+.ytrip-helpful-count {
+    opacity: 0.7;
+}
+
+/* Pagination */
+.ytrip-reviews-pagination {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* ==========================================================================
+   RTL Support
+   ========================================================================== */
+
+[dir="rtl"] .ytrip-reviews-summary {
+    direction: rtl;
+}
+
+[dir="rtl"] .ytrip-reviews-bar-label {
+    text-align: left;
+}
+
+[dir="rtl"] .ytrip-rating-label {
+    margin-left: 0;
+    margin-right: 0.75rem;
+}
+
+[dir="rtl"] .ytrip-review-author {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .ytrip-form-actions {
+    justify-content: flex-start;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 640px) {
+    .ytrip-reviews-summary {
+        padding: 1rem;
+    }
+
+    .ytrip-reviews-score {
+        font-size: 2.5rem;
+    }
+
+    .ytrip-review-form {
+        padding: 1rem;
+    }
+
+    .ytrip-form-actions {
+        flex-direction: column;
+    }
+
+    .ytrip-form-actions .ytrip-btn {
+        width: 100%;
+    }
+
+    .ytrip-review-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .ytrip-review-helpful {
+        flex-wrap: wrap;
+    }
+}
+/* Ensure Reviews Section is Visible */
+.ytrip-reviews {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 100px !important;
+}
+
+.ytrip-review-form {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    background: #f8fafc;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.ytrip-review-form__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--ytrip-primary, #0f4c81);
+}
+
+.ytrip-star-rating-input {
+    display: flex;
+    gap: 0.25rem;
+    font-size: 1.5rem;
+}
+
+.ytrip-star-rating-input input {
+    display: none;
+}
+
+.ytrip-star-rating-input label {
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: color 0.2s ease;
+}
+
+.ytrip-star-rating-input input:checked ~ label,
+.ytrip-star-rating-input label:hover,
+.ytrip-star-rating-input label:hover ~ label {
+    color: var(--ytrip-accent, #f59e0b);
+}
+
+.ytrip-form__group {
+    margin-bottom: 1.25rem;
+}
+
+.ytrip-form__label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.ytrip-form input[type="text"],
+.ytrip-form input[type="email"],
+.ytrip-form textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.ytrip-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.ytrip-btn--primary {
+    background: var(--ytrip-primary, #0f4c81);
+    color: #fff;
+    padding: 0.875rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.ytrip-btn--primary:hover {
+    background: var(--ytrip-primary-dark, #1e40af);
+}
+
+/* Mobile Fixes for Review Form */
+@media (max-width: 768px) {
+    .ytrip-reviews {
+        padding: 1rem !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    .ytrip-review-form {
+        padding: 1.5rem !important;
+        margin: 1rem 0 !important;
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    .ytrip-form__group {
+        margin-bottom: 1rem !important;
+    }
+    
+    .ytrip-form input[type="text"],
+    .ytrip-form input[type="email"],
+    .ytrip-form textarea {
+        font-size: 16px !important; /* Prevent zoom on iOS */
+    }
+}
+
+/* Ensure visibility on all devices */
+.ytrip-reviews,
+.ytrip-review-form,
+.ytrip-reviews__list {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Debug: Force show reviews */
+.ytrip-container .ytrip-reviews {
+    border: 2px solid #0f4c81 !important;
+    padding: 20px !important;
+    margin: 20px 0 !important;
+    background: #fff !important;
+}
+
+.ytrip-review-form {
+    border: 2px solid #f59e0b !important;
+    background: #f8fafc !important;
+}

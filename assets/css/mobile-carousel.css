@@ -1,0 +1,14 @@
+@media (max-width: 768px) {
+    .ytrip-related-tours__content,
+    .ytrip-related-tours .swiper-wrapper {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+    }
+    .ytrip-related-tours .swiper-slide,
+    .ytrip-related-tours .ytrip-tour-card {
+        flex: 0 0 85% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+    }
+}

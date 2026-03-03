@@ -1,0 +1,40 @@
+/**
+ * YTrip Local Fonts - Critical weights only (fast first paint)
+ * Inter: 400, 600 | Outfit: 700
+ * Extra weights (500, 700, 600, 800) load async via fonts-extra.css
+ */
+
+/* Inter - body and semibold */
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('../fonts/inter/Inter-Regular.woff2') format('woff2'),
+	     url('../fonts/inter/Inter-Regular.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/inter/Inter-SemiBold.woff2') format('woff2'),
+	     url('../fonts/inter/Inter-SemiBold.woff') format('woff');
+}
+
+/* Outfit - headings */
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/outfit/Outfit-Bold.woff2') format('woff2'),
+	     url('../fonts/outfit/Outfit-Bold.woff') format('woff');
+}
+
+/* Font feature settings for better rendering */
+.ytrip-fonts-loaded {
+	--ytrip-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--ytrip-font-heading: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}

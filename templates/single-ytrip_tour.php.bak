@@ -1,0 +1,2582 @@
+<?php
+/**
+ * YTrip Single Tour Template
+ * 
+ * Professional ultra-modern UI/UX design
+ * - Hero section with featured image + booking form
+ * - Full tour details with beautiful layout
+ * - All meta keys displayed elegantly
+ *
+ * @package YTrip
+ * @since 2.1.1
+ */
+
+if (!defined('ABSPATH')) {
+    exit;
+}
+
+// Get tour data
+$tour_id = get_the_ID();
+$meta = get_post_meta($tour_id, 'ytrip_tour_details', true);
+$meta = is_array($meta) ? $meta : [];
+
+// Normalize meta keys (support both Codestar tour-details and class-admin-config field names)
+$duration_src = $meta['duration'] ?? $meta['tour_duration'] ?? [];
+$meta['duration'] = is_array($duration_src) ? $duration_src : [];
+if (empty($meta['what_to_bring']) && !empty($meta['things_to_bring'])) {
+    $meta['what_to_bring'] = $meta['things_to_bring'];
+}
+if (empty($meta['know_before']) && !empty($meta['know_before_you_go'])) {
+    $meta['know_before'] = $meta['know_before_you_go'];
+}
+$map_loc = $meta['map_location'] ?? [];
+if (is_array($map_loc)) {
+    $lat = $map_loc['lat'] ?? $map_loc['latitude'] ?? null;
+    $lng = $map_loc['lng'] ?? $map_loc['longitude'] ?? null;
+    if (empty($meta['map_lat']) && $lat !== null && $lat !== '') {
+        $meta['map_lat'] = $lat;
+    }
+    if (empty($meta['map_lng']) && $lng !== null && $lng !== '') {
+        $meta['map_lng'] = $lng;
+    }
+    if (!empty($map_loc['zoom']) && empty($meta['map_zoom'])) {
+        $meta['map_zoom'] = $map_loc['zoom'];
+    }
+}
+
+// Get terms
+$settings = get_option('ytrip_settings', []);
+$dest_slug = $settings['slug_destination'] ?? 'ytrip_destination';
+$cat_slug = $settings['slug_category'] ?? 'ytrip_category';
+
+$destinations = get_the_terms($tour_id, $dest_slug);
+$categories = get_the_terms($tour_id, $cat_slug);
+
+// Get price data (WooCommerce or tour meta - works with/without WC)
+$product_id = get_post_meta($tour_id, '_ytrip_wc_product_id', true);
+$product = $product_id && function_exists('wc_get_product') ? wc_get_product($product_id) : null;
+$tour_price_html = '';
+if (!$product) {
+    $raw = get_post_meta($tour_id, '_ytrip_price', true);
+    if ($raw !== '' && is_numeric($raw)) {
+        $currency = (function_exists('YTrip_Helper') && method_exists('YTrip_Helper', 'get_currency_symbol')) ? YTrip_Helper::get_currency_symbol() : '';
+        $tour_price_html = $currency . number_format_i18n((float) $raw, 2);
+    }
+}
+
+// Gallery: support gallery, tour_gallery (array or comma-separated string). Merge featured image so hero can be slider when featured + gallery.
+$raw_gallery = $meta['tour_gallery'] ?? $meta['gallery'] ?? [];
+if (is_array($raw_gallery)) {
+    $gallery_ids = array_filter(array_map('intval', $raw_gallery));
+} else {
+    $gallery_ids = array_filter(array_map('intval', explode(',', (string) $raw_gallery)));
+}
+$featured_img_id = has_post_thumbnail($tour_id) ? get_post_thumbnail_id($tour_id) : 0;
+if (empty($gallery_ids) && $featured_img_id) {
+    $gallery_ids = [ $featured_img_id ];
+} elseif ($featured_img_id && ! in_array($featured_img_id, $gallery_ids, true)) {
+    array_unshift($gallery_ids, $featured_img_id);
+    $gallery_ids = array_values($gallery_ids);
+}
+
+// Single page hero: one control = single_image | slider | carousel (backward compat: single_hero_type + gallery_display_mode)
+$hero_mode = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : '';
+if ( $hero_mode === '' ) {
+	$legacy_hero = isset( $meta['single_hero_type'] ) ? sanitize_key( $meta['single_hero_type'] ) : 'single_image';
+	$legacy_gallery = isset( $meta['gallery_display_mode'] ) ? sanitize_key( $meta['gallery_display_mode'] ) : '';
+	if ( $legacy_hero === 'slider_carousel' && $legacy_gallery === 'carousel' ) {
+		$hero_mode = 'carousel';
+	} elseif ( $legacy_hero === 'slider_carousel' ) {
+		$hero_mode = 'slider';
+	} else {
+		$hero_mode = 'single_image';
+	}
+}
+$hero_images = $gallery_ids;
+if ( empty( $hero_images ) && has_post_thumbnail( $tour_id ) ) {
+	$hero_images = [ get_post_thumbnail_id( $tour_id ) ];
+}
+$hero_count = count( $hero_images );
+// When 2+ images and no explicit single_image, use slider/carousel (per tour or global setting)
+if ( $hero_count > 1 && $hero_mode === 'single_image' ) {
+	$hero_mode = isset( $settings['single_hero_gallery_mode'] ) ? sanitize_key( $settings['single_hero_gallery_mode'] ) : 'slider';
+}
+$hero_is_slider = ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) && $hero_count > 1;
+if ( $hero_count === 1 ) {
+	$hero_is_slider = false;
+}
+$hero_gallery_mode = $hero_is_slider ? $hero_mode : ( isset( $settings['single_hero_gallery_mode'] ) ? sanitize_key( $settings['single_hero_gallery_mode'] ) : 'slider' );
+
+// Duration (support both duration and tour_duration)
+$duration_days = (int) ($meta['duration']['days'] ?? 0);
+$duration_nights = (int) ($meta['duration']['nights'] ?? 0);
+$duration_hours = (int) ($meta['duration']['hours'] ?? 0);
+
+// Group size
+$min_pax = (int) ($meta['group_size']['min'] ?? 1);
+$max_pax = (int) ($meta['group_size']['max'] ?? 20);
+
+// Homepage hero overlay (reuse for single tour hero)
+$homepage_opts = get_option('ytrip_homepage', []);
+$overlay_hex = isset($homepage_opts['hero_overlay_color']) ? sanitize_hex_color($homepage_opts['hero_overlay_color']) : '#000000';
+$overlay_opacity = isset($homepage_opts['hero_overlay_opacity']) ? min(100, max(0, (float) $homepage_opts['hero_overlay_opacity'])) / 100 : 0.5;
+$overlay_rgba = 'rgba(0,0,0,0.5)';
+if ($overlay_hex) {
+    $hex = ltrim($overlay_hex, '#');
+    if (strlen($hex) === 3) {
+        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    }
+    if (strlen($hex) === 6) {
+        $rgb = array_map('hexdec', str_split($hex, 2));
+        $overlay_rgba = 'rgba(' . implode(',', $rgb) . ',' . $overlay_opacity . ')';
+    }
+}
+
+// Theme colors: use Brand System so Color Preset and Quick Color Palette are reflected
+$primary_color = '#2563eb';
+$secondary_color = '';
+$accent_color = '';
+if ( function_exists( 'ytrip_get_color' ) ) {
+	$primary_color = ytrip_get_color( 'primary' );
+	$secondary_color = ytrip_get_color( 'secondary' );
+	$accent_color = ytrip_get_color( 'accent' );
+} else {
+	$theme_settings = get_option( 'ytrip_settings', [] );
+	$custom_colors = $theme_settings['custom_colors'] ?? [];
+	$primary_color = $custom_colors['primary'] ?? $theme_settings['opt_color_primary'] ?? $primary_color;
+	$secondary_color = $custom_colors['secondary'] ?? $theme_settings['opt_color_secondary'] ?? '';
+	$accent_color = $custom_colors['accent'] ?? $theme_settings['opt_color_accent'] ?? '';
+}
+// Derive primary-hover (darker) and primary-light (tint) for brand consistency
+$hex = ltrim( $primary_color, '#' );
+if ( strlen( $hex ) === 3 ) {
+	$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+}
+$primary_rgb = array( 37, 99, 235 );
+if ( strlen( $hex ) === 6 && preg_match( '/^[a-fA-F0-9]{6}$/', $hex ) ) {
+	$primary_rgb = array( hexdec( substr( $hex, 0, 2 ) ), hexdec( substr( $hex, 2, 2 ) ), hexdec( substr( $hex, 4, 2 ) ) );
+}
+$primary_rgb_str = implode( ',', $primary_rgb );
+$primary_hover = ! empty( $secondary_color ) ? $secondary_color : '#' . sprintf( '%02x%02x%02x', max( 0, $primary_rgb[0] - 28 ), max( 0, $primary_rgb[1] - 28 ), max( 0, $primary_rgb[2] - 28 ) );
+$primary_light = 'rgba(' . $primary_rgb_str . ',0.12)';
+
+// Dark mode check
+$is_dark_mode = isset($_COOKIE['ytrip_theme']) && $_COOKIE['ytrip_theme'] === 'dark';
+if (isset($_GET['dark_mode'])) {
+    $is_dark_mode = (bool) $_GET['dark_mode'];
+}
+?>
+
+<?php get_header(); ?>
+
+<div class="ytrip-single-tour-page">
+<style>
+    /* Brand colors – applied to whole single tour (hero, booking, FAB, main) */
+    .ytrip-single-tour-page {
+        --ytrip-primary: <?php echo esc_attr( $primary_color ); ?>;
+        --ytrip-primary-rgb: <?php echo esc_attr( $primary_rgb_str ); ?>;
+        --ytrip-primary-hover: <?php echo esc_attr( $primary_hover ); ?>;
+        --ytrip-primary-light: <?php echo esc_attr( $primary_light ); ?>;
+        <?php if ( $secondary_color ) : ?>
+        --ytrip-secondary: <?php echo esc_attr( $secondary_color ); ?>;
+        <?php endif; ?>
+        <?php if ( $accent_color ) : ?>
+        --ytrip-accent: <?php echo esc_attr( $accent_color ); ?>;
+        <?php endif; ?>
+        --ytrip-surface: #ffffff;
+        --ytrip-surface-alt: #f8fafc;
+        --ytrip-text: #1e293b;
+        --ytrip-text-muted: #64748b;
+        --ytrip-border: #e5e7eb;
+    }
+    .ytrip-single-tour-page .ytrip-booking-fab__btn {
+        background: var(--ytrip-primary) !important;
+        color: #fff !important;
+        box-shadow: 0 8px 24px rgba(var(--ytrip-primary-rgb), 0.35);
+    }
+    .ytrip-single-tour-page .ytrip-booking-fab__btn:hover {
+        background: var(--ytrip-primary-hover) !important;
+        box-shadow: 0 12px 32px rgba(var(--ytrip-primary-rgb), 0.4);
+    }
+    .ytrip-single-tour-page .ytrip-btn-book {
+        background: var(--ytrip-primary) !important;
+        box-shadow: 0 4px 14px rgba(var(--ytrip-primary-rgb), 0.25);
+    }
+    .ytrip-single-tour-page .ytrip-btn-book:hover {
+        background: var(--ytrip-primary-hover) !important;
+        box-shadow: 0 8px 20px rgba(var(--ytrip-primary-rgb), 0.35);
+    }
+    .ytrip-single-tour-page .ytrip-booking-card {
+        border-top: 3px solid var(--ytrip-primary);
+        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(var(--ytrip-primary-rgb),0.08);
+    }
+    .ytrip-single-tour-page .ytrip-section-title {
+        border-inline-start: 4px solid var(--ytrip-primary);
+        padding-inline-start: 16px;
+    }
+    .ytrip-single-tour-page .ytrip-hero-title {
+        letter-spacing: -0.02em;
+        font-weight: 800;
+    }
+    .ytrip-single-tour-page .ytrip-form-group input:focus,
+    .ytrip-single-tour-page .ytrip-form-group select:focus {
+        border-color: var(--ytrip-primary);
+        box-shadow: 0 0 0 4px rgba(var(--ytrip-primary-rgb), 0.15);
+    }
+    .ytrip-single-tour-page .ytrip-number-btn:hover {
+        background: var(--ytrip-primary);
+        color: #fff;
+    }
+    .ytrip-single-tour-page .ytrip-btn-outline:hover {
+        border-color: var(--ytrip-primary);
+        color: var(--ytrip-primary);
+    }
+    .ytrip-single-tour-page .ytrip-single-main a,
+    .ytrip-single-tour-page .ytrip-booking-sheet a {
+        color: var(--ytrip-primary);
+    }
+    .ytrip-single-tour-page .ytrip-single-main a:hover,
+    .ytrip-single-tour-page .ytrip-booking-sheet a:hover {
+        color: var(--ytrip-primary-hover);
+    }
+    /* Single hero overlay (same as homepage hero from ytrip_homepage options) */
+    .ytrip-single-tour-page .ytrip-hero__overlay,
+    .ytrip-single-tour-page .ytrip-hero-overlay {
+        background: <?php echo esc_attr( $overlay_rgba ); ?> !important;
+    }
+</style>
+<style>
+/* Single tour: prevent horizontal scroll on any screen */
+.ytrip-single-tour-page {
+    overflow-x: hidden;
+}
+.ytrip-single-tour-page img,
+.ytrip-single-tour-page iframe,
+.ytrip-section-content img,
+.ytrip-day-description img {
+    max-width: 100%;
+    height: auto;
+}
+/* Dark mode: FAB & sheet */
+.ytrip-dark-mode .ytrip-booking-fab,
+[data-theme="dark"] .ytrip-booking-fab {
+    background: linear-gradient(to top, rgba(30,41,59,0.98) 70%, transparent);
+}
+.ytrip-dark-mode .ytrip-booking-sheet__panel,
+[data-theme="dark"] .ytrip-booking-sheet__panel {
+    background: var(--ytrip-surface, #1e293b);
+}
+.ytrip-dark-mode .ytrip-booking-sheet__title,
+[data-theme="dark"] .ytrip-booking-sheet__title {
+    color: var(--ytrip-text, #f1f5f9);
+}
+.ytrip-dark-mode .ytrip-booking-sheet__close,
+[data-theme="dark"] .ytrip-booking-sheet__close {
+    background: var(--ytrip-surface-alt, #334155);
+    color: var(--ytrip-text-muted, #94a3b8);
+}
+</style>
+
+<!-- ==================== HERO SECTION (full width, capped height, same overlay as homepage) ==================== -->
+<section class="ytrip-hero ytrip-single-hero ytrip-single-hero--fullwidth ytrip-single-hero--width-full ytrip-single-hero--viewport <?php echo $hero_is_slider ? 'ytrip-hero-slider swiper' : ''; ?>" <?php echo $hero_is_slider ? ' data-hero-mode="' . esc_attr( $hero_gallery_mode ) . '"' : ''; ?>>
+    <!-- Background: same structure as homepage (.ytrip-hero__bg) -->
+    <div class="ytrip-hero__bg ytrip-hero-bg <?php echo $hero_is_slider ? 'swiper-wrapper' : ''; ?>">
+        <?php if ( $hero_is_slider ) : ?>
+            <?php foreach ( $hero_images as $i => $img_id ) : ?>
+                <div class="swiper-slide ytrip-hero-slide-bg">
+                    <?php echo ytrip_hero_image_with_skeleton( (int) $img_id, $i === 0 ); ?>
+                </div>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <?php
+            $hero_img_id = ! empty( $hero_images[0] ) ? $hero_images[0] : get_post_thumbnail_id( $tour_id );
+            if ( $hero_img_id ) :
+                echo ytrip_hero_image_with_skeleton( (int) $hero_img_id, true );
+            else :
+                ?>
+                <div class="ytrip-hero__placeholder ytrip-hero-placeholder"></div>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    <?php if ( $hero_is_slider ) : ?>
+    <div class="swiper-pagination ytrip-single-hero-pagination"></div>
+    <div class="swiper-button-next ytrip-single-hero-next"></div>
+    <div class="swiper-button-prev ytrip-single-hero-prev"></div>
+    <?php endif; ?>
+    <div class="ytrip-hero__overlay ytrip-hero-overlay"></div>
+
+    <!-- Hero Content (same class as homepage for consistent styling) -->
+    <div class="ytrip-hero__content ytrip-hero-content">
+        <div class="ytrip-container">
+            <div class="ytrip-hero-grid">
+                <!-- Left: Tour Info -->
+                <div class="ytrip-hero-info">
+                    <!-- Breadcrumb -->
+                    <nav class="ytrip-breadcrumb">
+                        <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('Home', 'ytrip'); ?></a>
+                        <span class="separator">/</span>
+                        <a href="<?php echo esc_url(get_post_type_archive_link('ytrip_tour')); ?>"><?php esc_html_e('Tours', 'ytrip'); ?></a>
+                        <?php if ($destinations && !is_wp_error($destinations)) : ?>
+                            <span class="separator">/</span>
+                            <a href="<?php echo esc_url(get_term_link($destinations[0])); ?>"><?php echo esc_html($destinations[0]->name); ?></a>
+                        <?php endif; ?>
+                    </nav>
+
+                    <!-- Categories -->
+                    <?php if ($categories && !is_wp_error($categories)) : ?>
+                        <div class="ytrip-hero-categories">
+                            <?php foreach ($categories as $cat) : ?>
+                                <span class="ytrip-category-badge" style="background-color: <?php echo esc_attr(get_term_meta($cat->term_id, 'color', true) ?: $primary_color); ?>20; color: <?php echo esc_attr(get_term_meta($cat->term_id, 'color', true) ?: $primary_color); ?>;">
+                                    <?php echo esc_html($cat->name); ?>
+                                </span>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Title -->
+                    <h1 class="ytrip-hero-title"><?php the_title(); ?></h1>
+
+                    <!-- Quick Info -->
+                    <div class="ytrip-hero-meta">
+                        <?php if ($destinations && !is_wp_error($destinations)) : ?>
+                            <div class="ytrip-meta-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                    <circle cx="12" cy="10" r="3"></circle>
+                                </svg>
+                                <span><?php echo esc_html($destinations[0]->name); ?></span>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($duration_days > 0 || $duration_hours > 0) : ?>
+                            <div class="ytrip-meta-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span>
+                                    <?php
+                                    if ($duration_days > 0) {
+                                        printf(
+                                            _n('%d Day', '%d Days', $duration_days, 'ytrip'),
+                                            $duration_days
+                                        );
+                                        if ($duration_nights > 0) {
+                                            printf(' / %s', _n('%d Night', '%d Nights', $duration_nights, 'ytrip'));
+                                        }
+                                    } elseif ($duration_hours > 0) {
+                                        printf(_n('%d Hour', '%d Hours', $duration_hours, 'ytrip'), $duration_hours);
+                                    }
+                                    ?>
+                                </span>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="ytrip-meta-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span><?php printf(__('%d-%d People', 'ytrip'), $min_pax, $max_pax); ?></span>
+                        </div>
+
+                        <?php if (!empty($meta['difficulty'])) : ?>
+                            <div class="ytrip-meta-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                </svg>
+                                <span class="ytrip-difficulty ytrip-difficulty--<?php echo esc_attr($meta['difficulty']); ?>">
+                                    <?php
+                                    $difficulties = [
+                                        'easy' => __('Easy', 'ytrip'),
+                                        'moderate' => __('Moderate', 'ytrip'),
+                                        'challenging' => __('Challenging', 'ytrip'),
+                                        'extreme' => __('Extreme', 'ytrip'),
+                                    ];
+                                    echo esc_html($difficulties[$meta['difficulty']] ?? $meta['difficulty']);
+                                    ?>
+                                </span>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Rating -->
+                    <?php if ($product && $product->get_average_rating() > 0) : ?>
+                        <div class="ytrip-hero-rating">
+                            <div class="ytrip-stars">
+                                <?php for ($i = 1; $i <= 5; $i++) : ?>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="<?php echo $i <= round($product->get_average_rating()) ? 'var(--ytrip-accent, #f59e0b)' : 'none'; ?>" stroke="var(--ytrip-accent, #f59e0b)" stroke-width="2">
+                                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                    </svg>
+                                <?php endfor; ?>
+                            </div>
+                            <span class="ytrip-rating-value"><?php echo esc_html(number_format($product->get_average_rating(), 1)); ?></span>
+                            <span class="ytrip-rating-count">(<?php echo esc_html($product->get_review_count()); ?> <?php esc_html_e('reviews', 'ytrip'); ?>)</span>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Excerpt -->
+                    <?php if (has_excerpt()) : ?>
+                        <div class="ytrip-hero-excerpt">
+                            <?php the_excerpt(); ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Right: Booking Form -->
+                <?php do_action( 'ytrip_before_booking_form' ); ?>
+                <div class="ytrip-hero-booking">
+                    <div class="ytrip-booking-card">
+                        <!-- Price (WooCommerce or tour meta) -->
+                        <div class="ytrip-booking-price">
+                            <?php if ($product) : ?>
+                                <?php if ($product->is_on_sale()) : ?>
+                                    <span class="ytrip-price-label"><?php esc_html_e('From', 'ytrip'); ?></span>
+                                    <span class="ytrip-price-original"><?php echo wc_price($product->get_regular_price()); ?></span>
+                                <?php endif; ?>
+                                <span class="ytrip-price-current"><?php echo $product->get_price_html(); ?></span>
+                                <span class="ytrip-price-per"><?php esc_html_e('per person', 'ytrip'); ?></span>
+                            <?php elseif ($tour_price_html !== '') : ?>
+                                <span class="ytrip-price-label"><?php esc_html_e('From', 'ytrip'); ?></span>
+                                <span class="ytrip-price-current"><?php echo esc_html($tour_price_html); ?></span>
+                                <span class="ytrip-price-per"><?php esc_html_e('per person', 'ytrip'); ?></span>
+                            <?php else : ?>
+                                <span class="ytrip-price-current"><?php esc_html_e('Contact for Price', 'ytrip'); ?></span>
+                            <?php endif; ?>
+                        </div>
+
+                        <!-- Booking Form -->
+                        <?php $ytrip_booking_user = wp_get_current_user(); ?>
+                        <form class="ytrip-booking-form" method="post" action="">
+                            <?php wp_nonce_field('ytrip_booking', 'ytrip_booking_nonce'); ?>
+                            <input type="hidden" name="tour_id" value="<?php echo esc_attr($tour_id); ?>">
+                            <?php if ($product) : ?>
+                            <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>">
+                            <?php endif; ?>
+                            <input type="hidden" name="infants" value="0">
+                            <input type="hidden" name="recaptcha_token" value="">
+
+                            <!-- Date -->
+                            <div class="ytrip-form-group">
+                                <label for="booking_date"><?php esc_html_e('Select Date', 'ytrip'); ?> <span class="required">*</span></label>
+                                <input type="date" id="booking_date" name="booking_date" required min="<?php echo esc_attr(date('Y-m-d', strtotime('+1 day'))); ?>">
+                            </div>
+
+                            <!-- Adults -->
+                            <div class="ytrip-form-group">
+                                <label for="adults"><?php esc_html_e('Adults', 'ytrip'); ?> <span class="required">*</span></label>
+                                <div class="ytrip-number-input" role="group" aria-label="<?php esc_attr_e('Adults', 'ytrip'); ?>">
+                                    <button type="button" class="ytrip-number-btn minus" data-target="adults" data-min="1" aria-label="<?php esc_attr_e('Decrease adults', 'ytrip'); ?>">-</button>
+                                    <input type="number" id="adults" name="adults" value="2" min="1" max="<?php echo esc_attr($max_pax); ?>" required aria-valuenow="2" aria-valuemin="1" aria-valuemax="<?php echo esc_attr($max_pax); ?>">
+                                    <button type="button" class="ytrip-number-btn plus" data-target="adults" data-max="<?php echo esc_attr($max_pax); ?>" aria-label="<?php esc_attr_e('Increase adults', 'ytrip'); ?>">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Children -->
+                            <div class="ytrip-form-group">
+                                <label for="children"><?php esc_html_e('Children', 'ytrip'); ?></label>
+                                <div class="ytrip-number-input" role="group" aria-label="<?php esc_attr_e('Children', 'ytrip'); ?>">
+                                    <button type="button" class="ytrip-number-btn minus" data-target="children" data-min="0" aria-label="<?php esc_attr_e('Decrease children', 'ytrip'); ?>">-</button>
+                                    <input type="number" id="children" name="children" value="0" min="0" max="10" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+                                    <button type="button" class="ytrip-number-btn plus" data-target="children" data-max="10" aria-label="<?php esc_attr_e('Increase children', 'ytrip'); ?>">+</button>
+                                </div>
+                            </div>
+
+                            <!-- Contact: Name (optional for logged-in, recommended for guests) -->
+                            <div class="ytrip-form-group">
+                                <label for="booking_name"><?php esc_html_e('Name', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                                <input type="text" id="booking_name" name="booking_name" value="<?php echo esc_attr($ytrip_booking_user->display_name ?? ''); ?>" placeholder="<?php esc_attr_e('Your name', 'ytrip'); ?>">
+                            </div>
+
+                            <!-- Contact: Email (required) -->
+                            <div class="ytrip-form-group">
+                                <label for="booking_email"><?php esc_html_e('Email', 'ytrip'); ?> <span class="required">*</span></label>
+                                <input type="email" id="booking_email" name="booking_email" value="<?php echo esc_attr($ytrip_booking_user->user_email ?? ''); ?>" placeholder="<?php esc_attr_e('your@email.com', 'ytrip'); ?>" required>
+                            </div>
+
+                            <!-- Contact: Phone (optional) -->
+                            <div class="ytrip-form-group">
+                                <label for="booking_phone"><?php esc_html_e('Phone', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                                <input type="tel" id="booking_phone" name="booking_phone" placeholder="<?php esc_attr_e('+1 234 567 8900', 'ytrip'); ?>">
+                            </div>
+
+                            <!-- Notes (optional) -->
+                            <div class="ytrip-form-group">
+                                <label for="booking_notes"><?php esc_html_e('Special requests', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                                <textarea id="booking_notes" name="booking_notes" rows="2" placeholder="<?php esc_attr_e('Dietary needs, accessibility, etc.', 'ytrip'); ?>"></textarea>
+                            </div>
+
+                            <!-- Honeypot anti-spam (hidden) -->
+                            <div class="ytrip-hp-field" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;">
+                                <label for="ytrip-website-hero"><?php esc_html_e('Website', 'ytrip'); ?></label>
+                                <input type="text" name="ytrip_website" id="ytrip-website-hero" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <!-- Total Price -->
+                            <div class="ytrip-booking-total">
+                                <span><?php esc_html_e('Total:', 'ytrip'); ?></span>
+                                <span class="ytrip-total-price" id="ytrip_total_price">$0.00</span>
+                            </div>
+
+                            <!-- Submit -->
+                            <button type="submit" class="ytrip-btn ytrip-btn-book">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                <?php esc_html_e('Book Now', 'ytrip'); ?>
+                            </button>
+
+                            <!-- Actions -->
+                            <div class="ytrip-booking-actions">
+                                <button type="button" class="ytrip-btn ytrip-btn-outline ytrip-wishlist-btn" data-tour-id="<?php echo esc_attr($tour_id); ?>">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                                    </svg>
+                                    <?php esc_html_e('Save', 'ytrip'); ?>
+                                </button>
+                                <button type="button" class="ytrip-btn ytrip-btn-outline ytrip-share-btn">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="18" cy="5" r="3"></circle>
+                                        <circle cx="6" cy="12" r="3"></circle>
+                                        <circle cx="18" cy="19" r="3"></circle>
+                                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                                    </svg>
+                                    <?php esc_html_e('Share', 'ytrip'); ?>
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Trust Badges -->
+                        <div class="ytrip-booking-trust">
+                            <div class="ytrip-trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                </svg>
+                                <span><?php esc_html_e('Secure Booking', 'ytrip'); ?></span>
+                            </div>
+                            <div class="ytrip-trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                <span><?php esc_html_e('Free Cancellation', 'ytrip'); ?></span>
+                            </div>
+                            <div class="ytrip-trust-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span><?php esc_html_e('Instant Confirmation', 'ytrip'); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Strip (when hero is slider: thumb strip below hero) -->
+    <?php if ( $hero_is_slider && count( $gallery_ids ) > 1 ) : ?>
+        <div class="ytrip-hero-gallery">
+            <div class="ytrip-container">
+                <div class="ytrip-gallery-strip">
+                    <?php foreach ( array_slice( $gallery_ids, 0, 5 ) as $index => $img_id ) : ?>
+                        <div class="ytrip-gallery-thumb <?php echo $index === 0 ? 'active' : ''; ?>" data-index="<?php echo esc_attr( $index ); ?>">
+                            <?php echo wp_get_attachment_image( (int) $img_id, 'thumbnail' ); ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php if ( count( $gallery_ids ) > 5 ) : ?>
+                        <div class="ytrip-gallery-more">
+                            <span>+<?php echo count( $gallery_ids ) - 5; ?></span>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+</section>
+
+<?php
+// When hero is single image, show a dedicated gallery slider so "gallery" is always visible (1+ images).
+if ( ! $hero_is_slider && ! empty( $hero_images ) ) :
+    $gallery_swiper_id = 'ytrip-tour-gallery-' . $tour_id;
+?>
+<section class="ytrip-section ytrip-tour-gallery-section" aria-label="<?php esc_attr_e( 'Tour gallery', 'ytrip' ); ?>">
+    <div class="ytrip-container">
+        <h2 class="ytrip-section__title ytrip-tour-gallery__title"><?php esc_html_e( 'Photo gallery', 'ytrip' ); ?></h2>
+        <div id="<?php echo esc_attr( $gallery_swiper_id ); ?>" class="ytrip-tour-gallery-swiper swiper">
+            <div class="swiper-wrapper">
+                <?php foreach ( $hero_images as $img_id ) : ?>
+                    <div class="swiper-slide ytrip-tour-gallery-slide">
+                        <?php echo wp_get_attachment_image( (int) $img_id, 'large', false, array( 'class' => 'ytrip-tour-gallery-img' ) ); ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <?php if ( count( $hero_images ) > 1 ) : ?>
+                <div class="swiper-pagination ytrip-tour-gallery-pagination"></div>
+                <div class="swiper-button-next ytrip-tour-gallery-next"></div>
+                <div class="swiper-button-prev ytrip-tour-gallery-prev"></div>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
+<!-- ==================== MOBILE BOOKING: FAB + BOTTOM SHEET (collapsible, no overlap) ==================== -->
+<div class="ytrip-booking-fab" id="ytrip-booking-fab" aria-hidden="true">
+    <button type="button" class="ytrip-booking-fab__btn" id="ytrip-booking-fab-btn" aria-label="<?php esc_attr_e('Open booking form', 'ytrip'); ?>">
+        <span class="ytrip-booking-fab__price">
+            <?php if ($product) : ?>
+                <?php echo $product->get_price_html(); ?>
+            <?php elseif ($tour_price_html !== '') : ?>
+                <?php echo esc_html($tour_price_html); ?>
+            <?php else : ?>
+                <?php esc_html_e('Contact', 'ytrip'); ?>
+            <?php endif; ?>
+        </span>
+        <span class="ytrip-booking-fab__label"><?php esc_html_e('Book Now', 'ytrip'); ?></span>
+        <svg class="ytrip-booking-fab__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </button>
+</div>
+
+<div class="ytrip-booking-sheet" id="ytrip-booking-sheet" aria-modal="true" aria-label="<?php esc_attr_e('Booking form', 'ytrip'); ?>" role="dialog" aria-hidden="true">
+    <div class="ytrip-booking-sheet__backdrop" id="ytrip-booking-sheet-backdrop"></div>
+    <div class="ytrip-booking-sheet__panel" id="ytrip-booking-sheet-panel">
+        <div class="ytrip-booking-sheet__handle" aria-hidden="true"></div>
+        <div class="ytrip-booking-sheet__header">
+            <h2 class="ytrip-booking-sheet__title"><?php esc_html_e('Book this tour', 'ytrip'); ?></h2>
+            <button type="button" class="ytrip-booking-sheet__close" id="ytrip-booking-sheet-close" aria-label="<?php esc_attr_e('Close', 'ytrip'); ?>">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <div class="ytrip-booking-sheet__body">
+            <div class="ytrip-booking-card ytrip-booking-card--sheet">
+                <div class="ytrip-booking-price">
+                    <?php if ($product) : ?>
+                        <?php if ($product->is_on_sale()) : ?>
+                            <span class="ytrip-price-label"><?php esc_html_e('From', 'ytrip'); ?></span>
+                            <span class="ytrip-price-original"><?php echo wc_price($product->get_regular_price()); ?></span>
+                        <?php endif; ?>
+                        <span class="ytrip-price-current"><?php echo $product->get_price_html(); ?></span>
+                        <span class="ytrip-price-per"><?php esc_html_e('per person', 'ytrip'); ?></span>
+                    <?php elseif ($tour_price_html !== '') : ?>
+                        <span class="ytrip-price-label"><?php esc_html_e('From', 'ytrip'); ?></span>
+                        <span class="ytrip-price-current"><?php echo esc_html($tour_price_html); ?></span>
+                        <span class="ytrip-price-per"><?php esc_html_e('per person', 'ytrip'); ?></span>
+                    <?php else : ?>
+                        <span class="ytrip-price-current"><?php esc_html_e('Contact for Price', 'ytrip'); ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php if ( ! isset( $ytrip_booking_user ) ) { $ytrip_booking_user = wp_get_current_user(); } ?>
+                <form class="ytrip-booking-form ytrip-booking-form--sheet" method="post" action="">
+                    <?php wp_nonce_field('ytrip_booking', 'ytrip_booking_nonce'); ?>
+                    <input type="hidden" name="tour_id" value="<?php echo esc_attr($tour_id); ?>">
+                    <?php if ($product) : ?>
+                    <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product_id); ?>">
+                    <?php endif; ?>
+                    <input type="hidden" name="infants" value="0">
+                    <input type="hidden" name="recaptcha_token" value="">
+                    <div class="ytrip-form-group">
+                        <label for="booking_date_sheet"><?php esc_html_e('Select Date', 'ytrip'); ?> <span class="required">*</span></label>
+                        <input type="date" id="booking_date_sheet" name="booking_date" required min="<?php echo esc_attr(date('Y-m-d', strtotime('+1 day'))); ?>">
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="adults_sheet"><?php esc_html_e('Adults', 'ytrip'); ?> <span class="required">*</span></label>
+                        <div class="ytrip-number-input" role="group" aria-label="<?php esc_attr_e('Adults', 'ytrip'); ?>">
+                            <button type="button" class="ytrip-number-btn minus" data-target="adults_sheet" data-min="1" aria-label="<?php esc_attr_e('Decrease adults', 'ytrip'); ?>">-</button>
+                            <input type="number" id="adults_sheet" name="adults" value="2" min="1" max="<?php echo esc_attr($max_pax); ?>" required aria-valuenow="2" aria-valuemin="1" aria-valuemax="<?php echo esc_attr($max_pax); ?>">
+                            <button type="button" class="ytrip-number-btn plus" data-target="adults_sheet" data-max="<?php echo esc_attr($max_pax); ?>" aria-label="<?php esc_attr_e('Increase adults', 'ytrip'); ?>">+</button>
+                        </div>
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="children_sheet"><?php esc_html_e('Children', 'ytrip'); ?></label>
+                        <div class="ytrip-number-input" role="group" aria-label="<?php esc_attr_e('Children', 'ytrip'); ?>">
+                            <button type="button" class="ytrip-number-btn minus" data-target="children_sheet" data-min="0" aria-label="<?php esc_attr_e('Decrease children', 'ytrip'); ?>">-</button>
+                            <input type="number" id="children_sheet" name="children" value="0" min="0" max="10" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+                            <button type="button" class="ytrip-number-btn plus" data-target="children_sheet" data-max="10" aria-label="<?php esc_attr_e('Increase children', 'ytrip'); ?>">+</button>
+                        </div>
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="booking_name_sheet"><?php esc_html_e('Name', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                        <input type="text" id="booking_name_sheet" name="booking_name" value="<?php echo esc_attr($ytrip_booking_user->display_name ?? ''); ?>" placeholder="<?php esc_attr_e('Your name', 'ytrip'); ?>">
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="booking_email_sheet"><?php esc_html_e('Email', 'ytrip'); ?> <span class="required">*</span></label>
+                        <input type="email" id="booking_email_sheet" name="booking_email" value="<?php echo esc_attr($ytrip_booking_user->user_email ?? ''); ?>" placeholder="<?php esc_attr_e('your@email.com', 'ytrip'); ?>" required>
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="booking_phone_sheet"><?php esc_html_e('Phone', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                        <input type="tel" id="booking_phone_sheet" name="booking_phone" placeholder="<?php esc_attr_e('+1 234 567 8900', 'ytrip'); ?>">
+                    </div>
+                    <div class="ytrip-form-group">
+                        <label for="booking_notes_sheet"><?php esc_html_e('Special requests', 'ytrip'); ?> <span class="optional">(<?php esc_html_e('optional', 'ytrip'); ?>)</span></label>
+                        <textarea id="booking_notes_sheet" name="booking_notes" rows="2" placeholder="<?php esc_attr_e('Dietary needs, accessibility, etc.', 'ytrip'); ?>"></textarea>
+                    </div>
+                    <div class="ytrip-hp-field" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden;">
+                        <label for="ytrip-website-sheet"><?php esc_html_e('Website', 'ytrip'); ?></label>
+                        <input type="text" name="ytrip_website" id="ytrip-website-sheet" tabindex="-1" autocomplete="off">
+                    </div>
+                    <div class="ytrip-booking-total">
+                        <span><?php esc_html_e('Total:', 'ytrip'); ?></span>
+                        <span class="ytrip-total-price" id="ytrip_total_price_sheet">$0.00</span>
+                    </div>
+                    <button type="submit" class="ytrip-btn ytrip-btn-book">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <?php esc_html_e('Book Now', 'ytrip'); ?>
+                    </button>
+                    <div class="ytrip-booking-actions">
+                        <button type="button" class="ytrip-btn ytrip-btn-outline ytrip-wishlist-btn" data-tour-id="<?php echo esc_attr($tour_id); ?>">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <?php esc_html_e('Save', 'ytrip'); ?>
+                        </button>
+                        <button type="button" class="ytrip-btn ytrip-btn-outline ytrip-share-btn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            <?php esc_html_e('Share', 'ytrip'); ?>
+                        </button>
+                    </div>
+                </form>
+                <div class="ytrip-booking-trust">
+                    <div class="ytrip-trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg><span><?php esc_html_e('Secure Booking', 'ytrip'); ?></span></div>
+                    <div class="ytrip-trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg><span><?php esc_html_e('Free Cancellation', 'ytrip'); ?></span></div>
+                    <div class="ytrip-trust-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span><?php esc_html_e('Instant Confirmation', 'ytrip'); ?></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main class="ytrip-single-main">
+    <div class="ytrip-container">
+        <div class="ytrip-content-grid">
+            
+            <!-- Left Column: Content -->
+            <div class="ytrip-content-main">
+                
+                <!-- Section: Tour information – all features and specs -->
+                <?php
+                $tour_info_items = [];
+                if (!empty($meta['tour_code'])) {
+                    $tour_info_items[] = ['label' => __('Tour Code', 'ytrip'), 'value' => esc_html($meta['tour_code']), 'icon' => 'tag'];
+                }
+                if ($duration_days > 0 || $duration_nights > 0 || $duration_hours > 0) {
+                    $parts = [];
+                    if ($duration_days > 0) $parts[] = sprintf(_n('%d Day', '%d Days', $duration_days, 'ytrip'), $duration_days);
+                    if ($duration_nights > 0) $parts[] = sprintf(_n('%d Night', '%d Nights', $duration_nights, 'ytrip'), $duration_nights);
+                    if ($duration_hours > 0) $parts[] = sprintf(_n('%d Hour', '%d Hours', $duration_hours, 'ytrip'), $duration_hours);
+                    if (!empty($parts)) {
+                        $tour_info_items[] = ['label' => __('Duration', 'ytrip'), 'value' => implode(' / ', $parts), 'icon' => 'clock'];
+                    }
+                }
+                $group_size = isset($meta['group_size']) && is_array($meta['group_size']) ? $meta['group_size'] : [];
+                if (!empty($group_size['min']) || !empty($group_size['max'])) {
+                    $min = (int) ($group_size['min'] ?? 1);
+                    $max = (int) ($group_size['max'] ?? 20);
+                    $tour_info_items[] = ['label' => __('Group Size', 'ytrip'), 'value' => $min === $max ? (string) $max : $min . ' – ' . $max, 'icon' => 'users'];
+                }
+                if (!empty($meta['difficulty'])) {
+                    $diffs = ['easy' => __('Easy', 'ytrip'), 'moderate' => __('Moderate', 'ytrip'), 'challenging' => __('Challenging', 'ytrip'), 'extreme' => __('Extreme', 'ytrip'), 'difficult' => __('Difficult', 'ytrip'), 'expert' => __('Expert', 'ytrip')];
+                    $tour_info_items[] = ['label' => __('Difficulty', 'ytrip'), 'value' => esc_html($diffs[$meta['difficulty']] ?? $meta['difficulty']), 'icon' => 'activity'];
+                }
+                if (!empty($meta['tour_type'])) {
+                    $types = ['group' => __('Group Tour', 'ytrip'), 'private' => __('Private Tour', 'ytrip'), 'self' => __('Self-Guided', 'ytrip')];
+                    $tour_info_items[] = ['label' => __('Tour Type', 'ytrip'), 'value' => esc_html($types[$meta['tour_type']] ?? $meta['tour_type']), 'icon' => 'users'];
+                }
+                $age_restriction = isset($meta['age_restriction']) && is_array($meta['age_restriction']) ? $meta['age_restriction'] : [];
+                $min_age = (int) ($age_restriction['min_age'] ?? 0);
+                $max_age = (int) ($age_restriction['max_age'] ?? 99);
+                if ($min_age > 0 || $max_age < 99) {
+                    if ($min_age > 0 && $max_age < 99) {
+                        $age_str = sprintf(__('%1$d – %2$d years', 'ytrip'), $min_age, $max_age);
+                    } elseif ($min_age > 0) {
+                        $age_str = sprintf(__('Minimum %d years', 'ytrip'), $min_age);
+                    } else {
+                        $age_str = sprintf(__('Maximum %d years', 'ytrip'), $max_age);
+                    }
+                    $tour_info_items[] = ['label' => __('Age Range', 'ytrip'), 'value' => $age_str, 'icon' => 'user'];
+                }
+                if (!empty($meta['languages']) && is_array($meta['languages'])) {
+                    $tour_info_items[] = ['label' => __('Languages', 'ytrip'), 'value' => implode(', ', array_map('esc_html', $meta['languages'])), 'icon' => 'globe'];
+                } elseif (!empty($meta['languages'])) {
+                    $tour_info_items[] = ['label' => __('Languages', 'ytrip'), 'value' => esc_html($meta['languages']), 'icon' => 'globe'];
+                }
+                if (!empty($meta['meeting_point'])) {
+                    $tour_info_items[] = ['label' => __('Meeting Point', 'ytrip'), 'value' => esc_html($meta['meeting_point']), 'icon' => 'map-pin'];
+                }
+                if (!empty($meta['meeting_time'])) {
+                    $tour_info_items[] = ['label' => __('Meeting Time', 'ytrip'), 'value' => esc_html($meta['meeting_time']), 'icon' => 'clock'];
+                }
+                if (!empty($meta['end_point']) && $meta['end_point'] !== ($meta['meeting_point'] ?? '')) {
+                    $tour_info_items[] = ['label' => __('End Point', 'ytrip'), 'value' => esc_html($meta['end_point']), 'icon' => 'flag'];
+                }
+                if (!empty($meta['what_to_bring'])) {
+                    $tour_info_items[] = ['label' => __('What to Bring', 'ytrip'), 'value' => wp_kses_post($meta['what_to_bring']), 'icon' => 'package', 'allow_html' => true];
+                }
+                if (!empty($meta['know_before'])) {
+                    $tour_info_items[] = ['label' => __('Know Before You Go', 'ytrip'), 'value' => wp_kses_post($meta['know_before']), 'icon' => 'info', 'allow_html' => true];
+                }
+                if (!empty($meta['cancellation_policy'])) {
+                    $tour_info_items[] = ['label' => __('Cancellation Policy', 'ytrip'), 'value' => wp_kses_post($meta['cancellation_policy']), 'icon' => 'file-text', 'allow_html' => true];
+                }
+                if (!empty($meta['custom_fields']) && is_array($meta['custom_fields'])) {
+                    foreach ($meta['custom_fields'] as $cf) {
+                        $label = isset($cf['label']) ? trim($cf['label']) : '';
+                        $value = isset($cf['value']) ? trim($cf['value']) : '';
+                        if ($label !== '' && $value !== '') {
+                            $tour_info_items[] = ['label' => esc_html($label), 'value' => esc_html($value), 'icon' => 'tag'];
+                        }
+                    }
+                }
+                ?>
+                <?php if (!empty($tour_info_items)) : ?>
+                    <section class="ytrip-section ytrip-section-tour-info">
+                        <h2 class="ytrip-section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                            <?php esc_html_e('Tour Information', 'ytrip'); ?>
+                        </h2>
+                        <div class="ytrip-tour-info-grid">
+                            <?php foreach ($tour_info_items as $item) : ?>
+                                <div class="ytrip-tour-info-item">
+                                    <dt class="ytrip-tour-info-label"><?php echo esc_html($item['label']); ?></dt>
+                                    <dd class="ytrip-tour-info-value"><?php echo !empty($item['allow_html']) ? $item['value'] : esc_html($item['value']); ?></dd>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                <!-- Section: Overview -->
+                <section class="ytrip-section ytrip-section-overview">
+                    <h2 class="ytrip-section-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="16" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                        </svg>
+                        <?php esc_html_e('Tour Overview', 'ytrip'); ?>
+                    </h2>
+                    <div class="ytrip-section-content">
+                        <?php the_content(); ?>
+                    </div>
+                </section>
+
+                <!-- Section: Highlights -->
+                <?php if (!empty($meta['highlights'])) : ?>
+                    <section class="ytrip-section ytrip-section-highlights">
+                        <h2 class="ytrip-section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <?php esc_html_e('Tour Highlights', 'ytrip'); ?>
+                        </h2>
+                        <div class="ytrip-highlights-grid">
+                            <?php foreach ($meta['highlights'] as $highlight) : ?>
+                                <div class="ytrip-highlight-item">
+                                    <div class="ytrip-highlight-icon">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <span><?php echo esc_html($highlight['highlight'] ?? $highlight); ?></span>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                <!-- Section: Itinerary -->
+                <?php if (!empty($meta['itinerary'])) : ?>
+                    <section class="ytrip-section ytrip-section-itinerary">
+                        <h2 class="ytrip-section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="8" y1="6" x2="21" y2="6"></line>
+                                <line x1="8" y1="12" x2="21" y2="12"></line>
+                                <line x1="8" y1="18" x2="21" y2="18"></line>
+                                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                            </svg>
+                            <?php esc_html_e('Day by Day Itinerary', 'ytrip'); ?>
+                        </h2>
+                        <div class="ytrip-itinerary-timeline">
+                            <?php foreach ($meta['itinerary'] as $index => $day) : ?>
+                                <div class="ytrip-itinerary-day">
+                                    <div class="ytrip-day-marker">
+                                        <span class="ytrip-day-number"><?php echo esc_html($day['day_number'] ?? $index + 1); ?></span>
+                                    </div>
+                                    <div class="ytrip-day-content">
+                                        <h3 class="ytrip-day-title"><?php echo esc_html($day['day_title'] ?? ''); ?></h3>
+                                        <div class="ytrip-day-description">
+                                            <?php echo wp_kses_post($day['day_description'] ?? ''); ?>
+                                        </div>
+                                        <?php if (!empty($day['meals'])) : ?>
+                                            <div class="ytrip-day-meals">
+                                                <span class="ytrip-meals-label"><?php esc_html_e('Meals:', 'ytrip'); ?></span>
+                                                <?php foreach ($day['meals'] as $meal) : ?>
+                                                    <span class="ytrip-meal-badge"><?php echo esc_html(ucfirst($meal)); ?></span>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php if (!empty($day['image'])) : ?>
+                                            <div class="ytrip-day-image">
+                                                <?php echo wp_get_attachment_image($day['image'], 'medium_large'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                <!-- Section: Included/Excluded -->
+                <?php if (!empty($meta['included']) || !empty($meta['excluded'])) : ?>
+                    <section class="ytrip-section ytrip-section-included">
+                        <div class="ytrip-included-grid">
+                            <?php if (!empty($meta['included'])) : ?>
+                                <div class="ytrip-included-col">
+                                    <h2 class="ytrip-section-title">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ytrip-success, #10b981)" stroke-width="2">
+                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                        </svg>
+                                        <?php esc_html_e("What's Included", 'ytrip'); ?>
+                                    </h2>
+                                    <ul class="ytrip-included-list">
+                                        <?php foreach ($meta['included'] as $item) : ?>
+                                            <li>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ytrip-success, #10b981)" stroke-width="2">
+                                                    <polyline points="20 6 9 17 4 12"></polyline>
+                                                </svg>
+                                                <span><?php echo esc_html($item['item'] ?? $item); ?></span>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($meta['excluded'])) : ?>
+                                <div class="ytrip-excluded-col">
+                                    <h2 class="ytrip-section-title">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--ytrip-error, #ef4444)" stroke-width="2">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                                        </svg>
+                                        <?php esc_html_e("What's Not Included", 'ytrip'); ?>
+                                    </h2>
+                                    <ul class="ytrip-excluded-list">
+                                        <?php foreach ($meta['excluded'] as $item) : ?>
+                                            <li>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ytrip-error, #ef4444)" stroke-width="2">
+                                                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                                                </svg>
+                                                <span><?php echo esc_html($item['item'] ?? $item); ?></span>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+                <!-- Section: Meeting Point / Location -->
+                <?php if (!empty($meta['meeting_point']) || !empty($meta['map_lat'])) : ?>
+                    <section class="ytrip-section ytrip-section-location">
+                        <h2 class="ytrip-section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <?php esc_html_e('Meeting Point', 'ytrip'); ?>
+                        </h2>
+                        
+                        <?php if (!empty($meta['meeting_point'])) : ?>
+                            <div class="ytrip-meeting-info">
+                                <p><strong><?php esc_html_e('Location:', 'ytrip'); ?></strong> <?php echo esc_html($meta['meeting_point']); ?></p>
+                                <?php if (!empty($meta['meeting_time'])) : ?>
+                                    <p><strong><?php esc_html_e('Time:', 'ytrip'); ?></strong> <?php echo esc_html($meta['meeting_time']); ?></p>
+                                <?php endif; ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($meta['map_lat']) && !empty($meta['map_lng'])) : ?>
+                            <div class="ytrip-map-container" 
+                                data-lat="<?php echo esc_attr($meta['map_lat']); ?>" 
+                                data-lng="<?php echo esc_attr($meta['map_lng']); ?>"
+                                data-zoom="<?php echo esc_attr($meta['map_zoom'] ?? 14); ?>">
+                                <div id="ytrip-tour-map" style="height: 400px; width: 100%; border-radius: 12px;"></div>
+                            </div>
+                        <?php endif; ?>
+                    </section>
+                <?php endif; ?>
+
+                <!-- Section: FAQ -->
+                <?php if (!empty($meta['faq'])) : ?>
+                    <section class="ytrip-section ytrip-section-faq">
+                        <h2 class="ytrip-section-title">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <?php esc_html_e('Frequently Asked Questions', 'ytrip'); ?>
+                        </h2>
+                        <div class="ytrip-faq-list">
+                            <?php foreach ($meta['faq'] as $faq) : ?>
+                                <div class="ytrip-faq-item">
+                                    <button class="ytrip-faq-question" type="button">
+                                        <span><?php echo esc_html($faq['question'] ?? ''); ?></span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"></polyline>
+                                        </svg>
+                                    </button>
+                                    <div class="ytrip-faq-answer">
+                                        <?php echo wp_kses_post($faq['answer'] ?? ''); ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </section>
+                <?php endif; ?>
+
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <aside class="ytrip-content-sidebar">
+                
+                <!-- Quick Info Card -->
+                <div class="ytrip-sidebar-card ytrip-quick-info">
+                    <h3 class="ytrip-sidebar-title"><?php esc_html_e('Quick Info', 'ytrip'); ?></h3>
+                    <dl class="ytrip-info-list">
+                        <?php if ($duration_days > 0 || $duration_hours > 0) : ?>
+                            <div class="ytrip-info-item">
+                                <dt>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <polyline points="12 6 12 12 16 14"></polyline>
+                                    </svg>
+                                    <?php esc_html_e('Duration', 'ytrip'); ?>
+                                </dt>
+                                <dd>
+                                    <?php
+                                    if ($duration_days > 0) {
+                                        echo esc_html(sprintf(_n('%d Day', '%d Days', $duration_days, 'ytrip'), $duration_days));
+                                        if ($duration_nights > 0) {
+                                            echo ' / ' . esc_html(sprintf(_n('%d Night', '%d Nights', $duration_nights, 'ytrip'), $duration_nights));
+                                        }
+                                    } else {
+                                        echo esc_html(sprintf(_n('%d Hour', '%d Hours', $duration_hours, 'ytrip'), $duration_hours));
+                                    }
+                                    ?>
+                                </dd>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="ytrip-info-item">
+                            <dt>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                </svg>
+                                <?php esc_html_e('Group Size', 'ytrip'); ?>
+                            </dt>
+                            <dd><?php echo esc_html(sprintf(__('%d - %d Persons', 'ytrip'), $min_pax, $max_pax)); ?></dd>
+                        </div>
+
+                        <?php if (!empty($meta['difficulty'])) : ?>
+                            <div class="ytrip-info-item">
+                                <dt>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                                    </svg>
+                                    <?php esc_html_e('Difficulty', 'ytrip'); ?>
+                                </dt>
+                                <dd class="ytrip-difficulty-badge difficulty-<?php echo esc_attr($meta['difficulty']); ?>">
+                                    <?php
+                                    $diffs = [
+                                        'easy' => __('Easy', 'ytrip'),
+                                        'moderate' => __('Moderate', 'ytrip'),
+                                        'challenging' => __('Challenging', 'ytrip'),
+                                        'extreme' => __('Extreme', 'ytrip'),
+                                    ];
+                                    echo esc_html($diffs[$meta['difficulty']] ?? $meta['difficulty']);
+                                    ?>
+                                </dd>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($meta['languages'])) : ?>
+                            <div class="ytrip-info-item">
+                                <dt>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                                    </svg>
+                                    <?php esc_html_e('Languages', 'ytrip'); ?>
+                                </dt>
+                                <dd>
+                                    <?php
+                                    $lang_names = [
+                                        'en' => __('English', 'ytrip'),
+                                        'ar' => __('Arabic', 'ytrip'),
+                                        'de' => __('German', 'ytrip'),
+                                        'fr' => __('French', 'ytrip'),
+                                        'es' => __('Spanish', 'ytrip'),
+                                        'it' => __('Italian', 'ytrip'),
+                                        'ru' => __('Russian', 'ytrip'),
+                                    ];
+                                    $langs = array_map(function($code) use ($lang_names) {
+                                        return $lang_names[$code] ?? $code;
+                                    }, (array) $meta['languages']);
+                                    echo esc_html(implode(', ', $langs));
+                                    ?>
+                                </dd>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($destinations && !is_wp_error($destinations)) : ?>
+                            <div class="ytrip-info-item">
+                                <dt>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                        <circle cx="12" cy="10" r="3"></circle>
+                                    </svg>
+                                    <?php esc_html_e('Destination', 'ytrip'); ?>
+                                </dt>
+                                <dd>
+                                    <?php foreach ($destinations as $dest) : ?>
+                                        <a href="<?php echo esc_url(get_term_link($dest)); ?>"><?php echo esc_html($dest->name); ?></a>
+                                    <?php endforeach; ?>
+                                </dd>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if ($categories && !is_wp_error($categories)) : ?>
+                            <div class="ytrip-info-item">
+                                <dt>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                    </svg>
+                                    <?php esc_html_e('Category', 'ytrip'); ?>
+                                </dt>
+                                <dd>
+                                    <?php foreach ($categories as $cat) : ?>
+                                        <a href="<?php echo esc_url(get_term_link($cat)); ?>"><?php echo esc_html($cat->name); ?></a>
+                                    <?php endforeach; ?>
+                                </dd>
+                            </div>
+                        <?php endif; ?>
+                    </dl>
+                </div>
+
+                <!-- Gallery Preview -->
+                <?php if (count($gallery_ids) > 1) : ?>
+                    <div class="ytrip-sidebar-card ytrip-gallery-preview">
+                        <h3 class="ytrip-sidebar-title"><?php esc_html_e('Gallery', 'ytrip'); ?></h3>
+                        <div class="ytrip-gallery-grid">
+                            <?php foreach (array_slice($gallery_ids, 0, 6) as $img_id) : ?>
+                                <a href="<?php echo esc_url(wp_get_attachment_url($img_id)); ?>" class="ytrip-gallery-link" data-fancybox="gallery">
+                                    <?php echo wp_get_attachment_image($img_id, 'thumbnail'); ?>
+                                </a>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <!-- Cancellation Policy -->
+                <?php if (!empty($meta['cancellation_policy'])) : ?>
+                    <div class="ytrip-sidebar-card ytrip-cancellation">
+                        <h3 class="ytrip-sidebar-title"><?php esc_html_e('Cancellation Policy', 'ytrip'); ?></h3>
+                        <div class="ytrip-cancellation-content">
+                            <?php echo wp_kses_post($meta['cancellation_policy']); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if ( is_active_sidebar( 'ytrip-single-tour' ) ) : ?>
+                <div class="ytrip-single-tour-widget-area ytrip-widget-area">
+                    <?php dynamic_sidebar( 'ytrip-single-tour' ); ?>
+                    </div>
+                <?php endif; ?>
+
+            </aside>
+        </div>
+    </div>
+</main>
+
+<!-- ==================== RELATED TOURS ==================== -->
+<?php if (function_exists('ytrip_render_related_tours')) : ?>
+    <?php ytrip_render_related_tours($tour_id); ?>
+<?php endif; ?>
+
+<!-- ==================== INLINE STYLES (brand-aware, dark-mode ready) ==================== -->
+<style>
+/* ===== Single hero: full width + full viewport like homepage, under header ===== */
+.ytrip-single-hero.ytrip-single-hero--fullwidth,
+.ytrip-single-hero.ytrip-single-hero--width-full {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    margin-top: 0;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+.ytrip-single-hero.ytrip-single-hero--viewport {
+    min-height: min(58vh, 480px);
+    display: flex;
+    align-items: center;
+}
+
+/* Hero slider: Swiper layout */
+.ytrip-single-hero.ytrip-hero-slider {
+    overflow: hidden;
+}
+.ytrip-single-hero.ytrip-hero-slider .ytrip-hero-bg.swiper-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.ytrip-single-hero.ytrip-hero-slider .swiper-slide.ytrip-hero-slide-bg {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+.ytrip-single-hero.ytrip-hero-slider .ytrip-hero-slide-bg .ytrip-hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.ytrip-single-hero .ytrip-hero__overlay,
+.ytrip-single-hero .ytrip-hero-overlay {
+    pointer-events: none;
+}
+/* Single hero content: full width for grid (homepage uses max-width 900px) */
+.ytrip-single-hero .ytrip-hero__content {
+    max-width: none;
+    width: 100%;
+    text-align: left;
+}
+.ytrip-single-hero .swiper-pagination,
+.ytrip-single-hero .swiper-button-next,
+.ytrip-single-hero .swiper-button-prev {
+    z-index: 2;
+}
+
+/* ===== Base: hero under header, not full viewport ===== */
+.ytrip-single-hero {
+    position: relative;
+    min-height: min(58vh, 480px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ytrip-hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+}
+
+.ytrip-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    /* Fallback gradient; actual color set inline from homepage overlay options */
+    background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.6) 100%);
+}
+
+.ytrip-hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 80px 0;
+    color: #fff;
+}
+
+.ytrip-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 24px);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ytrip-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: clamp(32px, 4vw, 60px);
+    align-items: start;
+}
+
+/* ===== Hero Info ===== */
+.ytrip-breadcrumb {
+    font-size: 14px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.ytrip-breadcrumb a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.ytrip-breadcrumb .separator {
+    margin: 0 8px;
+}
+
+.ytrip-hero-categories {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.ytrip-category-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.ytrip-hero-title {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    line-height: 1.2;
+    margin: 0 0 24px;
+}
+
+.ytrip-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.ytrip-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.ytrip-hero-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.ytrip-stars {
+    display: flex;
+    gap: 2px;
+    color: var(--ytrip-accent, #f59e0b);
+}
+
+.ytrip-rating-value {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.ytrip-rating-count {
+    opacity: 0.8;
+    font-size: 14px;
+}
+
+.ytrip-hero-excerpt {
+    font-size: 18px;
+    line-height: 1.6;
+    opacity: 0.9;
+    max-width: 600px;
+}
+
+/* ===== Booking Card ===== */
+.ytrip-hero-booking {
+    position: relative;
+}
+
+.ytrip-booking-card {
+    background: color-mix(in srgb, var(--ytrip-surface, #fff) 95%, transparent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+    border: 1px solid var(--ytrip-border, rgba(0,0,0,0.06));
+    position: sticky;
+    top: 100px;
+}
+
+.ytrip-booking-card--sheet {
+    position: static;
+    box-shadow: none;
+    padding: 0 0 24px;
+}
+
+.ytrip-dark-mode .ytrip-booking-card,
+[data-theme="dark"] .ytrip-booking-card {
+    background: color-mix(in srgb, var(--ytrip-surface) 95%, transparent);
+    color: var(--ytrip-text);
+}
+
+.ytrip-booking-price {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.ytrip-price-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-price-original {
+    font-size: 18px;
+    text-decoration: line-through;
+    color: var(--ytrip-text-light, #94a3b8);
+    margin-left: 8px;
+}
+
+.ytrip-price-current {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--ytrip-primary, #2563eb);
+    display: block;
+}
+
+.ytrip-price-per {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-dark-mode .ytrip-booking-price {
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* ===== Form ===== */
+.ytrip-form-group {
+    margin-bottom: 20px;
+}
+
+.ytrip-form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--ytrip-text, #374151);
+}
+
+.ytrip-form-group input[type="date"],
+.ytrip-form-group input[type="text"],
+.ytrip-form-group input[type="email"],
+.ytrip-form-group input[type="number"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.ytrip-form-group input:focus {
+    outline: none;
+    border-color: var(--ytrip-primary, #2563eb);
+    box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+}
+
+.ytrip-number-input {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ytrip-number-input input {
+    border: none;
+    text-align: center;
+    flex: 1;
+    background: var(--ytrip-surface, #fff);
+    color: var(--ytrip-text, #111);
+}
+
+.ytrip-number-btn {
+    width: 44px;
+    height: 44px;
+    border: none;
+    background: var(--ytrip-surface-alt, #f8fafc);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ytrip-number-btn:hover {
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+}
+
+.ytrip-booking-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    margin: 20px 0;
+    border-top: 1px dashed var(--ytrip-border, #e5e7eb);
+    border-bottom: 1px dashed var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-total-price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-btn-book {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--ytrip-primary, #2563eb), #7c3aed);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s;
+}
+
+.ytrip-btn-book:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.4);
+}
+
+.ytrip-booking-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.ytrip-btn-outline {
+    padding: 12px;
+    background: transparent;
+    border: 2px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 8px;
+    color: var(--ytrip-text, #374151);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.ytrip-btn-outline:hover {
+    border-color: var(--ytrip-primary, #2563eb);
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-booking-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-trust-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-trust-item svg {
+    color: var(--ytrip-success, #10b981);
+}
+
+/* ===== Gallery Strip ===== */
+.ytrip-hero-gallery {
+    position: relative;
+    z-index: 2;
+    margin-top: -40px;
+    padding-bottom: 20px;
+}
+
+.ytrip-gallery-strip {
+    display: flex;
+    gap: 8px;
+}
+
+.ytrip-gallery-thumb {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.ytrip-gallery-thumb.active,
+.ytrip-gallery-thumb:hover {
+    border-color: var(--ytrip-primary, #2563eb);
+    transform: scale(1.05);
+}
+
+.ytrip-gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-gallery-more {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* ===== Main Content ===== */
+.ytrip-single-main {
+    padding: 60px 0 80px;
+    background: var(--ytrip-bg, #fff);
+    color: var(--ytrip-text, #1e293b);
+}
+
+.ytrip-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: 50px;
+}
+
+.ytrip-section {
+    margin-bottom: 50px;
+}
+
+.ytrip-section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--ytrip-text, #1e293b);
+}
+
+.ytrip-section-title svg {
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-section-content {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.ytrip-section-content p {
+    margin-bottom: 16px;
+}
+
+/* ===== Tour information (rich meta) ===== */
+.ytrip-tour-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 20px;
+}
+
+.ytrip-tour-info-item {
+    margin: 0;
+    padding: 18px 20px;
+    background: var(--ytrip-surface-alt, #f8fafc);
+    border: 1px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 12px;
+    border-inline-start: 4px solid var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-tour-info-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ytrip-primary, #2563eb);
+    margin: 0 0 8px 0;
+}
+
+.ytrip-tour-info-value {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ytrip-text, #1e293b);
+    margin: 0;
+}
+
+.ytrip-tour-info-value p:last-child {
+    margin-bottom: 0;
+}
+
+/* ===== Highlights ===== */
+.ytrip-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+    gap: 16px;
+}
+
+.ytrip-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: var(--ytrip-surface-alt, #f8fafc);
+    border-radius: 10px;
+}
+
+.ytrip-highlight-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16,185,129,0.1);
+    color: var(--ytrip-success, #10b981);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+/* ===== Itinerary ===== */
+.ytrip-itinerary-timeline {
+    position: relative;
+}
+
+.ytrip-itinerary-day {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 32px;
+    position: relative;
+}
+
+.ytrip-itinerary-day::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 44px;
+    bottom: 0;
+    width: 2px;
+    background: var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-itinerary-day:last-child::before {
+    display: none;
+}
+
+.ytrip-day-marker {
+    position: relative;
+    z-index: 1;
+}
+
+.ytrip-day-number {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    border-radius: 50%;
+    font-weight: 700;
+}
+
+.ytrip-day-content {
+    flex: 1;
+    background: var(--ytrip-surface, #fff);
+    border: 1px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.ytrip-day-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.ytrip-day-description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-day-meals {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.ytrip-meals-label {
+    font-size: 13px;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-meal-badge {
+    padding: 4px 10px;
+    background: color-mix(in srgb, var(--ytrip-warning, #f59e0b) 15%, transparent);
+    color: var(--ytrip-warning, #f59e0b);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+/* ===== Included/Excluded ===== */
+.ytrip-included-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.ytrip-included-list,
+.ytrip-excluded-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ytrip-included-list li,
+.ytrip-excluded-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-included-list li:last-child,
+.ytrip-excluded-list li:last-child {
+    border-bottom: none;
+}
+
+/* ===== FAQ ===== */
+.ytrip-faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ytrip-faq-item {
+    border: 1px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.ytrip-faq-question {
+    width: 100%;
+    padding: 18px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: left;
+    color: var(--ytrip-text, #1e293b);
+}
+
+.ytrip-faq-question:hover {
+    background: var(--ytrip-surface-alt, #f8fafc);
+}
+
+.ytrip-faq-question svg {
+    transition: transform 0.3s;
+}
+
+.ytrip-faq-item.active .ytrip-faq-question svg {
+    transform: rotate(180deg);
+}
+
+.ytrip-faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.ytrip-faq-item.active .ytrip-faq-answer {
+    padding: 20px;
+    max-height: 5000px;
+}
+
+/* ===== Sidebar ===== */
+.ytrip-content-sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.ytrip-sidebar-card {
+    background: var(--ytrip-surface, #fff);
+    border: 1px solid var(--ytrip-border, #e5e7eb);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.ytrip-single-tour-widget-area {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-single-tour-widget-area .ytrip-widget-area__widget {
+    margin-bottom: 24px;
+}
+
+.ytrip-single-tour-widget-area .ytrip-widget-area__widget:last-child {
+    margin-bottom: 0;
+}
+
+.ytrip-sidebar-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-info-list {
+    margin: 0;
+}
+
+.ytrip-info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--ytrip-border, #e5e7eb);
+}
+
+.ytrip-info-item:last-child {
+    border-bottom: none;
+}
+
+.ytrip-info-item dt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #64748b);
+}
+
+.ytrip-info-item dt svg {
+    width: 16px;
+    height: 16px;
+}
+
+.ytrip-info-item dd {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.ytrip-info-item dd a {
+    color: var(--ytrip-primary, #2563eb);
+    text-decoration: none;
+}
+
+.ytrip-difficulty-badge {
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.difficulty-easy { background: var(--ytrip-success); color: #fff; }
+.difficulty-moderate { background: var(--ytrip-warning); color: #fff; }
+.difficulty-challenging { background: var(--ytrip-accent); color: #fff; }
+.difficulty-extreme { background: var(--ytrip-error); color: #fff; }
+.ytrip-dark-mode .difficulty-easy,
+[data-theme="dark"] .difficulty-easy { background: #166534; color: #bbf7d0; }
+.ytrip-dark-mode .difficulty-moderate,
+[data-theme="dark"] .difficulty-moderate { background: #a16207; color: #fef08a; }
+.ytrip-dark-mode .difficulty-challenging,
+[data-theme="dark"] .difficulty-challenging { background: #c2410c; color: #ffedd5; }
+.ytrip-dark-mode .difficulty-extreme,
+[data-theme="dark"] .difficulty-extreme { background: #b91c1c; color: #fecaca; }
+
+/* ===== Gallery Preview ===== */
+.ytrip-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.ytrip-gallery-link {
+    display: block;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ytrip-gallery-link img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.ytrip-gallery-link:hover img {
+    transform: scale(1.1);
+}
+
+/* ===== FAB + Bottom Sheet (mobile only: no overlap, open/collapse) ===== */
+.ytrip-booking-fab {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    padding: 12px 16px;
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    background: linear-gradient(to top, rgba(255,255,255,0.98) 70%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    pointer-events: none;
+}
+
+.ytrip-booking-fab__btn {
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--ytrip-primary, #2563eb), #7c3aed);
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(37,99,235,0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ytrip-booking-fab__btn:active {
+    transform: scale(0.98);
+}
+
+.ytrip-booking-fab__price {
+    font-size: 1.1em;
+}
+
+.ytrip-booking-fab__label {
+    letter-spacing: 0.02em;
+}
+
+.ytrip-booking-fab__chevron {
+    transition: transform 0.3s ease;
+}
+
+.ytrip-booking-sheet {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.ytrip-booking-sheet.is-open {
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.ytrip-booking-sheet__backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ytrip-booking-sheet.is-open .ytrip-booking-sheet__backdrop {
+    opacity: 1;
+}
+
+.ytrip-booking-sheet__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 92vh;
+    background: var(--ytrip-surface, #fff);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -8px 40px rgba(0,0,0,0.15);
+    transform: translateY(100%);
+    transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+.ytrip-booking-sheet.is-open .ytrip-booking-sheet__panel {
+    transform: translateY(0);
+}
+
+.ytrip-booking-sheet__handle {
+    width: 40px;
+    height: 4px;
+    background: var(--ytrip-border, #e5e7eb);
+    border-radius: 2px;
+    margin: 12px auto 8px;
+    flex-shrink: 0;
+}
+
+.ytrip-booking-sheet__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 20px 16px;
+    flex-shrink: 0;
+}
+
+.ytrip-booking-sheet__title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--ytrip-text, #1e293b);
+}
+
+.ytrip-booking-sheet__close {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: var(--ytrip-surface-alt, #f8fafc);
+    border-radius: 12px;
+    color: var(--ytrip-text-muted, #64748b);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.ytrip-booking-sheet__close:hover,
+.ytrip-booking-sheet__close:focus-visible {
+    background: var(--ytrip-border, #e5e7eb);
+    color: var(--ytrip-text, #1e293b);
+}
+
+.ytrip-booking-sheet__body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 20px 24px;
+    overscroll-behavior: contain;
+}
+
+/* ===== Responsive: single column below 1024px ===== */
+@media (max-width: 1023px) {
+    .ytrip-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-hero-booking {
+        display: none !important;
+    }
+
+    .ytrip-content-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .ytrip-content-sidebar {
+        position: static;
+    }
+
+    .ytrip-included-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-tour-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== Mobile only: FAB and bottom sheet (hidden on desktop/tablet) ===== */
+@media (max-width: 767px) {
+    .ytrip-booking-fab {
+        display: block;
+    }
+
+    .ytrip-booking-sheet {
+        display: block;
+    }
+}
+
+@media (max-width: 767px) {
+    .ytrip-single-hero {
+        min-height: min(50vh, 420px);
+    }
+
+    .ytrip-hero-content {
+        padding: clamp(32px, 8vw, 48px) 0 clamp(40px, 10vw, 56px);
+    }
+
+    .ytrip-hero-title {
+        font-size: clamp(24px, 6vw, 32px);
+    }
+
+    .ytrip-hero-meta {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .ytrip-hero-meta .ytrip-meta-item {
+        font-size: 14px;
+    }
+
+    .ytrip-hero-excerpt {
+        font-size: 16px;
+    }
+
+    .ytrip-hero-gallery {
+        margin-top: -24px;
+        padding-bottom: 16px;
+    }
+
+    .ytrip-gallery-strip {
+        gap: 6px;
+    }
+
+    .ytrip-gallery-thumb,
+    .ytrip-gallery-more {
+        width: 48px;
+        height: 48px;
+    }
+
+    .ytrip-single-main {
+        padding: clamp(32px, 6vw, 48px) 0 max(80px, env(safe-area-inset-bottom) + 80px);
+    }
+
+    .ytrip-content-grid {
+        gap: 32px;
+    }
+
+    .ytrip-section {
+        margin-bottom: 36px;
+    }
+
+    .ytrip-section-title {
+        font-size: clamp(18px, 4.5vw, 22px);
+        margin-bottom: 20px;
+    }
+
+    .ytrip-highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-itinerary-day {
+        flex-direction: column;
+        gap: 16px;
+        padding-bottom: 24px;
+    }
+
+    .ytrip-itinerary-day::before {
+        display: none;
+    }
+
+    .ytrip-day-content {
+        padding: 16px;
+    }
+
+    .ytrip-included-grid {
+        gap: 24px;
+    }
+
+    .ytrip-sidebar-card {
+        padding: 20px;
+    }
+
+    .ytrip-gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .ytrip-gallery-link img {
+        height: 72px;
+    }
+
+    #ytrip-tour-map {
+        height: 280px !important;
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 479px) {
+    .ytrip-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .ytrip-hero-title {
+        font-size: 22px;
+    }
+
+    .ytrip-breadcrumb {
+        font-size: 13px;
+    }
+
+    .ytrip-category-badge {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+
+    .ytrip-booking-sheet__panel {
+        max-height: 85vh;
+    }
+
+    .ytrip-booking-sheet__body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .ytrip-booking-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-booking-trust {
+        flex-direction: column;
+    }
+
+    .ytrip-tour-info-item {
+        padding: 14px 16px;
+    }
+
+    .ytrip-section-content {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .ytrip-booking-fab,
+    .ytrip-booking-sheet {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1280px) {
+    .ytrip-container {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .ytrip-content-grid {
+        grid-template-columns: 1fr 380px;
+        gap: 56px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .ytrip-container {
+        max-width: 1400px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ytrip-booking-sheet__panel,
+    .ytrip-booking-sheet__backdrop,
+    .ytrip-booking-fab__btn {
+        transition-duration: 0.1ms;
+    }
+}
+
+/* ===== Dark mode: single tour content uses semantic variables ===== */
+.ytrip-dark-mode .ytrip-single .ytrip-content-main,
+[data-theme="dark"] .ytrip-single .ytrip-content-main {
+    background: var(--ytrip-bg);
+    color: var(--ytrip-text);
+}
+.ytrip-dark-mode .ytrip-single .ytrip-section-title,
+[data-theme="dark"] .ytrip-single .ytrip-section-title {
+    color: var(--ytrip-text);
+}
+.ytrip-dark-mode .ytrip-single .ytrip-meta-block,
+[data-theme="dark"] .ytrip-single .ytrip-meta-block {
+    background: var(--ytrip-surface-alt);
+    border-color: var(--ytrip-border);
+    color: var(--ytrip-text);
+}
+</style>
+
+<!-- ==================== INLINE SCRIPTS ==================== -->
+<script>
+(function() {
+    'use strict';
+
+    // Number Input Controls (hero + sheet forms)
+    document.querySelectorAll('.ytrip-number-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var target = this.dataset.target;
+            var input = document.getElementById(target);
+            if (!input) return;
+            var isPlus = this.classList.contains('plus');
+            var min = parseInt(this.dataset.min || 0, 10);
+            var max = parseInt(this.dataset.max || 100, 10);
+            var current = parseInt(input.value, 10) || 0;
+
+            if (isPlus) {
+                input.value = Math.min(current + 1, max);
+            } else {
+                input.value = Math.max(current - 1, min);
+            }
+
+            input.dispatchEvent(new Event('change'));
+        });
+    });
+
+    // Mobile booking sheet: open / close
+    var fab = document.getElementById('ytrip-booking-fab');
+    var fabBtn = document.getElementById('ytrip-booking-fab-btn');
+    var sheet = document.getElementById('ytrip-booking-sheet');
+    var sheetBackdrop = document.getElementById('ytrip-booking-sheet-backdrop');
+    var sheetClose = document.getElementById('ytrip-booking-sheet-close');
+
+    function openSheet() {
+        if (!sheet) return;
+        sheet.classList.add('is-open');
+        sheet.setAttribute('aria-hidden', 'false');
+        if (fab) fab.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
+        sheetClose && sheetClose.focus();
+    }
+
+    function closeSheet() {
+        if (!sheet) return;
+        sheet.classList.remove('is-open');
+        sheet.setAttribute('aria-hidden', 'true');
+        if (fab) fab.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        fabBtn && fabBtn.focus();
+    }
+
+    if (fabBtn) {
+        fabBtn.addEventListener('click', function() {
+            openSheet();
+        });
+    }
+
+    if (sheetClose) {
+        sheetClose.addEventListener('click', closeSheet);
+    }
+
+    if (sheetBackdrop) {
+        sheetBackdrop.addEventListener('click', closeSheet);
+    }
+
+    sheet && sheet.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sheet.classList.contains('is-open')) {
+            closeSheet();
+        }
+    });
+
+    // FAQ Accordion (expand/collapse answers)
+    function initFaqAccordion() {
+    document.querySelectorAll('.ytrip-faq-question').forEach(function(btn) {
+            if (btn.dataset.ytripFaqBound) return;
+            btn.dataset.ytripFaqBound = '1';
+            btn.setAttribute('aria-expanded', 'false');
+        btn.addEventListener('click', function() {
+            var item = this.closest('.ytrip-faq-item');
+                if (!item) return;
+            var isOpen = item.classList.contains('active');
+
+            document.querySelectorAll('.ytrip-faq-item').forEach(function(i) {
+                i.classList.remove('active');
+                    var q = i.querySelector('.ytrip-faq-question');
+                    if (q) q.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isOpen) {
+                item.classList.add('active');
+                    btn.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFaqAccordion);
+    } else {
+        initFaqAccordion();
+    }
+
+    // Gallery lightbox is handled in single-tour.js (same-page, no external resources).
+
+    // Dark Mode Toggle Check
+    var savedTheme = localStorage.getItem('ytrip_theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('ytrip-dark-mode');
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    window.ytripToggleDarkMode = function() {
+        var isDark = document.documentElement.classList.contains('ytrip-dark-mode');
+        if (isDark) {
+            document.documentElement.classList.remove('ytrip-dark-mode');
+            document.documentElement.setAttribute('data-theme', 'light');
+            localStorage.setItem('ytrip_theme', 'light');
+        } else {
+            document.documentElement.classList.add('ytrip-dark-mode');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('ytrip_theme', 'dark');
+        }
+    };
+
+})();
+</script>
+
+</div><!-- .ytrip-single-tour-page -->
+
+<?php get_footer(); ?>

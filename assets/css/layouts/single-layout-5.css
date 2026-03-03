@@ -1,0 +1,328 @@
+/**
+ * Layout 5: Magazine Style CSS
+ */
+
+/* Hero Header */
+.ytrip-magazine-hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    padding: 0 20px;
+}
+
+.ytrip-magazine-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.ytrip-magazine-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-magazine-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.ytrip-magazine-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.ytrip-magazine-hero__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.ytrip-magazine-hero__title {
+    font-family: var(--ytrip-font-heading, serif);
+    font-size: clamp(40px, 6vw, 84px);
+    margin: 0 0 24px;
+    line-height: 1.1;
+}
+
+.ytrip-magazine-hero__excerpt {
+    font-size: 20px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    font-style: italic;
+}
+
+.ytrip-magazine-hero__meta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-weight: 500;
+}
+
+.ytrip-magazine-hero__price {
+    padding: 8px 20px;
+    background: #fff;
+    color: #000;
+    border-radius: 50px;
+}
+
+/* Facts Strip */
+.ytrip-magazine-facts {
+    border-bottom: 1px solid #e5e7eb;
+    padding: 30px 0;
+}
+
+.ytrip-magazine-facts__grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.ytrip-magazine-facts__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ytrip-magazine-facts__icon {
+    width: 48px;
+    height: 48px;
+    border: 1px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-magazine-facts__text {
+    display: flex;
+    flex-direction: column;
+}
+
+.ytrip-magazine-facts__label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    letter-spacing: 1px;
+}
+
+.ytrip-magazine-facts__value {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.ytrip-magazine-facts__share {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ytrip-magazine-facts__share a {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #f3f4f6;
+    color: #4b5563;
+    transition: 0.2s;
+}
+
+.ytrip-magazine-facts__share a:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Layout */
+.ytrip-magazine-content {
+    padding: 80px 0;
+}
+
+.ytrip-magazine-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 60px;
+}
+
+.ytrip-magazine-lead {
+    font-size: 20px;
+    line-height: 1.8;
+    color: #374151;
+    margin-bottom: 60px;
+}
+
+.ytrip-magazine-lead p:first-child::first-letter {
+    float: left;
+    font-size: 84px;
+    line-height: 0.8;
+    margin-right: 12px;
+    font-weight: 800;
+}
+
+/* Highlights */
+.ytrip-magazine-highlights {
+    border-top: 4px solid #000;
+    padding-top: 40px;
+    margin-bottom: 60px;
+}
+
+.ytrip-magazine-highlights__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.ytrip-magazine-highlights__item {
+    padding: 20px;
+    background: #f9fafb;
+    border-left: 3px solid var(--ytrip-primary, #2563eb);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Gallery */
+.ytrip-magazine-gallery {
+    margin-bottom: 80px;
+}
+
+.ytrip-magazine-section-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 40px;
+    font-family: var(--ytrip-font-heading, serif);
+}
+
+.ytrip-magazine-gallery__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 300px);
+    gap: 20px;
+}
+
+.ytrip-magazine-gallery__item {
+    position: relative;
+    overflow: hidden;
+}
+
+.ytrip-magazine-gallery__item--large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+.ytrip-magazine-gallery__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s;
+}
+
+.ytrip-magazine-gallery__item:hover img {
+    transform: scale(1.03);
+}
+
+/* Timeline */
+.ytrip-magazine-timeline {
+    position: relative;
+    padding: 40px 0;
+}
+
+.ytrip-magazine-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: #e5e7eb;
+}
+
+.ytrip-magazine-timeline__item {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.ytrip-magazine-timeline__marker {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 10px 0;
+    z-index: 2;
+}
+
+.ytrip-magazine-timeline__day {
+    background: #000;
+    color: #fff;
+    padding: 6px 16px;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.ytrip-magazine-timeline__content {
+    background: #fff;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    width: 45%;
+    margin-left: auto;
+}
+
+.ytrip-magazine-timeline__item:nth-child(even) .ytrip-magazine-timeline__content {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .ytrip-magazine-layout,
+    .ytrip-magazine-highlights__list {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-magazine-gallery__grid {
+        display: flex;
+        overflow-x: auto;
+        height: 300px;
+    }
+
+    .ytrip-magazine-gallery__item {
+        flex: 0 0 80%;
+    }
+
+    .ytrip-magazine-timeline::before {
+        left: 20px;
+    }
+
+    .ytrip-magazine-timeline__marker {
+        left: 20px;
+        transform: none;
+    }
+
+    .ytrip-magazine-timeline__content,
+    .ytrip-magazine-timeline__item:nth-child(even) .ytrip-magazine-timeline__content {
+        width: auto;
+        margin-left: 60px;
+        margin-right: 0;
+    }
+}

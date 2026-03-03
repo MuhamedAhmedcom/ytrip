@@ -1,0 +1,310 @@
+/**
+ * Layout 1: Classic Sidebar CSS
+ */
+
+.ytrip-layout-classic .ytrip-gallery-section {
+    margin-bottom: var(--ytrip-spacing-section, 80px);
+}
+
+.ytrip-gallery--slider .ytrip-gallery__main {
+    border-radius: var(--ytrip-radius-card, 12px);
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.ytrip-gallery--slider .ytrip-gallery__image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ytrip-gallery__thumbs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+.ytrip-gallery__thumb {
+    width: 100px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.ytrip-gallery__thumb.active {
+    border-color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-gallery__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-layout-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 40px;
+}
+
+.ytrip-layout-grid--left {
+    grid-template-columns: 350px 1fr;
+    direction: rtl;
+}
+
+.ytrip-layout-grid--left .ytrip-content-main {
+    direction: ltr;
+}
+
+/* For RTL layout support */
+[dir="rtl"] .ytrip-layout-grid--left {
+    grid-template-columns: 350px 1fr;
+    direction: ltr;
+}
+
+[dir="rtl"] .ytrip-layout-grid--left .ytrip-content-main {
+    direction: rtl;
+}
+
+
+/* Content Styles */
+.ytrip-tour-header {
+    margin-bottom: 40px;
+}
+
+.ytrip-breadcrumb {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ytrip-breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.ytrip-breadcrumb a:hover {
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-tour-title {
+    font-size: clamp(28px, 4vw, 42px);
+    margin: 0 0 20px;
+    color: var(--ytrip-heading-color, #111827);
+}
+
+.ytrip-tour-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 15px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ytrip-stars {
+    color: #fbbf24;
+    letter-spacing: 1px;
+}
+
+/* Sections */
+.ytrip-section {
+    margin-bottom: 50px;
+}
+
+.ytrip-section__title {
+    font-size: 24px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Highlights */
+.ytrip-highlights__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ytrip-highlights__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    background: var(--ytrip-surface, #f9fafb);
+    border-radius: 8px;
+}
+
+.ytrip-highlights__item svg {
+    color: var(--ytrip-primary, #2563eb);
+    flex-shrink: 0;
+}
+
+/* Itinerary */
+.ytrip-itinerary__timeline {
+    position: relative;
+    padding-left: 20px;
+    border-left: 2px solid #e5e7eb;
+}
+
+[dir="rtl"] .ytrip-itinerary__timeline {
+    padding-left: 0;
+    padding-right: 20px;
+    border-left: none;
+    border-right: 2px solid #e5e7eb;
+}
+
+.ytrip-itinerary__day {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.ytrip-itinerary__marker {
+    position: absolute;
+    left: -29px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--ytrip-primary, #2563eb);
+    color: var(--ytrip-primary-contrast, #ffffff);
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[dir="rtl"] .ytrip-itinerary__marker {
+    left: auto;
+    right: -29px;
+}
+
+.ytrip-itinerary__content {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.ytrip-itinerary__title {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+/* Inc/Exc */
+.ytrip-inc-exc__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.ytrip-inc-exc__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ytrip-inc-exc__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.ytrip-inc-exc__item--yes svg {
+    color: #10b981;
+}
+
+.ytrip-inc-exc__item--no svg {
+    color: #ef4444;
+}
+
+/* FAQ */
+.ytrip-faq__item {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.ytrip-faq__question {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: inherit;
+}
+
+.ytrip-faq__question[aria-expanded="true"] {
+    background: var(--ytrip-surface, #f9fafb);
+}
+
+.ytrip-faq__answer {
+    padding: 0 20px 20px;
+}
+
+.ytrip-faq__item:not([open]) .ytrip-faq__answer {
+    display: none;
+}
+
+.ytrip-faq__item[open] .ytrip-faq__answer,
+.ytrip-faq__item.ytrip-faq__item--open .ytrip-faq__answer {
+    display: block !important;
+    overflow: visible;
+}
+
+.ytrip-faq__question[aria-expanded="true"]+.ytrip-faq__answer {
+    display: block !important;
+}
+
+/* Native details/summary: show answer when open (full CSS, works without JS on all devices) */
+.ytrip-faq__item[open] .ytrip-faq__answer {
+    display: block !important;
+}
+
+.ytrip-faq__item[open] .ytrip-faq__question svg {
+    transform: rotate(180deg);
+}
+
+/* Sidebar */
+.ytrip-sidebar--sticky {
+    position: sticky;
+    top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+
+    .ytrip-layout-grid,
+    .ytrip-inc-exc__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-sidebar--sticky {
+        position: static;
+    }
+}

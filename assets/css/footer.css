@@ -1,0 +1,51 @@
+/* YTrip Professional Footer - Fixed Colors */
+
+.ytrip-pro-footer {
+    background: linear-gradient(135deg, #0f4c81 0%, #1a365d 100%) !important;
+    color: #ffffff !important;
+}
+
+.ytrip-pro-footer * {
+    color: #ffffff !important;
+}
+
+.ytrip-pro-footer a {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.ytrip-pro-footer a:hover {
+    color: #f59e0b !important;
+}
+
+.ytrip-pro-footer__newsletter {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ytrip-pro-footer__newsletter h3,
+.ytrip-pro-footer__newsletter p {
+    color: #ffffff !important;
+}
+
+.ytrip-pro-footer__newsletter input {
+    color: #000000 !important;
+    background: #ffffff !important;
+}
+
+.ytrip-pro-footer__newsletter button {
+    background: #f59e0b !important;
+    color: #000000 !important;
+}
+
+.ytrip-pro-footer__bottom {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+
+.ytrip-pro-footer__social a {
+    background: rgba(255, 255, 255, 0.1) !important;
+    color: #ffffff !important;
+}
+
+.ytrip-pro-footer__social a:hover {
+    background: #f59e0b !important;
+    color: #000000 !important;
+}

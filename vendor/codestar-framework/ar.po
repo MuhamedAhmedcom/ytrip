@@ -1,0 +1,1780 @@
+# Copyright (C) 2021 Codestar
+# This file is distributed under the same license as the Codestar Framework package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Codestar Framework 2.2.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/codestar-framework\n"
+"POT-Creation-Date: 2021-06-25 12:32:35+00:00\n"
+"PO-Revision-Date: 2023-02-21 05:05+0200\n"
+"Last-Translator: ProWPSite.com\n"
+"Language-Team: \n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: classes/admin-options.class.php:226
+msgid "Error while saving the changes."
+msgstr "خطأ أثناء حفظ التغييرات."
+
+#: classes/admin-options.class.php:286
+msgid "Settings successfully imported."
+msgstr "تم استرداد الإعدادات بنجاح."
+
+#: classes/admin-options.class.php:298 classes/admin-options.class.php:314
+msgid "Default settings restored."
+msgstr "تمت استعادة الإعدادات الافتراضية."
+
+#: classes/admin-options.class.php:385
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+#: classes/admin-options.class.php:565
+msgid "You have unsaved changes, save your changes!"
+msgstr "لديك تغييرات غير محفوظة، احفظ تغييراتك!"
+
+#: classes/admin-options.class.php:567
+msgid "show all settings"
+msgstr "إظهار جميع الإعدادات"
+
+#: classes/admin-options.class.php:569 fields/icon/icon.php:57
+#: fields/map/map.php:23
+msgid "Search..."
+msgstr "بحث..."
+
+#: classes/admin-options.class.php:572 classes/admin-options.class.php:695
+msgid "Save"
+msgstr "حفظ"
+
+#: classes/admin-options.class.php:572 classes/admin-options.class.php:695
+msgid "Saving..."
+msgstr "جاري الحفظ..."
+
+#: classes/admin-options.class.php:573 classes/admin-options.class.php:696
+msgid "Reset Section"
+msgstr "إعادة تعيين القسم"
+
+#: classes/admin-options.class.php:573 classes/admin-options.class.php:696
+msgid "Are you sure to reset this section options?"
+msgstr "هل أنت متأكد من إعادة تعيين خيارات هذا القسم؟"
+
+#: classes/admin-options.class.php:574 classes/admin-options.class.php:697
+msgid "Reset All"
+msgstr "إعادة تعيين الكل"
+
+#: classes/admin-options.class.php:574 classes/admin-options.class.php:697
+#: classes/comment-options.class.php:216 classes/metabox-options.class.php:294
+#: fields/backup/backup.php:31
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#: classes/admin-options.class.php:574 classes/admin-options.class.php:697
+msgid "Are you sure you want to reset all settings to default values?"
+msgstr "هل أنت متأكد من أنك تريد إعادة تعيين جميع الإعدادات إلى القيم الافتراضية؟"
+
+#: classes/admin-options.class.php:672 classes/comment-options.class.php:199
+#: classes/metabox-options.class.php:277 fields/button_set/button_set.php:56
+#: fields/checkbox/checkbox.php:76 fields/radio/radio.php:75
+#: fields/select/select.php:113 functions/actions.php:41
+msgid "No data available."
+msgstr "لا توجد بيانات متاحة."
+
+#: classes/comment-options.class.php:217 classes/metabox-options.class.php:295
+msgid "update post"
+msgstr "تحديث"
+
+#: classes/comment-options.class.php:217 classes/metabox-options.class.php:295
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: classes/setup.class.php:592
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+#: classes/setup.class.php:593
+msgid "Please enter %s or more characters"
+msgstr "فضلا أضف %s حروف أو أكثر"
+
+#: classes/setup.class.php:594
+msgid "Searching..."
+msgstr "البحث ..."
+
+#: classes/setup.class.php:595
+msgid "No results found."
+msgstr "لا توجد نتائج."
+
+#: classes/setup.class.php:696
+msgid "Oops! Not allowed."
+msgstr "غير مسموح."
+
+#: classes/setup.class.php:768 classes/setup.class.php:772
+msgid "Field not found!"
+msgstr "الحقل غير متوفر!"
+
+#: classes/shortcode-options.class.php:253 fields/group/group.php:23
+msgid "Add New"
+msgstr "اضف جديد"
+
+#: classes/shortcode-options.class.php:290 functions/actions.php:16
+#: functions/actions.php:68 functions/actions.php:106 functions/actions.php:141
+#: functions/actions.php:170
+msgid "Error: Invalid nonce verification."
+msgstr "خطأ: التحقق من الجلسة غير صالحه."
+
+#: fields/background/background.php:36 fields/media/media.php:59
+msgid "Not selected"
+msgstr "غير مختار"
+
+#: fields/background/background.php:72 fields/date/date.php:31
+msgid "From"
+msgstr "من عند"
+
+#: fields/background/background.php:90 fields/date/date.php:32
+msgid "To"
+msgstr "إلى"
+
+#: fields/background/background.php:108
+msgid "Direction"
+msgstr "الاتجاه"
+
+#: fields/background/background.php:114
+msgid "Gradient Direction"
+msgstr "اتجاه التدرج"
+
+#: fields/background/background.php:115
+msgid "&#8659; top to bottom"
+msgstr "&#8659; top to bottom"
+
+#: fields/background/background.php:116
+msgid "&#8658; left to right"
+msgstr "&#8658; left to right"
+
+#: fields/background/background.php:117
+msgid "&#8664; corner top to right"
+msgstr "&#8664; corner top to right"
+
+#: fields/background/background.php:118
+msgid "&#8665; corner top to left"
+msgstr "&#8665; corner top to left"
+
+#: fields/background/background.php:161
+msgid "Background Position"
+msgstr "مكان الخلفية"
+
+#: fields/background/background.php:162
+msgid "Left Top"
+msgstr "يسار أعلى"
+
+#: fields/background/background.php:163
+msgid "Left Center"
+msgstr "منتصف اليسار"
+
+#: fields/background/background.php:164
+msgid "Left Bottom"
+msgstr "يسار أسفل"
+
+#: fields/background/background.php:165
+msgid "Center Top"
+msgstr "وسط أعلى"
+
+#: fields/background/background.php:166
+msgid "Center Center"
+msgstr "وسط وسط"
+
+#: fields/background/background.php:167
+msgid "Center Bottom"
+msgstr "وسط أسفل"
+
+#: fields/background/background.php:168
+msgid "Right Top"
+msgstr "اعلى اليمين"
+
+#: fields/background/background.php:169
+msgid "Right Center"
+msgstr "منتصف اليمين"
+
+#: fields/background/background.php:170
+msgid "Right Bottom"
+msgstr "يمين أسفل"
+
+#: fields/background/background.php:184
+msgid "Background Repeat"
+msgstr "تكرار الخلفية"
+
+#: fields/background/background.php:185
+msgid "Repeat"
+msgstr "تكرار"
+
+#: fields/background/background.php:186
+msgid "No Repeat"
+msgstr "لا تكرار"
+
+#: fields/background/background.php:187
+msgid "Repeat Horizontally"
+msgstr "كرر أفقيا"
+
+#: fields/background/background.php:188
+msgid "Repeat Vertically"
+msgstr "كرر عموديا"
+
+#: fields/background/background.php:202
+msgid "Background Attachment"
+msgstr "مرفق الخلفية"
+
+#: fields/background/background.php:203
+msgid "Scroll"
+msgstr "التمرير"
+
+#: fields/background/background.php:204
+msgid "Fixed"
+msgstr "ثابت"
+
+#: fields/background/background.php:218
+msgid "Background Size"
+msgstr "حجم الخلفية"
+
+#: fields/background/background.php:219
+msgid "Cover"
+msgstr "الغلاف"
+
+#: fields/background/background.php:220
+msgid "Contain"
+msgstr "محتوى"
+
+#: fields/background/background.php:221
+msgid "Auto"
+msgstr "تلقائي"
+
+#: fields/background/background.php:235
+msgid "Background Origin"
+msgstr "مصدر الخلفية"
+
+#: fields/background/background.php:236 fields/background/background.php:254
+msgid "Padding Box"
+msgstr "مربع الحشو"
+
+#: fields/background/background.php:237 fields/background/background.php:253
+msgid "Border Box"
+msgstr "مربع الحدود الصلبة"
+
+#: fields/background/background.php:238 fields/background/background.php:255
+msgid "Content Box"
+msgstr "صندوق المحتوى"
+
+#: fields/background/background.php:252
+msgid "Background Clip"
+msgstr "قص الخلفية"
+
+#: fields/background/background.php:269
+msgid "Background Blend Mode"
+msgstr ""
+
+#: fields/background/background.php:270 fields/link_color/link_color.php:36
+#: fields/typography/typography.php:186
+msgid "Normal"
+msgstr "عادي"
+
+#: fields/background/background.php:271
+msgid "Multiply"
+msgstr "الضرب"
+
+#: fields/background/background.php:272
+msgid "Screen"
+msgstr "الشاشة"
+
+#: fields/background/background.php:273
+msgid "Overlay"
+msgstr "غطاء"
+
+#: fields/background/background.php:274
+msgid "Darken"
+msgstr "غامق"
+
+#: fields/background/background.php:275
+msgid "Lighten"
+msgstr "تفتيح"
+
+#: fields/background/background.php:276
+msgid "Color Dodge"
+msgstr "دودج اللون"
+
+#: fields/background/background.php:277
+msgid "Saturation"
+msgstr "التشبع"
+
+#: fields/background/background.php:278
+msgid "Color"
+msgstr "اللون"
+
+#: fields/background/background.php:279
+msgid "Luminosity"
+msgstr ""
+
+#: fields/backup/backup.php:26
+msgid "Import"
+msgstr "استيراد"
+
+#: fields/backup/backup.php:29
+msgid "Export & Download"
+msgstr ""
+
+#: fields/border/border.php:25 fields/spacing/spacing.php:25
+msgid "top"
+msgstr "أعلى"
+
+#: fields/border/border.php:26 fields/spacing/spacing.php:26
+msgid "right"
+msgstr "يمين"
+
+#: fields/border/border.php:27 fields/spacing/spacing.php:27
+msgid "bottom"
+msgstr "الأسفل"
+
+#: fields/border/border.php:28 fields/spacing/spacing.php:28
+msgid "left"
+msgstr "يسار"
+
+#: fields/border/border.php:29 fields/spacing/spacing.php:29
+msgid "all"
+msgstr "الكل"
+
+#: fields/border/border.php:51 fields/typography/typography.php:214
+msgid "Solid"
+msgstr "صلب"
+
+#: fields/border/border.php:52 fields/typography/typography.php:217
+msgid "Dashed"
+msgstr "متقطع"
+
+#: fields/border/border.php:53 fields/typography/typography.php:216
+msgid "Dotted"
+msgstr "منقط"
+
+#: fields/border/border.php:54 fields/typography/typography.php:215
+msgid "Double"
+msgstr "مزدوج"
+
+#: fields/border/border.php:55
+msgid "Inset"
+msgstr "ادرج"
+
+#: fields/border/border.php:56
+msgid "Outset"
+msgstr "مستهل"
+
+#: fields/border/border.php:57
+msgid "Groove"
+msgstr "أخدود"
+
+#: fields/border/border.php:58
+msgid "ridge"
+msgstr "ريدج"
+
+#: fields/border/border.php:59 fields/typography/typography.php:199
+#: fields/typography/typography.php:213
+msgid "None"
+msgstr "لا شيء"
+
+#: fields/dimensions/dimensions.php:22
+msgid "width"
+msgstr "العرض"
+
+#: fields/dimensions/dimensions.php:23
+msgid "height"
+msgstr "الارتفاع"
+
+#: fields/gallery/gallery.php:20
+msgid "Add Gallery"
+msgstr "اضافة معرض"
+
+#: fields/gallery/gallery.php:21
+msgid "Edit Gallery"
+msgstr "تعديل المعرض"
+
+#: fields/gallery/gallery.php:22
+msgid "Clear"
+msgstr "واضح"
+
+#: fields/group/group.php:35 fields/repeater/repeater.php:27
+msgid "Error: Field ID conflict."
+msgstr "خطأ: تعارض معرف الحقل."
+
+#: fields/group/group.php:46 fields/group/group.php:87
+#: fields/repeater/repeater.php:48 fields/repeater/repeater.php:76
+msgid "Are you sure to delete this item?"
+msgstr "هل تريد بالتأكيد حذف هذا العنصر؟"
+
+#: fields/group/group.php:121 fields/repeater/repeater.php:89
+msgid "You cannot add more."
+msgstr "لا يمكنك إضافة المزيد."
+
+#: fields/group/group.php:122 fields/repeater/repeater.php:90
+msgid "You cannot remove more."
+msgstr "لا يمكنك إزالة المزيد."
+
+#: fields/icon/icon.php:20 fields/icon/icon.php:53
+msgid "Add Icon"
+msgstr "إضافة أيقونة"
+
+#: fields/icon/icon.php:21
+msgid "Remove Icon"
+msgstr "إزالة الايقونة"
+
+#: fields/link/link.php:20
+msgid "Add Link"
+msgstr "إضافة رابط"
+
+#: fields/link/link.php:21
+msgid "Edit Link"
+msgstr "تعديل الرابط"
+
+#: fields/link/link.php:22
+msgid "Remove Link"
+msgstr "إزالة الرابط"
+
+#: fields/link_color/link_color.php:37
+msgid "Hover"
+msgstr "التمرير"
+
+#: fields/link_color/link_color.php:38
+msgid "Active"
+msgstr "نشيط"
+
+#: fields/link_color/link_color.php:39
+msgid "Visited"
+msgstr "تمت زيارته"
+
+#: fields/link_color/link_color.php:40
+msgid "Focus"
+msgstr "التركيز"
+
+#: fields/map/map.php:24
+msgid "Latitude"
+msgstr "خط العرض"
+
+#: fields/map/map.php:25
+msgid "Longitude"
+msgstr "خط الطول"
+
+#: fields/media/media.php:25 fields/upload/upload.php:25
+msgid "Upload"
+msgstr "تحميل"
+
+#: fields/media/media.php:26 fields/upload/upload.php:26
+msgid "Remove"
+msgstr "إزالة"
+
+#: fields/sorter/sorter.php:21
+msgid "Enabled"
+msgstr "تمكين"
+
+#: fields/sorter/sorter.php:22
+msgid "Disabled"
+msgstr "معاق"
+
+#: fields/switcher/switcher.php:20
+msgid "On"
+msgstr "تشغيل"
+
+#: fields/switcher/switcher.php:21
+msgid "Off"
+msgstr "إيقاف"
+
+#: fields/typography/typography.php:96
+msgid "Font Family"
+msgstr "نوع الخط"
+
+#: fields/typography/typography.php:97
+msgid "Select a font"
+msgstr "حدد الخط"
+
+#: fields/typography/typography.php:105
+msgid "Backup Font Family"
+msgstr "نسخ احتياطي لنوع الخط"
+
+#: fields/typography/typography.php:119 fields/typography/typography.php:132
+#: fields/typography/typography.php:145 fields/typography/typography.php:160
+#: fields/typography/typography.php:176 fields/typography/typography.php:189
+#: fields/typography/typography.php:203 fields/typography/typography.php:221
+msgid "Default"
+msgstr "افتراضي"
+
+#: fields/typography/typography.php:130
+msgid "Font Style"
+msgstr "نوع الخط"
+
+#: fields/typography/typography.php:144 fields/typography/typography.php:145
+msgid "Load Extra Styles"
+msgstr "تحميل أنماط إضافية"
+
+#: fields/typography/typography.php:158
+msgid "Subset"
+msgstr "فرعيه"
+
+#: fields/typography/typography.php:168
+msgid "Text Align"
+msgstr "محاذاة النص"
+
+#: fields/typography/typography.php:170
+msgid "Inherit"
+msgstr "موروث"
+
+#: fields/typography/typography.php:171
+msgid "Left"
+msgstr "يسار"
+
+#: fields/typography/typography.php:172
+msgid "Center"
+msgstr "وسط"
+
+#: fields/typography/typography.php:173
+msgid "Right"
+msgstr "يمين"
+
+#: fields/typography/typography.php:174
+msgid "Justify"
+msgstr "ضبط"
+
+#: fields/typography/typography.php:175
+msgid "Initial"
+msgstr "مبدئي"
+
+#: fields/typography/typography.php:184
+msgid "Font Variant"
+msgstr "الخط البديل"
+
+#: fields/typography/typography.php:187
+msgid "Small Caps"
+msgstr "Small Caps"
+
+#: fields/typography/typography.php:188
+msgid "All Small Caps"
+msgstr "All Small Caps"
+
+#: fields/typography/typography.php:197
+msgid "Text Transform"
+msgstr "تحويل النص"
+
+#: fields/typography/typography.php:200
+msgid "Capitalize"
+msgstr "حروف رئيسية"
+
+#: fields/typography/typography.php:201
+msgid "Uppercase"
+msgstr "أحرف كبيرة"
+
+#: fields/typography/typography.php:202
+msgid "Lowercase"
+msgstr "أحرف صغيرة"
+
+#: fields/typography/typography.php:211
+msgid "Text Decoration"
+msgstr "زخرفة النص"
+
+#: fields/typography/typography.php:218
+msgid "Wavy"
+msgstr "متموج"
+
+#: fields/typography/typography.php:219
+msgid "Overline"
+msgstr "مشطوب"
+
+#: fields/typography/typography.php:220
+msgid "Line-through"
+msgstr "عليه خط"
+
+#: fields/typography/typography.php:233
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#: fields/typography/typography.php:245
+msgid "Line Height"
+msgstr "ارتفاع الخط"
+
+#: fields/typography/typography.php:257
+msgid "Letter Spacing"
+msgstr "تباعد الأحرف"
+
+#: fields/typography/typography.php:269
+msgid "Word Spacing"
+msgstr "المسافة بين الكلمات"
+
+#: fields/typography/typography.php:284
+msgid "Font Color"
+msgstr "لون النص"
+
+#: fields/typography/typography.php:295
+msgid "Custom Style"
+msgstr "نمط مخصص"
+
+#: fields/typography/typography.php:362
+msgid "Custom Web Fonts"
+msgstr "خطوط الويب المخصصة"
+
+#: fields/typography/typography.php:368
+msgid "Safe Web Fonts"
+msgstr "خطوط الويب الآمنة"
+
+#: fields/typography/typography.php:388
+msgid "Google Web Fonts"
+msgstr "خطوط الويب من Google"
+
+#: functions/actions.php:72 functions/actions.php:110
+msgid "Error: Invalid key."
+msgstr "خطأ: مفتاح غير صالح."
+
+#: functions/actions.php:114
+msgid "Error: The response is not a valid JSON response."
+msgstr "خطأ: الاستجابة ليست استجابة JSON صالحة."
+
+#: functions/actions.php:174
+msgid "Error: Invalid term ID."
+msgstr "خطأ: معرف مصطلح غير صالح."
+
+#: functions/actions.php:180
+msgid "Error: You do not have permission to do that."
+msgstr "خطأ: ليس لديك إذن للقيام بذلك."
+
+#: functions/validate.php:14 functions/validate.php:86
+msgid "Please enter a valid email address."
+msgstr "من فضلك أدخل بريد إلكتروني صحيح."
+
+#: functions/validate.php:32 functions/validate.php:106
+msgid "Please enter a valid number."
+msgstr "الرجاء إدخال رقم صحيح."
+
+#: functions/validate.php:50 functions/validate.php:126
+msgid "This field is required."
+msgstr "هذا الحقل مطلوب."
+
+#: functions/validate.php:68 functions/validate.php:146
+msgid "Please enter a valid URL."
+msgstr "يرجى إدخال رابط صحيح."
+
+#. Plugin Name of the plugin/theme
+msgid "Codestar Framework"
+msgstr "Codestar Framework"
+
+#. Plugin URI of the plugin/theme
+msgid "https://prowpsite.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A Simple and Lightweight WordPress Option Framework for Themes and Plugins"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Codestar"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://prowpsite.com/"
+msgstr ""
+
+#: core/breadcrumbs.php:420 core/breadcrumbs.php:580
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: core/breadcrumbs.php:525 core/breadcrumbs.php:658
+msgid "Author:"
+msgstr "الكاتب:"
+
+#: core/breadcrumbs.php:533 core/breadcrumbs.php:665
+msgid "Search Results:"
+msgstr "نتائج البحث:"
+
+#: core/breadcrumbs.php:541 core/breadcrumbs.php:672
+msgid "404 Not Found"
+msgstr "404 غير موجود"
+
+#: core/breadcrumbs.php:589
+msgid "Blog"
+msgstr "مدونة"
+
+#: core/classes.php:35 core/classes.php:40
+#: core/panel/options/admin-options.php:57
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+#: core/cpt.php:412 core/cpt.php:413 core/cpt.php:414 core/cpt.php:415
+#: core/cpt.php:510 core/cpt.php:511 core/cpt.php:512 core/cpt.php:638
+#, php-format
+msgid "%s"
+msgstr "%s"
+
+#: core/cpt.php:416 core/panel/classes/shortcode-options.class.php:253
+#: core/panel/fields/group/group.php:23
+msgid "Add New"
+msgstr "اضف جديد"
+
+#: core/cpt.php:417 core/cpt.php:517
+#, php-format
+msgid "Add New %s"
+msgstr "اضف جديد %s"
+
+#: core/cpt.php:418 core/cpt.php:514
+#, php-format
+msgid "Edit %s"
+msgstr "تحرير %s"
+
+#: core/cpt.php:419
+#, php-format
+msgid "New %s"
+msgstr "جديد %s"
+
+#: core/cpt.php:420 core/cpt.php:515
+#, php-format
+msgid "View %s"
+msgstr "عرض %s"
+
+#: core/cpt.php:421 core/cpt.php:521
+#, php-format
+msgid "Search %s"
+msgstr "بحث %s"
+
+#: core/cpt.php:422 core/cpt.php:526
+#, php-format
+msgid "No %s found"
+msgstr "لم يتم العثور على أية رسائل %s"
+
+#: core/cpt.php:423
+#, php-format
+msgid "No %s found in Trash"
+msgstr "لم يتم العثور على أنواع مقالاتك في المهملات. %s"
+
+#: core/cpt.php:424 core/cpt.php:520
+#, php-format
+msgid "Parent %s:"
+msgstr "الرئيسي %s:"
+
+#: core/cpt.php:513
+#, php-format
+msgid "All %s"
+msgstr "الكل %s"
+
+#: core/cpt.php:516
+#, php-format
+msgid "Update %s"
+msgstr "تحديث %s"
+
+#: core/cpt.php:518
+#, php-format
+msgid "New %s Name"
+msgstr "اسم %s جديد"
+
+#: core/cpt.php:519
+#, php-format
+msgid "Parent %s"
+msgstr "الرئيسي %s"
+
+#: core/cpt.php:522
+#, php-format
+msgid "Popular %s"
+msgstr "الأكثر شعبية %s"
+
+#: core/cpt.php:523
+#, php-format
+msgid "Seperate %s with commas"
+msgstr "فصل %s بفواصل"
+
+#: core/cpt.php:524
+#, php-format
+msgid "Add or remove %s"
+msgstr "إضافة أو إزالة %s"
+
+#: core/cpt.php:525
+#, php-format
+msgid "Choose from most used %s"
+msgstr "اختر من بين %s الأكثر استخداما"
+
+#: core/cpt.php:711
+#, php-format
+msgid "No %s"
+msgstr "العدد  %s"
+
+#: core/cpt.php:836
+#, php-format
+msgid "Show all %s"
+msgstr "عرض جميع %s"
+
+#: core/cpt.php:1064 core/cpt.php:1067 core/cpt.php:1069
+#, php-format
+msgid "%s updated."
+msgstr "تم تحديث %s!."
+
+#: core/cpt.php:1065
+msgid "Custom field updated."
+msgstr "تم تحديث الحقل الإضافي."
+
+#: core/cpt.php:1066
+msgid "Custom field deleted."
+msgstr "تمّ حذف الحقل المخصّص."
+
+#: core/cpt.php:1068
+#, php-format
+msgid "%2$s restored to revision from %1$s"
+msgstr "%2$s تمت استعادته للمراجعة من %1$s"
+
+#: core/cpt.php:1070
+#, php-format
+msgid "%s saved."
+msgstr "%s  تم حفظه."
+
+#: core/cpt.php:1071
+#, php-format
+msgid "%s submitted."
+msgstr "%s تم إرسال."
+
+#: core/cpt.php:1073
+#, php-format
+msgid "%2$s scheduled for: <strong>%1$s</strong>."
+msgstr "%2$s المقرر أن: <strong>%1$s</strong>."
+
+#: core/cpt.php:1074
+msgid "M j, Y @ G:i"
+msgstr "M j, Y @ G:i"
+
+#: core/cpt.php:1077
+#, php-format
+msgid "%s draft updated."
+msgstr "%s تحديث المسودة."
+
+#: core/cpt.php:1097 core/cpt.php:1098 core/cpt.php:1099 core/cpt.php:1100
+#: core/cpt.php:1101
+#, php-format
+msgid "%s "
+msgid_plural "%s "
+msgstr[0] "%s "
+msgstr[1] "%s "
+msgstr[2] "%s "
+msgstr[3] "%s "
+msgstr[4] "%s "
+msgstr[5] "%s "
+
+#: core/panel/classes/admin-options.class.php:226
+msgid "Error while saving the changes."
+msgstr "خطأ أثناء حفظ التغييرات."
+
+#: core/panel/classes/admin-options.class.php:286
+msgid "Settings successfully imported."
+msgstr "تم استرداد الإعدادات بنجاح."
+
+#: core/panel/classes/admin-options.class.php:298
+#: core/panel/classes/admin-options.class.php:314
+msgid "Default settings restored."
+msgstr "تمت استعادة الإعدادات الافتراضية."
+
+#: core/panel/classes/admin-options.class.php:385
+msgid "Settings saved."
+msgstr "تم حفظ الإعدادات."
+
+#: core/panel/classes/admin-options.class.php:565
+msgid "You have unsaved changes, save your changes!"
+msgstr "لديك تغييرات غير محفوظة، احفظ تغييراتك!"
+
+#: core/panel/classes/admin-options.class.php:567
+msgid "show all settings"
+msgstr "إظهار جميع الإعدادات"
+
+#: core/panel/classes/admin-options.class.php:569
+#: core/panel/fields/icon/icon.php:57 core/panel/fields/map/map.php:23
+msgid "Search..."
+msgstr "بحث..."
+
+#: core/panel/classes/admin-options.class.php:572
+#: core/panel/classes/admin-options.class.php:695
+msgid "Save"
+msgstr "حفظ"
+
+#: core/panel/classes/admin-options.class.php:572
+#: core/panel/classes/admin-options.class.php:695
+msgid "Saving..."
+msgstr "جاري الحفظ..."
+
+#: core/panel/classes/admin-options.class.php:573
+#: core/panel/classes/admin-options.class.php:696
+msgid "Reset Section"
+msgstr "إعادة تعيين القسم"
+
+#: core/panel/classes/admin-options.class.php:573
+#: core/panel/classes/admin-options.class.php:696
+msgid "Are you sure to reset this section options?"
+msgstr "هل أنت متأكد من إعادة تعيين خيارات هذا القسم؟"
+
+#: core/panel/classes/admin-options.class.php:574
+#: core/panel/classes/admin-options.class.php:697
+msgid "Reset All"
+msgstr "إعادة تعيين الكل"
+
+#: core/panel/classes/admin-options.class.php:574
+#: core/panel/classes/admin-options.class.php:697
+#: core/panel/classes/comment-options.class.php:216
+#: core/panel/classes/metabox-options.class.php:294
+#: core/panel/fields/backup/backup.php:31
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+#: core/panel/classes/admin-options.class.php:574
+#: core/panel/classes/admin-options.class.php:697
+msgid "Are you sure you want to reset all settings to default values?"
+msgstr ""
+"هل أنت متأكد من أنك تريد إعادة تعيين جميع الإعدادات إلى القيم الافتراضية؟"
+
+#: core/panel/classes/admin-options.class.php:672
+#: core/panel/classes/comment-options.class.php:199
+#: core/panel/classes/metabox-options.class.php:277
+#: core/panel/fields/button_set/button_set.php:56
+#: core/panel/fields/checkbox/checkbox.php:76
+#: core/panel/fields/radio/radio.php:75 core/panel/fields/select/select.php:113
+#: core/panel/functions/actions.php:41
+msgid "No data available."
+msgstr "لا توجد بيانات متاحة."
+
+#: core/panel/classes/comment-options.class.php:217
+#: core/panel/classes/metabox-options.class.php:295
+msgid "update post"
+msgstr "تحديث"
+
+#: core/panel/classes/comment-options.class.php:217
+#: core/panel/classes/metabox-options.class.php:295
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: core/panel/classes/setup.class.php:606
+msgid "Are you sure?"
+msgstr "هل أنت متأكد؟"
+
+#: core/panel/classes/setup.class.php:607
+#, php-format
+msgid "Please enter %s or more characters"
+msgstr "فضلا أضف %s حروف أو أكثر"
+
+#: core/panel/classes/setup.class.php:608
+msgid "Searching..."
+msgstr "البحث ..."
+
+#: core/panel/classes/setup.class.php:609
+msgid "No results found."
+msgstr "لا توجد نتائج."
+
+#: core/panel/classes/setup.class.php:710
+msgid "Oops! Not allowed."
+msgstr "غير مسموح."
+
+#: core/panel/classes/setup.class.php:778
+#: core/panel/classes/setup.class.php:782
+msgid "Field not found!"
+msgstr "الحقل غير متوفر!"
+
+#: core/panel/classes/shortcode-options.class.php:290
+#: core/panel/functions/actions.php:16 core/panel/functions/actions.php:68
+#: core/panel/functions/actions.php:106 core/panel/functions/actions.php:141
+#: core/panel/functions/actions.php:170
+msgid "Error: Invalid nonce verification."
+msgstr "خطأ: التحقق من الجلسة غير صالحه."
+
+#: core/panel/fields/background/background.php:36
+#: core/panel/fields/media/media.php:59
+msgid "Not selected"
+msgstr "غير مختار"
+
+#: core/panel/fields/background/background.php:72
+#: core/panel/fields/date/date.php:31
+msgid "From"
+msgstr "من عند"
+
+#: core/panel/fields/background/background.php:90
+#: core/panel/fields/date/date.php:32
+msgid "To"
+msgstr "إلى"
+
+#: core/panel/fields/background/background.php:108
+msgid "Direction"
+msgstr "الاتجاه"
+
+#: core/panel/fields/background/background.php:114
+msgid "Gradient Direction"
+msgstr "اتجاه التدرج"
+
+#: core/panel/fields/background/background.php:115
+msgid "&#8659; top to bottom"
+msgstr "&#8659; top to bottom"
+
+#: core/panel/fields/background/background.php:116
+msgid "&#8658; left to right"
+msgstr "&#8658; left to right"
+
+#: core/panel/fields/background/background.php:117
+msgid "&#8664; corner top to right"
+msgstr "&#8664; corner top to right"
+
+#: core/panel/fields/background/background.php:118
+msgid "&#8665; corner top to left"
+msgstr "&#8665; corner top to left"
+
+#: core/panel/fields/background/background.php:161
+msgid "Background Position"
+msgstr "مكان الخلفية"
+
+#: core/panel/fields/background/background.php:162
+msgid "Left Top"
+msgstr "يسار أعلى"
+
+#: core/panel/fields/background/background.php:163
+msgid "Left Center"
+msgstr "منتصف اليسار"
+
+#: core/panel/fields/background/background.php:164
+msgid "Left Bottom"
+msgstr "يسار أسفل"
+
+#: core/panel/fields/background/background.php:165
+msgid "Center Top"
+msgstr "وسط أعلى"
+
+#: core/panel/fields/background/background.php:166
+msgid "Center Center"
+msgstr "وسط وسط"
+
+#: core/panel/fields/background/background.php:167
+msgid "Center Bottom"
+msgstr "وسط أسفل"
+
+#: core/panel/fields/background/background.php:168
+msgid "Right Top"
+msgstr "اعلى اليمين"
+
+#: core/panel/fields/background/background.php:169
+msgid "Right Center"
+msgstr "منتصف اليمين"
+
+#: core/panel/fields/background/background.php:170
+msgid "Right Bottom"
+msgstr "يمين أسفل"
+
+#: core/panel/fields/background/background.php:184
+msgid "Background Repeat"
+msgstr "تكرار الخلفية"
+
+#: core/panel/fields/background/background.php:185
+msgid "Repeat"
+msgstr "تكرار"
+
+#: core/panel/fields/background/background.php:186
+msgid "No Repeat"
+msgstr "لا تكرار"
+
+#: core/panel/fields/background/background.php:187
+msgid "Repeat Horizontally"
+msgstr "كرر أفقيا"
+
+#: core/panel/fields/background/background.php:188
+msgid "Repeat Vertically"
+msgstr "كرر عموديا"
+
+#: core/panel/fields/background/background.php:202
+msgid "Background Attachment"
+msgstr "مرفق الخلفية"
+
+#: core/panel/fields/background/background.php:203
+msgid "Scroll"
+msgstr "التمرير"
+
+#: core/panel/fields/background/background.php:204
+msgid "Fixed"
+msgstr "ثابت"
+
+#: core/panel/fields/background/background.php:218
+msgid "Background Size"
+msgstr "حجم الخلفية"
+
+#: core/panel/fields/background/background.php:219
+msgid "Cover"
+msgstr "الغلاف"
+
+#: core/panel/fields/background/background.php:220
+msgid "Contain"
+msgstr "محتوى"
+
+#: core/panel/fields/background/background.php:221
+msgid "Auto"
+msgstr "تلقائي"
+
+#: core/panel/fields/background/background.php:235
+msgid "Background Origin"
+msgstr "مصدر الخلفية"
+
+#: core/panel/fields/background/background.php:236
+#: core/panel/fields/background/background.php:254
+msgid "Padding Box"
+msgstr "مربع الحشو"
+
+#: core/panel/fields/background/background.php:237
+#: core/panel/fields/background/background.php:253
+msgid "Border Box"
+msgstr "مربع الحدود الصلبة"
+
+#: core/panel/fields/background/background.php:238
+#: core/panel/fields/background/background.php:255
+msgid "Content Box"
+msgstr "صندوق المحتوى"
+
+#: core/panel/fields/background/background.php:252
+msgid "Background Clip"
+msgstr "قص الخلفية"
+
+#: core/panel/fields/background/background.php:269
+msgid "Background Blend Mode"
+msgstr ""
+
+#: core/panel/fields/background/background.php:270
+#: core/panel/fields/link_color/link_color.php:36
+#: core/panel/fields/typography/typography.php:186
+msgid "Normal"
+msgstr "عادي"
+
+#: core/panel/fields/background/background.php:271
+msgid "Multiply"
+msgstr "الضرب"
+
+#: core/panel/fields/background/background.php:272
+msgid "Screen"
+msgstr "الشاشة"
+
+#: core/panel/fields/background/background.php:273
+msgid "Overlay"
+msgstr "غطاء"
+
+#: core/panel/fields/background/background.php:274
+msgid "Darken"
+msgstr "غامق"
+
+#: core/panel/fields/background/background.php:275
+msgid "Lighten"
+msgstr "تفتيح"
+
+#: core/panel/fields/background/background.php:276
+msgid "Color Dodge"
+msgstr "دودج اللون"
+
+#: core/panel/fields/background/background.php:277
+msgid "Saturation"
+msgstr "التشبع"
+
+#: core/panel/fields/background/background.php:278
+msgid "Color"
+msgstr "اللون"
+
+#: core/panel/fields/background/background.php:279
+msgid "Luminosity"
+msgstr ""
+
+#: core/panel/fields/backup/backup.php:26
+msgid "Import"
+msgstr "استيراد"
+
+#: core/panel/fields/backup/backup.php:29
+msgid "Export & Download"
+msgstr ""
+
+#: core/panel/fields/border/border.php:25
+#: core/panel/fields/spacing/spacing.php:25
+msgid "top"
+msgstr "أعلى"
+
+#: core/panel/fields/border/border.php:26
+#: core/panel/fields/spacing/spacing.php:26
+msgid "right"
+msgstr "يمين"
+
+#: core/panel/fields/border/border.php:27
+#: core/panel/fields/spacing/spacing.php:27
+msgid "bottom"
+msgstr "الأسفل"
+
+#: core/panel/fields/border/border.php:28
+#: core/panel/fields/spacing/spacing.php:28
+msgid "left"
+msgstr "يسار"
+
+#: core/panel/fields/border/border.php:29
+#: core/panel/fields/spacing/spacing.php:29
+msgid "all"
+msgstr "الكل"
+
+#: core/panel/fields/border/border.php:51
+#: core/panel/fields/typography/typography.php:214
+msgid "Solid"
+msgstr "صلب"
+
+#: core/panel/fields/border/border.php:52
+#: core/panel/fields/typography/typography.php:217
+msgid "Dashed"
+msgstr "متقطع"
+
+#: core/panel/fields/border/border.php:53
+#: core/panel/fields/typography/typography.php:216
+msgid "Dotted"
+msgstr "منقط"
+
+#: core/panel/fields/border/border.php:54
+#: core/panel/fields/typography/typography.php:215
+msgid "Double"
+msgstr "مزدوج"
+
+#: core/panel/fields/border/border.php:55
+msgid "Inset"
+msgstr "ادرج"
+
+#: core/panel/fields/border/border.php:56
+msgid "Outset"
+msgstr "مستهل"
+
+#: core/panel/fields/border/border.php:57
+msgid "Groove"
+msgstr "أخدود"
+
+#: core/panel/fields/border/border.php:58
+msgid "ridge"
+msgstr "ريدج"
+
+#: core/panel/fields/border/border.php:59
+#: core/panel/fields/typography/typography.php:199
+#: core/panel/fields/typography/typography.php:213
+msgid "None"
+msgstr "لا شيء"
+
+#: core/panel/fields/dimensions/dimensions.php:22
+msgid "width"
+msgstr "العرض"
+
+#: core/panel/fields/dimensions/dimensions.php:23
+msgid "height"
+msgstr "الارتفاع"
+
+#: core/panel/fields/gallery/gallery.php:20
+msgid "Add Gallery"
+msgstr "اضافة معرض"
+
+#: core/panel/fields/gallery/gallery.php:21
+msgid "Edit Gallery"
+msgstr "تعديل المعرض"
+
+#: core/panel/fields/gallery/gallery.php:22
+msgid "Clear"
+msgstr "واضح"
+
+#: core/panel/fields/group/group.php:35
+#: core/panel/fields/repeater/repeater.php:27
+msgid "Error: Field ID conflict."
+msgstr "خطأ: تعارض معرف الحقل."
+
+#: core/panel/fields/group/group.php:46 core/panel/fields/group/group.php:87
+#: core/panel/fields/repeater/repeater.php:48
+#: core/panel/fields/repeater/repeater.php:76
+msgid "Are you sure to delete this item?"
+msgstr "هل تريد بالتأكيد حذف هذا العنصر؟"
+
+#: core/panel/fields/group/group.php:121
+#: core/panel/fields/repeater/repeater.php:89
+msgid "You cannot add more."
+msgstr "لا يمكنك إضافة المزيد."
+
+#: core/panel/fields/group/group.php:122
+#: core/panel/fields/repeater/repeater.php:90
+msgid "You cannot remove more."
+msgstr "لا يمكنك إزالة المزيد."
+
+#: core/panel/fields/icon/icon.php:20 core/panel/fields/icon/icon.php:53
+msgid "Add Icon"
+msgstr "إضافة أيقونة"
+
+#: core/panel/fields/icon/icon.php:21
+msgid "Remove Icon"
+msgstr "إزالة الايقونة"
+
+#: core/panel/fields/link/link.php:20
+msgid "Add Link"
+msgstr "إضافة رابط"
+
+#: core/panel/fields/link/link.php:21
+msgid "Edit Link"
+msgstr "تعديل الرابط"
+
+#: core/panel/fields/link/link.php:22
+msgid "Remove Link"
+msgstr "إزالة الرابط"
+
+#: core/panel/fields/link_color/link_color.php:37
+msgid "Hover"
+msgstr "التمرير"
+
+#: core/panel/fields/link_color/link_color.php:38
+msgid "Active"
+msgstr "نشيط"
+
+#: core/panel/fields/link_color/link_color.php:39
+msgid "Visited"
+msgstr "تمت زيارته"
+
+#: core/panel/fields/link_color/link_color.php:40
+msgid "Focus"
+msgstr "التركيز"
+
+#: core/panel/fields/map/map.php:24
+msgid "Latitude"
+msgstr "خط العرض"
+
+#: core/panel/fields/map/map.php:25
+msgid "Longitude"
+msgstr "خط الطول"
+
+#: core/panel/fields/media/media.php:25 core/panel/fields/upload/upload.php:24
+msgid "Upload"
+msgstr "تحميل"
+
+#: core/panel/fields/media/media.php:26 core/panel/fields/upload/upload.php:25
+msgid "Remove"
+msgstr "إزالة"
+
+#: core/panel/fields/sorter/sorter.php:21
+msgid "Enabled"
+msgstr "تمكين"
+
+#: core/panel/fields/sorter/sorter.php:22
+msgid "Disabled"
+msgstr "معاق"
+
+#: core/panel/fields/switcher/switcher.php:20
+msgid "On"
+msgstr "تشغيل"
+
+#: core/panel/fields/switcher/switcher.php:21
+msgid "Off"
+msgstr "إيقاف"
+
+#: core/panel/fields/typography/typography.php:96
+msgid "Font Family"
+msgstr "نوع الخط"
+
+#: core/panel/fields/typography/typography.php:97
+msgid "Select a font"
+msgstr "حدد الخط"
+
+#: core/panel/fields/typography/typography.php:105
+msgid "Backup Font Family"
+msgstr "نسخ احتياطي لنوع الخط"
+
+#: core/panel/fields/typography/typography.php:119
+#: core/panel/fields/typography/typography.php:132
+#: core/panel/fields/typography/typography.php:145
+#: core/panel/fields/typography/typography.php:160
+#: core/panel/fields/typography/typography.php:176
+#: core/panel/fields/typography/typography.php:189
+#: core/panel/fields/typography/typography.php:203
+#: core/panel/fields/typography/typography.php:221
+msgid "Default"
+msgstr "افتراضي"
+
+#: core/panel/fields/typography/typography.php:130
+msgid "Font Style"
+msgstr "نوع الخط"
+
+#: core/panel/fields/typography/typography.php:144
+#: core/panel/fields/typography/typography.php:145
+msgid "Load Extra Styles"
+msgstr "تحميل أنماط إضافية"
+
+#: core/panel/fields/typography/typography.php:158
+msgid "Subset"
+msgstr "فرعيه"
+
+#: core/panel/fields/typography/typography.php:168
+msgid "Text Align"
+msgstr "محاذاة النص"
+
+#: core/panel/fields/typography/typography.php:170
+msgid "Inherit"
+msgstr "موروث"
+
+#: core/panel/fields/typography/typography.php:171
+msgid "Left"
+msgstr "يسار"
+
+#: core/panel/fields/typography/typography.php:172
+msgid "Center"
+msgstr "وسط"
+
+#: core/panel/fields/typography/typography.php:173
+msgid "Right"
+msgstr "يمين"
+
+#: core/panel/fields/typography/typography.php:174
+msgid "Justify"
+msgstr "ضبط"
+
+#: core/panel/fields/typography/typography.php:175
+msgid "Initial"
+msgstr "مبدئي"
+
+#: core/panel/fields/typography/typography.php:184
+msgid "Font Variant"
+msgstr "الخط البديل"
+
+#: core/panel/fields/typography/typography.php:187
+msgid "Small Caps"
+msgstr "Small Caps"
+
+#: core/panel/fields/typography/typography.php:188
+msgid "All Small Caps"
+msgstr "All Small Caps"
+
+#: core/panel/fields/typography/typography.php:197
+msgid "Text Transform"
+msgstr "تحويل النص"
+
+#: core/panel/fields/typography/typography.php:200
+msgid "Capitalize"
+msgstr "حروف رئيسية"
+
+#: core/panel/fields/typography/typography.php:201
+msgid "Uppercase"
+msgstr "أحرف كبيرة"
+
+#: core/panel/fields/typography/typography.php:202
+msgid "Lowercase"
+msgstr "أحرف صغيرة"
+
+#: core/panel/fields/typography/typography.php:211
+msgid "Text Decoration"
+msgstr "زخرفة النص"
+
+#: core/panel/fields/typography/typography.php:218
+msgid "Wavy"
+msgstr "متموج"
+
+#: core/panel/fields/typography/typography.php:219
+msgid "Overline"
+msgstr "مشطوب"
+
+#: core/panel/fields/typography/typography.php:220
+msgid "Line-through"
+msgstr "عليه خط"
+
+#: core/panel/fields/typography/typography.php:233
+msgid "Font Size"
+msgstr "حجم الخط"
+
+#: core/panel/fields/typography/typography.php:245
+msgid "Line Height"
+msgstr "ارتفاع الخط"
+
+#: core/panel/fields/typography/typography.php:257
+msgid "Letter Spacing"
+msgstr "تباعد الأحرف"
+
+#: core/panel/fields/typography/typography.php:269
+msgid "Word Spacing"
+msgstr "المسافة بين الكلمات"
+
+#: core/panel/fields/typography/typography.php:284
+msgid "Font Color"
+msgstr "لون النص"
+
+#: core/panel/fields/typography/typography.php:295
+msgid "Custom Style"
+msgstr "نمط مخصص"
+
+#: core/panel/fields/typography/typography.php:362
+msgid "Custom Web Fonts"
+msgstr "خطوط الويب المخصصة"
+
+#: core/panel/fields/typography/typography.php:368
+msgid "Safe Web Fonts"
+msgstr "خطوط الويب الآمنة"
+
+#: core/panel/fields/typography/typography.php:388
+msgid "Google Web Fonts"
+msgstr "خطوط الويب من Google"
+
+#: core/panel/functions/actions.php:72 core/panel/functions/actions.php:110
+msgid "Error: Invalid key."
+msgstr "خطأ: مفتاح غير صالح."
+
+#: core/panel/functions/actions.php:114
+msgid "Error: The response is not a valid JSON response."
+msgstr "خطأ: الاستجابة ليست استجابة JSON صالحة."
+
+#: core/panel/functions/actions.php:174
+msgid "Error: Invalid term ID."
+msgstr "خطأ: معرف مصطلح غير صالح."
+
+#: core/panel/functions/actions.php:180
+msgid "Error: You do not have permission to do that."
+msgstr "خطأ: ليس لديك إذن للقيام بذلك."
+
+#: core/panel/functions/validate.php:14 core/panel/functions/validate.php:86
+msgid "Please enter a valid email address."
+msgstr "من فضلك أدخل بريد إلكتروني صحيح."
+
+#: core/panel/functions/validate.php:32 core/panel/functions/validate.php:106
+msgid "Please enter a valid number."
+msgstr "الرجاء إدخال رقم صحيح."
+
+#: core/panel/functions/validate.php:50 core/panel/functions/validate.php:126
+msgid "This field is required."
+msgstr "هذا الحقل مطلوب."
+
+#: core/panel/functions/validate.php:68 core/panel/functions/validate.php:146
+msgid "Please enter a valid URL."
+msgstr "يرجى إدخال رابط صحيح."
+
+#: core/panel/options/admin-options.php:32
+msgid "ProWPSite Panel"
+msgstr "لوحة تحكم ProWPSite"
+
+#: core/panel/options/admin-options.php:40
+msgid "FAQ options"
+msgstr "خيارات الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:47
+msgid "Enable FAQ questions"
+msgstr "تمكين الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:56
+msgid "FAQ title"
+msgstr "عنوان الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:64
+msgid "FAQ title text color"
+msgstr "لون نص عنوان الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:76
+msgid "FAQ image"
+msgstr "صورة الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:96
+msgid "FAQ questions"
+msgstr "الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:103
+msgid "Appearance"
+msgstr "عرض الأسئلة المتكررة"
+
+#: core/panel/options/admin-options.php:105
+msgid "Expanded"
+msgstr "عرض الكل"
+
+#: core/panel/options/admin-options.php:106
+msgid "Expand first"
+msgstr "تمييز أول سؤال"
+
+#: core/panel/options/admin-options.php:107
+msgid "Collapse all"
+msgstr "إغلاق الكل"
+
+#: core/panel/options/admin-options.php:117
+msgid "Question text background"
+msgstr "خلفية نص السؤال"
+
+#: core/panel/options/admin-options.php:124
+msgid "Question text color"
+msgstr "لون نص السؤال"
+
+#: core/panel/options/admin-options.php:132
+msgid "Answer text background"
+msgstr "خلفية نص الإجابة"
+
+#: core/panel/options/admin-options.php:140
+msgid "Answer text color"
+msgstr "لون نص الإجابة"
+
+#: core/panel/options/admin-options.php:154
+msgid "Star rating options"
+msgstr "خيارات التقييم بالنجوم"
+
+#: core/panel/options/admin-options.php:161
+msgid "Enable star rating"
+msgstr "تفعيل/إيقاف التقييم بالنجوم"
+
+#: core/panel/options/admin-options.php:179
+msgid "Star rating"
+msgstr "تقييم النجوم"
+
+#: core/panel/options/admin-options.php:187
+msgid "Star rating text color"
+msgstr "لون النص بتصنيف النجوم"
+
+#: core/panel/options/admin-options.php:194
+msgid "Star rating background color"
+msgstr "لون خلفية تصنيف النجوم"
+
+#: core/panel/options/admin-options.php:202
+msgid "User can rate every"
+msgstr "يمكن للمستخدم تقييم كل"
+
+#: core/panel/options/admin-options.php:207
+msgid "days"
+msgstr "أيام"
+
+#: core/panel/options/metabox-options.php:23
+msgid "APP Details"
+msgstr "معلومات التطبيق"
+
+#: core/panel/options/metabox-options.php:42
+msgid "Seo schema"
+msgstr "البيانات المنظمة للسيو"
+
+#: core/panel/options/metabox-options.php:50
+msgid "Seo Schema"
+msgstr "البيانات المنظمة للسيو"
+
+#: core/panel/options/metabox-options.php:58
+msgid "Add questions and answers for FAQ schema"
+msgstr "إضافة أسئلة وأجوبة لمخطط الأسئلة الشائعة"
+
+#: core/panel/options/metabox-options.php:64
+msgid "Add new question"
+msgstr "إضافة سؤال جديد"
+
+#: core/panel/options/metabox-options.php:68
+#: core/panel/options/metabox-options.php:75
+msgid "Question"
+msgstr "سؤال"
+
+#: core/panel/options/metabox-options.php:81
+msgid "Answer"
+msgstr "إجابة"
+
+#: core/panel/options/widget-options.php:289
+msgid "List categories"
+msgstr "جميع الاقسام"
+
+#: core/panel/options/widget-options.php:291
+msgid "Display the lcategories"
+msgstr "عرض الاقسام"
+
+#: core/panel/options/widget-options.php:297
+#: core/panel/options/widget-options.php:336
+#: core/panel/options/widget-options.php:380
+msgid "Title"
+msgstr "العنوان"
+
+#: core/panel/options/widget-options.php:303
+msgid "max umber of categories"
+msgstr "الحد الأقصى للاقسام"
+
+#: core/panel/options/widget-options.php:311
+#: core/panel/options/widget-options.php:350
+#: core/panel/options/widget-options.php:394
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: core/panel/options/widget-options.php:312
+msgid "Select categories"
+msgstr "اختار التصنيفات"
+
+#: core/panel/options/widget-options.php:328
+msgid "Latest Softwares"
+msgstr "أحدث البرامج"
+
+#: core/panel/options/widget-options.php:330
+msgid "Display the latest softwares"
+msgstr "عرض أحدث البرامج"
+
+#: core/panel/options/widget-options.php:342
+msgid "Number of softwares"
+msgstr "عدد البرامج"
+
+#: core/panel/options/widget-options.php:353
+#: core/panel/options/widget-options.php:397
+msgid "Select one or more categories"
+msgstr "الرجاء تحديد تصنيف واحد أو أكثر"
+
+#: core/panel/options/widget-options.php:372
+msgid "Latest Games"
+msgstr "أحدث الألعاب"
+
+#: core/panel/options/widget-options.php:374
+msgid "Display the latest games"
+msgstr "عرض أحدث الألعاب"
+
+#: core/panel/options/widget-options.php:386
+msgid "Number of games"
+msgstr "عدد الالعاب"
+
+#: core/panel/options/widget-options.php:535
+msgid "No softwares found"
+msgstr "لم يتم العثور على برامج"
+
+#: core/panel/options/widget-options.php:595
+msgid "No games found"
+msgstr "لم يتم العثور على ألعاب"
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:54
+msgid "View details"
+msgstr "عرض التفاصيل"
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:77
+#, php-format
+msgid "More information about %s"
+msgstr "مزيد من المعلومات %s"
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:128
+msgid "Check for updates"
+msgstr "التحقق من التحديثات"
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:214
+#, php-format
+msgctxt "the plugin title"
+msgid "The %s plugin is up to date."
+msgstr "المكون الإضافي %s محدّث."
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:216
+#, php-format
+msgctxt "the plugin title"
+msgid "A new version of the %s plugin is available."
+msgstr "يتوفر إصدار جديد من المكون الإضافي %s."
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:218
+#, php-format
+msgctxt "the plugin title"
+msgid "Could not determine if updates are available for %s."
+msgstr "لا يمكن تحديد ما إذا كانت التحديثات متوفرة لـ %s."
+
+#: core/updates/Puc/v4p11/Plugin/Ui.php:224
+#, php-format
+msgid "Unknown update checker status \"%s\""
+msgstr "حالة المدقق غير معروف\"%s\""
+
+#: core/updates/Puc/v4p11/Vcs/PluginUpdateChecker.php:100
+msgid "There is no changelog available."
+msgstr "سجل التغيرات غير متاح."
+
+#: core/widgets.php:10
+#, php-format
+msgid "Footer Sidebar #%s"
+msgstr "الشريط الجانبي تذييل #%s"
+
+#. Plugin Name of the plugin/theme
+msgid "Prowpsite"
+msgstr "ProWPSite"
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "https://prowpsite.com"
+msgstr "https://prowpsite.com"
+
+#. Description of the plugin/theme
+msgid ""
+"إضافة سهلة الاستخدام تساعد مشرفي المواقع على تحسين ظهور الموقع بشكل مميز فى "
+"نتائج محرك البحث."
+msgstr ""
+"إضافة سهلة الاستخدام تساعد مشرفي المواقع على تحسين ظهور الموقع بشكل مميز فى "
+"نتائج محرك البحث."
+
+#. Author of the plugin/theme
+msgid "Mohamed Ahmed."
+msgstr ""

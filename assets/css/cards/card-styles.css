@@ -1,0 +1,1156 @@
+/**
+ * YTrip Card Styles CSS
+ * All 10 card variations with hover effects
+ * 
+ * @package YTrip
+ */
+
+/* ==========================================================================
+   Base Card Styles
+   ========================================================================== */
+
+.ytrip-card {
+    position: relative;
+    border-radius: var(--ytrip-radius-card, 12px);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.ytrip-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.ytrip-card__wishlist {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    aspect-ratio: 1 / 1;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    color: #374151;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    pointer-events: auto;
+}
+
+.ytrip-card__wishlist svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+    fill: none;
+}
+
+.ytrip-card__wishlist:hover {
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.ytrip-card__wishlist.active svg,
+.ytrip-card__wishlist.ytrip-tour-card__wishlist--active svg {
+    fill: #ef4444;
+    stroke: #ef4444;
+}
+
+.ytrip-card__badge {
+    position: absolute;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    z-index: 5;
+}
+
+/* ==========================================================================
+   Style 1: Overlay Gradient
+   ========================================================================== */
+
+.ytrip-card--overlay-gradient {
+    aspect-ratio: 3 / 4;
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__image {
+    position: absolute;
+    inset: 0;
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ytrip-card--overlay-gradient:hover .ytrip-card__image img {
+    transform: scale(1.1);
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.ytrip-card--overlay-gradient:hover .ytrip-card__gradient {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 70%);
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
+    pointer-events: none;
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__link:hover .ytrip-card__content,
+.ytrip-card--overlay-gradient .ytrip-card__link:focus .ytrip-card__content {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    opacity: 0.95;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    line-height: 1.35;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.7);
+    display: block;
+    overflow: visible;
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.ytrip-card--overlay-gradient .ytrip-card__price {
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   Style 2: Classic White
+   ========================================================================== */
+
+.ytrip-card--classic-white {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.ytrip-card--classic-white .ytrip-card__image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.ytrip-card--classic-white .ytrip-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--classic-white .ytrip-card__badge {
+    top: 12px;
+    left: 12px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+}
+
+.ytrip-card--classic-white .ytrip-card__body {
+    padding: 20px;
+}
+
+.ytrip-card--classic-white .ytrip-card__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin-bottom: 8px;
+}
+
+.ytrip-card--classic-white .ytrip-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: var(--ytrip-text, #111827);
+    line-height: 1.4;
+}
+
+.ytrip-card--classic-white .ytrip-card__excerpt {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin: 0 0 12px;
+    line-height: 1.5;
+}
+
+.ytrip-card--classic-white .ytrip-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.ytrip-card--classic-white .ytrip-stars {
+    color: #fbbf24;
+}
+
+.ytrip-card--classic-white .ytrip-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.ytrip-card--classic-white .ytrip-card__duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--classic-white .ytrip-card__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+/* ==========================================================================
+   Style 3: Modern Shadow
+   ========================================================================== */
+
+.ytrip-card--modern-shadow {
+    background: #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__image-wrap {
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__floating-content {
+    margin-top: -40px;
+    margin-left: 16px;
+    margin-right: 16px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__tag {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--ytrip-surface, #f3f4f6);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__info {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin-bottom: 16px;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ytrip-card--modern-shadow .ytrip-card__price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--modern-shadow .ytrip-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+/* ==========================================================================
+   Style 4: Minimal Border
+   ========================================================================== */
+
+.ytrip-card--minimal-border {
+    border: 1px solid #e5e7eb;
+    background: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.ytrip-card--minimal-border:hover {
+    border-color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--minimal-border .ytrip-card__image {
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+}
+
+.ytrip-card--minimal-border .ytrip-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--minimal-border .ytrip-card__body {
+    padding: 24px;
+}
+
+.ytrip-card--minimal-border .ytrip-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+.ytrip-card--minimal-border .ytrip-card__excerpt {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin: 0 0 20px;
+    line-height: 1.6;
+}
+
+.ytrip-card--minimal-border .ytrip-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ytrip-card--minimal-border .ytrip-card__price {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ytrip-card--minimal-border .ytrip-card__arrow {
+    font-size: 24px;
+    color: var(--ytrip-primary, #2563eb);
+    transition: transform 0.3s ease;
+}
+
+.ytrip-card--minimal-border:hover .ytrip-card__arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   Style 5: Glassmorphism
+   ========================================================================== */
+
+.ytrip-card--glassmorphism {
+    aspect-ratio: 3 / 4;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__bg {
+    position: absolute;
+    inset: 0;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__glass {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__location {
+    display: inline-block;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 12px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.ytrip-card--glassmorphism .ytrip-card__details {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__details span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__price {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.ytrip-card--glassmorphism .ytrip-card__rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+/* ==========================================================================
+   Style 6: Hover Zoom
+   ========================================================================== */
+
+.ytrip-card--hover-zoom {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ytrip-card--hover-zoom .ytrip-card__image-container {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__zoomable {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.ytrip-card--hover-zoom:hover .ytrip-card__zoomable {
+    transform: scale(1.1);
+}
+
+.ytrip-card--hover-zoom .ytrip-card__badge--top {
+    top: 12px;
+    left: 12px;
+    background: var(--ytrip-accent, #f59e0b);
+    color: #fff;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__content {
+    padding: 20px;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.ytrip-card--hover-zoom .ytrip-stars {
+    color: #fbbf24;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__icons span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--hover-zoom .ytrip-card__price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.ytrip-card--hover-zoom .ytrip-card__from {
+    font-size: 12px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--hover-zoom .ytrip-card__price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+/* ==========================================================================
+   Style 7: Split Content
+   ========================================================================== */
+
+.ytrip-card--split-content {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ytrip-card--split-content .ytrip-card__link {
+    display: flex;
+}
+
+.ytrip-card--split-content .ytrip-card__image-side {
+    flex: 0 0 40%;
+    position: relative;
+}
+
+.ytrip-card--split-content .ytrip-card__image-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--split-content .ytrip-card__badge {
+    top: 12px;
+    left: 12px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+}
+
+.ytrip-card--split-content .ytrip-card__content-side {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ytrip-card--split-content .ytrip-card__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin-bottom: 8px;
+}
+
+.ytrip-card--split-content .ytrip-card__title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.ytrip-card--split-content .ytrip-card__excerpt {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #6b7280);
+    line-height: 1.5;
+    margin: 0 0 auto;
+}
+
+.ytrip-card--split-content .ytrip-card__meta {
+    display: flex;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--ytrip-text-muted, #6b7280);
+    margin: 16px 0;
+}
+
+.ytrip-card--split-content .ytrip-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.ytrip-card--split-content .ytrip-card__price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--split-content .ytrip-card__btn {
+    padding: 8px 16px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   Style 8: Badge Corner
+   ========================================================================== */
+
+.ytrip-card--badge-corner {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ytrip-card--badge-corner .ytrip-card__image {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.ytrip-card--badge-corner .ytrip-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--top-left {
+    top: 0;
+    left: 0;
+    border-radius: 0 0 8px 0;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--top-right {
+    top: 12px;
+    right: 12px;
+    border-radius: 4px;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--bottom-left {
+    bottom: 12px;
+    left: 12px;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--featured {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    padding: 8px 12px;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--sale {
+    background: #ef4444;
+    color: #fff;
+}
+
+.ytrip-card--badge-corner .ytrip-card__badge--bestseller {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: #fff;
+}
+
+.ytrip-card--badge-corner .ytrip-card__body {
+    padding: 20px;
+}
+
+.ytrip-card--badge-corner .ytrip-card__title {
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px;
+}
+
+.ytrip-card--badge-corner .ytrip-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.ytrip-card--badge-corner .ytrip-stars {
+    color: #fbbf24;
+}
+
+.ytrip-card--badge-corner .ytrip-card__trust {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.ytrip-card--badge-corner .ytrip-trust-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    background: #dcfce7;
+    color: #16a34a;
+    border-radius: 50%;
+}
+
+.ytrip-card--badge-corner .ytrip-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ytrip-card--badge-corner .ytrip-card__price-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.ytrip-card--badge-corner .ytrip-card__from {
+    font-size: 11px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--badge-corner .ytrip-card__price {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--badge-corner .ytrip-card__book-btn {
+    padding: 10px 20px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.ytrip-card--badge-corner .ytrip-card__book-btn:hover {
+    background: var(--ytrip-primary-dark, #1d4ed8);
+}
+
+/* ==========================================================================
+   Style 9: Horizontal Magazine
+   ========================================================================== */
+
+.ytrip-card--horizontal {
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.ytrip-card--horizontal .ytrip-card__link {
+    display: flex;
+}
+
+.ytrip-card--horizontal .ytrip-card__image-col {
+    flex: 0 0 40%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.ytrip-card--horizontal .ytrip-card__image-col img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--horizontal .ytrip-card__content-col {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ytrip-card--horizontal .ytrip-card__category {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--ytrip-surface, #f3f4f6);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    align-self: flex-start;
+}
+
+.ytrip-card--horizontal .ytrip-card__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.ytrip-card--horizontal .ytrip-stars {
+    color: #fbbf24;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.ytrip-card--horizontal .ytrip-card__excerpt {
+    font-size: 14px;
+    color: var(--ytrip-text-muted, #6b7280);
+    line-height: 1.6;
+    margin: 0 0 auto;
+}
+
+.ytrip-card--horizontal .ytrip-card__meta-row {
+    display: flex;
+    gap: 20px;
+    margin: 16px 0;
+}
+
+.ytrip-card--horizontal .ytrip-card__location,
+.ytrip-card--horizontal .ytrip-card__duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 13px;
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--horizontal .ytrip-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.ytrip-card--horizontal .ytrip-card__price {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--horizontal .ytrip-card__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    background: var(--ytrip-primary, #2563eb);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.25s ease;
+}
+
+.ytrip-card--horizontal .ytrip-card__cta:hover {
+    background: var(--ytrip-primary-dark, #1d4ed8);
+}
+
+/* ==========================================================================
+   Style 10: Compact Grid
+   ========================================================================== */
+
+.ytrip-card--compact-grid {
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ytrip-card--compact-grid .ytrip-card__image {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+}
+
+.ytrip-card--compact-grid .ytrip-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-card--compact-grid .ytrip-card__quick-view {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ytrip-card--compact-grid:hover .ytrip-card__quick-view {
+    opacity: 1;
+}
+
+.ytrip-card--compact-grid .ytrip-card__quick-view span {
+    padding: 8px 16px;
+    background: #fff;
+    color: var(--ytrip-text, #111827);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ytrip-card--compact-grid .ytrip-card__info {
+    padding: 12px;
+}
+
+.ytrip-card--compact-grid .ytrip-card__title {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    line-height: 1.45;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.9em;
+}
+
+.ytrip-card--compact-grid .ytrip-card__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+
+.ytrip-card--compact-grid .ytrip-card__price {
+    font-weight: 700;
+    color: var(--ytrip-primary, #2563eb);
+}
+
+.ytrip-card--compact-grid .ytrip-card__duration {
+    color: var(--ytrip-text-muted, #6b7280);
+}
+
+.ytrip-card--compact-grid .ytrip-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.ytrip-card--compact-grid .ytrip-stars-sm {
+    color: #fbbf24;
+}
+
+.ytrip-card--compact-grid .ytrip-card__wishlist--sm {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    top: 8px;
+    right: 8px;
+}
+
+/* ==========================================================================
+   Hover Effects
+   ========================================================================== */
+
+/* Lift */
+.ytrip-card[data-hover="lift"]:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Zoom */
+.ytrip-card[data-hover="zoom"]:hover img {
+    transform: scale(1.08);
+}
+
+/* Tilt */
+.ytrip-card[data-hover="tilt"] {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* Glow */
+.ytrip-card[data-hover="glow"]:hover {
+    box-shadow: 0 0 0 2px var(--ytrip-primary, #2563eb),
+        0 20px 40px rgba(37, 99, 235, 0.2);
+}
+
+/* Scale */
+.ytrip-card[data-hover="scale"]:hover {
+    transform: scale(1.03);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 768px) {
+
+    .ytrip-card--split-content .ytrip-card__link,
+    .ytrip-card--horizontal .ytrip-card__link {
+        flex-direction: column;
+    }
+
+    .ytrip-card--split-content .ytrip-card__image-side,
+    .ytrip-card--horizontal .ytrip-card__image-col {
+        flex: none;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ==========================================================================
+   Skeleton Loading Animation
+   ========================================================================== */
+
+@keyframes ytrip-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.ytrip-skeleton-card {
+    background: #fff;
+    border-radius: var(--ytrip-radius-card, 12px);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+}
+
+.ytrip-skeleton-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: #f0f2f5;
+    background: linear-gradient(90deg, #f0f2f5 25%, #e1e4e8 50%, #f0f2f5 75%);
+    background-size: 200% 100%;
+    animation: ytrip-shimmer 1.5s infinite;
+}
+
+.ytrip-skeleton-content {
+    padding: 20px;
+}
+
+.ytrip-skeleton-text {
+    background: #f0f2f5;
+    background: linear-gradient(90deg, #f0f2f5 25%, #e1e4e8 50%, #f0f2f5 75%);
+    background-size: 200% 100%;
+    animation: ytrip-shimmer 1.5s infinite;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.ytrip-skeleton-tag {
+    width: 30%;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.ytrip-skeleton-title {
+    width: 80%;
+    height: 24px;
+    margin-bottom: 16px;
+}
+
+.ytrip-skeleton-meta {
+    width: 60%;
+    height: 16px;
+}
+
+.ytrip-skeleton-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.ytrip-skeleton-price {
+    width: 40%;
+    height: 24px;
+    margin-bottom: 0;
+}
+
+.ytrip-skeleton-btn {
+    width: 100px;
+    height: 36px;
+    border-radius: 6px;
+    background: #f0f2f5;
+    background: linear-gradient(90deg, #f0f2f5 25%, #e1e4e8 50%, #f0f2f5 75%);
+    background-size: 200% 100%;
+    animation: ytrip-shimmer 1.5s infinite;
+}
+
+.ytrip-card.ytrip-skeleton-card.ytrip-card--modern-shadow {
+    padding: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.ytrip-card--modern-shadow .ytrip-skeleton-image {
+    border-radius: 8px;
+    aspect-ratio: 16/10;
+}
+
+.ytrip-card--modern-shadow .ytrip-skeleton-content {
+    margin-top: -40px;
+    margin-left: 16px;
+    margin-right: 16px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}

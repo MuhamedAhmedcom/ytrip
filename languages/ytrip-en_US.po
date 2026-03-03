@@ -1,0 +1,6064 @@
+# Copyright (C) 2026 YTrip
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: YTrip - Travel Booking Manager 2.1.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ytrip\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-03-03T01:20:50+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ytrip\n"
+
+#. Plugin Name of the plugin
+#: ytrip.php
+#: admin/class-codecanyon-config.php:77
+msgid "YTrip - Travel Booking Manager"
+msgstr ""
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+#: ytrip.php
+msgid "https://ytrip.com"
+msgstr ""
+
+#. Description of the plugin
+#: ytrip.php
+msgid "Professional travel/tourism booking system with WooCommerce integration, optimized for 100/100 performance and security scores."
+msgstr ""
+
+#. Author of the plugin
+#: ytrip.php
+#: admin/class-codecanyon-config.php:73
+msgid "YTrip"
+msgstr ""
+
+#: admin/class-admin-bookings.php:48
+msgid "ID"
+msgstr ""
+
+#: admin/class-admin-bookings.php:49
+#: admin/class-admin-bookings.php:302
+#: admin/views/reviews-admin.php:62
+#: includes/class-booking-form.php:607
+#: includes/class-booking-form.php:640
+#: includes/class-post-types.php:62
+#: templates/archive-ytrip_tour.php:124
+msgid "Tour"
+msgid_plural "Tours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-admin-bookings.php:50
+#: admin/class-admin-bookings.php:312
+msgid "Customer"
+msgstr ""
+
+#: admin/class-admin-bookings.php:51
+#: admin/class-admin-bookings.php:313
+#: includes/class-agent-portal.php:650
+#: includes/class-booking-form.php:638
+#: includes/class-booking-form.php:1004
+#: templates/parts/booking-card.php:122
+#: templates/single-ytrip_tour.php:495
+#: templates/single-ytrip_tour.php:709
+msgid "Email"
+msgstr ""
+
+#: admin/class-admin-bookings.php:52
+#: admin/class-admin-bookings.php:314
+#: includes/class-agent-portal.php:655
+#: includes/class-booking-form.php:639
+#: includes/class-booking-form.php:1014
+#: templates/parts/booking-card.php:132
+#: templates/single-ytrip_tour.php:501
+#: templates/single-ytrip_tour.php:713
+msgid "Phone"
+msgstr ""
+
+#: admin/class-admin-bookings.php:53
+#: admin/metaboxes/tour-details.php:590
+#: admin/metaboxes/tour-details.php:609
+#: admin/views/reviews-admin.php:74
+#: includes/class-booking-form.php:608
+#: includes/class-booking-form.php:641
+#: templates/homepage/search-form.php:104
+#: templates/homepage/search-form.php:138
+#: templates/homepage/search-form.php:141
+msgid "Date"
+msgstr ""
+
+#: admin/class-admin-bookings.php:54
+#: includes/class-booking-form.php:610
+#: includes/class-booking-form.php:643
+#: includes/class-booking-form.php:961
+#: includes/class-woocommerce-integration.php:210
+#: includes/class-woocommerce-integration.php:237
+#: includes/class-woocommerce-integration.php:314
+#: templates/parts/booking-card.php:53
+#: templates/single-ytrip_tour.php:469
+#: templates/single-ytrip_tour.php:470
+#: templates/single-ytrip_tour.php:689
+#: templates/single-ytrip_tour.php:690
+msgid "Adults"
+msgstr ""
+
+#: admin/class-admin-bookings.php:55
+#: includes/class-booking-form.php:611
+#: includes/class-booking-form.php:644
+#: includes/class-booking-form.php:973
+#: includes/class-woocommerce-integration.php:216
+#: includes/class-woocommerce-integration.php:240
+#: includes/class-woocommerce-integration.php:321
+#: templates/parts/booking-card.php:66
+#: templates/single-ytrip_tour.php:479
+#: templates/single-ytrip_tour.php:480
+#: templates/single-ytrip_tour.php:697
+#: templates/single-ytrip_tour.php:698
+msgid "Children"
+msgstr ""
+
+#: admin/class-admin-bookings.php:56
+#: includes/class-booking-form.php:612
+#: includes/class-booking-form.php:645
+#: includes/class-booking-form.php:985
+#: includes/class-woocommerce-integration.php:222
+#: includes/class-woocommerce-integration.php:243
+#: includes/class-woocommerce-integration.php:322
+#: templates/parts/booking-card.php:79
+msgid "Infants"
+msgstr ""
+
+#: admin/class-admin-bookings.php:57
+#: admin/class-admin-bookings.php:317
+#: admin/views/reviews-admin.php:71
+#: includes/class-api-auth.php:454
+#: includes/class-tickets.php:511
+#: includes/class-webhooks.php:602
+msgid "Status"
+msgstr ""
+
+#: admin/class-admin-bookings.php:58
+#: includes/class-tickets.php:525
+msgid "Order"
+msgstr ""
+
+#: admin/class-admin-bookings.php:59
+#: admin/class-admin-bookings.php:322
+msgid "Created"
+msgstr ""
+
+#: admin/class-admin-bookings.php:179
+msgid "View"
+msgstr ""
+
+#: admin/class-admin-bookings.php:203
+#: admin/class-admin-bookings.php:204
+#: admin/class-admin-bookings.php:236
+#: includes/class-booking-form.php:667
+msgid "Bookings"
+msgstr ""
+
+#: admin/class-admin-bookings.php:216
+msgid "You do not have sufficient permissions."
+msgstr ""
+
+#: admin/class-admin-bookings.php:237
+msgid "Standalone tour bookings (without WooCommerce checkout). Orders from WooCommerce appear in WooCommerce → Orders."
+msgstr ""
+
+#: admin/class-admin-bookings.php:247
+msgid "All tours"
+msgstr ""
+
+#: admin/class-admin-bookings.php:255
+msgid "All statuses"
+msgstr ""
+
+#: admin/class-admin-bookings.php:260
+#: templates/archive-ytrip_tour.php:134
+msgid "Filter"
+msgstr ""
+
+#: admin/class-admin-bookings.php:288
+msgid "Booking not found."
+msgstr ""
+
+#: admin/class-admin-bookings.php:288
+#: admin/class-admin-bookings.php:298
+msgid "Back to list"
+msgstr ""
+
+#: admin/class-admin-bookings.php:297
+#: admin/class-codecanyon-config.php:407
+#: admin/codestar-config.php:438
+#: admin/codestar-config.php:515
+#: includes/class-settings.php:323
+msgid "Booking"
+msgstr ""
+
+#: admin/class-admin-bookings.php:309
+msgid "View on site"
+msgstr ""
+
+#: admin/class-admin-bookings.php:315
+msgid "Booking date"
+msgstr ""
+
+#: admin/class-admin-bookings.php:316
+#: includes/class-booking-form.php:609
+#: includes/class-booking-form.php:642
+#: includes/class-booking-form.php:954
+#: templates/homepage/search-form.php:159
+#: templates/homepage/search-form.php:163
+#: templates/homepage/search-form.php:164
+#: templates/homepage/search-form.php:165
+#: templates/homepage/search-form.php:166
+#: templates/parts/archive-filters-sidebar.php:212
+#: templates/parts/booking-card.php:45
+msgid "Guests"
+msgstr ""
+
+#: admin/class-admin-bookings.php:316
+msgid "Adults:"
+msgstr ""
+
+#: admin/class-admin-bookings.php:316
+msgid "Children:"
+msgstr ""
+
+#: admin/class-admin-bookings.php:316
+msgid "Infants:"
+msgstr ""
+
+#: admin/class-admin-bookings.php:320
+msgid "WooCommerce order"
+msgstr ""
+
+#: admin/class-admin-bookings.php:324
+#: includes/class-booking-form.php:646
+msgid "Notes"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:85
+msgid "Thank you for choosing YTrip!"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:87
+#, php-format
+msgid "Version %s | <a href=\"%s\" target=\"_blank\">Documentation</a>"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:95
+msgid "Welcome"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:107
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:127
+msgid "Welcome to YTrip!"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:128
+msgid "Professional travel booking management for WordPress."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:134
+#: includes/class-post-types.php:61
+#: templates/homepage/stats.php:25
+#: templates/single-ytrip_tour.php:318
+#: templates/single/layout-1-classic.php:195
+#: ytrip.php:555
+msgid "Tours"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:138
+#: admin/homepage-builder.php:306
+#: includes/class-taxonomies.php:59
+#: includes/class-taxonomies.php:67
+#: includes/class-ytrip-widgets.php:307
+#: templates/homepage/search-form.php:79
+#: templates/homepage/stats.php:31
+msgid "Destinations"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:142
+#: includes/class-taxonomies.php:91
+msgid "Categories"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:147
+msgid "Quick Links"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:149
+#: includes/class-post-types.php:63
+#: includes/class-post-types.php:64
+msgid "Add New Tour"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:152
+msgid "Configure Homepage"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:155
+msgid "Customize Colors"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:158
+msgid "Import Demo"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:238
+msgid "Cache Performance"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:240
+#, php-format
+msgid "Cache Hits: %d"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:241
+#, php-format
+msgid "Misses: %d"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:244
+#: admin/class-codecanyon-config.php:275
+msgid "Clear All Cache"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:249
+msgid "Demo Content"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:251
+msgid "Demo content is installed."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:253
+#: admin/class-codecanyon-config.php:839
+msgid "Remove Demo Content"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:256
+msgid "No demo content installed."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:258
+#: admin/class-codecanyon-config.php:296
+#: admin/class-codecanyon-config.php:843
+msgid "Import Demo Content"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:269
+msgid "Clearing..."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:283
+msgid "This will import demo tours, destinations, and settings. Continue?"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:285
+#: admin/class-codecanyon-config.php:852
+msgid "Importing..."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:303
+msgid "This will remove all demo content. Continue?"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:305
+msgid "Removing..."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:331
+#: admin/homepage-builder.php:62
+#: includes/class-settings.php:125
+msgid "General Settings"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:339
+#: admin/class-codecanyon-config.php:344
+#: admin/codestar-config.php:661
+#: includes/class-settings.php:132
+msgid "Currency"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:358
+msgid "Currency Position"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:360
+msgid "Before ($100)"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:361
+msgid "After (100$)"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:368
+msgid "Thousand Separator"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:374
+msgid "Decimal Separator"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:380
+msgid "Date & Time"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:385
+#: admin/codestar-config.php:675
+msgid "Date Format"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:397
+msgid "Time Format"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:412
+msgid "Minimum Advance Days"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:420
+msgid "Maximum Advance Days"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:428
+msgid "Require Login to Book"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:434
+msgid "Enable Coupons"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:453
+#: admin/class-codecanyon-config.php:457
+msgid "Colors & Branding"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:463
+msgid "Color Presets"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:469
+msgid "Choose Color Preset"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:470
+msgid "Select a color scheme for your travel site."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:477
+msgid "Enable Dark Mode Toggle"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:478
+msgid "Allow visitors to switch between light and dark mode."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:486
+#: includes/class-brand-system.php:969
+msgid "Custom Colors"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:491
+msgid "Override preset colors with your custom colors below."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:496
+msgid "Custom Color Scheme"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:501
+msgid "Primary Color"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:507
+msgid "Secondary Color"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:513
+msgid "Accent Color"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:519
+msgid "Success Color"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:525
+msgid "Error Color"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:535
+#: admin/codestar-config.php:102
+msgid "Typography"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:541
+#: admin/codestar-config.php:125
+msgid "Heading Font"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:547
+#: admin/codestar-config.php:108
+msgid "Body Font"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:553
+msgid "Base Font Size"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:589
+#: admin/class-codecanyon-config.php:593
+#: admin/homepage-builder.php:19
+msgid "Homepage Builder"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:599
+#: admin/homepage-builder.php:30
+msgid "Sections Manager"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:605
+#: admin/homepage-builder.php:36
+msgid "Drag to Reorder Sections"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:606
+msgid "Drag sections between Enabled and Disabled."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:609
+#: admin/homepage-builder.php:40
+#: admin/homepage-builder.php:112
+#: includes/class-demo-importer.php:1207
+msgid "Hero Slider"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:610
+#: admin/homepage-builder.php:41
+#: includes/class-demo-importer.php:1208
+msgid "Search & Filter"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:611
+#: admin/class-codecanyon-config.php:727
+#: admin/homepage-builder.php:42
+#: admin/homepage-builder.php:243
+#: includes/class-demo-importer.php:1209
+#: templates/homepage/featured-tours.php:16
+msgid "Featured Tours"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:612
+#: admin/homepage-builder.php:43
+#: includes/class-demo-importer.php:1210
+#: templates/homepage/destinations.php:17
+msgid "Popular Destinations"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:613
+#: admin/homepage-builder.php:44
+#: admin/homepage-builder.php:438
+#: includes/class-demo-importer.php:1211
+#: includes/class-taxonomies.php:83
+#: templates/homepage/categories.php:17
+msgid "Tour Categories"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:614
+#: admin/homepage-builder.php:45
+#: includes/class-demo-importer.php:1212
+#: includes/class-rating-display.php:105
+msgid "Customer Reviews"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:615
+#: admin/homepage-builder.php:46
+#: includes/class-demo-importer.php:1213
+msgid "Statistics Counter"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:616
+#: admin/homepage-builder.php:47
+msgid "Latest Blog Posts"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:619
+#: admin/homepage-builder.php:50
+msgid "Video Banner"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:620
+#: admin/homepage-builder.php:51
+msgid "Promotional Banner"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:621
+msgid "Newsletter Signup"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:622
+msgid "Countdown Timer"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:629
+msgid "Auto-Render on Homepage"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:630
+msgid "Automatically display homepage sections on front page."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:638
+msgid "Layout Settings"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:644
+#: admin/homepage-builder.php:79
+msgid "Homepage Layout"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:655
+#: admin/homepage-builder.php:91
+msgid "Content Width"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:657
+#: admin/homepage-builder.php:94
+msgid "Boxed (1200px)"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:658
+#: admin/homepage-builder.php:95
+msgid "Wide (1400px)"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:659
+#: admin/homepage-builder.php:96
+msgid "Full Width"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:666
+#: admin/codestar-config.php:180
+msgid "Section Spacing"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:678
+msgid "Hero Section"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:684
+msgid "Enable Hero Section"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:690
+msgid "Hero Style"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:692
+msgid "Image Slider"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:693
+msgid "Video Background"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:694
+msgid "Static Image"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:702
+msgid "Hero Slides"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:708
+#: admin/homepage-builder.php:152
+msgid "Background Image"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:713
+#: admin/homepage-builder.php:158
+#: admin/metaboxes/tour-details.php:198
+#: includes/class-ytrip-widgets.php:306
+#: includes/class-ytrip-widgets.php:358
+#: includes/class-ytrip-widgets.php:400
+msgid "Title"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:718
+#: admin/homepage-builder.php:163
+msgid "Subtitle"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:733
+#: admin/homepage-builder.php:249
+msgid "Enable Featured Tours"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:739
+#: admin/homepage-builder.php:256
+#: admin/homepage-builder.php:319
+#: admin/homepage-builder.php:451
+#: admin/homepage-builder.php:504
+#: admin/homepage-builder.php:612
+msgid "Section Title"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:746
+#: admin/homepage-builder.php:263
+#: admin/homepage-builder.php:326
+#: admin/homepage-builder.php:458
+msgid "Section Subtitle"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:753
+#: admin/homepage-builder.php:295
+#: admin/metaboxes/tour-details.php:699
+msgid "Number of Tours"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:762
+msgid "Card Style"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:784
+msgid "Demo Import"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:796
+#: admin/codestar-config.php:784
+#: admin/homepage-builder.php:636
+msgid "Backup & Restore"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:802
+msgid "Settings Backup"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:820
+msgid "One-Click Demo Import"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:821
+msgid "Import demo content to quickly set up your travel site with sample tours, destinations, and settings."
+msgstr ""
+
+#: admin/class-codecanyon-config.php:824
+msgid "Demo Content Includes:"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:826
+#: includes/class-map-view.php:304
+#: templates/homepage/categories.php:86
+#: templates/homepage/destinations.php:81
+#: templates/homepage/destinations.php:121
+#, php-format
+msgid "%d Tour"
+msgid_plural "%d Tours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-codecanyon-config.php:827
+#, php-format
+msgid "%d Destination"
+msgid_plural "%d Destinations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-codecanyon-config.php:828
+#, php-format
+msgid "%d Category"
+msgid_plural "%d Categories"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-codecanyon-config.php:829
+msgid "Sample testimonials"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:830
+msgid "Recommended color preset"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:831
+msgid "Configured homepage sections"
+msgstr ""
+
+#: admin/class-codecanyon-config.php:837
+msgid "Demo content is currently installed."
+msgstr ""
+
+#: admin/codestar-config.php:21
+msgid "YTrip Settings"
+msgstr ""
+
+#: admin/codestar-config.php:23
+msgid "YTrip Plugin Settings"
+msgstr ""
+
+#: admin/codestar-config.php:29
+msgid "Thank you for using YTrip Travel Booking Plugin"
+msgstr ""
+
+#: admin/codestar-config.php:36
+#: admin/codestar-config.php:42
+msgid "Brand Colors"
+msgstr ""
+
+#: admin/codestar-config.php:47
+#: admin/homepage-builder.php:185
+msgid "Primary"
+msgstr ""
+
+#: admin/codestar-config.php:53
+#: admin/homepage-builder.php:186
+msgid "Secondary"
+msgstr ""
+
+#: admin/codestar-config.php:59
+msgid "Accent"
+msgstr ""
+
+#: admin/codestar-config.php:67
+msgid "Base Colors"
+msgstr ""
+
+#: admin/codestar-config.php:72
+msgid "Background"
+msgstr ""
+
+#: admin/codestar-config.php:78
+msgid "Surface"
+msgstr ""
+
+#: admin/codestar-config.php:84
+msgid "Text"
+msgstr ""
+
+#: admin/codestar-config.php:90
+msgid "Heading"
+msgstr ""
+
+#: admin/codestar-config.php:135
+msgid "Font Sizes"
+msgstr ""
+
+#: admin/codestar-config.php:174
+msgid "Layout & Spacing"
+msgstr ""
+
+#: admin/codestar-config.php:190
+msgid "Border Radius"
+msgstr ""
+
+#: admin/codestar-config.php:200
+msgid "Container Width"
+msgstr ""
+
+#: admin/codestar-config.php:210
+msgid "Card Gap"
+msgstr ""
+
+#: admin/codestar-config.php:224
+msgid "Tour Cards"
+msgstr ""
+
+#: admin/codestar-config.php:230
+msgid "Card Template"
+msgstr ""
+
+#: admin/codestar-config.php:231
+msgid "Choose which card design to use for tour listings (archive and homepage). Applies site-wide with no code edits."
+msgstr ""
+
+#: admin/codestar-config.php:233
+msgid "Overlay Gradient"
+msgstr ""
+
+#: admin/codestar-config.php:234
+msgid "Classic White"
+msgstr ""
+
+#: admin/codestar-config.php:235
+msgid "Modern Shadow"
+msgstr ""
+
+#: admin/codestar-config.php:236
+msgid "Minimal Border"
+msgstr ""
+
+#: admin/codestar-config.php:237
+msgid "Glassmorphism"
+msgstr ""
+
+#: admin/codestar-config.php:238
+msgid "Hover Zoom"
+msgstr ""
+
+#: admin/codestar-config.php:239
+msgid "Split Content"
+msgstr ""
+
+#: admin/codestar-config.php:240
+msgid "Badge Corner"
+msgstr ""
+
+#: admin/codestar-config.php:241
+msgid "Horizontal"
+msgstr ""
+
+#: admin/codestar-config.php:242
+msgid "Compact Grid"
+msgstr ""
+
+#: admin/codestar-config.php:249
+msgid "Card Style (legacy)"
+msgstr ""
+
+#: admin/codestar-config.php:250
+msgid "Used by some shortcodes. For archive/homepage card design use Card Template above."
+msgstr ""
+
+#: admin/codestar-config.php:252
+msgid "Standard"
+msgstr ""
+
+#: admin/codestar-config.php:253
+#: admin/codestar-config.php:393
+#: admin/codestar-config.php:436
+#: admin/homepage-builder.php:82
+msgid "Modern"
+msgstr ""
+
+#: admin/codestar-config.php:254
+#: admin/codestar-config.php:395
+msgid "Minimal"
+msgstr ""
+
+#: admin/codestar-config.php:255
+msgid "Overlay"
+msgstr ""
+
+#: admin/codestar-config.php:262
+msgid "Image Ratio"
+msgstr ""
+
+#: admin/codestar-config.php:274
+msgid "Card Shadow"
+msgstr ""
+
+#: admin/codestar-config.php:276
+#: admin/codestar-config.php:288
+#: admin/codestar-config.php:369
+msgid "None"
+msgstr ""
+
+#: admin/codestar-config.php:277
+msgid "Small"
+msgstr ""
+
+#: admin/codestar-config.php:278
+msgid "Medium"
+msgstr ""
+
+#: admin/codestar-config.php:279
+msgid "Large"
+msgstr ""
+
+#: admin/codestar-config.php:286
+msgid "Hover Effect"
+msgstr ""
+
+#: admin/codestar-config.php:289
+msgid "Lift"
+msgstr ""
+
+#: admin/codestar-config.php:290
+msgid "Image Zoom"
+msgstr ""
+
+#: admin/codestar-config.php:291
+msgid "Lift + Zoom"
+msgstr ""
+
+#: admin/codestar-config.php:298
+msgid "Show Rating"
+msgstr ""
+
+#: admin/codestar-config.php:304
+msgid "Show Price"
+msgstr ""
+
+#: admin/codestar-config.php:310
+msgid "Show Duration"
+msgstr ""
+
+#: admin/codestar-config.php:316
+msgid "Show Location"
+msgstr ""
+
+#: admin/codestar-config.php:322
+msgid "Show Wishlist Button"
+msgstr ""
+
+#: admin/codestar-config.php:332
+msgid "Archive Page"
+msgstr ""
+
+#: admin/codestar-config.php:338
+msgid "Layout"
+msgstr ""
+
+#: admin/codestar-config.php:340
+#: admin/codestar-config.php:449
+msgid "Grid"
+msgstr ""
+
+#: admin/codestar-config.php:341
+msgid "List"
+msgstr ""
+
+#: admin/codestar-config.php:348
+#: templates/archive-ytrip_tour.php:168
+msgid "Columns"
+msgstr ""
+
+#: admin/codestar-config.php:359
+msgid "Tours Per Page"
+msgstr ""
+
+#: admin/codestar-config.php:367
+#: admin/codestar-config.php:470
+msgid "Sidebar"
+msgstr ""
+
+#: admin/codestar-config.php:370
+msgid "Left"
+msgstr ""
+
+#: admin/codestar-config.php:371
+msgid "Right"
+msgstr ""
+
+#: admin/codestar-config.php:378
+msgid "Show Filters"
+msgstr ""
+
+#: admin/codestar-config.php:384
+msgid "Show Sorting"
+msgstr ""
+
+#: admin/codestar-config.php:390
+msgid "Filter Bar & Sidebar Style"
+msgstr ""
+
+#: admin/codestar-config.php:391
+msgid "Applies to the archive filter sidebar and toolbar appearance."
+msgstr ""
+
+#: admin/codestar-config.php:394
+#: admin/codestar-config.php:435
+#: admin/homepage-builder.php:83
+msgid "Classic"
+msgstr ""
+
+#: admin/codestar-config.php:402
+msgid "Archive UI Template"
+msgstr ""
+
+#: admin/codestar-config.php:403
+msgid "Choose the archive page layout and header style. Default: large header with optional background. Minimal: compact title bar. Fullwidth: no sidebar, content full width."
+msgstr ""
+
+#: admin/codestar-config.php:405
+msgid "Default (header + sidebar/topbar)"
+msgstr ""
+
+#: admin/codestar-config.php:406
+msgid "Minimal (compact header)"
+msgstr ""
+
+#: admin/codestar-config.php:407
+msgid "Fullwidth (no sidebar)"
+msgstr ""
+
+#: admin/codestar-config.php:414
+msgid "Transparent Header"
+msgstr ""
+
+#: admin/codestar-config.php:415
+msgid "On tour archive and single tour pages, makes the theme header transparent so the page banner shows through, and adds top padding so content is not hidden under the header. If your theme header does not become transparent, add custom CSS in Developer settings targeting your theme header selector under body.ytrip-transparent-header."
+msgstr ""
+
+#: admin/codestar-config.php:425
+msgid "Single Tour"
+msgstr ""
+
+#: admin/codestar-config.php:431
+msgid "Single Tour Design"
+msgstr ""
+
+#: admin/codestar-config.php:432
+msgid "Choose which layout template to use for single tour pages. Applies site-wide with no code edits. Default uses the main single page; Classic/Modern etc. use alternate designs. Hero slider appears when the tour has 2+ images and Hero with Gallery is Slider/Carousel."
+msgstr ""
+
+#: admin/codestar-config.php:434
+msgid "Default (single page)"
+msgstr ""
+
+#: admin/codestar-config.php:437
+msgid "Split"
+msgstr ""
+
+#: admin/codestar-config.php:439
+msgid "Magazine"
+msgstr ""
+
+#: admin/codestar-config.php:446
+msgid "Gallery Style"
+msgstr ""
+
+#: admin/codestar-config.php:448
+#: admin/codestar-config.php:460
+#: admin/metaboxes/tour-details.php:317
+msgid "Slider"
+msgstr ""
+
+#: admin/codestar-config.php:450
+msgid "Masonry"
+msgstr ""
+
+#: admin/codestar-config.php:457
+msgid "Hero with Gallery"
+msgstr ""
+
+#: admin/codestar-config.php:458
+msgid "When a tour has a gallery and Hero Display is set to Slider/Carousel, show hero as:"
+msgstr ""
+
+#: admin/codestar-config.php:461
+#: admin/metaboxes/tour-details.php:318
+msgid "Carousel"
+msgstr ""
+
+#: admin/codestar-config.php:468
+msgid "Booking Form Position"
+msgstr ""
+
+#: admin/codestar-config.php:471
+msgid "Below Content"
+msgstr ""
+
+#: admin/codestar-config.php:478
+msgid "Show Map"
+msgstr ""
+
+#: admin/codestar-config.php:484
+msgid "Show Reviews"
+msgstr ""
+
+#: admin/codestar-config.php:490
+msgid "Show Related Tours"
+msgstr ""
+
+#: admin/codestar-config.php:496
+msgid "Related Tours Count"
+msgstr ""
+
+#: admin/codestar-config.php:504
+msgid "Show Icons in Content Tabs"
+msgstr ""
+
+#: admin/codestar-config.php:505
+msgid "Display an icon next to each tab label (Overview, Itinerary, Included, etc.) for a clearer, modern look."
+msgstr ""
+
+#: admin/codestar-config.php:521
+msgid "Instant Booking"
+msgstr ""
+
+#: admin/codestar-config.php:527
+msgid "Show Calendar"
+msgstr ""
+
+#: admin/codestar-config.php:533
+msgid "Min Days in Advance"
+msgstr ""
+
+#: admin/codestar-config.php:541
+msgid "Max Guests"
+msgstr ""
+
+#: admin/codestar-config.php:549
+msgid "Require Deposit"
+msgstr ""
+
+#: admin/codestar-config.php:555
+msgid "Deposit Percentage"
+msgstr ""
+
+#: admin/codestar-config.php:570
+msgid "SEO & Schema"
+msgstr ""
+
+#: admin/codestar-config.php:576
+msgid "Enable Schema"
+msgstr ""
+
+#: admin/codestar-config.php:582
+msgid "Schema Type"
+msgstr ""
+
+#: admin/codestar-config.php:595
+msgid "Schema Conflict Mode"
+msgstr ""
+
+#: admin/codestar-config.php:602
+msgid "Enable Breadcrumbs"
+msgstr ""
+
+#: admin/codestar-config.php:612
+#: includes/class-settings.php:197
+#: includes/class-settings.php:324
+msgid "Performance"
+msgstr ""
+
+#: admin/codestar-config.php:618
+msgid "Lazy Load Images"
+msgstr ""
+
+#: admin/codestar-config.php:624
+msgid "Database Maintenance"
+msgstr ""
+
+#: admin/codestar-config.php:630
+msgid "Enable Minification"
+msgstr ""
+
+#: admin/codestar-config.php:636
+msgid "Enable Caching"
+msgstr ""
+
+#: admin/codestar-config.php:642
+msgid "Cache Duration (hours)"
+msgstr ""
+
+#: admin/codestar-config.php:655
+#: includes/class-settings.php:321
+msgid "General"
+msgstr ""
+
+#: admin/codestar-config.php:687
+msgid "Default Language"
+msgstr ""
+
+#: admin/codestar-config.php:700
+msgid "Default Tour Image"
+msgstr ""
+
+#: admin/codestar-config.php:709
+msgid "Developer"
+msgstr ""
+
+#: admin/codestar-config.php:715
+msgid "GitHub Repository"
+msgstr ""
+
+#: admin/codestar-config.php:720
+msgid "GitHub Token"
+msgstr ""
+
+#: admin/codestar-config.php:725
+msgid "Debug Mode"
+msgstr ""
+
+#: admin/codestar-config.php:731
+msgid "Log Level"
+msgstr ""
+
+#: admin/codestar-config.php:744
+msgid "Log to File"
+msgstr ""
+
+#: admin/codestar-config.php:751
+msgid "Custom CSS"
+msgstr ""
+
+#: admin/codestar-config.php:764
+msgid "Maps, Booking & Performance"
+msgstr ""
+
+#: admin/codestar-config.php:778
+#: admin/homepage-builder.php:630
+msgid "Import / Export"
+msgstr ""
+
+#: admin/codestar-config.php:795
+msgid "Permalinks"
+msgstr ""
+
+#: admin/codestar-config.php:801
+msgid "Tour Post Type Slug"
+msgstr ""
+
+#: admin/codestar-config.php:802
+msgid "URL structure: yoursite.com/{slug}/tour-name/"
+msgstr ""
+
+#: admin/codestar-config.php:808
+msgid "Archive Page Slug"
+msgstr ""
+
+#: admin/codestar-config.php:809
+msgid "URL structure: yoursite.com/{slug}/"
+msgstr ""
+
+#: admin/codestar-config.php:815
+msgid "Destination Slug"
+msgstr ""
+
+#: admin/codestar-config.php:816
+msgid "URL structure: yoursite.com/{slug}/destination-name/"
+msgstr ""
+
+#: admin/codestar-config.php:822
+msgid "Category Slug"
+msgstr ""
+
+#: admin/codestar-config.php:823
+msgid "URL structure: yoursite.com/{slug}/category-name/"
+msgstr ""
+
+#: admin/codestar-config.php:832
+#: includes/class-reviews.php:760
+#: includes/class-reviews.php:761
+#: includes/class-user-dashboard.php:237
+msgid "Reviews"
+msgstr ""
+
+#: admin/codestar-config.php:838
+msgid "Enable Reviews"
+msgstr ""
+
+#: admin/codestar-config.php:839
+msgid "Allow customers to leave reviews and ratings on tours."
+msgstr ""
+
+#: admin/codestar-config.php:845
+msgid "Require Approval"
+msgstr ""
+
+#: admin/codestar-config.php:846
+msgid "Reviews must be approved before appearing publicly."
+msgstr ""
+
+#: admin/codestar-config.php:852
+msgid "Reviews Per Page"
+msgstr ""
+
+#: admin/codestar-config.php:860
+msgid "Show Rating Summary"
+msgstr ""
+
+#: admin/codestar-config.php:861
+msgid "Display rating breakdown on tour pages."
+msgstr ""
+
+#: admin/homepage-builder.php:23
+msgid "YTrip Homepage Builder"
+msgstr ""
+
+#: admin/homepage-builder.php:25
+msgid "Thank you for using YTrip"
+msgstr ""
+
+#: admin/homepage-builder.php:37
+msgid "Drag sections between Enabled and Disabled to control which sections appear on your homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:52
+msgid "Partners/Sponsors"
+msgstr ""
+
+#: admin/homepage-builder.php:53
+msgid "Instagram Feed"
+msgstr ""
+
+#: admin/homepage-builder.php:68
+msgid "Homepage Design"
+msgstr ""
+
+#: admin/homepage-builder.php:69
+msgid "Switch between design presets. Travel Concept uses a light, modern style inspired by travel UI trends."
+msgstr ""
+
+#: admin/homepage-builder.php:71
+msgid "Default"
+msgstr ""
+
+#: admin/homepage-builder.php:72
+msgid "Travel Concept"
+msgstr ""
+
+#: admin/homepage-builder.php:80
+msgid "Choose the overall homepage layout structure."
+msgstr ""
+
+#: admin/homepage-builder.php:84
+msgid "Search Focused"
+msgstr ""
+
+#: admin/homepage-builder.php:92
+msgid "Select the content width for homepage sections."
+msgstr ""
+
+#: admin/homepage-builder.php:103
+msgid "Replace Theme Content"
+msgstr ""
+
+#: admin/homepage-builder.php:104
+msgid "Enable this to HIDE the default page content (e.g. from your theme) and show ONLY the YTrip sections. Useful if you see duplicate content."
+msgstr ""
+
+#: admin/homepage-builder.php:118
+msgid "Enable Hero Slider"
+msgstr ""
+
+#: admin/homepage-builder.php:119
+msgid "Enable or disable the main hero slider section."
+msgstr ""
+
+#: admin/homepage-builder.php:125
+msgid "Overlay Color"
+msgstr ""
+
+#: admin/homepage-builder.php:126
+msgid "Color applied over the hero slide images to improve text readability."
+msgstr ""
+
+#: admin/homepage-builder.php:133
+msgid "Overlay Opacity"
+msgstr ""
+
+#: admin/homepage-builder.php:134
+msgid "Opacity of the overlay (0 = transparent, 100 = solid)."
+msgstr ""
+
+#: admin/homepage-builder.php:145
+msgid "Slides"
+msgstr ""
+
+#: admin/homepage-builder.php:146
+msgid "Add slides with background images and content."
+msgstr ""
+
+#: admin/homepage-builder.php:153
+msgid "Recommended size: 1920x800 pixels."
+msgstr ""
+
+#: admin/homepage-builder.php:168
+msgid "Primary Button"
+msgstr ""
+
+#: admin/homepage-builder.php:173
+msgid "Button Text"
+msgstr ""
+
+#: admin/homepage-builder.php:178
+msgid "Button Link"
+msgstr ""
+
+#: admin/homepage-builder.php:183
+msgid "Button Style"
+msgstr ""
+
+#: admin/homepage-builder.php:187
+msgid "Outline"
+msgstr ""
+
+#: admin/homepage-builder.php:200
+msgid "Search Form"
+msgstr ""
+
+#: admin/homepage-builder.php:206
+msgid "Enable Search Form"
+msgstr ""
+
+#: admin/homepage-builder.php:207
+msgid "Show the tour search form on homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:213
+msgid "Search Form Style"
+msgstr ""
+
+#: admin/homepage-builder.php:214
+msgid "Select the search form design. Pill: horizontal white bar with icons and integrated Search button (booking-style)."
+msgstr ""
+
+#: admin/homepage-builder.php:217
+msgid "Style 1"
+msgstr ""
+
+#: admin/homepage-builder.php:218
+msgid "Style 2"
+msgstr ""
+
+#: admin/homepage-builder.php:219
+msgid "Style 3"
+msgstr ""
+
+#: admin/homepage-builder.php:220
+msgid "Ultra Modern"
+msgstr ""
+
+#: admin/homepage-builder.php:221
+msgid "Pill / Booking"
+msgstr ""
+
+#: admin/homepage-builder.php:228
+msgid "Form Fields"
+msgstr ""
+
+#: admin/homepage-builder.php:229
+msgid "Choose which fields to show in the search form. Order is fixed: Location → Date range → Guests → Search button."
+msgstr ""
+
+#: admin/homepage-builder.php:232
+msgid "Destination / Location"
+msgstr ""
+
+#: admin/homepage-builder.php:233
+msgid "Date range (Check-in & Check out)"
+msgstr ""
+
+#: admin/homepage-builder.php:234
+#: includes/class-booking-form.php:956
+#: templates/parts/booking-card.php:47
+msgid "Number of guests"
+msgstr ""
+
+#: admin/homepage-builder.php:250
+msgid "Show featured tours section on homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:270
+msgid "Tours Selection"
+msgstr ""
+
+#: admin/homepage-builder.php:271
+msgid "Choose how to select tours to display."
+msgstr ""
+
+#: admin/homepage-builder.php:274
+msgid "Automatic (Latest)"
+msgstr ""
+
+#: admin/homepage-builder.php:275
+#: admin/metaboxes/tour-details.php:681
+msgid "Manual Selection"
+msgstr ""
+
+#: admin/homepage-builder.php:282
+#: admin/metaboxes/tour-details.php:706
+msgid "Select Tours"
+msgstr ""
+
+#: admin/homepage-builder.php:312
+msgid "Enable Destinations"
+msgstr ""
+
+#: admin/homepage-builder.php:313
+msgid "Show popular destinations section."
+msgstr ""
+
+#: admin/homepage-builder.php:328
+#: admin/homepage-builder.php:460
+msgid "Optional. Leave blank to use default."
+msgstr ""
+
+#: admin/homepage-builder.php:334
+msgid "Number of Destinations"
+msgstr ""
+
+#: admin/homepage-builder.php:343
+msgid "Destinations Layout"
+msgstr ""
+
+#: admin/homepage-builder.php:344
+msgid "Display as current grid styles or as a carousel with circular cards and arrows."
+msgstr ""
+
+#: admin/homepage-builder.php:346
+msgid "As now (grid styles)"
+msgstr ""
+
+#: admin/homepage-builder.php:347
+msgid "Carousel (circular cards with arrows)"
+msgstr ""
+
+#: admin/homepage-builder.php:355
+msgid "Carousel autoplay"
+msgstr ""
+
+#: admin/homepage-builder.php:356
+msgid "Enable auto-advance (loop) of the destinations carousel."
+msgstr ""
+
+#: admin/homepage-builder.php:366
+msgid "Carousel scroll interval (seconds)"
+msgstr ""
+
+#: admin/homepage-builder.php:367
+msgid "Time between each auto-advance when autoplay is on."
+msgstr ""
+
+#: admin/homepage-builder.php:380
+msgid "Items visible (desktop)"
+msgstr ""
+
+#: admin/homepage-builder.php:381
+msgid "Number of destination items visible at once on desktop (e.g. 1024px and up)."
+msgstr ""
+
+#: admin/homepage-builder.php:393
+msgid "Items visible (tablet)"
+msgstr ""
+
+#: admin/homepage-builder.php:394
+msgid "Number of items visible on tablet (768px – 1023px)."
+msgstr ""
+
+#: admin/homepage-builder.php:406
+msgid "Items visible (mobile)"
+msgstr ""
+
+#: admin/homepage-builder.php:407
+msgid "Number of items visible on mobile (under 768px)."
+msgstr ""
+
+#: admin/homepage-builder.php:419
+#: admin/homepage-builder.php:475
+msgid "Display Style"
+msgstr ""
+
+#: admin/homepage-builder.php:420
+msgid "Choose how destinations are displayed when layout is \"As now (grid styles)\"."
+msgstr ""
+
+#: admin/homepage-builder.php:422
+msgid "Bento (asymmetric grid, one hero card)"
+msgstr ""
+
+#: admin/homepage-builder.php:423
+msgid "Uniform Grid (equal cards)"
+msgstr ""
+
+#: admin/homepage-builder.php:424
+msgid "Horizontal Strip (one large + small cards)"
+msgstr ""
+
+#: admin/homepage-builder.php:425
+msgid "Minimal (compact list with images)"
+msgstr ""
+
+#: admin/homepage-builder.php:444
+msgid "Enable Categories Section"
+msgstr ""
+
+#: admin/homepage-builder.php:445
+msgid "Show tour categories on homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:466
+msgid "Number of Categories"
+msgstr ""
+
+#: admin/homepage-builder.php:476
+msgid "Choose how categories are displayed on the homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:478
+msgid "Grid (icon cards)"
+msgstr ""
+
+#: admin/homepage-builder.php:479
+msgid "Chips (horizontal scroll, compact)"
+msgstr ""
+
+#: admin/homepage-builder.php:480
+msgid "Featured (first category large with image)"
+msgstr ""
+
+#: admin/homepage-builder.php:481
+msgid "Minimal (compact list with colored icons)"
+msgstr ""
+
+#: admin/homepage-builder.php:491
+#: admin/homepage-builder.php:511
+msgid "Testimonials"
+msgstr ""
+
+#: admin/homepage-builder.php:497
+msgid "Enable Testimonials"
+msgstr ""
+
+#: admin/homepage-builder.php:498
+msgid "Show customer testimonials section."
+msgstr ""
+
+#: admin/homepage-builder.php:517
+msgid "Customer Name"
+msgstr ""
+
+#: admin/homepage-builder.php:522
+msgid "Customer Role"
+msgstr ""
+
+#: admin/homepage-builder.php:527
+msgid "Testimonial Text"
+msgstr ""
+
+#: admin/homepage-builder.php:532
+#: admin/views/reviews-admin.php:65
+#: templates/parts/archive-filters-sidebar.php:222
+#: templates/parts/archive-filters-topbar.php:148
+#: templates/single/layout-5-magazine.php:94
+msgid "Rating"
+msgstr ""
+
+#: admin/homepage-builder.php:540
+msgid "Customer Photo"
+msgstr ""
+
+#: admin/homepage-builder.php:549
+msgid "Statistics"
+msgstr ""
+
+#: admin/homepage-builder.php:555
+msgid "Enable Statistics"
+msgstr ""
+
+#: admin/homepage-builder.php:556
+msgid "Show statistics counter section."
+msgstr ""
+
+#: admin/homepage-builder.php:562
+msgid "Statistics Items"
+msgstr ""
+
+#: admin/homepage-builder.php:568
+msgid "Number"
+msgstr ""
+
+#: admin/homepage-builder.php:573
+msgid "Suffix"
+msgstr ""
+
+#: admin/homepage-builder.php:574
+msgid "e.g. +, K, M"
+msgstr ""
+
+#: admin/homepage-builder.php:579
+#: admin/metaboxes/tour-details.php:476
+#: admin/metaboxes/tour-details.php:750
+msgid "Label"
+msgstr ""
+
+#: admin/homepage-builder.php:584
+#: admin/metaboxes/taxonomy-meta.php:48
+#: admin/metaboxes/taxonomy-meta.php:171
+#: admin/metaboxes/tour-details.php:267
+#: admin/metaboxes/tour-details.php:760
+msgid "Icon"
+msgstr ""
+
+#: admin/homepage-builder.php:586
+msgid "Compass (Tours)"
+msgstr ""
+
+#: admin/homepage-builder.php:587
+msgid "Map (Destinations)"
+msgstr ""
+
+#: admin/homepage-builder.php:588
+msgid "Users (Travelers)"
+msgstr ""
+
+#: admin/homepage-builder.php:589
+msgid "Award (Experience)"
+msgstr ""
+
+#: admin/homepage-builder.php:599
+msgid "Blog Posts"
+msgstr ""
+
+#: admin/homepage-builder.php:605
+msgid "Enable Blog Section"
+msgstr ""
+
+#: admin/homepage-builder.php:606
+msgid "Show latest blog posts on homepage."
+msgstr ""
+
+#: admin/homepage-builder.php:619
+msgid "Number of Posts"
+msgstr ""
+
+#: admin/homepage-builder.php:637
+msgid "Export your settings to a JSON file or import settings from a backup."
+msgstr ""
+
+#: admin/homepage-builder.php:659
+msgid "View homepage"
+msgstr ""
+
+#: admin/homepage-builder.php:660
+#, php-format
+msgid "Homepage settings saved. %s to see changes instantly."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:30
+#: admin/metaboxes/taxonomy-meta.php:159
+msgid "Featured Image"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:31
+msgid "Main image for this destination (recommended: 800x600px)."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:36
+#: admin/metaboxes/taxonomy-meta.php:165
+msgid "Banner Image"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:37
+#: admin/metaboxes/taxonomy-meta.php:166
+msgid "Wide banner image for archive pages (recommended: 1920x400px)."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:42
+#: templates/single-ytrip_tour.php:1188
+msgid "Gallery"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:43
+msgid "Additional images for this destination."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:53
+#: admin/metaboxes/taxonomy-meta.php:177
+msgid "Theme Color"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:54
+msgid "Accent color for this destination."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:59
+#: admin/metaboxes/taxonomy-meta.php:183
+#: admin/metaboxes/tour-details.php:171
+msgid "Short Description"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:60
+msgid "Brief description for cards (150 characters max)."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:65
+#: admin/metaboxes/taxonomy-meta.php:189
+msgid "Full Description"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:70
+#: admin/metaboxes/tour-details.php:378
+msgid "Map Location"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:75
+msgid "Country"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:80
+msgid "Continent"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:82
+msgid "Africa"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:83
+msgid "Asia"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:84
+msgid "Europe"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:85
+msgid "North America"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:86
+msgid "South America"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:87
+msgid "Oceania"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:88
+msgid "Antarctica"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:94
+msgid "Climate"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:95
+msgid "e.g. Tropical, Mediterranean, Desert"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:100
+msgid "Best Time to Visit"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:101
+msgid "e.g. March to October"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:106
+msgid "Timezone"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:107
+msgid "e.g. GMT+2"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:112
+msgid "Local Currency"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:117
+msgid "Language"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:122
+msgid "Featured Destination"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:128
+#: admin/metaboxes/taxonomy-meta.php:212
+msgid "Display Order"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:134
+msgid "Travel Tips"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:139
+msgid "Tip"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:160
+msgid "Main image for this category (recommended: 600x400px)."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:172
+msgid "Icon to display in navigation and cards."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:178
+msgid "Accent color for this category."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:184
+msgid "Brief description for cards."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:194
+msgid "Typical Difficulty"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:196
+#: admin/metaboxes/tour-details.php:90
+#: templates/single-ytrip_tour.php:393
+#: templates/single-ytrip_tour.php:783
+#: templates/single-ytrip_tour.php:1109
+msgid "Easy"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:197
+#: admin/metaboxes/tour-details.php:91
+#: templates/single-ytrip_tour.php:394
+#: templates/single-ytrip_tour.php:783
+#: templates/single-ytrip_tour.php:1110
+msgid "Moderate"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:198
+#: admin/metaboxes/tour-details.php:92
+#: templates/single-ytrip_tour.php:783
+msgid "Difficult"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:199
+msgid "Various"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:206
+msgid "Featured Category"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:218
+msgid "Category Highlights"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:219
+msgid "Key features of tours in this category."
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:224
+#: admin/metaboxes/tour-details.php:164
+msgid "Highlight"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:231
+msgid "SEO Title"
+msgstr ""
+
+#: admin/metaboxes/taxonomy-meta.php:236
+msgid "SEO Description"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:20
+msgid "Tour Details"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:31
+msgid "Basic Info"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:37
+#: templates/single-ytrip_tour.php:765
+#: templates/single/layout-1-classic.php:323
+msgid "Tour Code"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:38
+msgid "Unique identifier for this tour (e.g., TR-001)."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:43
+#: includes/class-demo-importer.php:959
+#: templates/cards/card-hover-zoom.php:56
+#: templates/parts/archive-filters-sidebar.php:176
+#: templates/parts/archive-filters-topbar.php:117
+#: templates/single-ytrip_tour.php:773
+#: templates/single-ytrip_tour.php:1070
+#: templates/single/layout-1-classic.php:259
+#: templates/single/layout-4-booking.php:115
+#: templates/single/layout-5-magazine.php:70
+msgid "Duration"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:48
+msgid "Days"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:54
+msgid "Nights"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:60
+msgid "Hours"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:61
+msgid "For day tours less than 24 hours."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:69
+#: includes/class-pdf-generator.php:214
+#: templates/cards/card-hover-zoom.php:63
+#: templates/single-ytrip_tour.php:780
+#: templates/single-ytrip_tour.php:1093
+#: templates/single/layout-1-classic.php:272
+#: templates/single/layout-4-booking.php:118
+#: templates/single/layout-5-magazine.php:82
+msgid "Group Size"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:74
+msgid "Minimum"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:80
+msgid "Maximum"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:88
+msgid "Difficulty Level"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:93
+#: templates/single-ytrip_tour.php:783
+msgid "Expert"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:100
+#: templates/single-ytrip_tour.php:788
+#: templates/single/layout-1-classic.php:310
+msgid "Tour Type"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:102
+#: templates/single-ytrip_tour.php:787
+msgid "Group Tour"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:103
+#: templates/single-ytrip_tour.php:787
+msgid "Private Tour"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:104
+#: templates/single-ytrip_tour.php:787
+msgid "Self-Guided"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:111
+msgid "Age Restriction"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:116
+msgid "Minimum Age"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:122
+msgid "Maximum Age"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:130
+msgid "Languages Available"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:152
+#: templates/single/layout-5-magazine.php:130
+msgid "Highlights"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:158
+#: templates/single-ytrip_tour.php:879
+#: templates/single/layout-1-classic.php:424
+msgid "Tour Highlights"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:159
+msgid "Key features that make this tour special."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:172
+msgid "Brief summary for tour cards (150-200 characters)."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:181
+#: templates/single/layout-1-classic.php:346
+#: templates/single/layout-2-modern.php:268
+#: templates/single/layout-3-split.php:123
+msgid "Itinerary"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:187
+msgid "Daily Program"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:192
+msgid "Day"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:203
+#: admin/metaboxes/tour-details.php:393
+msgid "Description"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:208
+msgid "Image"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:213
+msgid "Meals Included"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:215
+msgid "Breakfast"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:216
+msgid "Lunch"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:217
+msgid "Dinner"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:223
+msgid "Accommodation"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:228
+#: includes/class-ytrip-widgets.php:359
+msgid "Activities"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:233
+#: admin/metaboxes/tour-details.php:633
+msgid "Time"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:238
+msgid "Activity"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:251
+msgid "Included / Excluded"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:257
+#: includes/class-pdf-generator.php:277
+#: templates/single-ytrip_tour.php:952
+#: templates/single/layout-1-classic.php:510
+#: templates/single/layout-4-booking.php:161
+msgid "What's Included"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:262
+#: admin/metaboxes/tour-details.php:292
+msgid "Item"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:269
+msgid "Check"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:270
+msgid "Hotel"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:271
+msgid "Meals"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:272
+msgid "Flight"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:273
+msgid "Transport"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:274
+#: templates/parts/reviews-list.php:92
+msgid "Guide"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:275
+#: includes/class-user-dashboard.php:90
+msgid "Tickets"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:276
+msgid "Photography"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:277
+msgid "WiFi"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:278
+msgid "Insurance"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:287
+msgid "What's Excluded"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:303
+msgid "Gallery & Media"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:308
+msgid "Hero / Top section"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:313
+msgid "Top section"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:314
+msgid "Single image: one image (featured or first gallery) as full-width hero. Slider: multiple images in hero as a slider. Carousel: multiple images in hero as a carousel."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:316
+msgid "Single image (hero)"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:324
+msgid "Images"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:329
+#: templates/single-ytrip_tour.php:609
+msgid "Tour gallery"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:330
+msgid "Select images. One image = full-width hero; multiple = slider or carousel in hero (see Top section above)."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:334
+msgid "Video & 360°"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:339
+msgid "Video URL"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:340
+msgid "YouTube or Vimeo video URL."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:345
+msgid "360° Virtual Tour"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:346
+msgid "Embed URL for 360-degree virtual tour."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:355
+#: admin/metaboxes/tour-details.php:403
+#: templates/cards/card-hover-zoom.php:70
+#: templates/homepage/search-form.php:40
+#: templates/homepage/search-form.php:43
+msgid "Location"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:361
+#: templates/single-ytrip_tour.php:809
+#: templates/single-ytrip_tour.php:1002
+#: templates/single/layout-1-classic.php:582
+msgid "Meeting Point"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:362
+msgid "Address or location name where tour begins."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:367
+#: templates/single-ytrip_tour.php:812
+#: templates/single/layout-1-classic.php:591
+msgid "Meeting Time"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:372
+#: templates/single-ytrip_tour.php:815
+#: templates/single/layout-1-classic.php:600
+msgid "End Point"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:373
+msgid "Where the tour ends (leave empty if same as meeting point)."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:383
+msgid "Tour Route/Stops"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:388
+msgid "Stop Name"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:398
+msgid "Duration at Stop"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:414
+msgid "Pricing"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:420
+msgid "Booking Method"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:422
+msgid "WooCommerce Booking"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:423
+msgid "Inquiry Form"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:424
+msgid "External Link"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:431
+msgid "External Booking URL"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:437
+msgid "Inquiry Email"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:443
+msgid "Base Pricing"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:448
+msgid "Regular Price"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:453
+msgid "Sale Price"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:458
+msgid "Price Type"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:460
+msgid "Per Person"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:461
+msgid "Per Group"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:470
+msgid "Person Types"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:471
+msgid "Different pricing for adults, children, etc."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:477
+msgid "e.g. Adult, Child, Infant"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:482
+#: templates/parts/archive-filters-topbar.php:134
+msgid "Price"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:487
+msgid "Min Age"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:493
+msgid "Max Age"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:501
+msgid "Seasonal Pricing"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:506
+msgid "Season Name"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:511
+msgid "Start Date"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:516
+msgid "End Date"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:521
+msgid "Price Adjustment (%)"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:522
+msgid "Positive = increase, Negative = decrease"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:529
+msgid "Group Discounts"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:534
+msgid "Minimum Persons"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:540
+msgid "Discount (%)"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:552
+msgid "Availability"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:558
+msgid "Availability Type"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:560
+msgid "Always Available"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:561
+msgid "Specific Dates"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:562
+msgid "Specific Days"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:569
+msgid "Available Days"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:571
+msgid "Monday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:572
+msgid "Tuesday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:573
+msgid "Wednesday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:574
+msgid "Thursday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:575
+msgid "Friday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:576
+msgid "Saturday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:577
+msgid "Sunday"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:584
+msgid "Available Dates"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:595
+msgid "Available Slots"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:603
+msgid "Blocked Dates"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:604
+msgid "Dates when this tour is not available."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:614
+msgid "Reason"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:621
+msgid "Max Bookings Per Day"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:627
+#: templates/single/layout-1-classic.php:609
+msgid "Start Times"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:628
+msgid "Available start times for this tour."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:634
+msgid "e.g. 09:00 AM"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:645
+#: templates/single/layout-1-classic.php:356
+#: templates/single/layout-2-modern.php:276
+#: templates/single/layout-3-split.php:127
+#: templates/single/layout-5-magazine.php:244
+msgid "FAQ"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:651
+#: templates/single-ytrip_tour.php:1034
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:656
+msgid "Question"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:661
+msgid "Answer"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:672
+msgid "Related Tours"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:678
+msgid "Related Tours Mode"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:680
+msgid "Automatic"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:688
+msgid "Match By"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:690
+#: includes/class-pdf-generator.php:208
+#: includes/class-taxonomies.php:60
+#: templates/parts/archive-filters-sidebar.php:108
+#: templates/parts/archive-filters-topbar.php:77
+#: templates/single-ytrip_tour.php:1157
+msgid "Destination"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:691
+#: templates/parts/archive-filters-sidebar.php:131
+#: templates/parts/archive-filters-topbar.php:97
+#: templates/single-ytrip_tour.php:1173
+msgid "Category"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:723
+msgid "Additional Info"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:729
+#: templates/single-ytrip_tour.php:818
+#: templates/single/layout-1-classic.php:374
+#: templates/single/layout-1-classic.php:639
+msgid "What to Bring"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:734
+#: templates/single-ytrip_tour.php:821
+#: templates/single/layout-1-classic.php:368
+#: templates/single/layout-1-classic.php:629
+msgid "Know Before You Go"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:739
+#: templates/single-ytrip_tour.php:824
+#: templates/single-ytrip_tour.php:1202
+#: templates/single/layout-1-classic.php:649
+msgid "Cancellation Policy"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:744
+msgid "Custom Fields"
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:745
+msgid "Add any additional custom information."
+msgstr ""
+
+#: admin/metaboxes/tour-details.php:755
+#: templates/parts/reviews-list.php:82
+msgid "Value"
+msgstr ""
+
+#: admin/views/reviews-admin.php:19
+msgid "Tour Reviews"
+msgstr ""
+
+#: admin/views/reviews-admin.php:28
+#: templates/parts/archive-filters-topbar.php:83
+#: templates/parts/archive-filters-topbar.php:103
+msgid "All"
+msgstr ""
+
+#: admin/views/reviews-admin.php:35
+#: admin/views/reviews-admin.php:156
+#: includes/class-user-dashboard.php:432
+#: includes/class-user-dashboard.php:770
+msgid "Pending"
+msgstr ""
+
+#: admin/views/reviews-admin.php:42
+#: admin/views/reviews-admin.php:157
+msgid "Approved"
+msgstr ""
+
+#: admin/views/reviews-admin.php:49
+#: admin/views/reviews-admin.php:158
+#: includes/class-user-dashboard.php:772
+msgid "Rejected"
+msgstr ""
+
+#: admin/views/reviews-admin.php:59
+msgid "Author"
+msgstr ""
+
+#: admin/views/reviews-admin.php:68
+msgid "Review"
+msgstr ""
+
+#: admin/views/reviews-admin.php:81
+msgid "No reviews found."
+msgstr ""
+
+#: admin/views/reviews-admin.php:87
+#: includes/class-agent-portal.php:280
+#: includes/class-reviews.php:860
+msgid "Unknown"
+msgstr ""
+
+#: admin/views/reviews-admin.php:97
+msgid "Verified Purchase"
+msgstr ""
+
+#: admin/views/reviews-admin.php:104
+#: includes/class-reviews.php:847
+#: includes/class-reviews.php:861
+#: includes/class-tickets.php:259
+msgid "Unknown Tour"
+msgstr ""
+
+#: admin/views/reviews-admin.php:128
+msgid "Approve"
+msgstr ""
+
+#: admin/views/reviews-admin.php:138
+msgid "Reject"
+msgstr ""
+
+#: admin/views/reviews-admin.php:148
+#: includes/class-webhooks.php:621
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: Number of items
+#: admin/views/reviews-admin.php:182
+#, php-format
+msgid "%s item"
+msgid_plural "%s items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/reviews-admin.php:247
+msgid "Are you sure you want to delete this review?"
+msgstr ""
+
+#: admin/views/reviews-admin.php:248
+#: includes/class-user-dashboard.php:1129
+msgid "Are you sure?"
+msgstr ""
+
+#: admin/views/reviews-admin.php:254
+#: includes/class-booking-form.php:146
+msgid "Processing..."
+msgstr ""
+
+#: admin/views/reviews-admin.php:280
+#: includes/class-user-dashboard.php:1128
+#: includes/class-wishlist.php:619
+#: public/class-frontend.php:288
+#: public/class-frontend.php:436
+msgid "An error occurred."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:311
+#, php-format
+msgid "Early Bird -%d%%"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:325
+#, php-format
+msgid "Last Minute -%d%%"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:386
+msgid "Advanced Pricing"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:461
+msgid "Early Bird Discount"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:465
+msgid "Reward customers who book in advance with a discount."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:469
+msgid "Days Before Tour"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:475
+msgid "Booking must be made this many days before tour."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:478
+#: includes/class-advanced-pricing.php:514
+msgid "Discount %"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:497
+msgid "Last Minute Deals"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:501
+msgid "Offer discounts for tours departing soon to fill remaining spots."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:505
+msgid "Days Until Tour"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:511
+msgid "Discount applies when tour is within this many days."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:522
+msgid "Min Available Spots"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:528
+msgid "Only apply if this many spots are still available. 0 = always apply."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:535
+msgid "Discount Settings"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:538
+msgid "Maximum Combined Discount %"
+msgstr ""
+
+#: includes/class-advanced-pricing.php:544
+msgid "Cap total discount to prevent excessive reductions."
+msgstr ""
+
+#: includes/class-advanced-pricing.php:651
+msgid "Tour not found."
+msgstr ""
+
+#: includes/class-agent-portal.php:62
+msgid "Travel Agent"
+msgstr ""
+
+#: includes/class-agent-portal.php:225
+#, php-format
+msgid "Agent commission calculated: %s (%.1f%% of %s)"
+msgstr ""
+
+#: includes/class-agent-portal.php:251
+#: includes/class-agent-portal.php:302
+msgid "WooCommerce required"
+msgstr ""
+
+#: includes/class-agent-portal.php:359
+msgid "Your agent account is not approved"
+msgstr ""
+
+#: includes/class-agent-portal.php:370
+msgid "Invalid tour"
+msgstr ""
+
+#: includes/class-agent-portal.php:379
+msgid "Tour not available for booking"
+msgstr ""
+
+#: includes/class-agent-portal.php:438
+msgid "Valid email required"
+msgstr ""
+
+#: includes/class-agent-portal.php:442
+msgid "Password must be at least 8 characters"
+msgstr ""
+
+#: includes/class-agent-portal.php:446
+msgid "Email already registered"
+msgstr ""
+
+#: includes/class-agent-portal.php:483
+msgid "Registration successful! Your account is pending approval."
+msgstr ""
+
+#: includes/class-agent-portal.php:496
+#, php-format
+msgid "[%s] New Agent Registration: %s"
+msgstr ""
+
+#: includes/class-agent-portal.php:498
+#, php-format
+msgid ""
+"A new travel agent has registered and requires approval.\n"
+"\n"
+"Company: %s\n"
+"Name: %s\n"
+"Email: %s\n"
+"\n"
+"Approve in WordPress admin."
+msgstr ""
+
+#: includes/class-agent-portal.php:512
+msgid "Please log in to access your agent dashboard."
+msgstr ""
+
+#: includes/class-agent-portal.php:516
+msgid "This dashboard is for approved travel agents only."
+msgstr ""
+
+#: includes/class-agent-portal.php:523
+msgid "Your agent account is pending approval. You will receive an email once approved."
+msgstr ""
+
+#: includes/class-agent-portal.php:527
+msgid "Your agent account has been suspended. Please contact support."
+msgstr ""
+
+#: includes/class-agent-portal.php:534
+#, php-format
+msgid "Welcome, %s"
+msgstr ""
+
+#: includes/class-agent-portal.php:540
+#: includes/class-user-dashboard.php:229
+msgid "Total Bookings"
+msgstr ""
+
+#: includes/class-agent-portal.php:544
+msgid "Total Earned"
+msgstr ""
+
+#: includes/class-agent-portal.php:548
+msgid "Pending Payout"
+msgstr ""
+
+#: includes/class-agent-portal.php:552
+msgid "Commission Rate"
+msgstr ""
+
+#: includes/class-agent-portal.php:558
+msgid "Create New Booking"
+msgstr ""
+
+#: includes/class-agent-portal.php:563
+msgid "Recent Bookings"
+msgstr ""
+
+#: includes/class-agent-portal.php:565
+#: includes/class-user-dashboard.php:1127
+#: public/class-frontend.php:287
+#: public/class-frontend.php:435
+#: templates/archive-ytrip_tour.php:222
+msgid "Loading..."
+msgstr ""
+
+#: includes/class-agent-portal.php:609
+msgid "No bookings yet."
+msgstr ""
+
+#: includes/class-agent-portal.php:623
+msgid "You are already logged in."
+msgstr ""
+
+#: includes/class-agent-portal.php:629
+msgid "Become a Travel Agent Partner"
+msgstr ""
+
+#: includes/class-agent-portal.php:634
+msgid "Company Name"
+msgstr ""
+
+#: includes/class-agent-portal.php:640
+#: includes/class-user-dashboard.php:902
+msgid "First Name"
+msgstr ""
+
+#: includes/class-agent-portal.php:644
+#: includes/class-user-dashboard.php:906
+msgid "Last Name"
+msgstr ""
+
+#: includes/class-agent-portal.php:660
+msgid "Password"
+msgstr ""
+
+#: includes/class-agent-portal.php:665
+msgid "Register as Agent"
+msgstr ""
+
+#: includes/class-agent-portal.php:717
+#, php-format
+msgid "[%s] Your Agent Account is Approved!"
+msgstr ""
+
+#: includes/class-agent-portal.php:718
+#, php-format
+msgid ""
+"Congratulations! Your travel agent account has been approved.\n"
+"\n"
+"You can now log in and start creating bookings for your clients.\n"
+"\n"
+"Login: %s"
+msgstr ""
+
+#: includes/class-ajax.php:33
+#: includes/class-booking-form.php:419
+#: includes/class-reviews.php:623
+#: includes/class-reviews.php:668
+#: includes/class-reviews.php:711
+#: includes/class-user-dashboard.php:970
+#: includes/class-wishlist.php:387
+#: includes/class-wishlist.php:418
+#: includes/class-wishlist.php:448
+msgid "Security check failed."
+msgstr ""
+
+#: includes/class-ajax.php:42
+msgid "Please fill in all required fields."
+msgstr ""
+
+#: includes/class-ajax.php:50
+#, php-format
+msgid "New Inquiry: %s"
+msgstr ""
+
+#: includes/class-ajax.php:60
+msgid "Your inquiry has been sent successfully."
+msgstr ""
+
+#: includes/class-ajax.php:62
+msgid "Failed to send email. Please try again later."
+msgstr ""
+
+#: includes/class-api-auth.php:125
+msgid "Invalid API key."
+msgstr ""
+
+#: includes/class-api-auth.php:134
+msgid "API rate limit exceeded. Please try again later."
+msgstr ""
+
+#: includes/class-api-auth.php:144
+msgid "API key does not have permission for this action."
+msgstr ""
+
+#: includes/class-api-auth.php:334
+msgid "API Key"
+msgstr ""
+
+#: includes/class-api-auth.php:393
+#: includes/class-api-auth.php:394
+#: includes/class-api-auth.php:420
+msgid "API Keys"
+msgstr ""
+
+#: includes/class-api-auth.php:421
+msgid "Manage API keys for mobile apps and external integrations."
+msgstr ""
+
+#: includes/class-api-auth.php:425
+msgid "API Key Created!"
+msgstr ""
+
+#: includes/class-api-auth.php:426
+msgid "Copy this key now. It will not be shown again:"
+msgstr ""
+
+#: includes/class-api-auth.php:432
+msgid "API Authentication"
+msgstr ""
+
+#: includes/class-api-auth.php:433
+msgid "Include your API key in requests using one of these methods:"
+msgstr ""
+
+#: includes/class-api-auth.php:438
+msgid "Base URL:"
+msgstr ""
+
+#: includes/class-api-auth.php:441
+msgid "Your API Keys"
+msgstr ""
+
+#: includes/class-api-auth.php:444
+msgid "No API keys yet. Create one below."
+msgstr ""
+
+#: includes/class-api-auth.php:449
+#: includes/class-api-auth.php:491
+#: includes/class-booking-form.php:637
+#: includes/class-webhooks.php:599
+#: includes/class-webhooks.php:634
+#: templates/single-ytrip_tour.php:489
+#: templates/single-ytrip_tour.php:705
+msgid "Name"
+msgstr ""
+
+#: includes/class-api-auth.php:450
+msgid "Key"
+msgstr ""
+
+#: includes/class-api-auth.php:451
+#: includes/class-api-auth.php:498
+msgid "Permissions"
+msgstr ""
+
+#: includes/class-api-auth.php:452
+msgid "Last Used"
+msgstr ""
+
+#: includes/class-api-auth.php:453
+msgid "Usage"
+msgstr ""
+
+#: includes/class-api-auth.php:455
+#: includes/class-webhooks.php:603
+msgid "Actions"
+msgstr ""
+
+#: includes/class-api-auth.php:468
+msgid "Active"
+msgstr ""
+
+#: includes/class-api-auth.php:470
+msgid "Revoked"
+msgstr ""
+
+#: includes/class-api-auth.php:476
+msgid "Revoke"
+msgstr ""
+
+#: includes/class-api-auth.php:486
+msgid "Create New API Key"
+msgstr ""
+
+#: includes/class-api-auth.php:494
+msgid "e.g., Mobile App"
+msgstr ""
+
+#: includes/class-api-auth.php:503
+msgid "Read Only - Can view tours, availability, etc."
+msgstr ""
+
+#: includes/class-api-auth.php:507
+msgid "Read/Write - Can create bookings, reviews"
+msgstr ""
+
+#: includes/class-api-auth.php:511
+msgid "Full Access - All operations (admin only)"
+msgstr ""
+
+#: includes/class-api-auth.php:517
+msgid "Generate API Key"
+msgstr ""
+
+#: includes/class-api-auth.php:530
+msgid "Revoke this API key? This cannot be undone."
+msgstr ""
+
+#: includes/class-archive-filters.php:286
+#: includes/class-security-engine.php:260
+msgid "Security verification failed. Please refresh the page."
+msgstr ""
+
+#: includes/class-archive-filters.php:497
+msgid "No tours found matching your criteria."
+msgstr ""
+
+#: includes/class-archive-filters.php:558
+msgid "1-3 Days"
+msgstr ""
+
+#: includes/class-archive-filters.php:559
+msgid "4-7 Days"
+msgstr ""
+
+#: includes/class-archive-filters.php:560
+msgid "8-14 Days"
+msgstr ""
+
+#: includes/class-archive-filters.php:561
+msgid "15+ Days"
+msgstr ""
+
+#: includes/class-archive-filters.php:564
+msgid "Latest"
+msgstr ""
+
+#: includes/class-archive-filters.php:565
+msgid "Price: Low to High"
+msgstr ""
+
+#: includes/class-archive-filters.php:566
+msgid "Price: High to Low"
+msgstr ""
+
+#: includes/class-archive-filters.php:567
+msgid "Top Rated"
+msgstr ""
+
+#: includes/class-archive-filters.php:568
+msgid "Most Popular"
+msgstr ""
+
+#: includes/class-asset-optimizer.php:667
+msgid "Assets built successfully!"
+msgstr ""
+
+#: includes/class-booking-form.php:142
+#: includes/class-booking-form.php:815
+msgid "Please select a date."
+msgstr ""
+
+#: includes/class-booking-form.php:143
+msgid "This field is required."
+msgstr ""
+
+#: includes/class-booking-form.php:144
+#: includes/class-booking-form.php:832
+#: includes/class-booking-form.php:836
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: includes/class-booking-form.php:145
+#: includes/class-booking-form.php:1040
+#: templates/parts/booking-card.php:115
+msgid "Login to Book"
+msgstr ""
+
+#: includes/class-booking-form.php:147
+#: includes/class-booking-form.php:171
+msgid "Confirm booking"
+msgstr ""
+
+#: includes/class-booking-form.php:148
+msgid "By confirming, your booking will be submitted. You will receive a confirmation email and we will process your request. Proceed to checkout?"
+msgstr ""
+
+#: includes/class-booking-form.php:149
+#: includes/class-booking-form.php:175
+msgid "Confirm & continue"
+msgstr ""
+
+#: includes/class-booking-form.php:150
+#: includes/class-booking-form.php:174
+#: templates/parts/review-form.php:124
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-booking-form.php:151
+#: includes/class-booking-form.php:773
+msgid "Please fix the following:"
+msgstr ""
+
+#: includes/class-booking-form.php:165
+msgid "By confirming, your booking will be added to the cart and you will receive a confirmation email after checkout. Continue?"
+msgstr ""
+
+#: includes/class-booking-form.php:166
+msgid "By confirming, your booking request will be sent. You will receive a confirmation email and we will contact you shortly. Continue?"
+msgstr ""
+
+#: includes/class-booking-form.php:439
+msgid "reCAPTCHA verification failed. Please try again."
+msgstr ""
+
+#. translators: 1: site name, 2: tour title
+#: includes/class-booking-form.php:556
+#, php-format
+msgid "[%1$s] Booking confirmation: %2$s"
+msgstr ""
+
+#. translators: 1: site name, 2: tour title
+#: includes/class-booking-form.php:568
+#, php-format
+msgid "[%1$s] New booking request: %2$s"
+msgstr ""
+
+#: includes/class-booking-form.php:604
+msgid "View tour"
+msgstr ""
+
+#. translators: %s: customer name
+#: includes/class-booking-form.php:605
+#, php-format
+msgid "Hello %s,"
+msgstr ""
+
+#. translators: %s: customer name
+#: includes/class-booking-form.php:606
+msgid "Your booking request has been received."
+msgstr ""
+
+#: includes/class-booking-form.php:613
+msgid "We will confirm availability and send payment details shortly."
+msgstr ""
+
+#: includes/class-booking-form.php:617
+msgid "Booking confirmation"
+msgstr ""
+
+#: includes/class-booking-form.php:636
+msgid "New booking request"
+msgstr ""
+
+#: includes/class-booking-form.php:647
+msgid "View all bookings"
+msgstr ""
+
+#: includes/class-booking-form.php:775
+#: includes/class-booking-form.php:794
+msgid "Dismiss"
+msgstr ""
+
+#: includes/class-booking-form.php:790
+msgid "Booking added to cart. You will receive a confirmation email after checkout."
+msgstr ""
+
+#: includes/class-booking-form.php:791
+msgid "Your booking request has been received. We sent a confirmation email and will contact you shortly."
+msgstr ""
+
+#: includes/class-booking-form.php:810
+msgid "Invalid tour selected."
+msgstr ""
+
+#: includes/class-booking-form.php:819
+msgid "Please select a valid future date."
+msgstr ""
+
+#: includes/class-booking-form.php:825
+msgid "At least 1 adult is required."
+msgstr ""
+
+#: includes/class-booking-form.php:843
+msgid "Name must be 100 characters or less."
+msgstr ""
+
+#: includes/class-booking-form.php:849
+msgid "Please enter a valid phone number."
+msgstr ""
+
+#: includes/class-booking-form.php:910
+msgid "reCAPTCHA verification failed."
+msgstr ""
+
+#: includes/class-booking-form.php:929
+#: templates/parts/archive-filters-topbar.php:44
+#: templates/parts/booking-card.php:21
+#: templates/single-ytrip_tour.php:436
+#: templates/single-ytrip_tour.php:442
+#: templates/single-ytrip_tour.php:662
+#: templates/single-ytrip_tour.php:668
+#: templates/single/layout-1-classic.php:699
+#: templates/single/layout-2-modern.php:351
+#: templates/single/layout-3-split.php:168
+#: templates/single/layout-4-booking.php:77
+#: templates/single/layout-4-booking.php:225
+#: templates/single/layout-5-magazine.php:54
+#: templates/single/layout-5-magazine.php:260
+msgid "From"
+msgstr ""
+
+#: includes/class-booking-form.php:931
+#: includes/class-map-view.php:445
+#: includes/class-map-view.php:507
+#: templates/parts/booking-card.php:23
+#: templates/single-ytrip_tour.php:440
+#: templates/single-ytrip_tour.php:444
+#: templates/single-ytrip_tour.php:666
+#: templates/single-ytrip_tour.php:670
+#: templates/single/layout-1-classic.php:701
+#: templates/single/layout-2-modern.php:353
+#: templates/single/layout-3-split.php:170
+#: templates/single/layout-5-magazine.php:262
+msgid "per person"
+msgstr ""
+
+#: includes/class-booking-form.php:938
+#: templates/parts/booking-card.php:30
+#: templates/single-ytrip_tour.php:463
+#: templates/single-ytrip_tour.php:685
+msgid "Select Date"
+msgstr ""
+
+#: includes/class-booking-form.php:945
+#: templates/parts/archive-filters-sidebar.php:42
+#: templates/parts/archive-filters-sidebar.php:46
+#: templates/parts/archive-filters-sidebar.php:51
+#: templates/parts/calendar-single.php:19
+msgid "Select date"
+msgstr ""
+
+#: includes/class-booking-form.php:956
+#: includes/class-pricing-engine.php:186
+msgid "Adult"
+msgstr ""
+
+#: includes/class-booking-form.php:962
+#: templates/parts/booking-card.php:54
+msgid "Age 12+"
+msgstr ""
+
+#: includes/class-booking-form.php:974
+#: templates/parts/booking-card.php:67
+msgid "Age 2-12"
+msgstr ""
+
+#: includes/class-booking-form.php:986
+#: templates/parts/booking-card.php:80
+msgid "Under 2"
+msgstr ""
+
+#: includes/class-booking-form.php:1009
+#: templates/parts/booking-card.php:127
+#: templates/single-ytrip_tour.php:496
+#: templates/single-ytrip_tour.php:710
+msgid "your@email.com"
+msgstr ""
+
+#: includes/class-booking-form.php:1014
+#: templates/parts/booking-card.php:132
+#: templates/single-ytrip_tour.php:489
+#: templates/single-ytrip_tour.php:501
+#: templates/single-ytrip_tour.php:507
+#: templates/single-ytrip_tour.php:705
+#: templates/single-ytrip_tour.php:713
+#: templates/single-ytrip_tour.php:717
+msgid "optional"
+msgstr ""
+
+#: includes/class-booking-form.php:1018
+#: templates/parts/booking-card.php:136
+#: templates/single-ytrip_tour.php:502
+#: templates/single-ytrip_tour.php:714
+msgid "+1 234 567 8900"
+msgstr ""
+
+#: includes/class-booking-form.php:1024
+#: templates/parts/booking-card.php:141
+#: templates/single-ytrip_tour.php:513
+#: templates/single-ytrip_tour.php:721
+msgid "Website"
+msgstr ""
+
+#: includes/class-booking-form.php:1042
+#: includes/class-user-dashboard.php:697
+#: templates/cards/card-badge-corner.php:86
+#: templates/cards/card-horizontal.php:76
+#: templates/cards/card-modern-shadow.php:48
+#: templates/parts/booking-card.php:146
+#: templates/single-ytrip_tour.php:531
+#: templates/single-ytrip_tour.php:642
+#: templates/single-ytrip_tour.php:730
+#: templates/single/layout-1-classic.php:705
+#: templates/single/layout-2-modern.php:356
+#: templates/single/layout-3-split.php:173
+#: templates/single/layout-4-booking.php:42
+#: templates/single/layout-4-booking.php:229
+#: templates/single/layout-5-magazine.php:265
+msgid "Book Now"
+msgstr ""
+
+#: includes/class-booking-form.php:1054
+#: templates/parts/booking-card.php:157
+#: templates/single-ytrip_tour.php:567
+#: templates/single-ytrip_tour.php:745
+#: templates/single/layout-4-booking.php:90
+msgid "Free Cancellation"
+msgstr ""
+
+#: includes/class-booking-form.php:1060
+#: templates/parts/booking-card.php:163
+msgid "Secure Payment"
+msgstr ""
+
+#: includes/class-booking-form.php:1066
+#: templates/parts/booking-card.php:169
+#: templates/single-ytrip_tour.php:574
+#: templates/single-ytrip_tour.php:746
+msgid "Instant Confirmation"
+msgstr ""
+
+#. translators: %1$s and %2$s are links to Google policies
+#: includes/class-booking-form.php:1075
+#, php-format
+msgid "Protected by reCAPTCHA. %1$sPrivacy%2$s & %3$sTerms%4$s"
+msgstr ""
+
+#: includes/class-brand-system.php:141
+msgid "Ocean Adventure"
+msgstr ""
+
+#: includes/class-brand-system.php:155
+msgid "Tropical Paradise"
+msgstr ""
+
+#: includes/class-brand-system.php:169
+msgid "Desert Dunes"
+msgstr ""
+
+#: includes/class-brand-system.php:183
+msgid "Mountain Peak"
+msgstr ""
+
+#: includes/class-brand-system.php:197
+msgid "Sunset Cruise"
+msgstr ""
+
+#: includes/class-brand-system.php:211
+msgid "Arctic Expedition"
+msgstr ""
+
+#: includes/class-brand-system.php:227
+#: includes/class-design-presets.php:172
+msgid "Luxury Gold"
+msgstr ""
+
+#: includes/class-brand-system.php:241
+msgid "Royal Purple"
+msgstr ""
+
+#: includes/class-brand-system.php:255
+msgid "Platinum Elegance"
+msgstr ""
+
+#: includes/class-brand-system.php:271
+msgid "Tech Blue"
+msgstr ""
+
+#: includes/class-brand-system.php:285
+msgid "Neon Vibes"
+msgstr ""
+
+#: includes/class-brand-system.php:299
+msgid "Minimal Light"
+msgstr ""
+
+#: includes/class-brand-system.php:313
+msgid "Dark Mode Pro"
+msgstr ""
+
+#: includes/class-brand-system.php:330
+msgid "Egyptian Gold"
+msgstr ""
+
+#: includes/class-brand-system.php:344
+msgid "Asian Zen"
+msgstr ""
+
+#: includes/class-brand-system.php:358
+msgid "Safari Sunset"
+msgstr ""
+
+#: includes/class-brand-system.php:374
+msgid "Spring Bloom"
+msgstr ""
+
+#: includes/class-brand-system.php:388
+msgid "Summer Vibes"
+msgstr ""
+
+#: includes/class-brand-system.php:402
+msgid "Autumn Harvest"
+msgstr ""
+
+#: includes/class-brand-system.php:416
+msgid "Winter Frost"
+msgstr ""
+
+#: includes/class-demo-importer.php:635
+#: includes/class-demo-importer.php:1276
+#: includes/class-performance-engine.php:924
+#: includes/class-security-engine.php:720
+msgid "Unauthorized"
+msgstr ""
+
+#: includes/class-demo-importer.php:649
+msgid "Demo content imported successfully!"
+msgstr ""
+
+#. translators: %s: destination name
+#. translators: %s: category name
+#. translators: %s: tour title
+#: includes/class-demo-importer.php:677
+#: includes/class-demo-importer.php:733
+#: includes/class-demo-importer.php:782
+#, php-format
+msgid "Updated: %s"
+msgstr ""
+
+#. translators: %s: destination name
+#: includes/class-demo-importer.php:693
+#, php-format
+msgid "Failed to create destination: %s"
+msgstr ""
+
+#. translators: %s: destination name
+#. translators: %s: category name
+#. translators: %s: tour title
+#: includes/class-demo-importer.php:702
+#: includes/class-demo-importer.php:756
+#: includes/class-demo-importer.php:814
+#, php-format
+msgid "Created: %s"
+msgstr ""
+
+#. translators: %s: category name
+#: includes/class-demo-importer.php:748
+#, php-format
+msgid "Failed to create category: %s"
+msgstr ""
+
+#. translators: %s: tour title
+#: includes/class-demo-importer.php:806
+#, php-format
+msgid "Failed to create tour: %s"
+msgstr ""
+
+#: includes/class-demo-importer.php:936
+msgid "What should I bring?"
+msgstr ""
+
+#: includes/class-demo-importer.php:937
+msgid "Comfortable shoes, sunscreen, hat, and a refillable water bottle. For desert or diving tours we will send a specific list."
+msgstr ""
+
+#: includes/class-demo-importer.php:940
+msgid "Is pickup included?"
+msgstr ""
+
+#: includes/class-demo-importer.php:941
+msgid "Yes. We offer hotel pickup and drop-off within the tour area. Details are in the meeting point section."
+msgstr ""
+
+#: includes/class-demo-importer.php:944
+msgid "What is your cancellation policy?"
+msgstr ""
+
+#: includes/class-demo-importer.php:945
+msgid "Free cancellation up to 24 hours before the start time. Later cancellations may incur a fee as per our policy."
+msgstr ""
+
+#: includes/class-demo-importer.php:954
+msgid "Comfortable walking shoes, sunscreen, hat, sunglasses, refillable water bottle, camera. For water activities: swimwear and towel."
+msgstr ""
+
+#: includes/class-demo-importer.php:955
+msgid "Please confirm your pickup location and time the day before. Some sites have dress codes (e.g. shoulders and knees covered). Bring local currency for tips and small purchases."
+msgstr ""
+
+#: includes/class-demo-importer.php:956
+msgid "Free cancellation up to 24 hours before the experience start time for a full refund. No refund for no-shows or cancellations within 24 hours."
+msgstr ""
+
+#: includes/class-demo-importer.php:960
+msgid "Group size"
+msgstr ""
+
+#: includes/class-demo-importer.php:971
+msgid "Same as meeting point (or as specified in itinerary)"
+msgstr ""
+
+#: includes/class-demo-importer.php:1001
+#, php-format
+msgid "Day 1: %s"
+msgstr ""
+
+#: includes/class-demo-importer.php:1001
+msgid "Day 1: Main program"
+msgstr ""
+
+#: includes/class-demo-importer.php:1002
+msgid "Full program as described in the tour overview. Your guide will meet you at the meeting point and take you through the experience."
+msgstr ""
+
+#: includes/class-demo-importer.php:1012
+msgid "Meet at meeting point"
+msgstr ""
+
+#: includes/class-demo-importer.php:1013
+msgid "Main activities / sightseeing"
+msgstr ""
+
+#: includes/class-demo-importer.php:1020
+msgid "Day 2: Continuation"
+msgstr ""
+
+#: includes/class-demo-importer.php:1021
+msgid "Second day of the program. Details will be confirmed with your guide. Meals and accommodation as per itinerary."
+msgstr ""
+
+#: includes/class-demo-importer.php:1024
+msgid "Included (as per tour type)"
+msgstr ""
+
+#: includes/class-demo-importer.php:1182
+#: templates/homepage/testimonials.php:13
+msgid "What Our Travelers Say"
+msgstr ""
+
+#. translators: %d: number of testimonials
+#: includes/class-demo-importer.php:1188
+#, php-format
+msgid "%d testimonial imported"
+msgid_plural "%d testimonials imported"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-demo-importer.php:1220
+msgid "Settings imported successfully"
+msgstr ""
+
+#: includes/class-demo-importer.php:1282
+msgid "Demo content removed successfully!"
+msgstr ""
+
+#: includes/class-design-presets.php:65
+msgid "Modern Minimal"
+msgstr ""
+
+#: includes/class-design-presets.php:66
+msgid "Clean, whitespace-heavy design perfect for corporate sites"
+msgstr ""
+
+#: includes/class-design-presets.php:119
+msgid "Bold Travel"
+msgstr ""
+
+#: includes/class-design-presets.php:120
+msgid "Vibrant, high-contrast design for adventure brands"
+msgstr ""
+
+#: includes/class-design-presets.php:173
+msgid "Elegant dark theme for premium travel experiences"
+msgstr ""
+
+#: includes/class-design-presets.php:244
+msgid "Clean Corporate"
+msgstr ""
+
+#: includes/class-design-presets.php:245
+msgid "Professional design for business travel agencies"
+msgstr ""
+
+#: includes/class-design-presets.php:379
+msgid "Custom Preset"
+msgstr ""
+
+#: includes/class-design-presets.php:380
+msgid "Exported custom preset"
+msgstr ""
+
+#: includes/class-design-presets.php:439
+msgid "Invalid JSON format"
+msgstr ""
+
+#: includes/class-design-presets.php:444
+msgid "Preset must contain colors or tokens"
+msgstr ""
+
+#: includes/class-design-presets.php:491
+msgid "Failed to save preset"
+msgstr ""
+
+#: includes/class-design-presets.php:540
+#: includes/class-design-presets.php:568
+#: includes/class-design-presets.php:591
+#: includes/class-ical-sync.php:359
+msgid "Permission denied"
+msgstr ""
+
+#: includes/class-design-presets.php:546
+msgid "Invalid preset ID"
+msgstr ""
+
+#: includes/class-design-presets.php:551
+msgid "Preset applied successfully!"
+msgstr ""
+
+#: includes/class-design-presets.php:556
+msgid "Failed to apply preset"
+msgstr ""
+
+#: includes/class-design-presets.php:597
+msgid "No preset data provided"
+msgstr ""
+
+#: includes/class-design-presets.php:606
+msgid "Preset imported successfully!"
+msgstr ""
+
+#: includes/class-design-tokens.php:666
+msgid "Top Left"
+msgstr ""
+
+#: includes/class-design-tokens.php:667
+msgid "Top Right"
+msgstr ""
+
+#: includes/class-design-tokens.php:668
+msgid "Bottom Left"
+msgstr ""
+
+#: includes/class-design-tokens.php:669
+msgid "Bottom Right"
+msgstr ""
+
+#: includes/class-design-tokens.php:670
+msgid "Center Overlay"
+msgstr ""
+
+#: includes/class-design-tokens.php:681
+msgid "Pill"
+msgstr ""
+
+#: includes/class-design-tokens.php:682
+msgid "Square"
+msgstr ""
+
+#: includes/class-design-tokens.php:683
+msgid "Ribbon"
+msgstr ""
+
+#: includes/class-design-tokens.php:684
+msgid "Bubble"
+msgstr ""
+
+#: includes/class-design-tokens.php:695
+msgid "$99"
+msgstr ""
+
+#: includes/class-design-tokens.php:696
+msgid "From $99"
+msgstr ""
+
+#: includes/class-design-tokens.php:697
+msgid "$99/person"
+msgstr ""
+
+#: includes/class-design-tokens.php:698
+msgid "Starting at $99"
+msgstr ""
+
+#: includes/class-design-tokens.php:709
+msgid "Ease"
+msgstr ""
+
+#: includes/class-design-tokens.php:710
+msgid "Ease In"
+msgstr ""
+
+#: includes/class-design-tokens.php:711
+msgid "Ease Out"
+msgstr ""
+
+#: includes/class-design-tokens.php:712
+msgid "Ease In Out"
+msgstr ""
+
+#: includes/class-design-tokens.php:713
+msgid "Linear"
+msgstr ""
+
+#: includes/class-design-tokens.php:714
+msgid "Custom Cubic Bezier"
+msgstr ""
+
+#: includes/class-helper.php:218
+#: includes/class-pdf-generator.php:197
+#: includes/class-tour-display.php:791
+#: templates/cards/card-list-view.php:35
+#: templates/cards/card-list-view.php:48
+#: templates/single-ytrip_tour.php:361
+#: templates/single-ytrip_tour.php:769
+#: templates/single-ytrip_tour.php:1075
+#: templates/single/layout-1-classic.php:29
+#, php-format
+msgid "%d Day"
+msgid_plural "%d Days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-helper.php:221
+#: includes/class-pdf-generator.php:199
+#: includes/class-tour-display.php:794
+#: templates/cards/card-list-view.php:37
+#: templates/single-ytrip_tour.php:365
+#: templates/single-ytrip_tour.php:770
+#: templates/single-ytrip_tour.php:1077
+#: templates/single/layout-1-classic.php:32
+#, php-format
+msgid "%d Night"
+msgid_plural "%d Nights"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-helper.php:226
+#: includes/class-tour-display.php:800
+#: templates/cards/card-list-view.php:40
+#: templates/cards/card-list-view.php:50
+#: templates/single-ytrip_tour.php:368
+#: templates/single-ytrip_tour.php:771
+#: templates/single-ytrip_tour.php:1080
+#: templates/single/layout-1-classic.php:36
+#, php-format
+msgid "%d Hour"
+msgid_plural "%d Hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-ical-sync.php:137
+msgid "BLOCKED: "
+msgstr ""
+
+#: includes/class-ical-sync.php:138
+msgid "This date is not available for booking."
+msgstr ""
+
+#: includes/class-ical-sync.php:149
+msgid "BOOKED: "
+msgstr ""
+
+#: includes/class-ical-sync.php:150
+#, php-format
+msgid "Order #%d - %d persons"
+msgstr ""
+
+#: includes/class-ical-sync.php:264
+msgid "No dates found in feed"
+msgstr ""
+
+#: includes/class-ical-sync.php:366
+msgid "Missing parameters"
+msgstr ""
+
+#: includes/class-map-view.php:309
+#: includes/class-wishlist.php:659
+#: templates/single-ytrip_tour.php:653
+msgid "Close"
+msgstr ""
+
+#: includes/class-map-view.php:444
+#: includes/class-map-view.php:506
+#: includes/class-tour-display.php:576
+#: includes/class-ytrip-widgets.php:290
+#: templates/cards/card-compact-grid.php:39
+#: templates/cards/card-list-view.php:142
+#: templates/parts/tour-card.php:115
+msgid "View Details"
+msgstr ""
+
+#: includes/class-map-view.php:446
+#: includes/class-map-view.php:508
+msgid "No tours found in this area."
+msgstr ""
+
+#: includes/class-map-view.php:527
+msgid "Map View"
+msgstr ""
+
+#: includes/class-pdf-generator.php:210
+#: templates/single-ytrip_tour.php:784
+#: templates/single-ytrip_tour.php:1104
+#: templates/single/layout-1-classic.php:297
+msgid "Difficulty"
+msgstr ""
+
+#: includes/class-pdf-generator.php:218
+msgid "persons"
+msgstr ""
+
+#: includes/class-pdf-generator.php:221
+msgid "Age"
+msgstr ""
+
+#: includes/class-pdf-generator.php:225
+msgid "years"
+msgstr ""
+
+#: includes/class-pdf-generator.php:235
+#: templates/single/layout-1-classic.php:341
+#: templates/single/layout-2-modern.php:264
+#: templates/single/layout-3-split.php:119
+msgid "Overview"
+msgstr ""
+
+#: includes/class-pdf-generator.php:245
+msgid "Daily Itinerary"
+msgstr ""
+
+#: includes/class-pdf-generator.php:249
+#: templates/single/layout-1-classic.php:464
+#: templates/single/layout-4-booking.php:146
+#: templates/single/layout-5-magazine.php:187
+#, php-format
+msgid "Day %d"
+msgstr ""
+
+#: includes/class-pdf-generator.php:288
+#: templates/single-ytrip_tour.php:975
+msgid "What's Not Included"
+msgstr ""
+
+#: includes/class-pdf-generator.php:303
+msgid "Generated on"
+msgstr ""
+
+#: includes/class-pdf-generator.php:343
+#: includes/class-pricing-engine.php:314
+msgid "Invalid tour ID"
+msgstr ""
+
+#: includes/class-pdf-generator.php:348
+#: includes/class-rest-api.php:192
+#: includes/class-rest-api.php:208
+#: includes/class-rest-api.php:231
+#: includes/class-rest-api.php:251
+msgid "Tour not found"
+msgstr ""
+
+#: includes/class-pdf-generator.php:388
+msgid "Download Itinerary (PDF)"
+msgstr ""
+
+#: includes/class-performance-engine.php:933
+msgid "Cache cleared successfully"
+msgstr ""
+
+#: includes/class-performance-engine.php:954
+msgid "Clear YTrip Cache"
+msgstr ""
+
+#: includes/class-post-types.php:65
+msgid "Edit Tour"
+msgstr ""
+
+#: includes/class-post-types.php:66
+msgid "New Tour"
+msgstr ""
+
+#: includes/class-post-types.php:67
+#: includes/class-tour-display.php:687
+#: includes/class-user-dashboard.php:511
+#: templates/cards/card-split-content.php:69
+msgid "View Tour"
+msgstr ""
+
+#: includes/class-post-types.php:68
+msgid "Search Tours"
+msgstr ""
+
+#: includes/class-post-types.php:69
+msgid "No tours found"
+msgstr ""
+
+#: includes/class-post-types.php:70
+msgid "No tours found in trash"
+msgstr ""
+
+#: includes/class-pricing-engine.php:194
+msgid "Child"
+msgstr ""
+
+#: includes/class-pricing-engine.php:202
+msgid "Infant"
+msgstr ""
+
+#. translators: %s: Number of reviews
+#: includes/class-rating-display.php:112
+#: templates/parts/reviews-list.php:39
+#, php-format
+msgid "%s review"
+msgid_plural "%s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-rating-display.php:139
+#: templates/cards/card-badge-corner.php:73
+#: templates/parts/reviews-list.php:152
+msgid "Verified"
+msgstr ""
+
+#: includes/class-rating-display.php:147
+msgid "No reviews yet. Be the first to review!"
+msgstr ""
+
+#: includes/class-rating-display.php:161
+#: templates/parts/reviews-list.php:108
+msgid "Write a Review"
+msgstr ""
+
+#: includes/class-rating-display.php:167
+msgid "Your Rating"
+msgstr ""
+
+#: includes/class-rating-display.php:183
+#: templates/parts/review-form.php:80
+msgid "Review Title"
+msgstr ""
+
+#: includes/class-rating-display.php:184
+#: templates/parts/review-form.php:85
+msgid "Summarize your experience"
+msgstr ""
+
+#: includes/class-rating-display.php:188
+#: templates/parts/review-form.php:91
+msgid "Your Review"
+msgstr ""
+
+#: includes/class-rating-display.php:189
+msgid "Tell us about your experience..."
+msgstr ""
+
+#: includes/class-rating-display.php:193
+#: templates/parts/review-form.php:127
+msgid "Submit Review"
+msgstr ""
+
+#: includes/class-related-tours.php:356
+#: includes/class-related-tours.php:375
+msgid "You May Also Like"
+msgstr ""
+
+#: includes/class-related-tours.php:383
+msgid "Discover more"
+msgstr ""
+
+#: includes/class-rest-api.php:259
+msgid "WooCommerce is required for bookings"
+msgstr ""
+
+#: includes/class-rest-api.php:265
+msgid "No linked product for this tour"
+msgstr ""
+
+#: includes/class-rest-api.php:314
+msgid "WooCommerce is required"
+msgstr ""
+
+#: includes/class-rest-api.php:319
+msgid "Booking not found"
+msgstr ""
+
+#: includes/class-rest-api.php:473
+msgid "Authentication required"
+msgstr ""
+
+#: includes/class-reviews.php:176
+msgid "Missing required fields."
+msgstr ""
+
+#: includes/class-reviews.php:190
+msgid "You have submitted too many reviews today. Please try again tomorrow."
+msgstr ""
+
+#: includes/class-reviews.php:196
+msgid "Rating must be between 1 and 5."
+msgstr ""
+
+#: includes/class-reviews.php:221
+msgid "Failed to save review."
+msgstr ""
+
+#: includes/class-reviews.php:317
+msgid "Anonymous"
+msgstr ""
+
+#: includes/class-reviews.php:495
+msgid "You must be logged in to write a review."
+msgstr ""
+
+#: includes/class-reviews.php:509
+msgid "You have already reviewed this tour."
+msgstr ""
+
+#: includes/class-reviews.php:519
+msgid "You must book this tour before you can review it."
+msgstr ""
+
+#: includes/class-reviews.php:628
+#: includes/class-user-dashboard.php:974
+msgid "You must be logged in."
+msgstr ""
+
+#: includes/class-reviews.php:656
+msgid "Thank you! Your review has been submitted and is pending approval."
+msgstr ""
+
+#: includes/class-reviews.php:675
+msgid "Invalid vote."
+msgstr ""
+
+#: includes/class-reviews.php:683
+msgid "You have already voted on this review."
+msgstr ""
+
+#: includes/class-reviews.php:698
+msgid "Thank you for your feedback!"
+msgstr ""
+
+#: includes/class-reviews.php:701
+msgid "Failed to record vote."
+msgstr ""
+
+#: includes/class-reviews.php:715
+msgid "Permission denied."
+msgstr ""
+
+#: includes/class-reviews.php:728
+msgid "Review deleted."
+msgstr ""
+
+#: includes/class-reviews.php:730
+msgid "Failed to delete review."
+msgstr ""
+
+#: includes/class-reviews.php:732
+msgid "Invalid action."
+msgstr ""
+
+#. translators: %s: Status
+#: includes/class-reviews.php:739
+#, php-format
+msgid "Review %s."
+msgstr ""
+
+#: includes/class-reviews.php:745
+msgid "Failed to update review."
+msgstr ""
+
+#. translators: %s: Tour title
+#: includes/class-reviews.php:846
+#, php-format
+msgid "[YTrip] New review submitted for %s"
+msgstr ""
+
+#. translators: 1: User name, 2: Tour title, 3: Rating, 4: Admin URL
+#: includes/class-reviews.php:852
+#, php-format
+msgid ""
+"A new review has been submitted:\n"
+"\n"
+"User: %1$s\n"
+"Tour: %2$s\n"
+"Rating: %3$s/5\n"
+"\n"
+"Review and moderate: %4$s"
+msgstr ""
+
+#: includes/class-reviews.php:966
+msgid "Review submitted successfully."
+msgstr ""
+
+#: includes/class-schema-seo.php:32
+msgid "Tours & Travel"
+msgstr ""
+
+#. translators: %s: site name
+#: includes/class-schema-seo.php:54
+#, php-format
+msgid "Discover tours and travel experiences with %s."
+msgstr ""
+
+#: includes/class-security-engine.php:231
+msgid "Security token missing. Please refresh and try again."
+msgstr ""
+
+#: includes/class-security-engine.php:275
+msgid "Too many requests. Please wait and try again."
+msgstr ""
+
+#: includes/class-security-engine.php:711
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: includes/class-security-engine.php:767
+msgid "File size exceeds 5MB limit."
+msgstr ""
+
+#: includes/class-security-engine.php:776
+msgid "Invalid file type. Only images are allowed."
+msgstr ""
+
+#: includes/class-security-engine.php:785
+msgid "Invalid file extension."
+msgstr ""
+
+#: includes/class-security-engine.php:791
+msgid "Invalid image file."
+msgstr ""
+
+#: includes/class-security-engine.php:810
+msgid "File exceeds server size limit."
+msgstr ""
+
+#: includes/class-security-engine.php:811
+msgid "File exceeds form size limit."
+msgstr ""
+
+#: includes/class-security-engine.php:812
+msgid "File was only partially uploaded."
+msgstr ""
+
+#: includes/class-security-engine.php:813
+msgid "No file was uploaded."
+msgstr ""
+
+#: includes/class-security-engine.php:814
+msgid "Missing temporary folder."
+msgstr ""
+
+#: includes/class-security-engine.php:815
+msgid "Failed to write file to disk."
+msgstr ""
+
+#: includes/class-security-engine.php:816
+msgid "Upload stopped by extension."
+msgstr ""
+
+#: includes/class-security-engine.php:819
+msgid "Unknown upload error."
+msgstr ""
+
+#: includes/class-security-engine.php:944
+msgid "Security violation detected."
+msgstr ""
+
+#: includes/class-security-engine.php:945
+msgid "Security Error"
+msgstr ""
+
+#: includes/class-settings.php:141
+msgid "Map Settings"
+msgstr ""
+
+#: includes/class-settings.php:148
+msgid "Map Provider"
+msgstr ""
+
+#: includes/class-settings.php:156
+msgid "Google Maps API Key"
+msgstr ""
+
+#: includes/class-settings.php:164
+msgid "Default Map Location"
+msgstr ""
+
+#: includes/class-settings.php:173
+msgid "Booking Settings"
+msgstr ""
+
+#: includes/class-settings.php:180
+msgid "Booking Options"
+msgstr ""
+
+#: includes/class-settings.php:188
+msgid "Spam Protection"
+msgstr ""
+
+#: includes/class-settings.php:204
+msgid "Performance Options"
+msgstr ""
+
+#: includes/class-settings.php:315
+msgid "Settings form unavailable. Please refresh the page."
+msgstr ""
+
+#: includes/class-settings.php:322
+msgid "Maps"
+msgstr ""
+
+#: includes/class-settings.php:331
+msgid "Save Settings"
+msgstr ""
+
+#: includes/class-settings.php:360
+msgid "Configure general plugin settings."
+msgstr ""
+
+#: includes/class-settings.php:369
+msgid "Configure map display settings. Choose between OpenStreetMap (free) or Google Maps."
+msgstr ""
+
+#: includes/class-settings.php:378
+msgid "Configure booking behavior and restrictions."
+msgstr ""
+
+#: includes/class-settings.php:387
+msgid "Optimize plugin performance."
+msgstr ""
+
+#: includes/class-settings.php:417
+msgid "Before amount ($100)"
+msgstr ""
+
+#: includes/class-settings.php:420
+msgid "After amount (100$)"
+msgstr ""
+
+#: includes/class-settings.php:442
+msgid "OpenStreetMap (Free)"
+msgstr ""
+
+#: includes/class-settings.php:450
+msgid "Google Maps (Requires API Key)"
+msgstr ""
+
+#: includes/class-settings.php:453
+msgid "OpenStreetMap is free with no usage limits. Google Maps offers more features but requires billing."
+msgstr ""
+
+#: includes/class-settings.php:479
+msgid "Enter your Google Maps API key"
+msgstr ""
+
+#. translators: %s: Google Cloud Console URL
+#: includes/class-settings.php:484
+#, php-format
+msgid "Get your API key from the %s"
+msgstr ""
+
+#: includes/class-settings.php:503
+msgid "Latitude"
+msgstr ""
+
+#: includes/class-settings.php:510
+msgid "Longitude"
+msgstr ""
+
+#: includes/class-settings.php:517
+msgid "Zoom"
+msgstr ""
+
+#: includes/class-settings.php:525
+msgid "Default center point when no tours have coordinates."
+msgstr ""
+
+#: includes/class-settings.php:539
+msgid "Min advance booking"
+msgstr ""
+
+#: includes/class-settings.php:544
+#: includes/class-settings.php:554
+msgid "days"
+msgstr ""
+
+#: includes/class-settings.php:549
+msgid "Max advance booking"
+msgstr ""
+
+#: includes/class-settings.php:563
+msgid "Require login to book"
+msgstr ""
+
+#: includes/class-settings.php:570
+msgid "Enable coupon codes"
+msgstr ""
+
+#. translators: %s is a link to Google reCAPTCHA
+#: includes/class-settings.php:588
+#, php-format
+msgid "Get your keys from %s (use reCAPTCHA v3)"
+msgstr ""
+
+#: includes/class-settings.php:595
+msgid "Site Key"
+msgstr ""
+
+#: includes/class-settings.php:605
+msgid "Secret Key"
+msgstr ""
+
+#: includes/class-settings.php:614
+msgid "Leave empty to use honeypot-only spam protection."
+msgstr ""
+
+#: includes/class-settings.php:635
+msgid "Production Mode (Minified Assets)"
+msgstr ""
+
+#: includes/class-settings.php:640
+msgid "Build assets first to enable production mode."
+msgstr ""
+
+#: includes/class-settings.php:646
+#: includes/class-settings.php:701
+msgid "Build Optimized Assets"
+msgstr ""
+
+#: includes/class-settings.php:650
+msgid "Combines and minifies CSS/JS files for faster loading."
+msgstr ""
+
+#: includes/class-settings.php:654
+msgid "Image Optimization"
+msgstr ""
+
+#: includes/class-settings.php:661
+msgid "Lazy load images"
+msgstr ""
+
+#: includes/class-settings.php:668
+msgid "Enable WebP conversion"
+msgstr ""
+
+#: includes/class-settings.php:672
+msgid "Caching"
+msgstr ""
+
+#: includes/class-settings.php:675
+msgid "Cache duration"
+msgstr ""
+
+#: includes/class-settings.php:681
+msgid "seconds"
+msgstr ""
+
+#: includes/class-settings.php:684
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/class-settings.php:694
+msgid "Building..."
+msgstr ""
+
+#: includes/class-settings.php:715
+msgid "Cache cleared!"
+msgstr ""
+
+#: includes/class-taxonomies.php:61
+msgid "Search Destinations"
+msgstr ""
+
+#: includes/class-taxonomies.php:62
+#: templates/parts/archive-filters-sidebar.php:115
+msgid "All Destinations"
+msgstr ""
+
+#: includes/class-taxonomies.php:63
+msgid "Parent Destination"
+msgstr ""
+
+#: includes/class-taxonomies.php:64
+msgid "Edit Destination"
+msgstr ""
+
+#: includes/class-taxonomies.php:65
+msgid "Update Destination"
+msgstr ""
+
+#: includes/class-taxonomies.php:66
+msgid "Add New Destination"
+msgstr ""
+
+#: includes/class-taxonomies.php:84
+msgid "Tour Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:85
+msgid "Search Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:86
+#: templates/parts/archive-filters-sidebar.php:138
+msgid "All Categories"
+msgstr ""
+
+#: includes/class-taxonomies.php:87
+msgid "Parent Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:88
+msgid "Edit Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:89
+msgid "Update Category"
+msgstr ""
+
+#: includes/class-taxonomies.php:90
+msgid "Add New Category"
+msgstr ""
+
+#: includes/class-tickets.php:242
+#: includes/class-tickets.php:279
+msgid "Invalid ticket code"
+msgstr ""
+
+#: includes/class-tickets.php:286
+#, php-format
+msgid "Already checked in at %s"
+msgstr ""
+
+#: includes/class-tickets.php:290
+msgid "This ticket has been cancelled"
+msgstr ""
+
+#: includes/class-tickets.php:300
+#, php-format
+msgid "Guest checked in via QR ticket at %s"
+msgstr ""
+
+#: includes/class-tickets.php:304
+msgid "Check-in successful"
+msgstr ""
+
+#: includes/class-tickets.php:326
+msgid "Check-in permission required"
+msgstr ""
+
+#: includes/class-tickets.php:380
+msgid "Invalid ticket"
+msgstr ""
+
+#: includes/class-tickets.php:408
+msgid "Your Ticket"
+msgstr ""
+
+#: includes/class-tickets.php:499
+msgid "Tour Booking"
+msgstr ""
+
+#: includes/class-tickets.php:517
+#: templates/homepage/search-form.php:162
+msgid "Guest"
+msgstr ""
+
+#: includes/class-tickets.php:521
+msgid "Persons"
+msgstr ""
+
+#: includes/class-tickets.php:530
+msgid "Print Ticket"
+msgstr ""
+
+#: includes/class-tickets.php:550
+msgid "Ticket Error"
+msgstr ""
+
+#: includes/class-tickets.php:572
+msgid "Error"
+msgstr ""
+
+#: includes/class-tickets.php:599
+msgid "Your E-Ticket"
+msgstr ""
+
+#: includes/class-tickets.php:608
+msgid "View Full Ticket"
+msgstr ""
+
+#: includes/class-tour-display.php:275
+#: templates/archive-ytrip_tour.php:241
+msgid "Previous"
+msgstr ""
+
+#: includes/class-tour-display.php:278
+#: templates/archive-ytrip_tour.php:242
+msgid "Next"
+msgstr ""
+
+#: includes/class-tour-display.php:402
+#: templates/cards/card-badge-corner.php:40
+#: templates/cards/card-classic-white.php:39
+#: templates/cards/card-hover-zoom.php:40
+#: templates/cards/card-list-view.php:78
+#: templates/cards/card-split-content.php:39
+#: templates/parts/tour-card.php:61
+msgid "Featured"
+msgstr ""
+
+#: includes/class-tour-display.php:407
+#: templates/cards/card-badge-corner.php:47
+#: templates/cards/card-list-view.php:82
+msgid "Sale"
+msgstr ""
+
+#: includes/class-tour-display.php:418
+#: templates/cards/card-badge-corner.php:92
+#: templates/cards/card-classic-white.php:78
+#: templates/cards/card-compact-grid.php:63
+#: templates/cards/card-glassmorphism.php:73
+#: templates/cards/card-hover-zoom.php:84
+#: templates/cards/card-list-view.php:147
+#: templates/cards/card-modern-shadow.php:56
+#: templates/cards/card-overlay-gradient.php:60
+#: templates/parts/tour-card.php:64
+msgid "Add to wishlist"
+msgstr ""
+
+#. translators: group size range or single number
+#: includes/class-tour-display.php:503
+#, php-format
+msgid "%s People"
+msgstr ""
+
+#: includes/class-tour-display.php:542
+#, php-format
+msgid "Rating: %s out of 5"
+msgstr ""
+
+#: includes/class-tour-display.php:709
+msgid "No Tours Found"
+msgstr ""
+
+#: includes/class-tour-display.php:710
+msgid "Try adjusting your filters or check back later."
+msgstr ""
+
+#: includes/class-tour-display.php:735
+#: templates/archive-ytrip_tour.php:251
+msgid "Load More Tours"
+msgstr ""
+
+#: includes/class-tour-display.php:749
+msgid "Tour pagination"
+msgstr ""
+
+#. translators: 1: min, 2: max
+#: includes/class-tour-display.php:839
+#, php-format
+msgid "%1$d-%2$d People"
+msgstr ""
+
+#: includes/class-user-dashboard.php:70
+msgid "My Bookings"
+msgstr ""
+
+#: includes/class-user-dashboard.php:75
+#: includes/class-user-dashboard.php:233
+#: includes/class-user-dashboard.php:531
+msgid "Upcoming Tours"
+msgstr ""
+
+#: includes/class-user-dashboard.php:80
+#: includes/class-user-dashboard.php:241
+msgid "Wishlist"
+msgstr ""
+
+#: includes/class-user-dashboard.php:85
+#: includes/class-user-dashboard.php:718
+msgid "My Reviews"
+msgstr ""
+
+#: includes/class-user-dashboard.php:95
+msgid "Profile"
+msgstr ""
+
+#. translators: %s: Date user registered
+#: includes/class-user-dashboard.php:157
+#, php-format
+msgid "Member since %s"
+msgstr ""
+
+#: includes/class-user-dashboard.php:207
+msgid "Please Log In"
+msgstr ""
+
+#: includes/class-user-dashboard.php:208
+msgid "You need to be logged in to view your dashboard."
+msgstr ""
+
+#: includes/class-user-dashboard.php:210
+msgid "Log In"
+msgstr ""
+
+#: includes/class-user-dashboard.php:326
+msgid "All Bookings"
+msgstr ""
+
+#: includes/class-user-dashboard.php:331
+msgid "You haven't made any bookings yet."
+msgstr ""
+
+#: includes/class-user-dashboard.php:333
+msgid "Browse Tours"
+msgstr ""
+
+#: includes/class-user-dashboard.php:429
+msgid "Completed"
+msgstr ""
+
+#: includes/class-user-dashboard.php:430
+msgid "Confirmed"
+msgstr ""
+
+#: includes/class-user-dashboard.php:431
+msgid "On Hold"
+msgstr ""
+
+#: includes/class-user-dashboard.php:433
+msgid "Cancelled"
+msgstr ""
+
+#: includes/class-user-dashboard.php:434
+msgid "Refunded"
+msgstr ""
+
+#: includes/class-user-dashboard.php:447
+msgid "Upcoming"
+msgstr ""
+
+#. translators: %d: Number of guests
+#: includes/class-user-dashboard.php:479
+#: templates/parts/archive-filters-sidebar.php:209
+#: templates/parts/archive-filters-sidebar.php:210
+#: templates/parts/archive-filters-sidebar.php:211
+#, php-format
+msgid "%d Guest"
+msgid_plural "%d Guests"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-user-dashboard.php:506
+msgid "Ticket"
+msgstr ""
+
+#: includes/class-user-dashboard.php:536
+msgid "No upcoming tours at the moment."
+msgstr ""
+
+#: includes/class-user-dashboard.php:538
+msgid "Book a Tour"
+msgstr ""
+
+#: includes/class-user-dashboard.php:564
+msgid "days left"
+msgstr ""
+
+#: includes/class-user-dashboard.php:589
+msgid "Download Ticket"
+msgstr ""
+
+#: includes/class-user-dashboard.php:610
+msgid "My Wishlist"
+msgstr ""
+
+#: includes/class-user-dashboard.php:615
+msgid "Your wishlist is empty."
+msgstr ""
+
+#: includes/class-user-dashboard.php:617
+msgid "Explore Tours"
+msgstr ""
+
+#: includes/class-user-dashboard.php:664
+msgid "Remove from wishlist"
+msgstr ""
+
+#. translators: %s: Price
+#: includes/class-user-dashboard.php:690
+#, php-format
+msgid "From %s"
+msgstr ""
+
+#: includes/class-user-dashboard.php:723
+msgid "You haven't written any reviews yet."
+msgstr ""
+
+#: includes/class-user-dashboard.php:771
+msgid "Published"
+msgstr ""
+
+#: includes/class-user-dashboard.php:826
+msgid "My Tickets"
+msgstr ""
+
+#: includes/class-user-dashboard.php:831
+msgid "No tickets available yet."
+msgstr ""
+
+#: includes/class-user-dashboard.php:864
+msgid "Ticket Code"
+msgstr ""
+
+#: includes/class-user-dashboard.php:870
+msgid "Past"
+msgstr ""
+
+#: includes/class-user-dashboard.php:874
+msgid "Download"
+msgstr ""
+
+#: includes/class-user-dashboard.php:895
+msgid "Profile Settings"
+msgstr ""
+
+#: includes/class-user-dashboard.php:912
+msgid "Display Name"
+msgstr ""
+
+#: includes/class-user-dashboard.php:917
+msgid "Email Address"
+msgstr ""
+
+#: includes/class-user-dashboard.php:922
+msgid "Phone Number"
+msgstr ""
+
+#: includes/class-user-dashboard.php:928
+msgid "Change Password"
+msgstr ""
+
+#: includes/class-user-dashboard.php:929
+msgid "Leave blank to keep your current password."
+msgstr ""
+
+#: includes/class-user-dashboard.php:932
+msgid "Current Password"
+msgstr ""
+
+#: includes/class-user-dashboard.php:938
+msgid "New Password"
+msgstr ""
+
+#: includes/class-user-dashboard.php:942
+msgid "Confirm New Password"
+msgstr ""
+
+#: includes/class-user-dashboard.php:949
+msgid "Save Changes"
+msgstr ""
+
+#: includes/class-user-dashboard.php:993
+msgid "This email is already in use."
+msgstr ""
+
+#: includes/class-user-dashboard.php:1006
+msgid "Current password is incorrect."
+msgstr ""
+
+#: includes/class-user-dashboard.php:1011
+msgid "New passwords do not match."
+msgstr ""
+
+#: includes/class-user-dashboard.php:1016
+msgid "Password must be at least 8 characters."
+msgstr ""
+
+#: includes/class-user-dashboard.php:1034
+msgid "Profile updated successfully."
+msgstr ""
+
+#: includes/class-user-dashboard.php:1130
+msgid "Remove from wishlist?"
+msgstr ""
+
+#: includes/class-webhooks.php:106
+#: includes/class-webhooks.php:107
+#: includes/class-webhooks.php:586
+msgid "Webhooks"
+msgstr ""
+
+#: includes/class-webhooks.php:553
+msgid "Webhook delivered successfully!"
+msgstr ""
+
+#: includes/class-webhooks.php:554
+msgid "Failed to deliver webhook."
+msgstr ""
+
+#: includes/class-webhooks.php:587
+msgid "Webhooks allow external applications to receive real-time notifications when events occur."
+msgstr ""
+
+#: includes/class-webhooks.php:591
+msgid "Registered Webhooks"
+msgstr ""
+
+#: includes/class-webhooks.php:594
+msgid "No webhooks registered yet."
+msgstr ""
+
+#: includes/class-webhooks.php:600
+#: includes/class-webhooks.php:638
+msgid "URL"
+msgstr ""
+
+#: includes/class-webhooks.php:601
+#: includes/class-webhooks.php:642
+msgid "Events"
+msgstr ""
+
+#: includes/class-webhooks.php:630
+msgid "Add New Webhook"
+msgstr ""
+
+#: includes/class-webhooks.php:647
+msgid "All events"
+msgstr ""
+
+#: includes/class-webhooks.php:659
+msgid "Add Webhook"
+msgstr ""
+
+#: includes/class-webhooks.php:664
+msgid "Recent Deliveries"
+msgstr ""
+
+#: includes/class-webhooks.php:666
+msgid "No webhook deliveries yet."
+msgstr ""
+
+#: includes/class-webhooks.php:718
+msgid "Delete this webhook?"
+msgstr ""
+
+#: includes/class-wishlist.php:393
+#: includes/class-wishlist.php:425
+#: includes/class-wishlist.php:454
+msgid "Invalid tour."
+msgstr ""
+
+#: includes/class-wishlist.php:401
+#: includes/class-wishlist.php:463
+#: includes/class-wishlist.php:617
+msgid "Added to wishlist!"
+msgstr ""
+
+#: includes/class-wishlist.php:406
+#: includes/class-wishlist.php:552
+msgid "Failed to add to wishlist."
+msgstr ""
+
+#: includes/class-wishlist.php:433
+#: includes/class-wishlist.php:464
+#: includes/class-wishlist.php:618
+msgid "Removed from wishlist."
+msgstr ""
+
+#: includes/class-wishlist.php:438
+#: includes/class-wishlist.php:574
+msgid "Failed to remove from wishlist."
+msgstr ""
+
+#: includes/class-wishlist.php:620
+#: includes/class-wishlist.php:653
+msgid "Saved"
+msgstr ""
+
+#: includes/class-wishlist.php:621
+#: includes/class-wishlist.php:656
+#: includes/class-wishlist.php:658
+msgid "Saved tours"
+msgstr ""
+
+#: includes/class-wishlist.php:622
+#: includes/class-wishlist.php:663
+msgid "No saved tours yet."
+msgstr ""
+
+#: includes/class-wishlist.php:651
+msgid "View saved tours"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:154
+msgid "Linked Tour ID"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:157
+msgid "Enter the ID of the Tour CPT linked to this product."
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:204
+#: includes/class-woocommerce-integration.php:234
+#: includes/class-woocommerce-integration.php:307
+#: templates/parts/archive-filters-sidebar.php:21
+#: templates/parts/archive-filters-topbar.php:26
+msgid "Travel Date"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:246
+#: includes/class-woocommerce-integration.php:323
+msgid "Booking email"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:249
+#: includes/class-woocommerce-integration.php:324
+msgid "Booking phone"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:252
+#: includes/class-woocommerce-integration.php:325
+msgid "Booking notes"
+msgstr ""
+
+#: includes/class-woocommerce-integration.php:255
+#: includes/class-woocommerce-integration.php:326
+msgid "Booking name"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:312
+msgid "Number of destinations"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:320
+msgid "Display style"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:322
+msgid "List (links only)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:323
+msgid "Compact (with thumbnail)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:330
+#: includes/class-ytrip-widgets.php:372
+msgid "Show tour count"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:336
+#: includes/class-ytrip-widgets.php:378
+msgid "Order by"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:338
+#: includes/class-ytrip-widgets.php:380
+msgid "Name (A–Z)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:339
+#: includes/class-ytrip-widgets.php:381
+msgid "Name (Z–A)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:340
+#: includes/class-ytrip-widgets.php:382
+msgid "Tour count (low to high)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:341
+#: includes/class-ytrip-widgets.php:383
+msgid "Tour count (high to low)"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:364
+msgid "Number of activities"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:401
+msgid "Trips"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:406
+msgid "Sort by"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:408
+msgid "Random"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:409
+msgid "Newest"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:410
+msgid "Cheapest"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:411
+msgid "Top rated"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:412
+msgid "Most popular"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:419
+msgid "Number of trips"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:427
+msgid "Show image"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:433
+msgid "Show price"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:439
+msgid "Show rating"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:455
+msgid "YTrip: Destinations"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:457
+msgid "List tour destinations with optional count and style."
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:462
+msgid "YTrip: Activities"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:464
+msgid "List tour categories (activities) with optional count."
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:469
+msgid "YTrip: Trips"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:471
+msgid "List tours by random, new, cheapest, top rated, or most popular."
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:484
+msgid "YTrip: Tour Archive"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:485
+msgid "Widgets in this area appear on the tour archive and destination/category taxonomy pages."
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:494
+msgid "YTrip: Single Tour"
+msgstr ""
+
+#: includes/class-ytrip-widgets.php:495
+msgid "Widgets in this area appear on single tour (trip) pages in the sidebar."
+msgstr ""
+
+#: includes/dark-mode-toggle.php:36
+#: includes/dark-mode-toggle.php:47
+#: includes/dark-mode-toggle.php:73
+msgid "Toggle dark mode"
+msgstr ""
+
+#: includes/dark-mode-toggle.php:41
+msgid "Dark Mode"
+msgstr ""
+
+#: includes/dark-mode-toggle.php:67
+msgid "Toggle Theme"
+msgstr ""
+
+#: public/class-frontend.php:289
+#: templates/homepage/featured-tours.php:66
+msgid "No tours found."
+msgstr ""
+
+#: public/class-frontend.php:437
+msgid "Please select a rating."
+msgstr ""
+
+#: public/class-frontend.php:438
+msgid "Maximum 5 photos allowed."
+msgstr ""
+
+#: public/class-frontend.php:439
+#: templates/parts/reviews-list.php:216
+msgid "Load More Reviews"
+msgstr ""
+
+#: public/class-frontend.php:440
+#: templates/parts/reviews-list.php:194
+msgid "Was this review helpful?"
+msgstr ""
+
+#: public/class-frontend.php:441
+msgid "Terrible"
+msgstr ""
+
+#: public/class-frontend.php:442
+msgid "Poor"
+msgstr ""
+
+#: public/class-frontend.php:443
+msgid "Average"
+msgstr ""
+
+#: public/class-frontend.php:444
+msgid "Good"
+msgstr ""
+
+#: public/class-frontend.php:445
+msgid "Excellent"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:81
+#: templates/parts/archive-header-minimal.php:13
+msgid "All Tours"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:82
+#: templates/parts/archive-header-minimal.php:14
+msgid "Explore our collection of unforgettable travel experiences."
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:142
+msgid "Sort by:"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:158
+msgid "Display"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:159
+msgid "Display:"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:160
+msgid "View Mode"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:161
+msgid "Grid View"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:164
+msgid "List View"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:178
+#, php-format
+msgid "%d Columns"
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:215
+msgid "No tours found. Please check back later."
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:263
+msgid "Loading more..."
+msgstr ""
+
+#: templates/archive-ytrip_tour.php:266
+msgid "All tours loaded"
+msgstr ""
+
+#: templates/cards/card-badge-corner.php:54
+msgid "Bestseller"
+msgstr ""
+
+#: templates/cards/card-badge-corner.php:76
+msgid "Trusted"
+msgstr ""
+
+#: templates/cards/card-list-view.php:140
+#: templates/single/layout-4-booking.php:79
+msgid "/ person"
+msgstr ""
+
+#: templates/homepage/blog.php:13
+msgid "Travel Tips & Stories"
+msgstr ""
+
+#: templates/homepage/blog.php:29
+msgid "Inspiration and insights from our travel experts."
+msgstr ""
+
+#: templates/homepage/blog.php:72
+msgid "Read More"
+msgstr ""
+
+#: templates/homepage/blog.php:85
+msgid "View All Posts"
+msgstr ""
+
+#: templates/homepage/blog.php:89
+msgid "No blog posts found."
+msgstr ""
+
+#: templates/homepage/categories.php:18
+msgid "Choose your travel style and find your perfect trip."
+msgstr ""
+
+#: templates/homepage/categories.php:50
+msgid "Travel style"
+msgstr ""
+
+#: templates/homepage/categories.php:95
+msgid "No categories found."
+msgstr ""
+
+#: templates/homepage/destinations.php:18
+msgid "Explore breathtaking locations around the world."
+msgstr ""
+
+#: templates/homepage/destinations.php:45
+msgid "Where to go"
+msgstr ""
+
+#: templates/homepage/destinations.php:61
+msgid "Previous destinations"
+msgstr ""
+
+#: templates/homepage/destinations.php:90
+msgid "Next destinations"
+msgstr ""
+
+#: templates/homepage/destinations.php:126
+msgid "Explore"
+msgstr ""
+
+#: templates/homepage/featured-tours.php:17
+msgid "Discover our most popular travel experiences handpicked for you."
+msgstr ""
+
+#: templates/homepage/featured-tours.php:62
+msgid "View All Tours"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:33
+msgid "Discover Your Next Adventure"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:34
+msgid "Explore the world with our premium travel experiences"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:67
+msgid "Hero slide"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:118
+msgid "Premium Travel Experience"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:122
+msgid "Explore the World"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:136
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:152
+msgid "Slide pagination"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:153
+msgid "Next slide"
+msgstr ""
+
+#: templates/homepage/hero-slider.php:154
+msgid "Previous slide"
+msgstr ""
+
+#: templates/homepage/search-form.php:21
+msgid "Where are you going?"
+msgstr ""
+
+#: templates/homepage/search-form.php:88
+msgid "No destinations yet."
+msgstr ""
+
+#: templates/homepage/search-form.php:104
+msgid "Check out"
+msgstr ""
+
+#: templates/homepage/search-form.php:107
+#: templates/parts/archive-filters-sidebar.php:64
+#: templates/parts/calendar-range.php:69
+msgid "Date range"
+msgstr ""
+
+#: templates/homepage/search-form.php:119
+#: templates/homepage/search-form.php:149
+msgid "Add date"
+msgstr ""
+
+#: templates/homepage/search-form.php:120
+#: templates/parts/calendar-range.php:25
+#: templates/parts/calendar-range.php:56
+msgid "Check-in"
+msgstr ""
+
+#: templates/homepage/search-form.php:121
+#: templates/parts/calendar-range.php:26
+#: templates/parts/calendar-range.php:60
+msgid "Check-out"
+msgstr ""
+
+#: templates/homepage/search-form.php:161
+msgid "Select guests"
+msgstr ""
+
+#: templates/homepage/search-form.php:174
+msgid "Search"
+msgstr ""
+
+#: templates/homepage/stats.php:37
+msgid "Happy Travelers"
+msgstr ""
+
+#: templates/homepage/stats.php:43
+msgid "Years Experience"
+msgstr ""
+
+#: templates/homepage/testimonials.php:45
+msgid "Real stories from real travelers around the world."
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:32
+#: templates/parts/archive-filters-topbar.php:30
+msgid "Specific Date"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:35
+#: templates/parts/archive-filters-topbar.php:31
+msgid "Date Range"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:57
+#: templates/parts/calendar-single.php:44
+msgid "Date calendar"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:68
+#: templates/parts/calendar-range.php:24
+msgid "Select start date, then end date"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:73
+#: templates/parts/calendar-range.php:70
+msgid "Select date range"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:80
+#: templates/parts/calendar-range.php:79
+msgid "Click the field above, then pick start date and end date in the calendar."
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:81
+#: templates/parts/calendar-range.php:81
+msgid "Date range calendar"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:86
+msgid "Quick select"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:89
+#: templates/parts/archive-filters-topbar.php:65
+msgid "Next 7 days"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:92
+#: templates/parts/archive-filters-topbar.php:66
+msgid "Next 30 days"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:95
+#: templates/parts/archive-filters-topbar.php:67
+msgid "Next 3 months"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:153
+msgid "Price Range"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:159
+#: templates/parts/archive-filters-topbar.php:137
+msgid "Min"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:164
+#: templates/parts/archive-filters-topbar.php:139
+msgid "Max"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:184
+#: templates/parts/archive-filters-sidebar.php:207
+#: templates/parts/archive-filters-sidebar.php:230
+#: templates/parts/archive-filters-topbar.php:120
+#: templates/parts/archive-filters-topbar.php:151
+msgid "Any"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:200
+msgid "Number of Guests"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:208
+msgid "1 Guest"
+msgid_plural "1 Guest"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/parts/archive-filters-sidebar.php:237
+msgid "& Up"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:246
+msgid "Apply Filters"
+msgstr ""
+
+#: templates/parts/archive-filters-sidebar.php:249
+msgid "Clear All"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:46
+#: templates/parts/archive-filters-topbar.php:56
+msgid "mm/dd/yyyy"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:46
+msgid "Start date"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:52
+msgid "to"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:54
+msgid "To"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:56
+msgid "End date"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:154
+msgid "Stars"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:162
+msgid "Apply"
+msgstr ""
+
+#: templates/parts/archive-filters-topbar.php:165
+msgid "Clear"
+msgstr ""
+
+#: templates/parts/booking-card.php:37
+msgid "Select dates"
+msgstr ""
+
+#: templates/parts/booking-card.php:113
+msgid "Please login to make a booking."
+msgstr ""
+
+#: templates/parts/booking-card.php:175
+msgid "Need help?"
+msgstr ""
+
+#: templates/parts/booking-card.php:180
+msgid "Contact Us"
+msgstr ""
+
+#: templates/parts/calendar-range.php:57
+msgid "Check-in date"
+msgstr ""
+
+#: templates/parts/calendar-range.php:61
+msgid "Check-out date"
+msgstr ""
+
+#: templates/parts/calendar-single.php:36
+msgid "Selected date"
+msgstr ""
+
+#: templates/parts/review-form.php:21
+msgid "Write Your Review"
+msgstr ""
+
+#: templates/parts/review-form.php:29
+msgid "Overall Rating"
+msgstr ""
+
+#: templates/parts/review-form.php:41
+msgid "Rate by Category"
+msgstr ""
+
+#: templates/parts/review-form.php:41
+msgid "(Optional)"
+msgstr ""
+
+#: templates/parts/review-form.php:45
+#: templates/parts/reviews-list.php:72
+msgid "Service"
+msgstr ""
+
+#: templates/parts/review-form.php:56
+msgid "Value for Money"
+msgstr ""
+
+#: templates/parts/review-form.php:67
+msgid "Tour Guide"
+msgstr ""
+
+#: templates/parts/review-form.php:96
+msgid "Share details of your experience. What did you like or dislike? Would you recommend this tour?"
+msgstr ""
+
+#: templates/parts/review-form.php:105
+msgid "Add Photos"
+msgstr ""
+
+#: templates/parts/review-form.php:105
+msgid "(Optional, max 5)"
+msgstr ""
+
+#: templates/parts/review-form.php:110
+msgid "Add Photo"
+msgstr ""
+
+#: templates/parts/review-form.php:130
+msgid "Submitting..."
+msgstr ""
+
+#: templates/parts/reviews-list.php:112
+msgid "You cannot review this tour."
+msgstr ""
+
+#: templates/parts/reviews-list.php:118
+msgid "Log in to write a review"
+msgstr ""
+
+#: templates/parts/reviews-list.php:136
+msgid "No reviews yet. Be the first to share your experience!"
+msgstr ""
+
+#: templates/parts/reviews-list.php:150
+msgid "Verified Booking"
+msgstr ""
+
+#: templates/parts/reviews-list.php:158
+msgid "ago"
+msgstr ""
+
+#: templates/parts/reviews-list.php:197
+msgid "Yes"
+msgstr ""
+
+#: templates/parts/reviews-list.php:202
+msgid "No"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:316
+#: templates/single/layout-1-classic.php:193
+#: templates/single/layout-2-modern.php:149
+#: templates/single/layout-2-modern.php:200
+msgid "Home"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:382
+#, php-format
+msgid "%d-%d People"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:395
+#: templates/single-ytrip_tour.php:783
+#: templates/single-ytrip_tour.php:1111
+msgid "Challenging"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:396
+#: templates/single-ytrip_tour.php:783
+#: templates/single-ytrip_tour.php:1112
+msgid "Extreme"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:416
+#: templates/single/layout-1-classic.php:228
+msgid "reviews"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:446
+#: templates/single-ytrip_tour.php:672
+msgid "Contact for Price"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:471
+#: templates/single-ytrip_tour.php:691
+msgid "Decrease adults"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:473
+#: templates/single-ytrip_tour.php:693
+msgid "Increase adults"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:481
+#: templates/single-ytrip_tour.php:699
+msgid "Decrease children"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:483
+#: templates/single-ytrip_tour.php:701
+msgid "Increase children"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:490
+#: templates/single-ytrip_tour.php:706
+msgid "Your name"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:507
+#: templates/single-ytrip_tour.php:717
+msgid "Special requests"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:508
+#: templates/single-ytrip_tour.php:718
+msgid "Dietary needs, accessibility, etc."
+msgstr ""
+
+#: templates/single-ytrip_tour.php:519
+#: templates/single-ytrip_tour.php:725
+msgid "Total:"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:540
+#: templates/single-ytrip_tour.php:735
+msgid "Save"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:550
+#: templates/single-ytrip_tour.php:739
+#: templates/single/layout-5-magazine.php:102
+msgid "Share"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:561
+#: templates/single-ytrip_tour.php:744
+msgid "Secure Booking"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:611
+msgid "Photo gallery"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:632
+msgid "Open booking form"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:639
+msgid "Contact"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:647
+msgid "Booking form"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:652
+msgid "Book this tour"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:795
+#, php-format
+msgid "%1$d – %2$d years"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:797
+#, php-format
+msgid "Minimum %d years"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:799
+#, php-format
+msgid "Maximum %d years"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:801
+msgid "Age Range"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:804
+#: templates/single-ytrip_tour.php:806
+#: templates/single-ytrip_tour.php:1128
+#: templates/single/layout-1-classic.php:284
+#: templates/single/layout-4-booking.php:121
+msgid "Languages"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:844
+msgid "Tour Information"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:865
+msgid "Tour Overview"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:908
+msgid "Day by Day Itinerary"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:923
+#: templates/single/layout-1-classic.php:474
+msgid "Meals:"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1007
+msgid "Location:"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1009
+msgid "Time:"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1061
+msgid "Quick Info"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1095
+#, php-format
+msgid "%d - %d Persons"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1133
+msgid "English"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1134
+msgid "Arabic"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1135
+msgid "German"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1136
+msgid "French"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1137
+msgid "Spanish"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1138
+msgid "Italian"
+msgstr ""
+
+#: templates/single-ytrip_tour.php:1139
+msgid "Russian"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:177
+#, php-format
+msgid "View all %d photos"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:192
+msgid "Breadcrumb"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:351
+#: templates/single/layout-2-modern.php:272
+#: templates/single/layout-5-magazine.php:205
+msgid "Included"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:362
+msgid "Location & Times"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:380
+msgid "Cancellation"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:386
+msgid "Tour Route"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:407
+msgid "Watch the experience"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:416
+msgid "Watch video"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:480
+msgid "Accommodation:"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:522
+msgid "No inclusions specified."
+msgstr ""
+
+#: templates/single/layout-1-classic.php:531
+#: templates/single/layout-4-booking.php:171
+#: templates/single/layout-5-magazine.php:215
+msgid "Not Included"
+msgstr ""
+
+#: templates/single/layout-1-classic.php:543
+msgid "No exclusions specified."
+msgstr ""
+
+#: templates/single/layout-1-classic.php:658
+msgid "Tour Route & Stops"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:86
+msgid "Best Price Guarantee"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:97
+msgid "Check Availability"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:99
+msgid "Reserve now & pay later"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:112
+msgid "Quick Facts"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:128
+msgid "About This Tour"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:142
+msgid "Tour Itinerary"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:187
+msgid "Book Your Adventure"
+msgstr ""
+
+#: templates/single/layout-4-booking.php:206
+msgid "Questions & Answers"
+msgstr ""
+
+#: templates/single/layout-5-magazine.php:162
+msgid "Photo Gallery"
+msgstr ""
+
+#: templates/single/layout-5-magazine.php:182
+msgid "Your Journey"
+msgstr ""
+
+#: templates/single/layout-5-magazine.php:232
+msgid "What Travelers Say"
+msgstr ""
+
+#: ytrip.php:591
+msgid "PageSpeed Check"
+msgstr ""
+
+#: ytrip.php:592
+msgid "Settings"
+msgstr ""

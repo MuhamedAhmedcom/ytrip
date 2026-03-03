@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    .ytrip-related-tours .swiper-wrapper,
+    .ytrip-related-tours .owl-stage {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 20px !important;
+    }
+    .ytrip-related-tours .swiper-slide,
+    .ytrip-related-tours .owl-item {
+        flex: 0 0 85% !important;
+        max-width: 350px !important;
+        margin: 0 auto !important;
+    }
+}

@@ -1,0 +1,270 @@
+/**
+ * YTrip Admin Reports Styles
+ *
+ * @package YTrip
+ * @since 1.2.0
+ */
+
+/* Wrap */
+.ytrip-reports-wrap {
+    margin-top: 20px;
+}
+
+.ytrip-reports-tabs {
+    margin-bottom: 20px;
+}
+
+.ytrip-reports-content {
+    background: #fff;
+    padding: 25px;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Stats Row */
+.ytrip-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1200px) {
+    .ytrip-stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .ytrip-stats-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ytrip-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e2e4e7;
+}
+
+.ytrip-stat-card-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.ytrip-stat-card-icon .dashicons {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+.ytrip-stat-card-content {
+    flex: 1;
+}
+
+.ytrip-stat-card-value {
+    display: block;
+    font-size: 24px;
+    font-weight: 600;
+    color: #1d2327;
+    line-height: 1.2;
+}
+
+.ytrip-stat-card-label {
+    font-size: 13px;
+    color: #646970;
+    margin-top: 4px;
+    display: block;
+}
+
+/* Report Sections */
+.ytrip-report-section {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #e2e4e7;
+}
+
+.ytrip-report-section:first-child {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.ytrip-report-section h3 {
+    margin: 0 0 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+/* Chart Container */
+.ytrip-chart-container {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e2e4e7;
+}
+
+.ytrip-chart-container canvas {
+    max-width: 100%;
+}
+
+/* Report Filters */
+.ytrip-report-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.ytrip-report-filters select,
+.ytrip-report-filters input {
+    min-width: 150px;
+}
+
+/* Status Breakdown */
+.ytrip-status-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+@media (max-width: 600px) {
+    .ytrip-status-breakdown {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.ytrip-status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 6px;
+}
+
+.ytrip-status-name {
+    font-weight: 500;
+    color: #1d2327;
+}
+
+.ytrip-status-count {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2271b1;
+}
+
+/* Calendar */
+.ytrip-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.ytrip-calendar-header h3 {
+    margin: 0;
+}
+
+#ytrip-booking-calendar {
+    border: 1px solid #e2e4e7;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.ytrip-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.ytrip-calendar-day-header {
+    padding: 12px;
+    text-align: center;
+    font-weight: 600;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e2e4e7;
+    color: #1d2327;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.ytrip-calendar-day {
+    min-height: 100px;
+    padding: 8px;
+    border-right: 1px solid #f1f1f1;
+    border-bottom: 1px solid #f1f1f1;
+    background: #fff;
+}
+
+.ytrip-calendar-day:nth-child(7n) {
+    border-right: none;
+}
+
+.ytrip-calendar-day.other-month {
+    background: #fafafa;
+}
+
+.ytrip-calendar-day.today {
+    background: #e8f0fe;
+}
+
+.ytrip-calendar-date {
+    font-size: 12px;
+    font-weight: 600;
+    color: #646970;
+    margin-bottom: 5px;
+}
+
+.ytrip-calendar-day.today .ytrip-calendar-date {
+    color: #2271b1;
+}
+
+.ytrip-calendar-event {
+    font-size: 11px;
+    padding: 3px 6px;
+    background: #2271b1;
+    color: #fff;
+    border-radius: 3px;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.ytrip-calendar-event:hover {
+    background: #135e96;
+}
+
+.ytrip-calendar-more {
+    font-size: 11px;
+    color: #2271b1;
+    cursor: pointer;
+}
+
+/* Top Tours Table */
+.ytrip-reports-content .wp-list-table {
+    margin-top: 0;
+}
+
+.ytrip-reports-content .wp-list-table th,
+.ytrip-reports-content .wp-list-table td {
+    padding: 12px;
+}
+
+/* Report Grid */
+.ytrip-report-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}

@@ -1,0 +1,1512 @@
+/**
+ * YTrip Homepage — Ultra Modern Premium Design
+ *
+ * @package YTrip
+ * @since 2.1.0
+ */
+
+/* ================================================================
+   DESIGN TOKENS
+   ================================================================ */
+:root {
+    --ytrip-hp-primary: var(--ytrip-primary, #0f172a);
+    --ytrip-hp-accent: var(--ytrip-primary, #3b82f6);
+    --ytrip-hp-accent-glow: rgba(59, 130, 246, 0.3);
+    /* Dynamic alpha not supported natively in pure CSS vars without splitting RGB, keeping fallback for now or accepting minor deviation */
+    --ytrip-hp-gold: var(--ytrip-secondary, #f59e0b);
+    --ytrip-hp-surface: #ffffff;
+    --ytrip-hp-surface-alt: #f8fafc;
+    --ytrip-hp-text: #1e293b;
+    --ytrip-hp-text-muted: #64748b;
+    --ytrip-hp-border: #e2e8f0;
+    --ytrip-hp-gradient-hero: linear-gradient(135deg, var(--ytrip-primary, #0f172a) 0%, #1e3a5f 100%);
+    --ytrip-hp-gradient-accent: linear-gradient(135deg, var(--ytrip-primary, #3b82f6) 0%, var(--ytrip-secondary, #8b5cf6) 100%);
+    --ytrip-hp-gradient-warm: linear-gradient(135deg, var(--ytrip-secondary, #f59e0b) 0%, #ef4444 100%);
+    --ytrip-hp-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --ytrip-hp-shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --ytrip-hp-shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+    --ytrip-hp-shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.2);
+    --ytrip-hp-radius: 16px;
+    --ytrip-hp-radius-sm: 8px;
+    --ytrip-hp-radius-full: 9999px;
+    --ytrip-hp-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --ytrip-hp-transition: all 0.3s ease;
+}
+
+/* ================================================================
+   HOMEPAGE WRAPPER
+   ================================================================ */
+.ytrip-homepage {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    font-family: var(--ytrip-hp-font);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* When Full Width is chosen, allow hero to break out of any container */
+.ytrip-homepage--width-full {
+    overflow-x: visible;
+}
+
+.ytrip-homepage a {
+    text-decoration: none !important;
+}
+
+/* ================================================================
+   HERO SECTION — Immersive Full-Screen
+   ================================================================ */
+/* Hero: prevent slides stacking when Swiper not yet loaded */
+.ytrip-hero-slider {
+    overflow: hidden;
+}
+
+.ytrip-hero-slider .swiper-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.ytrip-hero-slider .swiper-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 100%;
+}
+
+.ytrip-hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    /* Full width: break out of theme container */
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    /* Under header */
+    margin-top: 0;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+/* Enforce full-width hero when user selects Full Width in Homepage Builder */
+.ytrip-hero--width-full,
+.ytrip-homepage--width-full .ytrip-hero {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+}
+
+/* Ensure hero is first below header: no top margin so it sits under header */
+body.ytrip-homepage .ytrip-hero {
+    margin-top: 0;
+}
+
+.ytrip-hero__slide {
+    position: relative;
+    min-height: 100vh;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.ytrip-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.ytrip-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    animation: ytrip-hero-zoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes ytrip-hero-zoom {
+    from {
+        transform: scale(1.0);
+    }
+
+    to {
+        transform: scale(1.08);
+    }
+}
+
+.ytrip-hero__placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--ytrip-hp-gradient-hero) !important;
+}
+
+.ytrip-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.3) 0%,
+            rgba(0, 0, 0, 0.1) 40%,
+            rgba(0, 0, 0, 0.5) 100%);
+    z-index: 2;
+}
+
+.ytrip-hero__content {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    padding: 0 24px;
+}
+
+.ytrip-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 24px;
+    border-radius: var(--ytrip-hp-radius-full);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: ytrip-fade-in-up 0.8s ease-out 0.2s both;
+}
+
+.ytrip-hero__badge svg {
+    color: var(--ytrip-hp-gold);
+}
+
+.ytrip-hero__title {
+    font-size: clamp(36px, 6vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 24px;
+    color: #fff;
+    letter-spacing: -1.5px;
+    animation: ytrip-fade-in-up 0.8s ease-out 0.4s both;
+}
+
+.ytrip-hero__subtitle {
+    font-size: clamp(16px, 2vw, 22px);
+    opacity: 0.85;
+    margin: 0 0 40px;
+    color: #fff;
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: ytrip-fade-in-up 0.8s ease-out 0.6s both;
+}
+
+.ytrip-hero__cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: ytrip-fade-in-up 0.8s ease-out 0.8s both;
+}
+
+@keyframes ytrip-fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================================================
+   BUTTONS — Premium Glassmorphism
+   ================================================================ */
+.ytrip-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 32px;
+    border-radius: var(--ytrip-hp-radius-full);
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--ytrip-hp-transition);
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.3px;
+}
+
+.ytrip-btn-primary {
+    background: var(--ytrip-hp-gradient-accent);
+    color: #fff;
+    box-shadow: 0 4px 15px var(--ytrip-hp-accent-glow);
+}
+
+.ytrip-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--ytrip-hp-accent-glow);
+    color: #fff;
+}
+
+.ytrip-btn:active {
+    transform: scale(0.98);
+}
+
+.ytrip-btn-outline,
+.ytrip-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.ytrip-btn-outline:hover,
+.ytrip-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    color: #fff;
+}
+
+.ytrip-btn-lg {
+    padding: 16px 40px;
+    font-size: 16px;
+}
+
+/* ================================================================
+   SECTION STYLING — Shared
+   ================================================================ */
+.ytrip-section {
+    padding: 100px 0;
+}
+
+.ytrip-section img {
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.ytrip-section img:hover {
+    object-fit: cover;
+}
+
+
+.ytrip-section img:focus-visible {
+    transform: scale(1.02);
+}
+
+.ytrip-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Homepage Builder: Content Width — reflected on all sections using .ytrip-container */
+.ytrip-homepage--width-boxed .ytrip-container {
+    max-width: 1200px;
+}
+
+.ytrip-homepage--width-wide .ytrip-container {
+    max-width: 1400px;
+}
+
+.ytrip-homepage--width-full .ytrip-container {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.ytrip-section__header,
+.ytrip-section-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.ytrip-section__title,
+.ytrip-section-title,
+.ytrip-h2 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    color: var(--ytrip-hp-text);
+    margin: 0 0 16px;
+    letter-spacing: -0.8px;
+    line-height: 1.15;
+}
+
+.ytrip-section__subtitle,
+.ytrip-section-subtitle {
+    color: var(--ytrip-hp-text-muted);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* ================================================================
+   STATS SECTION — Glassmorphism Cards
+   ================================================================ */
+.ytrip-stats-section {
+    background: var(--ytrip-hp-gradient-hero);
+    padding: 80px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.ytrip-stats-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--ytrip-hp-accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.ytrip-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+.ytrip-stat-item {
+    text-align: center;
+    padding: 40px 24px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--ytrip-hp-radius);
+    transition: var(--ytrip-hp-transition);
+}
+
+.ytrip-stat-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ytrip-stat-item__icon {
+    margin-bottom: 16px;
+    color: var(--ytrip-hp-accent);
+}
+
+.ytrip-stat-item__icon svg {
+    stroke: var(--ytrip-hp-accent);
+}
+
+.ytrip-stat-item__number {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.ytrip-stat-item__value {
+    color: #fff;
+}
+
+.ytrip-stat-item__suffix {
+    color: var(--ytrip-hp-gold);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.ytrip-stat-item__label {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ================================================================
+   FEATURED TOURS — Modern Card Grid
+   ================================================================ */
+.ytrip-tours-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.ytrip-tour-card {
+    background: var(--ytrip-hp-surface);
+    border-radius: var(--ytrip-hp-radius);
+    overflow: hidden;
+    box-shadow: var(--ytrip-hp-shadow-sm);
+    transition: var(--ytrip-hp-transition);
+    border: 1px solid var(--ytrip-hp-border);
+}
+
+.ytrip-tour-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--ytrip-hp-shadow-lg);
+}
+
+.ytrip-tour-card__image {
+    position: relative;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.ytrip-tour-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.ytrip-tour-card:hover .ytrip-tour-card__image img {
+    transform: scale(1.1);
+}
+
+.ytrip-tour-card__badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--ytrip-hp-gradient-accent);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: var(--ytrip-hp-radius-full);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.ytrip-tour-card__content {
+    padding: 24px;
+}
+
+.ytrip-tour-card__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ytrip-hp-text);
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.ytrip-tour-card__meta {
+    display: flex;
+    gap: 16px;
+    color: var(--ytrip-hp-text-muted);
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.ytrip-tour-card__price {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--ytrip-hp-accent);
+}
+
+.ytrip-tour-card__price small {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--ytrip-hp-text-muted);
+}
+
+/* ================================================================
+   TESTIMONIALS — Premium Cards
+   ================================================================ */
+.ytrip-testimonials-section {
+    background: var(--ytrip-hp-surface-alt);
+}
+
+.ytrip-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.ytrip-testimonial {
+    background: var(--ytrip-hp-surface);
+    padding: 36px;
+    border-radius: var(--ytrip-hp-radius);
+    box-shadow: var(--ytrip-hp-shadow-sm);
+    border: 1px solid var(--ytrip-hp-border);
+    transition: var(--ytrip-hp-transition);
+    position: relative;
+}
+
+.ytrip-testimonial:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ytrip-hp-shadow-md);
+}
+
+.ytrip-testimonial::before {
+    content: '\201C';
+    /* Opening quote */
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--ytrip-hp-accent);
+    opacity: 0.1;
+    font-family: Georgia, serif;
+}
+
+.ytrip-testimonial__stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.ytrip-testimonial__stars svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--ytrip-hp-gold);
+}
+
+.ytrip-testimonial__content {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ytrip-hp-text);
+    margin-bottom: 24px;
+    font-style: italic;
+}
+
+.ytrip-testimonial__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ytrip-testimonial__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--ytrip-hp-gradient-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.ytrip-testimonial__name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ytrip-hp-text);
+    margin: 0;
+}
+
+.ytrip-testimonial__role {
+    font-size: 13px;
+    color: var(--ytrip-hp-text-muted);
+}
+
+/* ================================================================
+   SEARCH FORM — Floating Glass Bar
+   ================================================================ */
+.ytrip-search-section {
+    position: relative;
+    margin-top: -60px;
+    z-index: 10;
+    padding: 0 24px 80px;
+}
+
+.ytrip-search-form {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--ytrip-hp-surface);
+    border-radius: var(--ytrip-hp-radius);
+    box-shadow: var(--ytrip-hp-shadow-xl);
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    border: 1px solid var(--ytrip-hp-border);
+}
+
+.ytrip-search-form__field {
+    flex: 1;
+    min-width: 180px;
+    padding: 16px 20px;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: var(--ytrip-hp-text);
+    font-family: var(--ytrip-hp-font);
+    border-right: 1px solid var(--ytrip-hp-border);
+}
+
+.ytrip-search-form__field:last-of-type {
+    border-right: none;
+}
+
+.ytrip-search-form__field:focus {
+    outline: none;
+    background: var(--ytrip-hp-surface-alt);
+    border-radius: var(--ytrip-hp-radius-sm);
+}
+
+.ytrip-search-form__btn {
+    padding: 16px 40px;
+    background: var(--ytrip-hp-gradient-accent);
+    color: #fff;
+    border: none;
+    border-radius: calc(var(--ytrip-hp-radius) - 4px);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--ytrip-hp-transition);
+    font-family: var(--ytrip-hp-font);
+}
+
+.ytrip-search-form__btn:hover {
+    opacity: 0.95;
+    transform: scale(1.02);
+}
+
+.ytrip-search-form__btn:active {
+    transform: scale(0.98);
+}
+
+/* ================================================================
+   SECTION HEADER — Unified premium style (destinations + categories)
+   ================================================================ */
+.ytrip-section-header__eyebrow {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ytrip-hp-accent);
+    margin-bottom: 0.5rem;
+}
+
+.ytrip-section-header__title {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+    color: var(--ytrip-hp-text);
+}
+
+.ytrip-section-header__subtitle {
+    font-size: 1.0625rem;
+    color: var(--ytrip-hp-text-muted);
+    margin: 0;
+    max-width: 560px;
+}
+
+/* ================================================================
+   DESTINATIONS — Ultra-modern multi-style
+   ================================================================ */
+.ytrip-section--destinations {
+    padding: 4rem 0;
+}
+
+.ytrip-section--destinations .ytrip-section__header {
+    margin-bottom: 2.5rem;
+}
+
+.ytrip-destinations-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-rows: auto;
+}
+
+/* Style: Bento — asymmetric, first card hero */
+.ytrip-destinations-grid--bento {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.ytrip-destinations-grid--bento .ytrip-destination-card--hero {
+    grid-row: span 2;
+    min-height: 420px;
+}
+
+.ytrip-destinations-grid--bento .ytrip-destination-card:not(.ytrip-destination-card--hero) {
+    min-height: 200px;
+}
+
+/* Style: Grid — equal cards */
+.ytrip-destinations-grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.ytrip-destinations-grid--grid .ytrip-destination-card {
+    min-height: 320px;
+}
+
+/* Style: Strip — one large left, rest right */
+.ytrip-destinations-grid--strip {
+    grid-template-columns: 1.2fr 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    min-height: 380px;
+}
+
+.ytrip-destinations-grid--strip .ytrip-destination-card--hero {
+    grid-row: span 2;
+}
+
+.ytrip-destinations-grid--strip .ytrip-destination-card:not(.ytrip-destination-card--hero) {
+    min-height: 180px;
+}
+
+/* Style: Minimal — compact horizontal list */
+.ytrip-destinations-grid--minimal {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card {
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0.75rem;
+    background: var(--ytrip-hp-surface);
+    border: 1px solid var(--ytrip-hp-border);
+    border-radius: var(--ytrip-hp-radius-sm);
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__image,
+.ytrip-destinations-grid--minimal .ytrip-destination-card__image--placeholder {
+    position: relative;
+    grid-column: 1;
+    width: 100%;
+    height: 72px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__overlay {
+    display: none;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__content {
+    grid-column: 2;
+    position: relative;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    color: var(--ytrip-hp-text);
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__content--glass {
+    border: none;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__name {
+    font-size: 1.0625rem;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__count {
+    color: var(--ytrip-hp-text-muted);
+    font-size: 0.875rem;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__cta {
+    display: none;
+}
+
+.ytrip-destinations-grid--minimal .ytrip-destination-card__icon {
+    display: none;
+}
+
+/* Destination card base */
+.ytrip-destination-card {
+    position: relative;
+    border-radius: var(--ytrip-hp-radius);
+    overflow: hidden;
+    min-height: 260px;
+    display: block;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.ytrip-destination-card:hover {
+    transform: scale(1.02);
+    box-shadow: var(--ytrip-hp-shadow-lg);
+}
+
+.ytrip-destination-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.ytrip-destination-card:hover .ytrip-destination-card__image {
+    transform: scale(1.08);
+}
+
+.ytrip-destination-card__image--placeholder {
+    background: linear-gradient(135deg, var(--ytrip-hp-primary) 0%, var(--ytrip-hp-accent) 100%);
+}
+
+.ytrip-destination-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.75) 0%, transparent 55%);
+}
+
+.ytrip-destination-card[data-term-color] .ytrip-destination-card__overlay {
+    background: linear-gradient(0deg, color-mix(in srgb, var(--ytrip-term-color, #000) 75%, transparent) 0%, transparent 55%);
+}
+
+.ytrip-destination-card__content,
+.ytrip-destination-card__content--glass {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 1.5rem 1.75rem;
+    color: #fff;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.ytrip-destination-card__icon {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    opacity: 0.95;
+}
+
+.ytrip-destination-card__icon i {
+    font-style: normal;
+}
+
+.ytrip-destination-card__name {
+    font-size: clamp(1.125rem, 2.5vw, 1.375rem);
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    letter-spacing: -0.01em;
+}
+
+.ytrip-destination-card__count {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.ytrip-destination-card__cta {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ytrip-destination-card:hover .ytrip-destination-card__cta {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ytrip-destination-card,
+    .ytrip-destination-card:hover { transform: none; }
+    .ytrip-destination-card:hover .ytrip-destination-card__image { transform: none; }
+    .ytrip-destination-card__cta { opacity: 1; transform: none; }
+}
+
+/* Destinations — Carousel layout (circular cards + arrows) */
+.ytrip-destinations--carousel .ytrip-section__header {
+    margin-bottom: 2rem;
+}
+
+.ytrip-destinations-carousel {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    margin-inline: -0.5rem;
+}
+
+.ytrip-destinations-carousel__nav {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid var(--ytrip-hp-border, rgba(0, 0, 0, 0.12));
+    background: var(--ytrip-hp-surface, #fff);
+    color: var(--ytrip-hp-text, #1a1a1a);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ytrip-destinations-carousel__nav:hover {
+    background: var(--ytrip-hp-primary, #2563eb);
+    color: #fff;
+    border-color: var(--ytrip-hp-primary, #2563eb);
+}
+
+.ytrip-destinations-carousel__nav:focus-visible {
+    outline: 2px solid var(--ytrip-hp-primary, #2563eb);
+    outline-offset: 2px;
+}
+
+.ytrip-destinations-carousel__nav span {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.ytrip-destinations-carousel__track-wrap {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.ytrip-destinations-carousel__track {
+    display: flex;
+    gap: 32px;
+    transition: transform 0.4s ease;
+    will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ytrip-destinations-carousel__track {
+        transition: none;
+    }
+    .ytrip-destination-carousel-item:hover .ytrip-destination-carousel-item__image-wrap,
+    .ytrip-destination-carousel-item:hover .ytrip-destination-carousel-item__image {
+        transform: none;
+    }
+}
+
+.ytrip-destination-carousel-item {
+    flex: 0 0 var(--ytrip-carousel-item-width, 140px);
+    width: var(--ytrip-carousel-item-width, 140px);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    box-sizing: border-box;
+}
+
+.ytrip-destination-carousel-item:hover {
+    color: var(--ytrip-hp-primary, #2563eb);
+}
+
+.ytrip-destination-carousel-item__image-wrap {
+    display: block;
+    width: var(--ytrip-carousel-image-size, 160px);
+    height: var(--ytrip-carousel-image-size, 160px);
+    min-width: var(--ytrip-carousel-image-size, 160px);
+    min-height: var(--ytrip-carousel-image-size, 160px);
+    max-width: 200px;
+    max-height: 200px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.ytrip-destination-carousel-item:hover .ytrip-destination-carousel-item__image-wrap {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+    transform: scale(1.03);
+}
+
+.ytrip-destination-carousel-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    vertical-align: middle;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ytrip-destination-carousel-item:hover .ytrip-destination-carousel-item__image {
+    transform: scale(1.12);
+}
+
+.ytrip-destination-carousel-item__image--placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--ytrip-hp-primary, #2563eb) 0%, var(--ytrip-hp-accent, #7c3aed) 100%);
+}
+
+.ytrip-destination-carousel-item__name {
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 0.25rem;
+}
+
+.ytrip-destination-carousel-item__count {
+    font-size: 0.8125rem;
+    color: var(--ytrip-hp-text-muted, #64748b);
+}
+
+.ytrip-destination-carousel-item:hover .ytrip-destination-carousel-item__count {
+    color: inherit;
+}
+
+@media (max-width: 767px) {
+    .ytrip-destinations-carousel {
+        gap: 0.5rem;
+    }
+    .ytrip-destinations-carousel__nav {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+    .ytrip-destination-carousel-item__image-wrap {
+        margin-bottom: 0.5rem;
+    }
+    .ytrip-destination-carousel-item__name {
+        font-size: 0.9375rem;
+    }
+}
+
+/* ================================================================
+   CATEGORIES — Ultra-modern multi-style
+   ================================================================ */
+.ytrip-section--categories {
+    padding: 4rem 0;
+    background: var(--ytrip-hp-surface-alt);
+}
+
+.ytrip-section--categories .ytrip-section__header {
+    margin-bottom: 2.5rem;
+}
+
+.ytrip-categories-grid {
+    display: grid;
+    gap: 1.25rem;
+}
+
+/* Style: Grid — icon cards */
+.ytrip-categories-grid--grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+}
+
+.ytrip-category-card {
+    position: relative;
+    text-align: center;
+    padding: 2rem 1.25rem;
+    background: var(--ytrip-hp-surface);
+    border-radius: var(--ytrip-hp-radius);
+    border: 1px solid var(--ytrip-hp-border);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    text-decoration: none;
+    color: var(--ytrip-hp-text);
+}
+
+.ytrip-category-card:hover {
+    border-color: var(--ytrip-term-color, var(--ytrip-hp-accent));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+    color: var(--ytrip-hp-text);
+}
+
+.ytrip-category-card__icon-wrap {
+    margin-bottom: 1rem;
+}
+
+.ytrip-category-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--ytrip-term-color, var(--ytrip-hp-accent)) 12%, transparent);
+    color: var(--ytrip-term-color, var(--ytrip-hp-accent));
+}
+
+.ytrip-category-card__icon--font {
+    font-size: 1.5rem;
+}
+
+.ytrip-category-card__icon--font i {
+    font-style: normal;
+}
+
+.ytrip-category-card__icon--svg {
+    line-height: 0;
+}
+
+.ytrip-category-card__icon--svg svg {
+    width: 28px;
+    height: 28px;
+}
+
+.ytrip-category-card__name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+}
+
+.ytrip-category-card__count {
+    font-size: 0.8125rem;
+    color: var(--ytrip-hp-text-muted);
+}
+
+/* Style: Chips — horizontal scroll */
+.ytrip-categories-grid--chips {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ytrip-categories-grid--chips .ytrip-category-card {
+    flex: 0 0 auto;
+    min-width: 160px;
+    padding: 1.25rem 1rem;
+    scroll-snap-align: start;
+}
+
+.ytrip-categories-grid--chips .ytrip-category-card__icon-wrap {
+    margin-bottom: 0.75rem;
+}
+
+.ytrip-categories-grid--chips .ytrip-category-card__icon {
+    width: 44px;
+    height: 44px;
+}
+
+.ytrip-categories-grid--chips .ytrip-category-card__icon--svg svg {
+    width: 22px;
+    height: 22px;
+}
+
+.ytrip-categories-grid--chips .ytrip-category-card__name {
+    font-size: 0.9375rem;
+}
+
+/* Style: Featured — first card large with image */
+.ytrip-categories-grid--featured {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.25rem;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured {
+    grid-column: 1 / -1;
+    min-height: 220px;
+    padding: 2rem;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto 1fr;
+    align-items: end;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+    z-index: 1;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__icon-wrap,
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__name,
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__count {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__icon {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card--featured .ytrip-category-card__count {
+    color: rgba(255,255,255,0.85);
+}
+
+.ytrip-categories-grid--featured .ytrip-category-card:not(.ytrip-category-card--featured) {
+    min-height: 0;
+}
+
+/* Style: Minimal — compact list */
+.ytrip-categories-grid--minimal {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.75rem;
+}
+
+.ytrip-categories-grid--minimal .ytrip-category-card {
+    padding: 1rem;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: left;
+}
+
+.ytrip-categories-grid--minimal .ytrip-category-card__icon-wrap {
+    margin-bottom: 0;
+    flex-shrink: 0;
+}
+
+.ytrip-categories-grid--minimal .ytrip-category-card__icon {
+    width: 40px;
+    height: 40px;
+}
+
+.ytrip-categories-grid--minimal .ytrip-category-card__name {
+    font-size: 0.9375rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.ytrip-categories-grid--minimal .ytrip-category-card__count {
+    flex-shrink: 0;
+    font-size: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ytrip-category-card:hover { transform: none; }
+}
+
+/* ================================================================
+   BLOG — Modern List Cards
+   ================================================================ */
+.ytrip-blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+}
+
+.ytrip-blog-card {
+    background: var(--ytrip-hp-surface);
+    border-radius: var(--ytrip-hp-radius);
+    overflow: hidden;
+    border: 1px solid var(--ytrip-hp-border);
+    transition: var(--ytrip-hp-transition);
+}
+
+.ytrip-blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--ytrip-hp-shadow-md);
+}
+
+.ytrip-blog-card__image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.ytrip-blog-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.ytrip-blog-card:hover .ytrip-blog-card__image img {
+    transform: scale(1.08);
+}
+
+.ytrip-blog-card__content {
+    padding: 24px;
+}
+
+.ytrip-blog-card__date {
+    font-size: 13px;
+    color: var(--ytrip-hp-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.ytrip-blog-card__title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ytrip-hp-text);
+    line-height: 1.3;
+    margin: 0 0 12px;
+}
+
+.ytrip-blog-card__excerpt {
+    font-size: 14px;
+    color: var(--ytrip-hp-text-muted);
+    line-height: 1.6;
+}
+
+/* ================================================================
+   UTILITY
+   ================================================================ */
+.ytrip-text-center {
+    text-align: center;
+}
+
+/* Swiper overrides */
+.ytrip-hero .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.4);
+    opacity: 1;
+}
+
+.ytrip-hero .swiper-pagination-bullet-active {
+    background: #fff;
+    width: 32px;
+    border-radius: 6px;
+}
+
+.ytrip-hero .swiper-button-next,
+.ytrip-hero .swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.ytrip-hero .swiper-button-next::after,
+.ytrip-hero .swiper-button-prev::after {
+    font-size: 18px;
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1024px) {
+    .ytrip-destinations-grid--bento {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ytrip-destinations-grid--bento .ytrip-destination-card--hero {
+        grid-row: span 1;
+        min-height: 280px;
+    }
+
+    .ytrip-destinations-grid--strip {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        min-height: 0;
+    }
+
+    .ytrip-destinations-grid--strip .ytrip-destination-card--hero {
+        grid-row: span 1;
+        min-height: 260px;
+    }
+
+    .ytrip-destinations-grid--grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .ytrip-hero {
+        min-height: 85vh;
+    }
+
+    .ytrip-hero__title {
+        letter-spacing: -0.5px;
+    }
+
+    .ytrip-hero__cta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ytrip-btn-lg {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .ytrip-section {
+        padding: 60px 0;
+    }
+
+    .ytrip-section__header,
+    .ytrip-section-header {
+        margin-bottom: 40px;
+    }
+
+    .ytrip-search-section {
+        margin-top: -40px;
+    }
+
+    .ytrip-search-form {
+        flex-direction: column;
+    }
+
+    .ytrip-search-form__field {
+        border-right: none;
+        border-bottom: 1px solid var(--ytrip-hp-border);
+    }
+
+    .ytrip-destinations-grid--bento,
+    .ytrip-destinations-grid--strip,
+    .ytrip-destinations-grid--grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-destinations-grid--bento .ytrip-destination-card--hero,
+    .ytrip-destinations-grid--strip .ytrip-destination-card--hero {
+        min-height: 240px;
+    }
+
+    .ytrip-stat-item__number {
+        font-size: 36px;
+    }
+
+    .ytrip-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .ytrip-stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-tours-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ytrip-blog-grid {
+        grid-template-columns: 1fr;
+    }
+}

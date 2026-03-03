@@ -1,0 +1,128 @@
+{
+  "homepage_sections": {
+    "enabled": {
+      "hero_slider": "Hero Slider",
+      "search_form": "Search & Filter",
+      "featured_tours": "Featured Tours",
+      "stats": "Statistics Counter",
+      "destinations": "Popular Destinations",
+      "testimonials": "Customer Reviews",
+      "categories": "Tour Categories",
+      "blog": "Latest Blog Posts"
+    },
+    "disabled": {
+      "video_banner": "Video Banner",
+      "promo_banner": "Promotional Banner",
+      "partners": "Partners/Sponsors",
+      "instagram_feed": "Instagram Feed"
+    }
+  },
+  "homepage_layout": "modern",
+  "homepage_width": "full",
+  "replace_content": true,
+  "hero_enable": true,
+  "hero_slides": [
+    {
+      "slide_title": "Discover Extraordinary Journeys",
+      "slide_subtitle": "Curated luxury travel experiences designed for the discerning explorer",
+      "button_1": {
+        "text": "Explore Destinations",
+        "link": {
+          "url": "/tours"
+        },
+        "style": "primary"
+      }
+    },
+    {
+      "slide_title": "Your Adventure Begins Here",
+      "slide_subtitle": "From pristine beaches to mountain peaks, find your perfect escape",
+      "button_1": {
+        "text": "View Exclusive Tours",
+        "link": {
+          "url": "/tours"
+        },
+        "style": "outline"
+      }
+    },
+    {
+      "slide_title": "Unforgettable Experiences Await",
+      "slide_subtitle": "Join thousands of satisfied travelers on the journey of a lifetime",
+      "button_1": {
+        "text": "Start Planning",
+        "link": {
+          "url": "#search"
+        },
+        "style": "primary"
+      }
+    }
+  ],
+  "search_enable": true,
+  "search_style": "style_2",
+  "featured_enable": true,
+  "featured_section_title": "Handpicked Experiences",
+  "featured_section_subtitle": "Exclusive tours curated by travel experts for unforgettable adventures",
+  "featured_selection": "auto",
+  "featured_count": 8,
+  "destinations_enable": true,
+  "destinations_title": "Trending Destinations",
+  "destinations_count": 6,
+  "stats_enable": true,
+  "stats_items": [
+    {
+      "number": 12500,
+      "suffix": "+",
+      "label": "Happy Travelers",
+      "icon": "users"
+    },
+    {
+      "number": 150,
+      "suffix": "",
+      "label": "Premium Destinations",
+      "icon": "map"
+    },
+    {
+      "number": 20,
+      "suffix": "Years",
+      "label": "of Excellence",
+      "icon": "award"
+    },
+    {
+      "number": 24,
+      "suffix": "/7",
+      "label": "Expert Support",
+      "icon": "compass"
+    }
+  ],
+  "testimonials_enable": true,
+  "testimonials_title": "What Our Travelers Say",
+  "testimonials": [
+    {
+      "name": "Sarah Mitchell",
+      "role": "Adventure Enthusiast",
+      "content": "An absolutely breathtaking experience from start to finish. The attention to detail and personalized service exceeded all expectations. This is luxury travel at its finest!",
+      "rating": 5
+    },
+    {
+      "name": "David Chen",
+      "role": "Business Executive",
+      "content": "Professional, seamless, and utterly spectacular. Every moment was carefully crafted to perfection. I've traveled extensively, and this ranks among my top experiences.",
+      "rating": 5
+    },
+    {
+      "name": "Emma Rodriguez",
+      "role": "Family Traveler",
+      "content": "Our family vacation was transformed into a magical adventure. The guides were knowledgeable, the accommodations were stunning, and every detail was handled flawlessly.",
+      "rating": 5
+    },
+    {
+      "name": "James Anderson",
+      "role": "Solo Traveler",
+      "content": "Traveling solo can be daunting, but this experience was extraordinary. I felt safe, pampered, and completely immersed in the culture. Highly recommended!",
+      "rating": 5
+    }
+  ],
+  "categories_enable": true,
+  "blog_enable": true,
+  "blog_title": "Travel Insights & Stories",
+  "blog_count": 3
+}

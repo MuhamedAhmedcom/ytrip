@@ -1,0 +1,165 @@
+# German translation for YTrip
+# Copyright (C) 2026 YTrip
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: YTrip 1.0.0\n"
+"Report-Msgid-Bugs-To: https://zakharioustours.de\n"
+"POT-Creation-Date: 2026-01-31 08:00+0000\n"
+"PO-Revision-Date: 2026-01-31 08:00+0000\n"
+"Last-Translator: YTrip Team\n"
+"Language-Team: German\n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "Tours"
+msgstr "Touren"
+
+msgid "reviews"
+msgstr "Bewertungen"
+
+msgid "Overview"
+msgstr "Übersicht"
+
+msgid "Itinerary"
+msgstr "Reiseroute"
+
+msgid "Included/Excluded"
+msgstr "Inklusiv/Exklusiv"
+
+msgid "FAQ"
+msgstr "Häufige Fragen"
+
+msgid "Highlights"
+msgstr "Höhepunkte"
+
+msgid "No itinerary available."
+msgstr "Keine Reiseroute verfügbar."
+
+msgid "Included"
+msgstr "Inklusive"
+
+msgid "Excluded"
+msgstr "Nicht inbegriffen"
+
+msgid "No FAQs available."
+msgstr "Keine FAQs verfügbar."
+
+msgid "/ person"
+msgstr "/ Person"
+
+msgid "Select Date"
+msgstr "Datum auswählen"
+
+msgid "Adults"
+msgstr "Erwachsene"
+
+msgid "Children"
+msgstr "Kinder"
+
+msgid "Book Now"
+msgstr "Jetzt buchen"
+
+msgid "Free Cancellation"
+msgstr "Kostenlose Stornierung"
+
+msgid "Instant Confirmation"
+msgstr "Sofortige Bestätigung"
+
+msgid "Secure Payment"
+msgstr "Sichere Zahlung"
+
+msgid "Featured"
+msgstr "Empfohlen"
+
+msgid "Add to wishlist"
+msgstr "Zur Wunschliste hinzufügen"
+
+msgid "From"
+msgstr "Ab"
+
+msgid "View Details"
+msgstr "Details anzeigen"
+
+msgid "Award Winning Travel Agency"
+msgstr "Preisgekröntes Reisebüro"
+
+msgid "Discover Your Next"
+msgstr "Entdecken Sie Ihr nächstes"
+
+msgid "Adventure"
+msgstr "Abenteuer"
+
+msgid "Explore the world with our premium travel experiences. Book your dream vacation today."
+msgstr "Erkunden Sie die Welt mit unseren erstklassigen Reiseerlebnissen. Buchen Sie noch heute Ihren Traumurlaub."
+
+msgid "Explore Tours"
+msgstr "Touren erkunden"
+
+msgid "Search Destinations"
+msgstr "Reiseziele suchen"
+
+msgid "Destination"
+msgstr "Reiseziel"
+
+msgid "Where do you want to go?"
+msgstr "Wohin möchten Sie reisen?"
+
+msgid "Date"
+msgstr "Datum"
+
+msgid "Select date"
+msgstr "Datum wählen"
+
+msgid "Guests"
+msgstr "Gäste"
+
+msgid "Guest"
+msgstr "Gast"
+
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Featured Tours"
+msgstr "Empfohlene Touren"
+
+msgid "Discover our most popular travel experiences handpicked for you."
+msgstr "Entdecken Sie unsere beliebtesten Reiseerlebnisse, handverlesen für Sie."
+
+msgid "View All Tours"
+msgstr "Alle Touren anzeigen"
+
+msgid "No tours found."
+msgstr "Keine Touren gefunden."
+
+msgid "Popular Destinations"
+msgstr "Beliebte Reiseziele"
+
+msgid "Explore breathtaking locations around the world."
+msgstr "Erkunden Sie atemberaubende Orte auf der ganzen Welt."
+
+msgid "%d Tour"
+msgid_plural "%d Tours"
+msgstr[0] "%d Tour"
+msgstr[1] "%d Touren"
+
+msgid "All Tours"
+msgstr "Alle Touren"
+
+msgid "Explore our collection of unforgettable travel experiences."
+msgstr "Entdecken Sie unsere Sammlung unvergesslicher Reiseerlebnisse."
+
+msgid "Previous"
+msgstr "Zurück"
+
+msgid "Next"
+msgstr "Weiter"
+
+msgid "No tours found. Please check back later."
+msgstr "Keine Touren gefunden. Bitte versuchen Sie es später erneut."

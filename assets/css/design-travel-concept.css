@@ -1,0 +1,208 @@
+/**
+ * YTrip — Travel Concept design preset
+ * Inspired by modern travel UI (e.g. Dribbble Travel Website UI Concept).
+ * Only applies when Homepage Design = "Travel Concept" in Homepage Builder.
+ *
+ * Palette: #F3F6F8, #887E9C, #B2ABB0, #111111, #514C51, #38679F, #927765, #E26297
+ *
+ * @package YTrip
+ */
+
+.ytrip-homepage--design-travel-concept {
+    --ytrip-tc-bg: #F3F6F8;
+    --ytrip-tc-text: #111111;
+    --ytrip-tc-text-muted: #514C51;
+    --ytrip-tc-accent: #38679F;
+    --ytrip-tc-accent-soft: rgba(56, 103, 159, 0.12);
+    --ytrip-tc-surface: #ffffff;
+    --ytrip-tc-border: #e8e6ea;
+    --ytrip-tc-radius: 20px;
+    --ytrip-tc-radius-sm: 14px;
+    --ytrip-tc-shadow: 0 4px 24px rgba(17, 17, 17, 0.06);
+    --ytrip-tc-shadow-hover: 0 12px 40px rgba(17, 17, 17, 0.1);
+}
+
+/* Background for main content area */
+.ytrip-homepage--design-travel-concept .ytrip-container,
+.ytrip-homepage--design-travel-concept .ytrip-section {
+    background-color: var(--ytrip-tc-bg);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-section {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+/* Hero overlay — softer purple/blue blend */
+.ytrip-homepage--design-travel-concept .ytrip-hero__overlay {
+    background: linear-gradient(135deg, rgba(56, 103, 159, 0.5) 0%, rgba(136, 126, 156, 0.45) 100%) !important;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-hero__title,
+.ytrip-homepage--design-travel-concept .ytrip-hero__subtitle {
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Section headers — "Wonderful place for You" / "Tour Categories" style */
+.ytrip-homepage--design-travel-concept .ytrip-section-header__eyebrow {
+    font-size: 0.9375rem;
+    color: var(--ytrip-tc-text-muted);
+    text-transform: none;
+    letter-spacing: 0.02em;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-section__title,
+.ytrip-homepage--design-travel-concept .ytrip-section-header__title {
+    color: var(--ytrip-tc-text);
+    font-weight: 700;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-section__subtitle,
+.ytrip-homepage--design-travel-concept .ytrip-section-header__subtitle {
+    color: var(--ytrip-tc-text-muted);
+}
+
+/* Search form — light frosted bar */
+.ytrip-homepage--design-travel-concept .ytrip-search {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--ytrip-tc-border);
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-search__input {
+    border-radius: var(--ytrip-tc-radius-sm);
+    border-color: var(--ytrip-tc-border);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-search__input:focus {
+    border-color: var(--ytrip-tc-accent);
+    box-shadow: 0 0 0 3px var(--ytrip-tc-accent-soft);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-search__submit .ytrip-btn {
+    background: var(--ytrip-tc-text);
+    color: #fff;
+    border-radius: var(--ytrip-tc-radius-sm);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-search__submit .ytrip-btn:hover {
+    background: var(--ytrip-tc-text-muted);
+}
+
+/* Stats — rounded blocks, Dribbble-style numbers */
+.ytrip-homepage--design-travel-concept .ytrip-stats-section {
+    background: var(--ytrip-tc-surface);
+    border-radius: var(--ytrip-tc-radius);
+    padding: 2.5rem 2rem;
+    box-shadow: var(--ytrip-tc-shadow);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stats-grid {
+    gap: 2rem;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stat-item {
+    background: var(--ytrip-tc-bg);
+    border-radius: var(--ytrip-tc-radius-sm);
+    padding: 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stat-item:hover {
+    box-shadow: var(--ytrip-tc-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stat-item__icon {
+    color: var(--ytrip-tc-accent);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stat-item__number {
+    color: var(--ytrip-tc-text);
+    font-weight: 700;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-stat-item__label {
+    color: var(--ytrip-tc-text-muted);
+    font-size: 0.9375rem;
+}
+
+/* Categories — card style with rounded corners and soft shadow */
+.ytrip-homepage--design-travel-concept .ytrip-categories-grid {
+    gap: 1.5rem;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-category-card {
+    background: var(--ytrip-tc-surface);
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+    border: 1px solid transparent;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-category-card:hover {
+    box-shadow: var(--ytrip-tc-shadow-hover);
+    transform: translateY(-4px);
+    border-color: var(--ytrip-tc-border);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-category-card__name {
+    color: var(--ytrip-tc-text);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-category-card__count {
+    color: var(--ytrip-tc-text-muted);
+}
+
+/* Featured / tour cards — consistent radius and shadow */
+.ytrip-homepage--design-travel-concept .ytrip-card {
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-card:hover {
+    box-shadow: var(--ytrip-tc-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-card__book-btn,
+.ytrip-homepage--design-travel-concept .ytrip-btn-primary {
+    background: var(--ytrip-tc-accent);
+    border-radius: var(--ytrip-tc-radius-sm);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-card__book-btn:hover,
+.ytrip-homepage--design-travel-concept .ytrip-btn-primary:hover {
+    background: #2d5480;
+}
+
+/* Testimonials */
+.ytrip-homepage--design-travel-concept .ytrip-section--testimonials {
+    background: var(--ytrip-tc-surface);
+}
+
+.ytrip-homepage--design-travel-concept .ytrip-testimonial-card {
+    background: var(--ytrip-tc-bg);
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+}
+
+/* Destinations */
+.ytrip-homepage--design-travel-concept .ytrip-destination-card {
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+}
+
+/* Blog section */
+.ytrip-homepage--design-travel-concept .ytrip-blog-card {
+    background: var(--ytrip-tc-surface);
+    border-radius: var(--ytrip-tc-radius);
+    box-shadow: var(--ytrip-tc-shadow);
+}
+

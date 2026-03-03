@@ -1,0 +1,40 @@
+/**
+ * YTrip Local Fonts - Extra Weights (loaded async to avoid blocking)
+ * Inter 500, 700; Outfit 600, 800
+ */
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url('../fonts/inter/Inter-Medium.woff2') format('woff2'),
+	     url('../fonts/inter/Inter-Medium.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('../fonts/inter/Inter-Bold.woff2') format('woff2'),
+	     url('../fonts/inter/Inter-Bold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url('../fonts/outfit/Outfit-SemiBold.woff2') format('woff2'),
+	     url('../fonts/outfit/Outfit-SemiBold.woff') format('woff');
+}
+
+@font-face {
+	font-family: 'Outfit';
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src: url('../fonts/outfit/Outfit-ExtraBold.woff2') format('woff2'),
+	     url('../fonts/outfit/Outfit-ExtraBold.woff') format('woff');
+}

@@ -1,0 +1,29 @@
+/* ProWPSite Panel Admin Styles */
+.prowpsite-panel {
+    margin: 20px;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+
+.prowpsite-panel h1 {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.prowpsite-panel-content {
+    margin-top: 20px;
+}
+
+/* Framework overrides */
+.prowpsite-panel .csf-header-inner {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.prowpsite-panel .csf-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
