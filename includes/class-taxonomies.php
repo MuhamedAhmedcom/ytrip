@@ -166,10 +166,10 @@ class YTrip_Taxonomies {
 	 * @return string Sanitized slug.
 	 */
 	private function resolve_slug( array $settings, string $key, string $fallback ): string {
-		if ( ! empty( $settings['url_slugs'][ $key ] ) ) {
+		if ( ! empty( $settings['url_slugs'][ $key ] ) && is_string( $settings['url_slugs'][ $key ] ) ) {
 			return sanitize_title( $settings['url_slugs'][ $key ] );
 		}
-		if ( ! empty( $settings[ $key ] ) ) {
+		if ( ! empty( $settings[ $key ] ) && is_string( $settings[ $key ] ) ) {
 			return sanitize_title( $settings[ $key ] );
 		}
 		return $fallback;

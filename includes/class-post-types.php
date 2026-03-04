@@ -47,9 +47,9 @@ class YTrip_Post_Types {
 
 		// Support both flat key ('slug_tour') and fieldset key ('url_slugs' → 'slug_tour').
 		$slug_tour = '';
-		if ( ! empty( $settings['url_slugs']['slug_tour'] ) ) {
+		if ( ! empty( $settings['url_slugs']['slug_tour'] ) && is_string( $settings['url_slugs']['slug_tour'] ) ) {
 			$slug_tour = sanitize_title( $settings['url_slugs']['slug_tour'] );
-		} elseif ( ! empty( $settings['slug_tour'] ) ) {
+		} elseif ( ! empty( $settings['slug_tour'] ) && is_string( $settings['slug_tour'] ) ) {
 			$slug_tour = sanitize_title( $settings['slug_tour'] );
 		}
 		if ( $slug_tour === '' ) {
