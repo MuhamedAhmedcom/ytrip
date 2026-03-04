@@ -46,11 +46,8 @@ if (is_array($map_loc)) {
 
 // Get terms
 $settings = get_option('ytrip_settings', []);
-$dest_slug = $settings['slug_destination'] ?? 'ytrip_destination';
-$cat_slug = $settings['slug_category'] ?? 'ytrip_category';
-
-$destinations = get_the_terms($tour_id, $dest_slug);
-$categories = get_the_terms($tour_id, $cat_slug);
+$destinations = get_the_terms($tour_id, 'ytrip_destination');
+$categories = get_the_terms($tour_id, 'ytrip_category');
 
 // Get price data (WooCommerce or tour meta - works with/without WC)
 $product_id = get_post_meta($tour_id, '_ytrip_wc_product_id', true);
@@ -162,8 +159,8 @@ $primary_light = 'rgba(' . $primary_rgb_str . ',0.12)';
 
 // Dark mode check
 $is_dark_mode = isset($_COOKIE['ytrip_theme']) && $_COOKIE['ytrip_theme'] === 'dark';
-if (isset($_GET['dark_mode'])) {
-    $is_dark_mode = (bool) $_GET['dark_mode'];
+if ( isset( $_GET['dark_mode'] ) ) {
+    $is_dark_mode = filter_var( sanitize_text_field( wp_unslash( $_GET['dark_mode'] ) ), FILTER_VALIDATE_BOOLEAN );
 }
 ?>
 
@@ -278,9 +275,9 @@ if (isset($_GET['dark_mode'])) {
 </style>
 
 <!-- ==================== HERO SECTION (full width, capped height, same overlay as homepage) ==================== -->
-<section class="ytrip-hero ytrip-single-hero ytrip-single-hero--fullwidth ytrip-single-hero--width-full ytrip-single-hero--viewport <?php echo $hero_is_slider ? 'ytrip-hero-slider swiper' : ''; ?>" <?php echo $hero_is_slider ? ' data-hero-mode="' . esc_attr( $hero_gallery_mode ) . '"' : ''; ?>>
+<section class="ytrip-hero ytrip-single-hero ytrip-single-hero--fullwidth ytrip-single-hero--width-full ytrip-single-hero--viewport <?php echo $hero_is_slider ? esc_attr( 'ytrip-hero-slider swiper' ) : ''; ?>" <?php echo $hero_is_slider ? ' data-hero-mode="' . esc_attr( $hero_gallery_mode ) . '"' : ''; ?>>
     <!-- Background: same structure as homepage (.ytrip-hero__bg) -->
-    <div class="ytrip-hero__bg ytrip-hero-bg <?php echo $hero_is_slider ? 'swiper-wrapper' : ''; ?>">
+    <div class="ytrip-hero__bg ytrip-hero-bg <?php echo $hero_is_slider ? esc_attr( 'swiper-wrapper' ) : ''; ?>">
         <?php if ( $hero_is_slider ) : ?>
             <?php foreach ( $hero_images as $i => $img_id ) : ?>
                 <div class="swiper-slide ytrip-hero-slide-bg">

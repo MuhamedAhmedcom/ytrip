@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" style="background:#f1f5f9;border-radius:6px;border:1px solid #cbd5e1;">
+    <!-- Gallery Grid Header -->
+    <rect x="0" y="0" width="260" height="150" fill="#94a3b8"/>
+    <rect x="265" y="0" width="135" height="72" fill="#cbd5e1"/>
+    <rect x="265" y="78" width="135" height="72" fill="#cbd5e1"/>
+
+    <!-- Bottom Action Bar (Fixed Booking bar style) -->
+    <rect x="0" y="250" width="400" height="50" fill="#fff" stroke="#cbd5e1"/>
+    <rect x="20" y="265" width="100" height="20" rx="4" fill="#e2e8f0"/>
+    <rect x="300" y="260" width="80" height="30" rx="4" fill="#2563eb"/>
+
+    <!-- Content Area -->
+    <rect x="20" y="170" width="240" height="15" rx="4" fill="#64748b"/>
+    <rect x="20" y="195" width="180" height="8" rx="2" fill="#cbd5e1"/>
+    <rect x="20" y="210" width="230" height="8" rx="2" fill="#cbd5e1"/>
+    
+    <!-- Right sidebar mini -->
+    <rect x="280" y="170" width="100" height="60" rx="4" fill="#fff" stroke="#cbd5e1"/>
+</svg>

@@ -47,7 +47,7 @@ spl_autoload_register(function (string $class): void {
 
     if (file_exists($path)) {
         require_once $path;
-	}
+        return;
     }
 
     $admin_path = YTRIP_PATH . 'admin/class-' . strtolower($file) . '.php';
@@ -125,11 +125,6 @@ final class YTrip {
             $path = YTRIP_PATH . 'includes/' . $file;
             if (file_exists($path)) {
                 require_once $path;
-	}
-
-		// Review Form
-		require_once YTRIP_PATH . 'includes/shortcodes/review-form-shortcode.php';
-		require_once YTRIP_PATH . 'includes/review-form-footer.php';
             }
         }
 
@@ -189,13 +184,19 @@ final class YTrip {
 
         add_filter('plugin_action_links_' . YTRIP_BASENAME, [$this, 'action_links']);
 
-        // Register body_class for transparent header: at plugins_loaded and again on template_include (priority 1)
+        // Register body_class for transparent header.
         if (function_exists('ytrip_add_transparent_header_body_class')) {
             add_filter('body_class', 'ytrip_add_transparent_header_body_class', 999);
         }
         add_filter('template_include', [$this, 'register_transparent_header_body_class'], 1);
-        add_action('wp_footer', [$this, 'debug_transparent_header'], 999);
+
+        if (YTRIP_DEBUG) {
+            add_action('wp_footer', [$this, 'debug_transparent_header'], 999);
+        }
+
+        // Purge cache AND flush rewrites when settings are saved.
         add_action('csf_ytrip_settings_saved', [$this, 'purge_cache_on_settings_save'], 10, 2);
+        add_action('csf_ytrip_settings_saved', [$this, 'flush_rewrites_on_settings_save'], 10, 2);
     }
 
     /**
@@ -244,6 +245,14 @@ final class YTrip {
     }
 
     /**
+     * Schedule a rewrite rules flush when settings are saved so slug changes take effect immediately.
+     * Uses a transient so flush happens on the next request (init hook) rather than during save.
+     */
+    public function flush_rewrites_on_settings_save($data, $instance) {
+        set_transient('ytrip_flush_rewrite_rules', true, 60);
+    }
+
+    /**
      * Load textdomain - MUST be on 'init' for WordPress 6.7+
      */
     public function load_textdomain() {
@@ -259,9 +268,12 @@ final class YTrip {
      */
     public function template_loader(string $template) {
         $settings = get_option('ytrip_settings', []);
-        $tour_slug = $settings['slug_tour'] ?? 'ytrip_tour';
-        $dest_slug = $settings['slug_destination'] ?? 'ytrip_destination';
-        $cat_slug = $settings['slug_category'] ?? 'ytrip_category';
+
+        // IMPORTANT: Always use internal registered names for conditionals, NOT the URL slug settings.
+        // URL slugs change the frontend URL only; taxonomy/CPT names are fixed.
+        $tour_cpt  = 'ytrip_tour';
+        $tax_dest  = 'ytrip_destination';
+        $tax_cat   = 'ytrip_category';
 
         // Front page: use YTrip template when "Replace content" is enabled so sections always show
         if (is_front_page() && $this->should_use_ytrip_front_page_template()) {
@@ -277,7 +289,7 @@ final class YTrip {
         }
 
         // Single tour: respect single_tour_layout (layout_1 … layout_5) or fallback to default template
-        if (is_singular($tour_slug)) {
+        if (is_singular($tour_cpt)) {
             $layout = $settings['single_tour_layout'] ?? $settings['single_layout'] ?? 'layout_1';
             if (in_array($layout, ['standard', 'wide', 'fullwidth'], true)) {
                 $layout = 'default_page';
@@ -309,7 +321,7 @@ final class YTrip {
         }
 
         // Archive
-        if (is_post_type_archive($tour_slug)) {
+        if (is_post_type_archive($tour_cpt)) {
             $file = 'archive-ytrip_tour.php';
             $theme_template = locate_template(['ytrip/' . $file, $file]);
             if ($theme_template) {
@@ -319,7 +331,7 @@ final class YTrip {
         }
 
         // Taxonomy (destination & category use same archive template as tour archive)
-        if (is_tax($dest_slug) || is_tax($cat_slug)) {
+        if (is_tax($tax_dest) || is_tax($tax_cat)) {
             $file = 'archive-ytrip_tour.php';
             $theme_template = locate_template(['ytrip/' . $file, $file]);
             if ($theme_template) {

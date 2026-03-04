@@ -28,9 +28,9 @@ $dark_mode_enabled = ! empty( $options['dark_mode'] );
 $archive_filter_style = isset( $options['archive_filter_style'] ) ? sanitize_html_class( $options['archive_filter_style'] ) : 'modern';
 
 // Current values from URL
-$current_view = isset( $_GET['view'] ) ? sanitize_text_field( $_GET['view'] ) : $default_view;
+$current_view = isset( $_GET['view'] ) ? sanitize_text_field( wp_unslash( $_GET['view'] ) ) : $default_view;
 $current_cols = isset( $_GET['cols'] ) ? absint( $_GET['cols'] ) : $default_cols;
-$current_sort = isset( $_GET['orderby'] ) ? sanitize_text_field( $_GET['orderby'] ) : 'date';
+$current_sort = isset( $_GET['orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['orderby'] ) ) : 'date';
 
 get_header();
 ?>
@@ -83,12 +83,12 @@ get_header();
             <?php elseif ( is_tax( 'ytrip_destination' ) ) : ?>
                 <h1 class="ytrip-archive-header__title"><?php single_term_title(); ?></h1>
                 <?php if ( term_description() ) : ?>
-                    <p class="ytrip-archive-header__desc"><?php echo term_description(); ?></p>
+                    <p class="ytrip-archive-header__desc"><?php echo wp_kses_post( term_description() ); ?></p>
                 <?php endif; ?>
             <?php elseif ( is_tax( 'ytrip_category' ) ) : ?>
                 <h1 class="ytrip-archive-header__title"><?php single_term_title(); ?></h1>
                 <?php if ( term_description() ) : ?>
-                    <p class="ytrip-archive-header__desc"><?php echo term_description(); ?></p>
+                    <p class="ytrip-archive-header__desc"><?php echo wp_kses_post( term_description() ); ?></p>
                 <?php endif; ?>
             <?php endif; ?>
         </div>

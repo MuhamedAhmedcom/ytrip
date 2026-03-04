@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" style="background:#f1f5f9;border-radius:6px;border:1px solid #cbd5e1;">
+    <!-- Left Half: Full image -->
+    <rect x="0" y="0" width="200" height="300" fill="#94a3b8"/>
+    
+    <!-- Gallery strip inside image -->
+    <rect x="10" y="250" width="30" height="30" rx="4" fill="#fff"/>
+    <rect x="45" y="250" width="30" height="30" rx="4" fill="#fff" opacity="0.6"/>
+    <rect x="80" y="250" width="30" height="30" rx="4" fill="#fff" opacity="0.6"/>
+    
+    <!-- Right Half: Content -->
+    <rect x="200" y="0" width="200" height="300" fill="#fff"/>
+    
+    <rect x="220" y="30" width="150" height="15" rx="2" fill="#64748b"/>
+    <rect x="220" y="55" width="100" height="6" rx="2" fill="#94a3b8"/>
+    
+    <!-- Form elements -->
+    <rect x="220" y="80" width="160" height="30" rx="4" fill="#f1f5f9"/>
+    <rect x="220" y="120" width="160" height="30" rx="4" fill="#f1f5f9"/>
+    
+    <rect x="220" y="160" width="160" height="40" rx="6" fill="#2563eb"/>
+    
+    <rect x="220" y="220" width="80" height="6" rx="2" fill="#cbd5e1"/>
+    <rect x="220" y="235" width="140" height="6" rx="2" fill="#cbd5e1"/>
+    <rect x="220" y="250" width="160" height="6" rx="2" fill="#cbd5e1"/>
+</svg>

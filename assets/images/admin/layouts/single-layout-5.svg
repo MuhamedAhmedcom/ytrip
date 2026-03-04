@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" style="background:#f1f5f9;border-radius:6px;border:1px solid #cbd5e1;">
+    <!-- Title at top -->
+    <rect x="20" y="20" width="200" height="20" rx="4" fill="#64748b"/>
+    <rect x="20" y="50" width="360" height="6" rx="2" fill="#cbd5e1"/>
+    
+    <!-- Magazine Layout: large image left, 2 small right -->
+    <rect x="20" y="70" width="220" height="150" fill="#94a3b8" rx="4"/>
+    <rect x="250" y="70" width="130" height="70" fill="#cbd5e1" rx="4"/>
+    <rect x="250" y="150" width="130" height="70" fill="#cbd5e1" rx="4"/>
+
+    <!-- Editorial Text -->
+    <rect x="20" y="240" width="220" height="10" rx="2" fill="#94a3b8"/>
+    <rect x="20" y="255" width="220" height="10" rx="2" fill="#94a3b8"/>
+    <rect x="20" y="270" width="180" height="10" rx="2" fill="#94a3b8"/>
+
+    <!-- Vertical sidebar right -->
+    <rect x="250" y="240" width="130" height="40" fill="#fff" rx="4" stroke="#cbd5e1"/>
+</svg>

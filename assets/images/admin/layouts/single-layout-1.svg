@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" style="background:#f1f5f9;border-radius:6px;border:1px solid #cbd5e1;">
+    <!-- Hero Image -->
+    <rect x="0" y="0" width="400" height="90" fill="#94a3b8"/>
+    
+    <!-- Title inside hero -->
+    <rect x="20" y="50" width="150" height="15" rx="2" fill="#fff"/>
+    <rect x="20" y="70" width="80" height="6" rx="2" fill="#fff" opacity="0.8"/>
+    
+    <!-- Content left -->
+    <rect x="20" y="110" width="220" height="150" rx="4" fill="#fff"/>
+    <rect x="35" y="125" width="100" height="8" rx="2" fill="#cbd5e1"/>
+    <rect x="35" y="145" width="180" height="6" rx="2" fill="#cbd5e1"/>
+    
+    <rect x="35" y="170" width="180" height="70" rx="4" fill="#e2e8f0"/>
+    
+    <!-- Booking card right (overlaps) -->
+    <rect x="260" y="80" width="120" height="140" rx="6" fill="#fff" stroke="#cbd5e1"/>
+    <rect x="275" y="100" width="90" height="10" rx="2" fill="#cbd5e1"/>
+    <rect x="275" y="120" width="90" height="10" rx="2" fill="#cbd5e1"/>
+    <rect x="275" y="140" width="90" height="10" rx="2" fill="#cbd5e1"/>
+    <!-- Button -->
+    <rect x="275" y="170" width="90" height="25" rx="4" fill="#2563eb"/>
+    <rect x="300" y="178" width="40" height="8" rx="2" fill="#fff"/>
+</svg>

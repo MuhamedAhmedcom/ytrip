@@ -240,7 +240,21 @@ class YTrip_Frontend {
 .ytrip-related-tours .ytrip-carousel__dots .ytrip-carousel__dot{width:8px;height:8px;min-width:24px;min-height:24px;border-radius:50%;background:var(--ytrip-gray-400,#94a3b8);border:none;padding:0;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s;flex-shrink:0;overflow:visible;visibility:visible!important;opacity:1!important;pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;}
 .ytrip-related-tours .ytrip-carousel__dots .ytrip-carousel__dot:hover{background:var(--ytrip-primary,#2563eb)!important;transform:scale(1.2);visibility:visible!important;opacity:1!important;}
 .ytrip-related-tours .ytrip-carousel__dots .ytrip-carousel__dot.ytrip-carousel__dot--active{background:var(--ytrip-primary,#2563eb)!important;transform:scale(1.25);box-shadow:0 0 0 2px var(--ytrip-primary-light,#eff6ff);}
-.ytrip-related-tours .ytrip-carousel__dots .ytrip-carousel__dot.ytrip-carousel__dot--active:hover{background:var(--ytrip-primary-hover,#1d4ed8)!important;transform:scale(1.25);box-shadow:0 0 0 2px var(--ytrip-primary-light,#eff6ff);}';
+.ytrip-related-tours .ytrip-carousel__dots .ytrip-carousel__dot.ytrip-carousel__dot--active:hover{background:var(--ytrip-primary-hover,#1d4ed8)!important;transform:scale(1.25);box-shadow:0 0 0 2px var(--ytrip-primary-light,#eff6ff);}
+/* Mobile: center related tours carousel so orphan slide is centered not left-aligned */
+@media(max-width:767px){
+  .ytrip-related-tours .ytrip-tours--carousel-wrapper{padding:0 1rem;}
+  .ytrip-related-tours .ytrip-carousel__track{justify-content:center;}
+  .ytrip-related-tours .ytrip-carousel__slide{width:85vw;min-width:260px;max-width:340px;}
+  .ytrip-related-tours .ytrip-carousel__slide .ytrip-tour-card{min-height:420px;}
+  .ytrip-related-tours .ytrip-tour-card{min-height:420px;}
+}
+/* Review section layout */
+.ytrip-review-section{padding:3rem 0;}
+.ytrip-review-section__header{text-align:center;margin-bottom:2rem;}
+.ytrip-review-section__eyebrow{font-size:.875rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--ytrip-primary,#2563eb);margin:0 0 .5rem;}
+.ytrip-review-section__title{font-size:1.75rem;font-weight:700;margin:0;color:var(--ytrip-text,#1e293b);}
+.ytrip-review-section__body{max-width:700px;margin:0 auto;}';
 	}
 
 	/**

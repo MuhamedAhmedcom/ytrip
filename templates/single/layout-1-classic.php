@@ -737,6 +737,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div><!-- .ytrip-single-tour-page -->
 
+<?php
+/**
+ * Review Form Section – displayed before Related Tours.
+ * Visibility controlled by 'single_show_reviews' in YTrip Settings → Single Tour.
+ */
+$_ytrip_show_reviews = isset( $options['single_show_reviews'] ) ? filter_var( $options['single_show_reviews'], FILTER_VALIDATE_BOOLEAN ) : true;
+if ( $_ytrip_show_reviews ) :
+	$_ytrip_review_template = YTRIP_PATH . 'templates/parts/review-form.php';
+	if ( file_exists( $_ytrip_review_template ) ) :
+?>
+<section class="ytrip-section ytrip-review-section" aria-labelledby="ytrip-review-section-heading">
+	<div class="ytrip-container">
+		<header class="ytrip-review-section__header">
+			<p class="ytrip-review-section__eyebrow"><?php esc_html_e( 'Share your feedback', 'ytrip' ); ?></p>
+			<h2 id="ytrip-review-section-heading" class="ytrip-review-section__title"><?php esc_html_e( 'Write a Review', 'ytrip' ); ?></h2>
+		</header>
+		<div class="ytrip-review-section__body">
+			<?php include $_ytrip_review_template; ?>
+		</div>
+	</div>
+</section>
+<?php
+	endif;
+endif;
+?>
+
 <?php if ( function_exists( 'ytrip_render_related_tours' ) ) : ?>
 	<?php ytrip_render_related_tours( $tour_id ); ?>
 <?php endif; ?>

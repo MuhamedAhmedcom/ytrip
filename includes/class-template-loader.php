@@ -16,7 +16,8 @@ class YTrip_Template_Loader {
 
     public function __construct() {
         $this->options = get_option( 'ytrip_settings' );
-        add_filter( 'template_include', array( $this, 'load_templates' ) );
+        // NOTE: Template routing is handled by YTrip_Plugin::template_loader() at priority 99.
+        // This class focuses on smart asset enqueuing only.
         add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ), 5 );
     }
 
@@ -28,39 +29,9 @@ class YTrip_Template_Loader {
     }
 
     /**
-     * Load custom templates based on settings
-     * Supports theme overrides via theme/ytrip/ folder
+     * Template routing removed — handled by YTrip_Plugin::template_loader() in ytrip.php.
+     * Kept locate_template() and get_template_part() for theme-override support.
      */
-    public function load_templates( $template ) {
-        // Single Tour Template
-        if ( is_singular( 'ytrip_tour' ) ) {
-            $theme_template = $this->locate_template( 'single-ytrip_tour.php' );
-            if ( $theme_template ) {
-                return $theme_template;
-            }
-            $custom = YTRIP_PATH . 'templates/single-ytrip_tour.php';
-            if ( file_exists( $custom ) ) {
-                return $custom;
-            }
-        }
-
-
-        // Archive / Taxonomies
-        if ( is_post_type_archive( 'ytrip_tour' ) || is_tax( 'ytrip_destination' ) || is_tax( 'ytrip_category' ) ) {
-            // Check theme override first
-            $theme_template = $this->locate_template( 'archive-ytrip_tour.php' );
-            if ( $theme_template ) {
-                return $theme_template;
-            }
-
-            $custom = YTRIP_PATH . 'templates/archive-ytrip_tour.php';
-            if ( file_exists( $custom ) ) {
-                return $custom;
-            }
-        }
-
-        return $template;
-    }
 
     /**
      * Locate a template file in theme or plugin.
