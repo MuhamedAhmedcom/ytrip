@@ -586,7 +586,7 @@ if ( ! class_exists( 'CSF_Setup' ) ) {
         wp_enqueue_style( 'csf-fa', self::include_plugin_url( 'fonts/font-awesome.min.css'), array(), '4.7.0', 'all' );
       } else {
         wp_enqueue_style( 'csf-fa5',self::include_plugin_url( 'assets/css/all.min.css'), array(), '5.15.5', 'all' );
-        wp_enqueue_style( 'csf-fa5-v4-shims', self::include_plugin_url('/v4-shims.min.css'), array(), '5.15.5', 'all' );
+        wp_enqueue_style( 'csf-fa5-v4-shims', self::include_plugin_url('assets/css/v4-shims.min.css'), array(), '5.15.5', 'all' );
       }
 
       // Check for developer mode
