@@ -118,7 +118,6 @@ final class YTrip {
             'helper-functions.php',
             'footer-functions.php',
             'shortcodes/review-form-shortcode.php',
-		'review-form-shortcode.php',
         ];
 
         foreach ($core as $file) {
