@@ -54,18 +54,11 @@ $destination_name = ( $destinations && ! is_wp_error( $destinations ) ) ? $desti
 $categories      = get_the_terms( $tour_id, 'ytrip_category' );
 $category_name   = ( $categories && ! is_wp_error( $categories ) ) ? $categories[0]->name : '';
 
-// Gallery images
-$gallery_ids = ! empty( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-$thumb_id    = has_post_thumbnail( $tour_id ) ? get_post_thumbnail_id( $tour_id ) : 0;
+// Gallery / Hero images logic
+$gallery_ids = ytrip_get_gallery_ids( $meta );
+$thumb_id    = ytrip_get_effective_thumbnail_id( $tour_id, $meta );
 
-// ── AUTO-FEATURED IMAGE: If no featured image but gallery exists, use the first gallery image ──
-if ( ! $thumb_id && ! empty( $gallery_ids ) ) {
-	$thumb_id = $gallery_ids[0];
-	// Persist it so WordPress admin also shows the thumbnail.
-	set_post_thumbnail( $tour_id, $thumb_id );
-}
-
-// Build hero images array: featured first, then remaining gallery (no duplicates).
+// Build hero images array: thumbnail first, then remaining gallery (no duplicates).
 $hero_images = array();
 if ( $thumb_id ) {
 	$hero_images[] = $thumb_id;

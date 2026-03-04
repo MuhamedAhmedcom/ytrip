@@ -378,14 +378,20 @@ class YTrip_Tour_Display {
                     echo '<a href="' . esc_url($permalink) . '" class="ytrip-tour-card__image-link" aria-label="' . esc_attr($title) . '">';
                     echo '<img src="' . esc_url($tour_data['thumbnail']) . '" alt="' . esc_attr($title) . '" loading="lazy" decoding="async" width="400" height="300">';
                     echo '</a>';
-                } elseif (has_post_thumbnail($tour_id)) {
-                    $has_thumbnail = true;
-                    echo '<span class="ytrip-img-skeleton" aria-hidden="true"></span>';
-                    ?>
-                    <a href="<?php echo esc_url($permalink); ?>" class="ytrip-tour-card__image-link" aria-label="<?php echo esc_attr($title); ?>">
-                        <?php echo get_the_post_thumbnail($tour_id, 'ytrip-card', ['loading' => 'lazy', 'decoding' => 'async']); ?>
-                    </a>
-                    <?php
+                } else {
+                    $effective_thumb_id = function_exists( 'ytrip_get_effective_thumbnail_id' ) 
+                        ? ytrip_get_effective_thumbnail_id( $tour_id, $meta )
+                        : ( has_post_thumbnail($tour_id) ? get_post_thumbnail_id($tour_id) : 0 );
+
+                    if ( $effective_thumb_id ) {
+                        $has_thumbnail = true;
+                        echo '<span class="ytrip-img-skeleton" aria-hidden="true"></span>';
+                        ?>
+                        <a href="<?php echo esc_url($permalink); ?>" class="ytrip-tour-card__image-link" aria-label="<?php echo esc_attr($title); ?>">
+                            <?php echo wp_get_attachment_image($effective_thumb_id, 'ytrip-card', false, ['loading' => 'lazy', 'decoding' => 'async']); ?>
+                        </a>
+                        <?php
+                    }
                 }
 
                 if (!$has_thumbnail) : ?>

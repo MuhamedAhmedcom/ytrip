@@ -17,16 +17,10 @@ $show_tab_icons = ! empty( $options['single_tabs_show_icons'] );
 $product_id = get_post_meta( $tour_id, '_ytrip_wc_product_id', true );
 
 // Gallery / hero images (same as layout-1 for slider when 2+ images)
-$gallery_ids = ! empty( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-$thumb_id    = has_post_thumbnail( $tour_id ) ? get_post_thumbnail_id( $tour_id ) : 0;
+$gallery_ids = ytrip_get_gallery_ids( $meta );
+$thumb_id    = ytrip_get_effective_thumbnail_id( $tour_id, $meta );
 
-// ── AUTO-FEATURED IMAGE: If no featured image but gallery exists, use the first gallery image ──
-if ( ! $thumb_id && ! empty( $gallery_ids ) ) {
-	$thumb_id = $gallery_ids[0];
-	set_post_thumbnail( $tour_id, $thumb_id );
-}
-
-// Build hero images array: featured first, then remaining gallery (no duplicates).
+// Build hero images array: thumbnail first, then remaining gallery (no duplicates).
 $hero_images = array();
 if ( $thumb_id ) {
 	$hero_images[] = $thumb_id;

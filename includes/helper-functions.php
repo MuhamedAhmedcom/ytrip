@@ -168,3 +168,51 @@ function ytrip_wrap_image_with_skeleton( $img_html, $is_hero = true ) {
         . $img_html
         . '</div>';
 }
+/**
+ * Get gallery attachment IDs from tour meta, handling both CSV string and array formats.
+ *
+ * @param array $meta Tour details meta array.
+ * @return int[]
+ */
+function ytrip_get_gallery_ids( $meta ) {
+	if ( empty( $meta['tour_gallery'] ) ) {
+		return array();
+	}
+	$raw = $meta['tour_gallery'];
+	if ( is_string( $raw ) ) {
+		$ids = explode( ',', $raw );
+	} else {
+		$ids = (array) $raw;
+	}
+	return array_filter( array_map( 'absint', $ids ) );
+}
+
+/**
+ * Get the effective thumbnail ID for a tour.
+ * Falls back to the first gallery image if no featured image is set.
+ *
+ * @param int   $tour_id Tour ID.
+ * @param array $meta    Optional. Pre-fetched meta.
+ * @return int Attachment ID.
+ */
+function ytrip_get_effective_thumbnail_id( $tour_id, $meta = null ) {
+	$thumb_id = has_post_thumbnail( $tour_id ) ? (int) get_post_thumbnail_id( $tour_id ) : 0;
+	if ( $thumb_id ) {
+		return $thumb_id;
+	}
+
+	if ( null === $meta ) {
+		$meta = get_post_meta( $tour_id, 'ytrip_tour_details', true );
+	}
+	$gallery = ytrip_get_gallery_ids( is_array( $meta ) ? $meta : array() );
+
+	if ( ! empty( $gallery ) ) {
+		$fallback_id = $gallery[0];
+		// Optional: Persist to DB so WP core functions see it.
+		// We do this here once to ensure consistency.
+		set_post_thumbnail( $tour_id, $fallback_id );
+		return $fallback_id;
+	}
+
+	return 0;
+}
