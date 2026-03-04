@@ -283,7 +283,13 @@ final class YTrip {
         // Speedy Cache stores files – fire its purge action too.
         do_action('speedycache_purge_all');
 
-        // ── 7. Autoptimize ──────────────────────────────────────────────
+        // ── 7. FlyingPress ──────────────────────────────────────────────
+        if (class_exists('FlyingPress\\Purge') && method_exists('FlyingPress\\Purge', 'purge_everything')) {
+            \FlyingPress\Purge::purge_everything();
+        }
+        do_action('flyingpress_purge_everything');
+
+        // ── 8. Autoptimize ──────────────────────────────────────────────
         if (class_exists('autoptimizeCache') && method_exists('autoptimizeCache', 'clearall')) {
             \autoptimizeCache::clearall();
         }
