@@ -129,7 +129,7 @@ final class YTrip {
 
         // Admin
         if (is_admin()) {
-            $admin = ['codestar-config.php', 'class-admin-config.php', 'class-admin.php', 'class-admin-bookings.php', 'homepage-builder.php'];
+            $admin = ['codestar-config.php', 'class-admin.php', 'class-admin-bookings.php', 'homepage-builder.php'];
             foreach ($admin as $file) {
                 $path = YTRIP_PATH . 'admin/' . $file;
                 if (file_exists($path)) {
