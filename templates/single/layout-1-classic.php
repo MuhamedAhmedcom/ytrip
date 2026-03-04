@@ -50,9 +50,9 @@ if ( empty( $group_str ) && ! empty( $meta['group_size'] ) ) {
 
 // Get destinations & categories
 $destinations    = get_the_terms( $tour_id, 'ytrip_destination' );
-$destination_name = ( $destinations && ! is_wp_error( $destinations ) ) ? $destinations[0]->name : '';
+$destination_name = ( ! empty( $destinations ) && ! is_wp_error( $destinations ) ) ? $destinations[0]->name : '';
 $categories      = get_the_terms( $tour_id, 'ytrip_category' );
-$category_name   = ( $categories && ! is_wp_error( $categories ) ) ? $categories[0]->name : '';
+$category_name   = ( ! empty( $categories ) && ! is_wp_error( $categories ) ) ? $categories[0]->name : '';
 
 // Gallery / Hero images logic
 $gallery_ids = ytrip_get_gallery_ids( $meta );
@@ -72,7 +72,7 @@ foreach ( $gallery_ids as $gid ) {
 // ── HERO SLIDER: automatic Swiper when 2+ images ──
 $hero_count      = count( $hero_images );
 $hero_is_slider  = ( $hero_count > 1 );
-$hero_gallery_mode = $hero_is_slider ? 'slider' : 'single_image';
+$hero_gallery_mode = $hero_is_slider ? ( isset( $options['single_hero_gallery_mode'] ) ? sanitize_key( $options['single_hero_gallery_mode'] ) : 'slider' ) : 'single_image';
 
 get_header();
 
