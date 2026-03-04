@@ -27,6 +27,7 @@ CSF::createOptions( $prefix, array(
 	'show_bar_menu'   => true,
 	'theme'           => 'light',
 	'footer_text'     => esc_html__( 'Thank you for using YTrip Travel Booking Plugin', 'ytrip' ),
+	'ajax_save'       => false,
 ) );
 
 // ============================================================
