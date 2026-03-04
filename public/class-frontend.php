@@ -58,6 +58,7 @@ class YTrip_Frontend {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ), 10 );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 10 );
 		add_action( 'wp_head', array( $this, 'output_custom_css' ), 100 );
+		add_action( 'wp_footer', array( $this, 'output_custom_js' ), 100 );
 		add_filter( 'body_class', array( $this, 'add_body_classes' ), 20 );
 	}
 
@@ -464,17 +465,49 @@ class YTrip_Frontend {
 	}
 
 	/**
-	 * Output custom CSS from options.
+	 * Output custom CSS from options (General, Tablet, Mobile).
 	 */
 	public function output_custom_css() {
 		if ( ! $this->is_ytrip_page() ) {
 			return;
 		}
 
-		$custom_css = isset( $this->options['custom_css'] ) ? $this->options['custom_css'] : '';
+		$output = '';
 
-		if ( ! empty( $custom_css ) ) {
-			echo '<style id="ytrip-custom-css">' . wp_strip_all_tags( $custom_css ) . '</style>';
+		// General CSS (applies to all screens).
+		$css_general = isset( $this->options['custom_css'] ) ? trim( $this->options['custom_css'] ) : '';
+		if ( $css_general !== '' ) {
+			$output .= wp_strip_all_tags( $css_general );
+		}
+
+		// Tablet CSS (auto-wrapped in ≤1024px media query).
+		$css_tablet = isset( $this->options['custom_css_tablet'] ) ? trim( $this->options['custom_css_tablet'] ) : '';
+		if ( $css_tablet !== '' ) {
+			$output .= '@media(max-width:1024px){' . wp_strip_all_tags( $css_tablet ) . '}';
+		}
+
+		// Mobile CSS (auto-wrapped in ≤768px media query).
+		$css_mobile = isset( $this->options['custom_css_mobile'] ) ? trim( $this->options['custom_css_mobile'] ) : '';
+		if ( $css_mobile !== '' ) {
+			$output .= '@media(max-width:768px){' . wp_strip_all_tags( $css_mobile ) . '}';
+		}
+
+		if ( $output !== '' ) {
+			echo '<style id="ytrip-custom-css">' . $output . '</style>';
+		}
+	}
+
+	/**
+	 * Output custom JavaScript from options in the footer.
+	 */
+	public function output_custom_js() {
+		if ( ! $this->is_ytrip_page() ) {
+			return;
+		}
+
+		$custom_js = isset( $this->options['custom_js'] ) ? trim( $this->options['custom_js'] ) : '';
+		if ( $custom_js !== '' ) {
+			echo '<script id="ytrip-custom-js">' . $custom_js . '</script>';
 		}
 	}
 

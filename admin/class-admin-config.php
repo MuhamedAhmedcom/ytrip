@@ -1545,7 +1545,7 @@ class YTrip_Admin_Config {
                 'id' => 'single_hero_type',
                 'type' => 'button_set',
                 'title' => __('Hero Type', 'ytrip'),
-                'desc' => __('Single image uses the featured image (or first gallery image). Slider/Carousel uses all images from the Gallery section below.', 'ytrip'),
+                'desc' => __('Single image uses the featured image (or first gallery image). Slider/Carousel uses all images from the Gallery section below. Recommended dimension: 1920x1080px (16:9 ratio).', 'ytrip'),
                 'options' => [
                     'single_image' => __('Single Image', 'ytrip'),
                     'slider_carousel' => __('Slider / Carousel', 'ytrip'),
@@ -1577,7 +1577,7 @@ class YTrip_Admin_Config {
                 'id' => 'gallery',
                 'type' => 'gallery',
                 'title' => __('Tour Gallery', 'ytrip'),
-                'desc' => __('Upload or select images for the gallery.', 'ytrip'),
+                'desc' => __('Upload or select images for the gallery. Recommended dimensions: 1920x1080px (16:9 ratio) for hero sliders or 800x600px (4:3 ratio) for standard gallery grid.', 'ytrip'),
             ],
             [
                 'id' => 'video_url',

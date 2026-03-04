@@ -56,15 +56,24 @@ $category_name   = ( $categories && ! is_wp_error( $categories ) ) ? $categories
 
 // Gallery images
 $gallery_ids = ! empty( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-if ( empty( $gallery_ids ) && has_post_thumbnail( $tour_id ) ) {
-	$gallery_ids = array( get_post_thumbnail_id( $tour_id ) );
+$thumb_id    = has_post_thumbnail( $tour_id ) ? get_post_thumbnail_id( $tour_id ) : 0;
+
+$hero_images = array();
+if ( $thumb_id ) {
+	$hero_images[] = $thumb_id;
+}
+foreach ( $gallery_ids as $gid ) {
+	if ( (int) $gid !== (int) $thumb_id ) {
+		$hero_images[] = $gid;
+	}
 }
 
-// Hero slider/carousel: same logic as default single template (2+ images = slider when global allows)
+// Hero slider/carousel: automatic when 2+ images
 $settings        = get_option( 'ytrip_settings', array() );
 $hero_mode       = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : '';
 $legacy_hero     = isset( $meta['single_hero_type'] ) ? sanitize_key( $meta['single_hero_type'] ) : 'single_image';
 $legacy_gallery  = isset( $meta['gallery_display_mode'] ) ? sanitize_key( $meta['gallery_display_mode'] ) : '';
+
 if ( $hero_mode === '' ) {
 	if ( $legacy_hero === 'slider_carousel' && $legacy_gallery === 'carousel' ) {
 		$hero_mode = 'carousel';
@@ -74,11 +83,14 @@ if ( $hero_mode === '' ) {
 		$hero_mode = 'single_image';
 	}
 }
-$hero_images   = $gallery_ids;
+
 $hero_count    = count( $hero_images );
-if ( $hero_count > 1 && $hero_mode === 'single_image' ) {
+
+// Force slider if there are 2+ images, handling the feature request naturally
+if ( $hero_count > 1 ) {
 	$hero_mode = isset( $settings['single_hero_gallery_mode'] ) ? sanitize_key( $settings['single_hero_gallery_mode'] ) : 'slider';
 }
+
 $hero_is_slider    = ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) && $hero_count > 1;
 $hero_gallery_mode = $hero_is_slider ? $hero_mode : 'slider';
 
@@ -138,11 +150,13 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
         <div class="ytrip-hero__gallery">
             <!-- Main Image -->
             <div class="ytrip-hero__main">
-                <?php if ( has_post_thumbnail() ) : ?>
+                <?php if ( ! empty( $hero_images ) ) : ?>
                     <?php
-                    $hero_img = get_the_post_thumbnail(
-                        get_the_ID(),
+                    $main_img_id = $hero_images[0];
+                    $hero_img = wp_get_attachment_image(
+                        $main_img_id,
                         'large',
+                        false,
                         array(
                             'class'          => 'ytrip-hero__img',
                             'loading'        => 'eager',

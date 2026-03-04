@@ -55,7 +55,29 @@ $section_class = 'ytrip-section ytrip-section--categories ytrip-categories ytrip
 		</header>
 
 		<?php if ( $categories && ! is_wp_error( $categories ) ) : ?>
-			<div class="ytrip-categories-grid ytrip-categories-grid--<?php echo esc_attr( $style ); ?>">
+            <style>
+                @media (max-width: 768px) {
+                    .ytrip-categories-grid {
+                        display: flex;
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        -webkit-overflow-scrolling: touch;
+                        scroll-snap-type: x mandatory;
+                        padding-bottom: 16px;
+                        gap: 16px;
+                        /* Hide scrollbar for a cleaner look */
+                        scrollbar-width: none; 
+                        scroll-behavior: smooth;
+                    }
+                    .ytrip-categories-grid::-webkit-scrollbar { display: none; }
+                    .ytrip-categories-grid .ytrip-category-card {
+                        flex: 0 0 calc(80% - 16px);
+                        scroll-snap-align: start;
+                        min-width: 200px;
+                    }
+                }
+            </style>
+			<div class="ytrip-categories-grid ytrip-categories-grid--<?php echo esc_attr( $style ); ?> ytrip-mobile-carousel">
 				<?php foreach ( $categories as $index => $category ) :
 					$slug        = sanitize_key( $category->slug );
 					$term_color  = YTrip_Helper::get_term_color( $category->term_id, 'ytrip_category' );
