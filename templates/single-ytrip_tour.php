@@ -1214,50 +1214,12 @@ if ( ! $hero_is_slider && ! empty( $hero_images ) ) :
     </div>
 </main>
 
-<!-- ==================== REVIEW FORM ==================== -->
-<div class="ytrip-reviews-section" style="padding: 40px 0; background: #f8fafc; margin-top: 40px;">
-    <div class="ytrip-container">
-        <h3 style="margin-bottom: 20px; font-size: 1.5rem;">✍️ <?php esc_html_e( 'Write a Review', 'ytrip' ); ?></h3>
-        
-        <form class="ytrip-review-form" id="ytrip-review-form" style="background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-            <div class="ytrip-form-group" style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600;">⭐ <?php esc_html_e( 'Rating', 'ytrip' ); ?></label>
-                <select name="rating" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                    <option value="5">⭐⭐⭐⭐⭐ <?php esc_html_e( 'Excellent', 'ytrip' ); ?></option>
-                    <option value="4">⭐⭐⭐⭐ <?php esc_html_e( 'Very Good', 'ytrip' ); ?></option>
-                    <option value="3">⭐⭐⭐ <?php esc_html_e( 'Good', 'ytrip' ); ?></option>
-                    <option value="2">⭐⭐ <?php esc_html_e( 'Fair', 'ytrip' ); ?></option>
-                    <option value="1">⭐ <?php esc_html_e( 'Poor', 'ytrip' ); ?></option>
-                </select>
-            </div>
-            
-            <div class="ytrip-form-group" style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600;">📝 <?php esc_html_e( 'Title', 'ytrip' ); ?></label>
-                <input type="text" name="title" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" placeholder="<?php esc_attr_e( 'Summary of your experience', 'ytrip' ); ?>">
-            </div>
-            
-            <div class="ytrip-form-group" style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 8px; font-weight: 600;">💬 <?php esc_html_e( 'Your Review', 'ytrip' ); ?></label>
-                <textarea name="content" rows="5" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" placeholder="<?php esc_attr_e( 'Tell us about your experience...', 'ytrip' ); ?>"></textarea>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                <div>
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">👤 <?php esc_html_e( 'Name', 'ytrip' ); ?></label>
-                    <input type="text" name="author_name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                </div>
-                <div>
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">📧 <?php esc_html_e( 'Email', 'ytrip' ); ?></label>
-                    <input type="email" name="author_email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;">
-                </div>
-            </div>
-            
-            <button type="submit" style="background: #0f4c81; color: #fff; padding: 14px 32px; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer;">
-                <?php esc_html_e( 'Submit Review', 'ytrip' ); ?>
-            </button>
-        </form>
-    </div>
+<!-- ==================== REVIEWS ==================== -->
+<?php if (class_exists("YTrip_Rating_Display")) : ?>
+<div class="ytrip-container">
+	<?php echo YTrip_Rating_Display::instance()->render_reviews_section(get_the_ID()); ?>
 </div>
+<?php endif; ?>
 
 
 <!-- ==================== RELATED TOURS ==================== -->
@@ -2620,82 +2582,6 @@ if ( ! $hero_is_slider && ! empty( $hero_images ) ) :
 })();
 </script>
 
-<!-- ==================== REVIEWS ==================== -->
-<?php if (class_exists("YTrip_Rating_Display")) : ?>
-<div class="ytrip-container">
-	<?php echo YTrip_Rating_Display::instance()->render_reviews_section(get_the_ID()); ?>
-</div>
-<?php endif; ?>
 
-</div><!-- .ytrip-single-tour-page -->
-
-
-
-<!-- ==================== SIMPLE REVIEW FORM ==================== -->
-<div class="ytrip-simple-review-form" style="padding:40px 0;background:#f8fafc;margin-top:40px">
-    <div class="ytrip-container">
-        <h3 style="margin-bottom:20px;font-size:1.5rem">✍️ Write a Review</h3>
-        <form method="post" style="background:#fff;padding:30px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1)">
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">⭐ Rating</label>
-                <select name="rating" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
-                    <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
-                    <option value="4">⭐⭐⭐⭐ Very Good</option>
-                    <option value="3">⭐⭐⭐ Good</option>
-                    <option value="2">⭐⭐ Fair</option>
-                    <option value="1">⭐ Poor</option>
-                </select>
-            </div>
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">📝 Title</label>
-                <input type="text" name="title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px" placeholder="Summary">
-            </div>
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">💬 Your Review</label>
-                <textarea name="content" rows="5" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px" placeholder="Tell us about your experience"></textarea>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
-                <div>
-                    <label style="display:block;margin-bottom:8px;font-weight:600">👤 Name</label>
-                    <input type="text" name="author_name" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
-                </div>
-                <div>
-                    <label style="display:block;margin-bottom:8px;font-weight:600">📧 Email</label>
-                    <input type="email" name="author_email" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
-                </div>
-            </div>
-            <button type="submit" style="background:#0f4c81;color:#fff;padding:14px 32px;border:none;border-radius:8px;font-size:16px;font-weight:600;cursor:pointer">Submit Review</button>
-        </form>
-    </div>
-</div>
-
-
-<!-- Simple Review Form -->
-<div class="ytrip-review-section" style="padding:40px 0;background:#f8fafc;margin-top:40px">
-    <div class="ytrip-container">
-        <h3 style="margin-bottom:20px">Write a Review</h3>
-        <form style="background:#fff;padding:30px;border-radius:12px">
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">Rating</label>
-                <select name="rating" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
-                    <option value="5">Excellent</option>
-                    <option value="4">Very Good</option>
-                    <option value="3">Good</option>
-                </select>
-            </div>
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">Title</label>
-                <input type="text" name="title" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px">
-            </div>
-            <div style="margin-bottom:20px">
-                <label style="display:block;margin-bottom:8px;font-weight:600">Review</label>
-                <textarea name="content" rows="5" style="width:100%;padding:12px;border:1px solid #ddd;border-radius:8px"></textarea>
-            </div>
-            <button type="submit" style="background:#0f4c81;color:#fff;padding:14px 28px;border:none;border-radius:8px">Submit</button>
-        </form>
-    </div>
-</div>
-
-<?php include YTRIP_PATH . 'templates/parts/simple-review-form.php'; ?>
 
 <?php get_footer(); ?>

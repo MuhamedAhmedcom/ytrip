@@ -439,16 +439,16 @@ CSF::createSection( $prefix, array(
 	'fields' => array(
 		array(
 			'id'      => 'single_tour_layout',
-			'type'    => 'button_set',
+			'type'    => 'image_select',
 			'title'   => esc_html__( 'Single Tour Design', 'ytrip' ),
 			'desc'    => esc_html__( 'Choose which layout template to use for single tour pages. Default = base theme template. Layout 1–5 = built-in premium designs. Hero slider is automatic when 2+ images are set.', 'ytrip' ),
 			'options' => array(
-				'default_page' => esc_html__( 'Default', 'ytrip' ),
-				'layout_1'     => esc_html__( 'Classic', 'ytrip' ),
-				'layout_2'     => esc_html__( 'Modern', 'ytrip' ),
-				'layout_3'     => esc_html__( 'Split', 'ytrip' ),
-				'layout_4'     => esc_html__( 'Booking Focus', 'ytrip' ),
-				'layout_5'     => esc_html__( 'Magazine', 'ytrip' ),
+				'default_page' => YTRIP_URL . 'assets/images/admin/layouts/single-default.png',
+				'layout_1'     => YTRIP_URL . 'assets/images/admin/layouts/single-layout-1.png',
+				'layout_2'     => YTRIP_URL . 'assets/images/admin/layouts/single-layout-2.png',
+				'layout_3'     => YTRIP_URL . 'assets/images/admin/layouts/single-layout-3.png',
+				'layout_4'     => YTRIP_URL . 'assets/images/admin/layouts/single-layout-4.png',
+				'layout_5'     => YTRIP_URL . 'assets/images/admin/layouts/single-layout-5.png',
 			),
 			'default' => 'layout_1',
 		),
@@ -781,33 +781,55 @@ CSF::createSection( $prefix, array(
 			'default'    => false,
 		),
 		array(
-			'id'      => 'custom_css',
-			'type'    => 'code_editor',
-			'title'   => esc_html__( 'Custom CSS — General', 'ytrip' ),
-			'desc'    => esc_html__( 'CSS applied on all screen sizes.', 'ytrip' ),
-			'settings' => array(
-				'mode'  => 'css',
-				'theme' => 'monokai',
-			),
-		),
-		array(
-			'id'      => 'custom_css_tablet',
-			'type'    => 'code_editor',
-			'title'   => esc_html__( 'Custom CSS — Tablet (≤ 1024px)', 'ytrip' ),
-			'desc'    => esc_html__( 'Wrapped automatically in @media (max-width: 1024px). You can also write your own breakpoints.', 'ytrip' ),
-			'settings' => array(
-				'mode'  => 'css',
-				'theme' => 'monokai',
-			),
-		),
-		array(
-			'id'      => 'custom_css_mobile',
-			'type'    => 'code_editor',
-			'title'   => esc_html__( 'Custom CSS — Mobile (≤ 768px)', 'ytrip' ),
-			'desc'    => esc_html__( 'Wrapped automatically in @media (max-width: 768px). You can also write your own breakpoints.', 'ytrip' ),
-			'settings' => array(
-				'mode'  => 'css',
-				'theme' => 'monokai',
+			'id'    => 'custom_css_tabbed',
+			'type'  => 'tabbed',
+			'title' => esc_html__( 'Custom CSS', 'ytrip' ),
+			'tabs'  => array(
+				array(
+					'title'  => esc_html__( 'General', 'ytrip' ),
+					'fields' => array(
+						array(
+							'id'       => 'custom_css',
+							'type'     => 'code_editor',
+							'title'    => esc_html__( 'Custom CSS — General', 'ytrip' ),
+							'desc'     => esc_html__( 'CSS applied on all screen sizes.', 'ytrip' ),
+							'settings' => array(
+								'mode'  => 'css',
+								'theme' => 'monokai',
+							),
+						),
+					),
+				),
+				array(
+					'title'  => esc_html__( 'Tablet', 'ytrip' ),
+					'fields' => array(
+						array(
+							'id'       => 'custom_css_tablet',
+							'type'     => 'code_editor',
+							'title'    => esc_html__( 'Custom CSS — Tablet (≤ 1024px)', 'ytrip' ),
+							'desc'     => esc_html__( 'Wrapped automatically in @media (max-width: 1024px). You can also write your own breakpoints.', 'ytrip' ),
+							'settings' => array(
+								'mode'  => 'css',
+								'theme' => 'monokai',
+							),
+						),
+					),
+				),
+				array(
+					'title'  => esc_html__( 'Mobile', 'ytrip' ),
+					'fields' => array(
+						array(
+							'id'       => 'custom_css_mobile',
+							'type'     => 'code_editor',
+							'title'    => esc_html__( 'Custom CSS — Mobile (≤ 768px)', 'ytrip' ),
+							'desc'     => esc_html__( 'Wrapped automatically in @media (max-width: 768px). You can also write your own breakpoints.', 'ytrip' ),
+							'settings' => array(
+								'mode'  => 'css',
+								'theme' => 'monokai',
+							),
+						),
+					),
+				),
 			),
 		),
 		array(
