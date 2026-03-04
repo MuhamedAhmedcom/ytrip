@@ -228,16 +228,85 @@ final class YTrip {
     }
 
     /**
-     * Purge page cache when settings are saved so body class and layout changes apply immediately.
+     * Purge ALL cache layers when settings are saved.
+     *
+     * Covers: LiteSpeed, WP Rocket, WP Super Cache, W3 Total Cache,
+     * WP Fastest Cache, Speedy Cache, Autoptimize, Cloudflare,
+     * WordPress object cache, and PHP OPcache.
+     *
+     * Also bumps a version transient so front-end asset URLs get a fresh
+     * query-string, forcing browsers to reload CSS/JS.
+     *
+     * @param mixed $data     Saved data.
+     * @param mixed $instance CSF instance.
+     * @return void
      */
     public function purge_cache_on_settings_save($data, $instance) {
+
+        // ── 1. LiteSpeed Cache ──────────────────────────────────────────
         do_action('litespeed_purge_all', 'YTrip settings saved');
         if (function_exists('run_litespeed_purge_all')) {
             run_litespeed_purge_all();
-        } elseif (class_exists('LiteSpeed\Purge')) {
+        } elseif (class_exists('LiteSpeed\\Purge')) {
             \LiteSpeed\Purge::purge_all();
         }
+
+        // ── 2. WP Rocket ────────────────────────────────────────────────
+        if (function_exists('rocket_clean_domain')) {
+            rocket_clean_domain();
+        }
+
+        // ── 3. WP Super Cache ───────────────────────────────────────────
+        if (function_exists('wp_cache_clear_cache')) {
+            wp_cache_clear_cache();
+        }
+
+        // ── 4. W3 Total Cache ───────────────────────────────────────────
+        if (function_exists('w3tc_flush_all')) {
+            w3tc_flush_all();
+        }
+
+        // ── 5. WP Fastest Cache ─────────────────────────────────────────
+        if (function_exists('wpfc_clear_all_cache')) {
+            wpfc_clear_all_cache(true);
+        } elseif (isset($GLOBALS['wp_fastest_cache']) && method_exists($GLOBALS['wp_fastest_cache'], 'deleteCache')) {
+            $GLOBALS['wp_fastest_cache']->deleteCache();
+        }
+
+        // ── 6. Speedy Cache (WPSpeedyCache) ─────────────────────────────
+        if (class_exists('SpeedyCache') && method_exists('SpeedyCache', 'delete_cache')) {
+            \SpeedyCache::delete_cache();
+        }
+        if (function_exists('speedycache_delete_cache')) {
+            speedycache_delete_cache();
+        }
+        // Speedy Cache stores files – fire its purge action too.
+        do_action('speedycache_purge_all');
+
+        // ── 7. Autoptimize ──────────────────────────────────────────────
+        if (class_exists('autoptimizeCache') && method_exists('autoptimizeCache', 'clearall')) {
+            \autoptimizeCache::clearall();
+        }
+
+        // ── 8. Cloudflare (official plugin) ─────────────────────────────
+        do_action('cloudflare_purge_by_url', home_url('/'));
+
+        // ── 9. Hummingbird ──────────────────────────────────────────────
+        do_action('wphb_clear_page_cache');
+
+        // ── 10. Generic hooks many plugins listen to ────────────────────
+        do_action('cache_flush');
+
+        // ── 11. WordPress object cache ──────────────────────────────────
         wp_cache_flush();
+
+        // ── 12. PHP OPcache ─────────────────────────────────────────────
+        if (function_exists('opcache_reset')) {
+            @opcache_reset();
+        }
+
+        // ── 13. Bump version transient for browser cache-busting ────────
+        set_transient('ytrip_assets_version', time(), 0);
     }
 
     /**
@@ -286,6 +355,9 @@ final class YTrip {
 
         // Single tour: respect single_tour_layout (layout_1 … layout_5) or fallback to default template
         if (is_singular($tour_cpt)) {
+            // Prevent browser/proxy caching so template changes show immediately.
+            nocache_headers();
+
             $layout = $settings['single_tour_layout'] ?? $settings['single_layout'] ?? 'layout_1';
             if (in_array($layout, ['standard', 'wide', 'fullwidth'], true)) {
                 $layout = 'default_page';
