@@ -167,7 +167,7 @@ final class YTrip {
         }
 
         add_action('plugins_loaded', [$this, 'on_plugins_loaded'], 5);
-        add_action('init', [$this, 'on_init'], 10);
+        add_action('init', [$this, 'on_init'], 99); // Priority 99 to flush AFTER post types are registered
         add_action('save_post_ytrip_tour', [$this, 'sync_tour_price_meta'], 15, 2);
         add_action('save_post_ytrip_tour', [$this, 'sync_tour_capacity_meta'], 18, 2);
         add_action('save_post_ytrip_tour', [$this, 'migrate_hero_gallery_meta'], 20, 2);
@@ -273,7 +273,7 @@ final class YTrip {
         $tax_cat   = 'ytrip_category';
 
         // Front page: use YTrip template when "Replace content" is enabled so sections always show
-        if (is_front_page() && $this->should_use_ytrip_front_page_template()) {
+        if ((is_front_page() || is_home()) && $this->should_use_ytrip_front_page_template()) {
             $file = 'front-page.php';
             $theme_template = locate_template(['ytrip/' . $file, $file]);
             if ($theme_template) {
