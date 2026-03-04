@@ -364,7 +364,16 @@ final class YTrip {
             // Prevent browser/proxy caching so template changes show immediately.
             nocache_headers();
 
-            $layout = $settings['single_tour_layout'] ?? $settings['single_layout'] ?? 'layout_1';
+            // Force fresh DB read – bypass WP object cache so settings changes apply instantly.
+            wp_cache_delete('ytrip_settings', 'options');
+            $fresh_settings = get_option('ytrip_settings', []);
+
+            $layout = $fresh_settings['single_tour_layout'] ?? $fresh_settings['single_layout'] ?? 'layout_1';
+
+            // Debug: output chosen layout in HTML comment (only when WP_DEBUG is on).
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                echo '<!-- ytrip-template-debug: single_tour_layout=' . esc_attr($layout) . ' -->';
+            }
             if (in_array($layout, ['standard', 'wide', 'fullwidth'], true)) {
                 $layout = 'default_page';
             }

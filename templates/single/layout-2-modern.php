@@ -18,29 +18,29 @@ $product_id = get_post_meta( $tour_id, '_ytrip_wc_product_id', true );
 
 // Gallery / hero images (same as layout-1 for slider when 2+ images)
 $gallery_ids = ! empty( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-if ( empty( $gallery_ids ) && has_post_thumbnail( $tour_id ) ) {
-	$gallery_ids = array( get_post_thumbnail_id( $tour_id ) );
+$thumb_id    = has_post_thumbnail( $tour_id ) ? get_post_thumbnail_id( $tour_id ) : 0;
+
+// ── AUTO-FEATURED IMAGE: If no featured image but gallery exists, use the first gallery image ──
+if ( ! $thumb_id && ! empty( $gallery_ids ) ) {
+	$thumb_id = $gallery_ids[0];
+	set_post_thumbnail( $tour_id, $thumb_id );
 }
-$settings       = get_option( 'ytrip_settings', array() );
-$hero_mode      = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : '';
-$legacy_hero    = isset( $meta['single_hero_type'] ) ? sanitize_key( $meta['single_hero_type'] ) : 'single_image';
-$legacy_gallery = isset( $meta['gallery_display_mode'] ) ? sanitize_key( $meta['gallery_display_mode'] ) : '';
-if ( $hero_mode === '' ) {
-	if ( $legacy_hero === 'slider_carousel' && $legacy_gallery === 'carousel' ) {
-		$hero_mode = 'carousel';
-	} elseif ( $legacy_hero === 'slider_carousel' ) {
-		$hero_mode = 'slider';
-	} else {
-		$hero_mode = 'single_image';
+
+// Build hero images array: featured first, then remaining gallery (no duplicates).
+$hero_images = array();
+if ( $thumb_id ) {
+	$hero_images[] = $thumb_id;
+}
+foreach ( $gallery_ids as $gid ) {
+	if ( (int) $gid !== (int) $thumb_id ) {
+		$hero_images[] = $gid;
 	}
 }
-$hero_images       = $gallery_ids;
+
+// ── HERO SLIDER: automatic Swiper when 2+ images ──
 $hero_count        = count( $hero_images );
-if ( $hero_count > 1 && $hero_mode === 'single_image' ) {
-	$hero_mode = isset( $settings['single_hero_gallery_mode'] ) ? sanitize_key( $settings['single_hero_gallery_mode'] ) : 'slider';
-}
-$hero_is_slider    = ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) && $hero_count > 1;
-$hero_gallery_mode = $hero_is_slider ? $hero_mode : 'slider';
+$hero_is_slider    = ( $hero_count > 1 );
+$hero_gallery_mode = $hero_is_slider ? 'slider' : 'single_image';
 $product    = $product_id && function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
 
 // Get taxonomy data
