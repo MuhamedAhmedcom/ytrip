@@ -128,14 +128,13 @@ final class YTrip {
             }
         }
 
-            // Admin
+        // Admin
         if (is_admin()) {
             $admin = ['codestar-config.php', 'class-admin-config.php', 'class-admin.php', 'class-admin-bookings.php', 'homepage-builder.php'];
             foreach ($admin as $file) {
                 $path = YTRIP_PATH . 'admin/' . $file;
                 if (file_exists($path)) {
                     require_once $path;
-	}
                 }
             }
         }
@@ -146,7 +145,6 @@ final class YTrip {
             $path = YTRIP_PATH . 'public/' . $file;
             if (file_exists($path)) {
                 require_once $path;
-	}
             }
         }
 
@@ -155,7 +153,6 @@ final class YTrip {
             $path = YTRIP_PATH . 'includes/class-woocommerce-integration.php';
             if (file_exists($path)) {
                 require_once $path;
-	}
             }
         }
     }
