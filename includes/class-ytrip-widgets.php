@@ -516,10 +516,14 @@ function ytrip_allow_legacy_widget_block( $widget_types ) {
         'ytrip_destinations_widget',
         'ytrip_activities_widget',
         'ytrip_trips_widget',
+        'ytrip_latest_tours',
+        'ytrip_destinations',
+        'ytrip_categories',
     );
     return array_diff( $widget_types, $ytrip_widgets );
 }
-add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'ytrip_allow_legacy_widget_block' );
+add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'ytrip_allow_legacy_widget_block', 999 );
+
 
 /**
  * Suppress the Gutenberg block-editor warning for our CSF legacy widgets

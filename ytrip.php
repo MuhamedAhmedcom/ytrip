@@ -115,6 +115,7 @@ final class YTrip {
             'class-font-downloader.php',
             'class-archive-filters.php',
             'class-ytrip-widgets.php',
+            'class-widgets.php',
             'class-image-optimizer.php',
             'helper-functions.php',
             'footer-functions.php',
