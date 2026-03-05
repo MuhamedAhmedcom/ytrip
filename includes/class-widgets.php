@@ -17,7 +17,7 @@ class YTrip_Widget_Latest_Tours extends WP_Widget {
     public function __construct() {
         parent::__construct(
             "ytrip_latest_tours",
-            __( "YTrip: Latest Tours", "ytrip" ),
+            __( "YTrip Latest Tours", "ytrip" ),
             array(
                 "description" => __( "Display latest tours with filtering options", "ytrip" ),
             )
@@ -203,7 +203,7 @@ class YTrip_Widget_Destinations extends WP_Widget {
     public function __construct() {
         parent::__construct(
             "ytrip_destinations",
-            __( "YTrip: Destinations", "ytrip" ),
+            __( "YTrip Destinations", "ytrip" ),
             array(
                 "description" => __( "Display tour destinations", "ytrip" ),
             )
@@ -295,7 +295,7 @@ class YTrip_Widget_Categories extends WP_Widget {
     public function __construct() {
         parent::__construct(
             "ytrip_categories",
-            __( "YTrip: Categories", "ytrip" ),
+            __( "YTrip Categories", "ytrip" ),
             array(
                 "description" => __( "Display tour categories", "ytrip" ),
             )
@@ -373,4 +373,4 @@ function ytrip_register_widgets() {
     register_widget( "YTrip_Widget_Destinations" );
     register_widget( "YTrip_Widget_Categories" );
 }
-add_action( "widgets_init", "ytrip_register_widgets" );
+add_action( "widgets_init", "ytrip_register_widgets", 20 );

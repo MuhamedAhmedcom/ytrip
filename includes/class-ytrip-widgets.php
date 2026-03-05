@@ -452,27 +452,28 @@ function ytrip_register_csf_widgets() {
     }
 
     CSF::createWidget( 'ytrip_destinations_widget', array(
-        'title'       => __( 'YTrip: Destinations', 'ytrip' ),
+        'title'       => __( 'YTrip Destinations', 'ytrip' ),
         'classname'   => 'ytrip_widget_destinations',
         'description' => __( 'List tour destinations with optional count and style.', 'ytrip' ),
         'fields'      => ytrip_destinations_widget_fields(),
     ) );
 
     CSF::createWidget( 'ytrip_activities_widget', array(
-        'title'       => __( 'YTrip: Activities', 'ytrip' ),
+        'title'       => __( 'YTrip Activities', 'ytrip' ),
         'classname'   => 'ytrip_widget_activities',
         'description' => __( 'List tour categories (activities) with optional count.', 'ytrip' ),
         'fields'      => ytrip_activities_widget_fields(),
     ) );
 
     CSF::createWidget( 'ytrip_trips_widget', array(
-        'title'       => __( 'YTrip: Trips', 'ytrip' ),
+        'title'       => __( 'YTrip Trips', 'ytrip' ),
         'classname'   => 'ytrip_widget_trips',
         'description' => __( 'List tours by random, new, cheapest, top rated, or most popular.', 'ytrip' ),
         'fields'      => ytrip_trips_widget_fields(),
     ) );
+
 }
-add_action( 'widgets_init', 'ytrip_register_csf_widgets' );
+add_action( 'widgets_init', 'ytrip_register_csf_widgets', 20 );
 
 /**
  * Register YTrip widget areas (sidebars) for archive and single tour pages.
@@ -499,7 +500,7 @@ function ytrip_register_widget_areas() {
     ) );
 }
 
-add_action( 'widgets_init', 'ytrip_register_widget_areas' );
+add_action( 'widgets_init', 'ytrip_register_widget_areas', 20 );
 
 /**
  * Allow YTrip CSF widgets to appear inside Gutenberg's "Legacy Widget" block.
@@ -510,8 +511,15 @@ add_action( 'widgets_init', 'ytrip_register_widget_areas' );
  * @param array $widget_types Widget type IDs to hide from Legacy Widget block.
  * @return array
  */
+/**
+ * Allow YTrip CSF and standard widgets to appear inside Gutenberg's block inserter.
+ * We remove them from the "hidden" list and explicitly return false for the hidden check.
+ * This ensures they are searchable as "Legacy Widget" blocks in the Customizer.
+ *
+ * @param array $widget_types Widget type IDs to hide from Legacy Widget block.
+ * @return array
+ */
 function ytrip_allow_legacy_widget_block( $widget_types ) {
-    // Remove our widget IDs from the "hidden" list so they become available.
     $ytrip_widgets = array(
         'ytrip_destinations_widget',
         'ytrip_activities_widget',
@@ -522,7 +530,31 @@ function ytrip_allow_legacy_widget_block( $widget_types ) {
     );
     return array_diff( $widget_types, $ytrip_widgets );
 }
-add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'ytrip_allow_legacy_widget_block', 999 );
+add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'ytrip_allow_legacy_widget_block', 9999 );
+
+/**
+ * Explicitly unhide YTrip widgets from the block editor.
+ *
+ * @param bool   $is_hidden Whether the widget type is hidden.
+ * @param string $widget_id The widget type ID.
+ * @return bool
+ */
+function ytrip_unhide_widgets_from_block_editor( $is_hidden, $widget_id ) {
+    $ytrip_widgets = array(
+        'ytrip_destinations_widget',
+        'ytrip_activities_widget',
+        'ytrip_trips_widget',
+        'ytrip_latest_tours',
+        'ytrip_destinations',
+        'ytrip_categories',
+    );
+    if ( in_array( $widget_id, $ytrip_widgets, true ) ) {
+        return false;
+    }
+    return $is_hidden;
+}
+add_filter( 'is_widget_type_hidden_from_block_editor', 'ytrip_unhide_widgets_from_block_editor', 9999, 2 );
+
 
 
 /**
