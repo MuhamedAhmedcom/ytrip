@@ -9,10 +9,22 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 $tour_id = get_the_ID();
-$meta = get_post_meta( $tour_id, 'ytrip_tour_details', true );
-$options = get_option( 'ytrip_settings' );
+$meta    = get_post_meta( $tour_id, 'ytrip_tour_details', true );
+$meta    = is_array( $meta ) ? $meta : array();
+$options    = get_option( 'ytrip_settings', array() );
+$options    = is_array( $options ) ? $options : array();
 $product_id = get_post_meta( $tour_id, '_ytrip_wc_product_id', true );
-$product = $product_id && function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+$product    = $product_id && function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+
+// Standardize terms and metadata strings
+$duration_str   = ytrip_get_meta_value_as_string( $meta, 'tour_duration' );
+$group_str      = ytrip_get_meta_value_as_string( $meta, 'group_size' );
+$destinations   = get_the_terms( $tour_id, 'ytrip_destination' );
+$dest_name      = ( ! empty( $destinations ) && ! is_wp_error( $destinations ) ) ? $destinations[0]->name : '';
+
+// Hero / Gallery logic
+$gallery_ids = ytrip_get_gallery_ids( $meta );
+$thumb_id    = ytrip_get_effective_thumbnail_id( $tour_id, $meta );
 
 get_header();
 
@@ -24,18 +36,17 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
     <!-- Hero Header -->
     <header class="ytrip-magazine-hero">
         <div class="ytrip-magazine-hero__bg">
-            <?php if ( has_post_thumbnail() ) : ?>
-                <?php the_post_thumbnail( 'full' ); ?>
+            <?php if ( $thumb_id ) : ?>
+                <?php echo wp_get_attachment_image( $thumb_id, 'full' ); ?>
             <?php endif; ?>
         </div>
         <div class="ytrip-magazine-hero__overlay"></div>
         
         <div class="ytrip-magazine-hero__content">
-            <?php $dest = get_the_terms( $tour_id, 'ytrip_destination' ); ?>
-            <?php if ( $dest && ! is_wp_error( $dest ) ) : ?>
+            <?php if ( $dest_name ) : ?>
             <span class="ytrip-magazine-hero__location">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <?php echo esc_html( $dest[0]->name ); ?>
+                <?php echo esc_html( $dest_name ); ?>
             </span>
             <?php endif; ?>
             
@@ -46,8 +57,8 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
             <?php endif; ?>
             
             <div class="ytrip-magazine-hero__meta">
-                <?php if ( ! empty( $meta['duration'] ) ) : ?>
-                <span><?php echo esc_html( $meta['duration'] ); ?></span>
+                <?php if ( $duration_str ) : ?>
+                <span><?php echo esc_html( $duration_str ); ?></span>
                 <?php endif; ?>
                 
                 <?php if ( $product ) : ?>
@@ -61,26 +72,26 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
     <section class="ytrip-magazine-facts">
         <div class="ytrip-container">
             <div class="ytrip-magazine-facts__grid">
-                <?php if ( ! empty( $meta['duration'] ) ) : ?>
+                <?php if ( $duration_str ) : ?>
                 <div class="ytrip-magazine-facts__item">
                     <div class="ytrip-magazine-facts__icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                     </div>
                     <div class="ytrip-magazine-facts__text">
                         <span class="ytrip-magazine-facts__label"><?php esc_html_e( 'Duration', 'ytrip' ); ?></span>
-                        <span class="ytrip-magazine-facts__value"><?php echo esc_html( $meta['duration'] ); ?></span>
+                        <span class="ytrip-magazine-facts__value"><?php echo esc_html( $duration_str ); ?></span>
                     </div>
                 </div>
                 <?php endif; ?>
                 
-                <?php if ( ! empty( $meta['group_size'] ) ) : ?>
+                <?php if ( $group_str ) : ?>
                 <div class="ytrip-magazine-facts__item">
                     <div class="ytrip-magazine-facts__icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
                     </div>
                     <div class="ytrip-magazine-facts__text">
                         <span class="ytrip-magazine-facts__label"><?php esc_html_e( 'Group Size', 'ytrip' ); ?></span>
-                        <span class="ytrip-magazine-facts__value"><?php echo esc_html( $meta['group_size'] ); ?></span>
+                        <span class="ytrip-magazine-facts__value"><?php echo esc_html( $group_str ); ?></span>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -155,25 +166,29 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
         </div>
     </section>
 
-    <!-- Photo Grid -->
-    <?php if ( ! empty( $meta['tour_gallery'] ) ) : ?>
+    <!-- Photo Gallery (Modern Lightbox) -->
+    <?php if ( ! empty( $gallery_ids ) ) : ?>
     <section class="ytrip-magazine-gallery">
         <div class="ytrip-container">
             <h2 class="ytrip-magazine-section-title"><?php esc_html_e( 'Photo Gallery', 'ytrip' ); ?></h2>
-            <div class="ytrip-magazine-gallery__grid">
+            <div class="ytrip-gallery-grid ytrip-lightbox-gallery">
                 <?php 
-                $gallery = explode( ',', $meta['tour_gallery'] );
-                foreach ( $gallery as $i => $img_id ) :
-                    $size = ( $i === 0 || $i === 3 ) ? 'large' : 'medium';
+                foreach ( $gallery_ids as $i => $img_id ) :
+                    $full_url = wp_get_attachment_image_url( $img_id, 'full' );
+                    $alt_text = get_post_meta( $img_id, '_wp_attachment_image_alt', true );
+                    if ( ! $full_url ) continue;
                 ?>
-                <div class="ytrip-magazine-gallery__item <?php echo $i === 0 ? 'ytrip-magazine-gallery__item--large' : ''; ?>">
-                    <?php echo wp_get_attachment_image( $img_id, $size ); ?>
+                <div class="ytrip-gallery-grid__item"
+                     data-lightbox-src="<?php echo esc_url( $full_url ); ?>"
+                     data-lightbox-alt="<?php echo esc_attr( $alt_text ); ?>">
+                    <?php echo wp_get_attachment_image( $img_id, 'medium_large', false, array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
                 </div>
                 <?php endforeach; ?>
             </div>
         </div>
     </section>
     <?php endif; ?>
+
 
     <!-- Timeline Itinerary -->
     <?php if ( ! empty( $meta['itinerary'] ) ) : ?>

@@ -161,16 +161,8 @@ class YTrip_Frontend {
                 );
             }
             // Swiper CSS only when single tour hero is slider/carousel (avoids unused CSS, CLS from late styles).
-            $tour_id   = get_queried_object_id();
-            $meta      = get_post_meta( $tour_id, 'ytrip_tour_details', true );
-            $meta      = is_array( $meta ) ? $meta : array();
-            $hero_mode = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : 'single_image';
-            $gallery   = isset( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-            if ( empty( $gallery ) && has_post_thumbnail( $tour_id ) ) {
-                $gallery = array( get_post_thumbnail_id( $tour_id ) );
-            }
-            $hero_is_slider = ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) && count( $gallery ) > 1;
-            if ( $hero_is_slider ) {
+            $tour_id = get_queried_object_id();
+            if ( function_exists( 'ytrip_single_tour_needs_swiper' ) && ytrip_single_tour_needs_swiper( $tour_id ) ) {
                 wp_enqueue_style(
                     'swiper-bundle',
                     YTRIP_URL . 'assets/vendor/swiper/swiper-bundle.min.css',
@@ -188,6 +180,27 @@ class YTrip_Frontend {
 				array( $base_handle ),
 				YTRIP_VERSION
 			);
+		}
+
+		// Lightbox gallery assets (single tour pages).
+		if ( is_singular( 'ytrip_tour' ) ) {
+			if ( file_exists( YTRIP_PATH . 'assets/css/ytrip-lightbox.css' ) ) {
+				wp_enqueue_style(
+					'ytrip-lightbox',
+					YTRIP_URL . 'assets/css/ytrip-lightbox.css',
+					array( $base_handle ),
+					YTRIP_VERSION
+				);
+			}
+			if ( file_exists( YTRIP_PATH . 'assets/js/ytrip-lightbox.js' ) ) {
+				wp_enqueue_script(
+					'ytrip-lightbox',
+					YTRIP_URL . 'assets/js/ytrip-lightbox.js',
+					array(),
+					YTRIP_VERSION,
+					true
+				);
+			}
 		}
 	}
 
@@ -354,36 +367,28 @@ class YTrip_Frontend {
 			}
 		}
 
-		// Single tour: Swiper + hero slider only when hero is actually slider/carousel (LCP/INP: avoid ~100KB JS on single-image hero).
-		if ( is_singular( 'ytrip_tour' ) ) {
-			$tour_id   = get_queried_object_id();
-			$meta      = get_post_meta( $tour_id, 'ytrip_tour_details', true );
-			$meta      = is_array( $meta ) ? $meta : array();
-			$hero_mode = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : 'single_image';
-			$gallery   = isset( $meta['tour_gallery'] ) ? array_filter( array_map( 'absint', explode( ',', $meta['tour_gallery'] ) ) ) : array();
-			if ( empty( $gallery ) && has_post_thumbnail( $tour_id ) ) {
-				$gallery = array( get_post_thumbnail_id( $tour_id ) );
-			}
-			$hero_is_slider = ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) && count( $gallery ) > 1;
-			if ( $hero_is_slider ) {
-				wp_enqueue_script(
-					'swiper-bundle',
-					YTRIP_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
-					array(),
-					'11.2.10',
-					true
-				);
-				if ( file_exists( YTRIP_PATH . 'assets/js/hero-slider.js' ) ) {
-					wp_enqueue_script(
-						'ytrip-hero-slider',
-						YTRIP_URL . 'assets/js/hero-slider.js',
-						array( 'swiper-bundle' ),
-						YTRIP_VERSION,
-						true
-					);
-				}
-			}
-		}
+            // Single tour: Swiper + hero slider only when hero is actually slider/carousel (LCP/INP: avoid ~100KB JS on single-image hero).
+            if ( is_singular( 'ytrip_tour' ) ) {
+                $tour_id = get_queried_object_id();
+                if ( function_exists( 'ytrip_single_tour_needs_swiper' ) && ytrip_single_tour_needs_swiper( $tour_id ) ) {
+                    wp_enqueue_script(
+                        'swiper-bundle',
+                        YTRIP_URL . 'assets/vendor/swiper/swiper-bundle.min.js',
+                        array(),
+                        '11.2.10',
+                        true
+                    );
+                    if ( file_exists( YTRIP_PATH . 'assets/js/hero-slider.js' ) ) {
+                        wp_enqueue_script(
+                            'ytrip-hero-slider',
+                            YTRIP_URL . 'assets/js/hero-slider.js',
+                            array( 'swiper-bundle' ),
+                            YTRIP_VERSION,
+                            true
+                        );
+                    }
+                }
+            }
 
 		// Carousel + wishlist (needed for related section arrows and card interactions on single tour).
 		if ( is_singular( 'ytrip_tour' ) && file_exists( YTRIP_PATH . 'assets/js/ytrip-frontend.js' ) ) {

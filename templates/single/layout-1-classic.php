@@ -17,42 +17,15 @@ $show_tab_icons = ! empty( $options['single_tabs_show_icons'] );
 $product_id = get_post_meta( $tour_id, '_ytrip_wc_product_id', true );
 $product    = $product_id && function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
 
-// Normalize duration (metabox: tour_duration = fieldset days, nights, hours)
-$duration_arr = isset( $meta['tour_duration'] ) && is_array( $meta['tour_duration'] ) ? $meta['tour_duration'] : array();
-$days         = isset( $duration_arr['days'] ) ? max( 0, (int) $duration_arr['days'] ) : 0;
-$nights       = isset( $duration_arr['nights'] ) ? max( 0, (int) $duration_arr['nights'] ) : 0;
-$hours        = isset( $duration_arr['hours'] ) ? max( 0, (int) $duration_arr['hours'] ) : 0;
-$duration_str = '';
-if ( $days > 0 || $nights > 0 ) {
-	$parts = array();
-	if ( $days > 0 ) {
-		$parts[] = sprintf( _n( '%d Day', '%d Days', $days, 'ytrip' ), $days );
-	}
-	if ( $nights > 0 ) {
-		$parts[] = sprintf( _n( '%d Night', '%d Nights', $nights, 'ytrip' ), $nights );
-	}
-	$duration_str = implode( ' / ', $parts );
-} elseif ( $hours > 0 ) {
-	$duration_str = sprintf( _n( '%d Hour', '%d Hours', $hours, 'ytrip' ), $hours );
-}
-if ( $duration_str === '' && ! empty( $meta['duration'] ) && is_string( $meta['duration'] ) ) {
-	$duration_str = $meta['duration'];
-}
-
-// Normalize group size (metabox: group_size = fieldset min, max)
-$group_arr   = isset( $meta['group_size'] ) && is_array( $meta['group_size'] ) ? $meta['group_size'] : array();
-$group_min   = isset( $group_arr['min'] ) ? max( 0, (int) $group_arr['min'] ) : 1;
-$group_max   = isset( $group_arr['max'] ) ? max( 0, (int) $group_arr['max'] ) : 50;
-$group_str   = $group_min === $group_max ? (string) $group_min : $group_min . ' – ' . $group_max;
-if ( empty( $group_str ) && ! empty( $meta['group_size'] ) ) {
-	$group_str = is_array( $meta['group_size'] ) ? implode( ' – ', array_map( 'esc_html', $meta['group_size'] ) ) : $meta['group_size'];
-}
-
-// Get destinations & categories
-$destinations    = get_the_terms( $tour_id, 'ytrip_destination' );
+// Standardize terms and metadata strings
+$destinations     = get_the_terms( $tour_id, 'ytrip_destination' );
 $destination_name = ( ! empty( $destinations ) && ! is_wp_error( $destinations ) ) ? $destinations[0]->name : '';
-$categories      = get_the_terms( $tour_id, 'ytrip_category' );
-$category_name   = ( ! empty( $categories ) && ! is_wp_error( $categories ) ) ? $categories[0]->name : '';
+$categories       = get_the_terms( $tour_id, 'ytrip_category' );
+$category_name    = ( ! empty( $categories ) && ! is_wp_error( $categories ) ) ? $categories[0]->name : '';
+
+$duration_str = ytrip_get_meta_value_as_string( $meta, 'tour_duration' );
+$group_str    = ytrip_get_meta_value_as_string( $meta, 'group_size' );
+$location_str = ytrip_get_meta_value_as_string( $meta, 'tour_location' );
 
 // Gallery / Hero images logic
 $gallery_ids = ytrip_get_gallery_ids( $meta );
@@ -71,7 +44,7 @@ foreach ( $gallery_ids as $gid ) {
 
 // ── HERO SLIDER: automatic Swiper when 2+ images ──
 $hero_count      = count( $hero_images );
-$hero_is_slider  = ( $hero_count > 1 );
+$hero_is_slider  = function_exists( 'ytrip_single_tour_needs_swiper' ) ? ytrip_single_tour_needs_swiper( $tour_id ) : ( $hero_count > 1 );
 $hero_gallery_mode = $hero_is_slider ? ( isset( $options['single_hero_gallery_mode'] ) ? sanitize_key( $options['single_hero_gallery_mode'] ) : 'slider' ) : 'single_image';
 
 get_header();
@@ -242,7 +215,7 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
     <section class="ytrip-quick-info">
         <div class="ytrip-container">
             <div class="ytrip-quick-info__grid">
-                <?php if ( $duration_str !== '' ) : ?>
+                <?php if ( $duration_str ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -255,19 +228,24 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
                     </div>
                 </div>
                 <?php endif; ?>
+
+                <?php if ( $group_str ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
                         </svg>
                     </div>
-                    <div class="ytrip-quick-card__content">
+                    <div class="ytrip-quick-card__text">
                         <span class="ytrip-quick-card__label"><?php esc_html_e( 'Group Size', 'ytrip' ); ?></span>
                         <span class="ytrip-quick-card__value"><?php echo esc_html( $group_str ); ?></span>
                     </div>
                 </div>
-                <?php if ( ! empty( $meta['languages'] ) ) : ?>
+                <?php endif; ?>
+
+                <?php 
+                $languages = ytrip_get_meta_value_as_string( $meta, 'languages' );
+                if ( $languages ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -276,7 +254,7 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
                     </div>
                     <div class="ytrip-quick-card__content">
                         <span class="ytrip-quick-card__label"><?php esc_html_e( 'Languages', 'ytrip' ); ?></span>
-                        <span class="ytrip-quick-card__value"><?php echo esc_html( is_array( $meta['languages'] ) ? implode( ', ', $meta['languages'] ) : $meta['languages'] ); ?></span>
+                        <span class="ytrip-quick-card__value"><?php echo esc_html( $languages ); ?></span>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -686,6 +664,29 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
             </div>
         </div>
     </section>
+
+    <!-- Photo Gallery (Lightbox) -->
+    <?php if ( ! empty( $gallery_ids ) && count( $gallery_ids ) > 0 ) : ?>
+    <section class="ytrip-content-gallery" style="padding: 60px 0;">
+        <div class="ytrip-container">
+            <h2 class="ytrip-section-title" style="text-align:center; margin-bottom:32px; font-size:1.75rem;"><?php esc_html_e( 'Photo Gallery', 'ytrip' ); ?></h2>
+            <div class="ytrip-gallery-grid ytrip-lightbox-gallery">
+                <?php 
+                foreach ( $gallery_ids as $i => $img_id ) :
+                    $full_url = wp_get_attachment_image_url( $img_id, 'full' );
+                    $alt_text = get_post_meta( $img_id, '_wp_attachment_image_alt', true );
+                    if ( ! $full_url ) continue;
+                ?>
+                <div class="ytrip-gallery-grid__item"
+                     data-lightbox-src="<?php echo esc_url( $full_url ); ?>"
+                     data-lightbox-alt="<?php echo esc_attr( $alt_text ); ?>">
+                    <?php echo wp_get_attachment_image( $img_id, 'medium_large', false, array( 'loading' => 'lazy', 'decoding' => 'async' ) ); ?>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
 
     <!-- Sticky CTA bar: shown on tablet/mobile when booking widget is below the fold -->
     <div class="ytrip-booking-cta-bar" id="ytrip-booking-cta-bar" aria-hidden="true">

@@ -30,7 +30,10 @@
 .ytrip-magazine-hero__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.25) 0%,
+            rgba(0, 0, 0, 0.55) 50%,
+            rgba(0, 0, 0, 0.7) 100%);
     z-index: 1;
 }
 
@@ -53,16 +56,20 @@
 
 .ytrip-magazine-hero__title {
     font-family: var(--ytrip-font-heading, serif);
-    font-size: clamp(40px, 6vw, 84px);
+    font-size: clamp(36px, 5.5vw, 72px);
     margin: 0 0 24px;
     line-height: 1.1;
+    font-weight: 700;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6), 0 1px 3px rgba(0, 0, 0, 0.4);
+    letter-spacing: -0.02em;
 }
 
 .ytrip-magazine-hero__excerpt {
     font-size: 20px;
     margin-bottom: 30px;
-    opacity: 0.9;
+    opacity: 0.95;
     font-style: italic;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
 .ytrip-magazine-hero__meta {

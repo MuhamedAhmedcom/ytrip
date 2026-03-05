@@ -768,84 +768,18 @@ class YTrip_Tour_Display {
         return ob_get_clean();
     }
 
-    /**
-     * Format duration (supports tour_duration fieldset, duration array, or duration string).
-     *
-     * @param array $meta Tour meta (ytrip_tour_details).
-     * @return string
-     */
     private function format_duration(array $meta) {
-        if ( ! is_array($meta) ) {
-            return '';
+        if ( function_exists( 'ytrip_get_meta_value_as_string' ) ) {
+            return ytrip_get_meta_value_as_string( $meta, 'tour_duration' );
         }
-
-        if ( ! empty($meta['duration']) && is_string($meta['duration']) ) {
-            return trim($meta['duration']);
-        }
-
-        $arr = isset($meta['tour_duration']) && is_array($meta['tour_duration'])
-            ? $meta['tour_duration']
-            : ( isset($meta['duration']) && is_array($meta['duration']) ? $meta['duration'] : [] );
-
-        $days  = isset($arr['days']) ? max(0, (int) $arr['days']) : 0;
-        $nights = isset($arr['nights']) ? max(0, (int) $arr['nights']) : 0;
-        $hours = isset($arr['hours']) ? max(0, (int) $arr['hours']) : 0;
-
-        if ($days > 0 || $nights > 0) {
-            $parts = [];
-            if ($days > 0) {
-                $parts[] = sprintf( _n('%d Day', '%d Days', $days, 'ytrip'), $days );
-            }
-            if ($nights > 0) {
-                $parts[] = sprintf( _n('%d Night', '%d Nights', $nights, 'ytrip'), $nights );
-            }
-            return implode(' / ', $parts);
-        }
-
-        if ($hours > 0) {
-            return sprintf( _n('%d Hour', '%d Hours', $hours, 'ytrip'), $hours );
-        }
-
         return '';
     }
 
-    /**
-     * Format group size.
-     *
-     * @param array $meta Tour meta.
-     * @return string
-     */
     private function format_group_size(array $meta) {
-        if ( ! isset($meta['group_size']) ) {
-            return '';
+        if ( function_exists( 'ytrip_get_meta_value_as_string' ) ) {
+            return ytrip_get_meta_value_as_string( $meta, 'group_size' );
         }
-        $gs = $meta['group_size'];
-        if ( is_string($gs) && trim($gs) !== '' ) {
-            return trim($gs);
-        }
-        if ( ! is_array($gs) ) {
-            return '';
-        }
-        $min = (int) ($gs['min'] ?? 1);
-        $max = (int) ($gs['max'] ?? 20);
-        if ( $min <= 0 && $max <= 0 ) {
-            return '';
-        }
-        if ( $min <= 0 ) {
-            $min = 1;
-        }
-        if ( $max <= 0 ) {
-            $max = max($min, 20);
-        }
-        if ( $min > $max ) {
-            $max = $min;
-        }
-        return sprintf(
-            /* translators: 1: min, 2: max */
-            __('%1$d-%2$d People', 'ytrip'),
-            $min,
-            $max
-        );
+        return '';
     }
 
     /**

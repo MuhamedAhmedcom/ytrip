@@ -216,3 +216,148 @@ function ytrip_get_effective_thumbnail_id( $tour_id, $meta = null ) {
 
 	return 0;
 }
+
+/**
+ * Safely get a meta value as a string, with specialized formatting for tour fieldsets.
+ * Handles tour_duration (days/nights/hours), group_size (min/max), and generic arrays.
+ *
+ * @param array  $meta The meta array.
+ * @param string $key  The key to retrieve.
+ * @return string Formatted string or empty.
+ */
+function ytrip_get_meta_value_as_string( $meta, $key ) {
+	if ( ! is_array( $meta ) ) {
+		return '';
+	}
+
+	// Normalize key and handle aliases
+	$search_keys = array( $key );
+	if ( 'duration' === $key ) {
+		$search_keys[] = 'tour_duration';
+	} elseif ( 'tour_duration' === $key ) {
+		$search_keys[] = 'duration';
+	}
+
+	$val = '';
+	foreach ( $search_keys as $sk ) {
+		if ( ! empty( $meta[ $sk ] ) ) {
+			$val = $meta[ $sk ];
+			$key = $sk; // Use the actual key found
+			break;
+		}
+	}
+
+	if ( empty( $val ) ) {
+		return '';
+	}
+
+	// Special Handling: Duration Fieldset
+	if ( ( 'duration' === $key || 'tour_duration' === $key ) && is_array( $val ) ) {
+		$parts = array();
+		$days   = isset( $val['days'] )   ? (int) $val['days']   : 0;
+		$nights = isset( $val['nights'] ) ? (int) $val['nights'] : 0;
+		$hours  = isset( $val['hours'] )  ? (int) $val['hours']  : 0;
+
+		if ( $days > 0 ) {
+			$parts[] = sprintf( _n( '%d Day', '%d Days', $days, 'ytrip' ), $days );
+		}
+		if ( $nights > 0 ) {
+			$parts[] = sprintf( _n( '%d Night', '%d Nights', $nights, 'ytrip' ), $nights );
+		}
+		
+		if ( ! empty( $parts ) ) {
+			return implode( ' / ', $parts );
+		}
+
+		if ( $hours > 0 ) {
+			return sprintf( _n( '%d Hour', '%d Hours', $hours, 'ytrip' ), $hours );
+		}
+		
+		return '';
+	}
+
+	// Special Handling: Group Size Fieldset
+	if ( 'group_size' === $key && is_array( $val ) ) {
+		$min = isset( $val['min'] ) ? (int) $val['min'] : 0;
+		$max = isset( $val['max'] ) ? (int) $val['max'] : 0;
+		
+		if ( $min > 0 && $max > 0 ) {
+			if ( $min === $max ) {
+				return (string) $min;
+			}
+			return $min . ' - ' . $max;
+		}
+		if ( $max > 0 ) {
+			return (string) $max;
+		}
+		if ( $min > 0 ) {
+			return (string) $min;
+		}
+		return '';
+	}
+
+	// Special Handling: Languages (Multiple Select)
+	if ( 'languages' === $key && is_array( $val ) ) {
+		// Languages are usually code keys (en, de, etc.)
+		$all_langs = array(
+			'en' => 'English', 'ar' => 'Arabic', 'de' => 'German', 'fr' => 'French',
+			'es' => 'Spanish', 'it' => 'Italian', 'zh' => 'Chinese', 'ru' => 'Russian'
+		);
+		$labels = array();
+		foreach ( $val as $code ) {
+			$labels[] = isset( $all_langs[ $code ] ) ? $all_langs[ $code ] : $code;
+		}
+		return implode( ', ', $labels );
+	}
+
+	// Generic array fallback (avoid literal "Array")
+	if ( is_array( $val ) ) {
+		if ( isset( $val['value'] ) && is_scalar( $val['value'] ) ) {
+			return (string) $val['value'];
+		}
+		// Flatten scalar values
+		return implode( ', ', array_filter( $val, 'is_scalar' ) );
+	}
+
+	return (string) $val;
+}
+
+/**
+ * Check if a single tour page needs Swiper assets.
+ * Considers both the explicit hero mode and the automatic fallback for multiple images.
+ *
+ * @param int $tour_id Tour ID.
+ * @return bool
+ */
+function ytrip_single_tour_needs_swiper( $tour_id ) {
+	$meta = get_post_meta( $tour_id, 'ytrip_tour_details', true );
+	$meta = is_array( $meta ) ? $meta : array();
+
+	// If explicit mode is slider/carousel, we definitely want it (legacy support)
+	$hero_mode = isset( $meta['hero_gallery_mode'] ) ? sanitize_key( $meta['hero_gallery_mode'] ) : 'single_image';
+	if ( $hero_mode === 'slider' || $hero_mode === 'carousel' ) {
+		return true;
+	}
+
+	// Automatic mode: if 2+ images (featured + gallery), layouts 1 & 2 use Swiper
+	$gallery = ytrip_get_gallery_ids( $meta );
+	$has_thumb = has_post_thumbnail( $tour_id );
+
+	// Build count logic similar to layout-1
+	$count = count( $gallery );
+	if ( $has_thumb ) {
+		$thumb_id = (int) get_post_thumbnail_id( $tour_id );
+		$is_in_gallery = false;
+		foreach ( $gallery as $gid ) {
+			if ( (int) $gid === $thumb_id ) {
+				$is_in_gallery = true;
+				break;
+			}
+		}
+		if ( ! $is_in_gallery ) {
+			$count++;
+		}
+	}
+
+	return $count > 1;
+}

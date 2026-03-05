@@ -33,9 +33,13 @@ foreach ( $gallery_ids as $gid ) {
 
 // ── HERO SLIDER: automatic Swiper when 2+ images ──
 $hero_count        = count( $hero_images );
-$hero_is_slider    = ( $hero_count > 1 );
+$hero_is_slider    = function_exists( 'ytrip_single_tour_needs_swiper' ) ? ytrip_single_tour_needs_swiper( $tour_id ) : ( $hero_count > 1 );
 $hero_gallery_mode = $hero_is_slider ? ( isset( $options['single_hero_gallery_mode'] ) ? sanitize_key( $options['single_hero_gallery_mode'] ) : 'slider' ) : 'single_image';
 $product    = $product_id && function_exists( 'wc_get_product' ) ? wc_get_product( $product_id ) : null;
+
+$duration_str = ytrip_get_meta_value_as_string( $meta, 'tour_duration' );
+$group_str    = ytrip_get_meta_value_as_string( $meta, 'group_size' );
+$languages_str = ytrip_get_meta_value_as_string( $meta, 'languages' );
 
 // Get taxonomy data
 $destinations = get_the_terms( $tour_id, 'ytrip_destination' );
@@ -223,24 +227,24 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
         <div class="ytrip-container">
             <div class="ytrip-quick-info__grid">
                 <!-- Using same logic as Layout 1 for cards -->
-                 <?php if ( ! empty( $meta['duration'] ) ) : ?>
+                <?php if ( $duration_str ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Duration</span><span class="ytrip-quick-card__value"><?php echo esc_html( $meta['duration'] ); ?></span></div>
+                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Duration</span><span class="ytrip-quick-card__value"><?php echo esc_html( $duration_str ); ?></span></div>
                 </div>
                 <?php endif; ?>
                 <!-- Group Size -->
-                <?php if ( ! empty( $meta['group_size'] ) ) : ?>
+                <?php if ( $group_str ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Group Size</span><span class="ytrip-quick-card__value"><?php echo esc_html( is_array( $meta['group_size'] ) ? implode( ' - ', $meta['group_size'] ) : $meta['group_size'] ); ?></span></div>
+                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Group Size</span><span class="ytrip-quick-card__value"><?php echo esc_html( $group_str ); ?></span></div>
                 </div>
                 <?php endif; ?>
                 <!-- Languages -->
-                <?php if ( ! empty( $meta['languages'] ) ) : ?>
+                <?php if ( $languages_str ) : ?>
                 <div class="ytrip-quick-card">
                     <div class="ytrip-quick-card__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/></svg></div>
-                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Languages</span><span class="ytrip-quick-card__value"><?php echo esc_html( is_array( $meta['languages'] ) ? implode( ', ', $meta['languages'] ) : $meta['languages'] ); ?></span></div>
+                    <div class="ytrip-quick-card__content"><span class="ytrip-quick-card__label">Languages</span><span class="ytrip-quick-card__value"><?php echo esc_html( $languages_str ); ?></span></div>
                 </div>
                 <?php endif; ?>
             </div>
