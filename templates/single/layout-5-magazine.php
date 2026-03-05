@@ -38,6 +38,8 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
         <div class="ytrip-magazine-hero__bg">
             <?php if ( $thumb_id ) : ?>
                 <?php echo wp_get_attachment_image( $thumb_id, 'full' ); ?>
+            <?php else : ?>
+                <div style="width:100%;height:100%;background:linear-gradient(135deg,#1a365d 0%,#2563eb 50%,#0ea5e9 100%);"></div>
             <?php endif; ?>
         </div>
         <div class="ytrip-magazine-hero__overlay"></div>

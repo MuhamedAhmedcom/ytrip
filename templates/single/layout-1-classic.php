@@ -103,7 +103,7 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
         <div class="ytrip-hero__gallery">
             <!-- Main Image -->
             <div class="ytrip-hero__main">
-                <?php if ( ! empty( $hero_images ) ) : ?>
+            <?php if ( ! empty( $hero_images ) ) : ?>
                     <?php
                     $main_img_id = $hero_images[0];
                     $hero_img = wp_get_attachment_image(
@@ -120,6 +120,10 @@ include YTRIP_PATH . 'templates/parts/single-tour-brand-vars.php';
                     );
                     echo ytrip_wrap_image_with_skeleton( $hero_img, true );
                     ?>
+                <?php else : ?>
+                    <div class="ytrip-hero__placeholder" style="width:100%;height:100%;background:linear-gradient(135deg,#1a365d 0%,#2563eb 50%,#0ea5e9 100%);display:flex;align-items:center;justify-content:center;">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+                    </div>
                 <?php endif; ?>
                 <div class="ytrip-hero__overlay"></div>
             </div>
