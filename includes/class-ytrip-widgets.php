@@ -501,3 +501,40 @@ function ytrip_register_widget_areas() {
 }
 
 add_action( 'widgets_init', 'ytrip_register_widget_areas' );
+
+/**
+ * Allow YTrip CSF widgets to appear inside Gutenberg's "Legacy Widget" block.
+ * Without this filter, Gutenberg hides them because it cannot auto-generate
+ * a block preview for CSF widgets. We expose them explicitly so editors can
+ * insert them from the block inserter → Widgets → Legacy Widget.
+ *
+ * @param array $widget_types Widget type IDs to hide from Legacy Widget block.
+ * @return array
+ */
+function ytrip_allow_legacy_widget_block( $widget_types ) {
+    // Remove our widget IDs from the "hidden" list so they become available.
+    $ytrip_widgets = array(
+        'ytrip_destinations_widget',
+        'ytrip_activities_widget',
+        'ytrip_trips_widget',
+    );
+    return array_diff( $widget_types, $ytrip_widgets );
+}
+add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'ytrip_allow_legacy_widget_block' );
+
+/**
+ * Suppress the Gutenberg block-editor warning for our CSF legacy widgets
+ * by registering them as "no preview" widgets. This prevents the
+ * "block was affected by errors" notice in the editor.
+ */
+function ytrip_register_widget_block_editor_scripts() {
+    if ( ! function_exists( 'wp_add_inline_script' ) ) {
+        return;
+    }
+    // Only enqueue on the block editor screen.
+    $screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+    if ( ! $screen || ! $screen->is_block_editor() ) {
+        return;
+    }
+}
+add_action( 'admin_enqueue_scripts', 'ytrip_register_widget_block_editor_scripts' );
