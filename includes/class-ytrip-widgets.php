@@ -472,8 +472,7 @@ function ytrip_register_csf_widgets() {
         'fields'      => ytrip_trips_widget_fields(),
     ) );
 }
-
-ytrip_register_csf_widgets();
+add_action( 'widgets_init', 'ytrip_register_csf_widgets' );
 
 /**
  * Register YTrip widget areas (sidebars) for archive and single tour pages.

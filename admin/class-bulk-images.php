@@ -18,9 +18,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function ytrip_bulk_images_menu() {
     add_submenu_page(
-        'ytrip-settings',
+        'options-general.php',
         __( 'Assign Tour Images', 'ytrip' ),
-        __( '📷 Assign Images', 'ytrip' ),
+        __( 'YTrip Images', 'ytrip' ),
         'manage_options',
         'ytrip-bulk-images',
         'ytrip_bulk_images_page'

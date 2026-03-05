@@ -61,19 +61,19 @@ if (!$product) {
     }
 }
 
-// Gallery: support gallery, tour_gallery (array or comma-separated string). Merge featured image so hero can be slider when featured + gallery.
-$raw_gallery = $meta['tour_gallery'] ?? $meta['gallery'] ?? [];
-if (is_array($raw_gallery)) {
-    $gallery_ids = array_filter(array_map('intval', $raw_gallery));
+$gallery_raw = $meta['tour_gallery'] ?? $meta['gallery'] ?? '';
+if ( is_array( $gallery_raw ) ) {
+    $gallery_ids = array_filter( array_map( 'intval', $gallery_raw ) );
 } else {
-    $gallery_ids = array_filter(array_map('intval', explode(',', (string) $raw_gallery)));
+    $gallery_ids = array_filter( array_map( 'intval', explode( ',', (string) $gallery_raw ) ) );
 }
-$featured_img_id = has_post_thumbnail($tour_id) ? get_post_thumbnail_id($tour_id) : 0;
-if (empty($gallery_ids) && $featured_img_id) {
+
+$featured_img_id = ytrip_get_effective_thumbnail_id( $tour_id, $meta );
+if ( empty( $gallery_ids ) && $featured_img_id ) {
     $gallery_ids = [ $featured_img_id ];
-} elseif ($featured_img_id && ! in_array($featured_img_id, $gallery_ids, true)) {
-    array_unshift($gallery_ids, $featured_img_id);
-    $gallery_ids = array_values($gallery_ids);
+} elseif ( $featured_img_id && ! in_array( $featured_img_id, $gallery_ids, true ) ) {
+    array_unshift( $gallery_ids, $featured_img_id );
+    $gallery_ids = array_values( $gallery_ids );
 }
 
 // Single page hero: one control = single_image | slider | carousel (backward compat: single_hero_type + gallery_display_mode)
