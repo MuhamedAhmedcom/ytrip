@@ -220,3 +220,167 @@ function ytrip_render_professional_footer() {
 
 // Add to theme footer
 add_action("wp_footer", "ytrip_render_professional_footer", 20);
+
+/**
+ * Render WhatsApp Floating Button
+ */
+function ytrip_render_whatsapp_footer() {
+    $settings = get_option( 'ytrip_settings', array() );
+    $wa_enable = isset( $settings['wa_enable'] ) ? $settings['wa_enable'] : false;
+    
+    if ( ! $wa_enable ) {
+        return;
+    }
+    
+    $wa_number = isset( $settings['wa_number'] ) ? $settings['wa_number'] : '';
+    if ( empty( $wa_number ) ) {
+        return;
+    }
+    
+    $wa_position = isset( $settings['wa_position'] ) ? $settings['wa_position'] : 'right';
+    $wa_mobile   = isset( $settings['wa_mobile_behavior'] ) ? $settings['wa_mobile_behavior'] : 'float';
+    $wa_anim     = isset( $settings['wa_animation'] ) ? $settings['wa_animation'] : 'pulse';
+    
+    $wa_url = 'https://wa.me/' . esc_attr( ltrim( $wa_number, '+' ) );
+    
+    $classes = array( 'ytrip-whatsapp-btn' );
+    $classes[] = 'ytrip-wa-pos-' . $wa_position;
+    $classes[] = 'ytrip-wa-mob-' . $wa_mobile;
+    $classes[] = 'ytrip-wa-anim-' . $wa_anim;
+    
+    ?>
+    <a href="<?php echo esc_url( $wa_url ); ?>" target="_blank" aria-label="Contact on WhatsApp" class="<?php echo esc_attr( implode( ' ', $classes ) ); ?>">
+      <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" class="ytrip-whatsapp-svg">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.1 0-65.6-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.7-30.6-38.1-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.4 5.5-6.5 8.3-9.7 2.8-3.3 3.7-5.5 5.5-9.2 1.9-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 13.2 5.8 23.5 9.2 31.5 11.8 13.3 4.2 25.4 3.6 35 2.2 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+      </svg>
+      <?php if ( $wa_mobile === 'bar' ) : ?>
+        <span class="ytrip-whatsapp-text"><?php esc_html_e( 'Chat on WhatsApp', 'ytrip' ); ?></span>
+      <?php endif; ?>
+    </a>
+
+    <style>
+    :root {
+      --ytrip-wa-color: #25d366;
+      --ytrip-wa-hover: #128c7e;
+      --ytrip-wa-shadow: rgba(37, 211, 102, 0.4);
+      --ytrip-wa-size: 60px;
+      --ytrip-wa-icon: 32px;
+    }
+    
+    .ytrip-whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--ytrip-wa-size);
+      height: var(--ytrip-wa-size);
+      background: linear-gradient(135deg, var(--ytrip-wa-color) 0%, var(--ytrip-wa-hover) 100%);
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px var(--ytrip-wa-shadow), 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      will-change: transform;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .ytrip-whatsapp-text {
+      display: none;
+    }
+
+    .ytrip-wa-pos-right { right: 20px; }
+    .ytrip-wa-pos-left { left: 20px; }
+
+    .ytrip-whatsapp-svg {
+      width: var(--ytrip-wa-icon);
+      height: var(--ytrip-wa-icon);
+      fill: #ffffff;
+    }
+
+    .ytrip-whatsapp-btn:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6), 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .ytrip-whatsapp-btn:active {
+      transform: scale(0.95);
+      transition: all 0.1s ease;
+    }
+    
+    /* Animations */
+    .ytrip-wa-anim-pulse {
+      animation: ytrip-wa-pulse 2s infinite;
+    }
+    @keyframes ytrip-wa-pulse {
+      0%, 100% { box-shadow: 0 4px 15px var(--ytrip-wa-shadow), 0 0 0 0 rgba(37, 211, 102, 0.7); }
+      50% { box-shadow: 0 4px 15px var(--ytrip-wa-shadow), 0 0 0 15px rgba(37, 211, 102, 0); }
+    }
+    
+    .ytrip-wa-anim-bounce {
+      animation: ytrip-wa-bounce 2s infinite;
+    }
+    @keyframes ytrip-wa-bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); }
+      60% { transform: translateY(-7px); }
+    }
+    .ytrip-wa-anim-bounce:hover {
+      animation: none;
+    }
+
+    @media (max-width: 768px) {
+      /* Base Mobile Float Size Adjustment */
+      .ytrip-wa-mob-float {
+        bottom: 80px; /* Above normal mobile navigation */
+        width: 55px;
+        height: 55px;
+      }
+      .ytrip-wa-mob-float .ytrip-whatsapp-svg {
+        width: 28px;
+        height: 28px;
+      }
+      
+      /* Full Width Sticky Bar Behavior on Mobile */
+      .ytrip-wa-mob-bar {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 60px;
+        border-radius: 0;
+        border: none;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        animation: none; /* Disable animations for bar */
+        gap: 10px;
+      }
+      .ytrip-wa-mob-bar:hover {
+        transform: none;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      }
+      .ytrip-wa-mob-bar .ytrip-whatsapp-svg {
+        width: 24px;
+        height: 24px;
+      }
+      .ytrip-wa-mob-bar .ytrip-whatsapp-text {
+        display: block;
+        color: #fff;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .ytrip-whatsapp-btn {
+        border-color: rgba(255, 255, 255, 0.9);
+      }
+      .ytrip-wa-mob-bar {
+        border-color: transparent;
+      }
+    }
+    </style>
+    <?php
+}
+add_action( 'wp_footer', 'ytrip_render_whatsapp_footer', 30 );

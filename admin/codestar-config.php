@@ -847,6 +847,64 @@ CSF::createSection( $prefix, array(
 ) );
 
 // ============================================================
+// SECTION: WhatsApp Floating Button
+// ============================================================
+CSF::createSection( $prefix, array(
+	'title'  => esc_html__( 'WhatsApp Chat', 'ytrip' ),
+	'icon'   => 'fab fa-whatsapp',
+	'fields' => array(
+		array(
+			'id'      => 'wa_enable',
+			'type'    => 'switcher',
+			'title'   => esc_html__( 'Enable WhatsApp Button', 'ytrip' ),
+			'default' => false,
+		),
+		array(
+			'id'         => 'wa_number',
+			'type'       => 'text',
+			'title'      => esc_html__( 'WhatsApp Number', 'ytrip' ),
+			'desc'       => esc_html__( 'Include country code without +, e.g. 97460006835', 'ytrip' ),
+			'dependency' => array( 'wa_enable', '==', 'true' ),
+		),
+		array(
+			'id'         => 'wa_position',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Position', 'ytrip' ),
+			'options'    => array(
+				'right' => esc_html__( 'Bottom Right', 'ytrip' ),
+				'left'  => esc_html__( 'Bottom Left', 'ytrip' ),
+			),
+			'default'    => 'right',
+			'dependency' => array( 'wa_enable', '==', 'true' ),
+		),
+		array(
+			'id'         => 'wa_mobile_behavior',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Mobile Behavior', 'ytrip' ),
+			'options'    => array(
+				'float'  => esc_html__( 'Float (like desktop)', 'ytrip' ),
+				'bar'    => esc_html__( 'Sticky Bottom Bar', 'ytrip' ),
+			),
+			'default'    => 'float',
+			'desc'       => esc_html__( 'Choose how the button looks on mobile screens.', 'ytrip' ),
+			'dependency' => array( 'wa_enable', '==', 'true' ),
+		),
+		array(
+			'id'         => 'wa_animation',
+			'type'       => 'select',
+			'title'      => esc_html__( 'Animation', 'ytrip' ),
+			'options'    => array(
+				'pulse'  => esc_html__( 'Pulse', 'ytrip' ),
+				'bounce' => esc_html__( 'Bounce', 'ytrip' ),
+				'none'   => esc_html__( 'None', 'ytrip' ),
+			),
+			'default'    => 'pulse',
+			'dependency' => array( 'wa_enable', '==', 'true' ),
+		),
+	),
+) );
+
+// ============================================================
 // SECTION: Maps, Booking & Performance (unified Settings API form)
 // ============================================================
 CSF::createSection( $prefix, array(
